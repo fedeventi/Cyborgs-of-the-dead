@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DistanceAttackZE : MonoBehaviour
 {
-    private void Update()
+    public GameObject collision;
+    private void Start()
     {
-        transform.position += transform.forward * 50f * Time.deltaTime;
-        Destroy(gameObject, 1f);
+        GetComponent<Rigidbody>().AddForce(transform.forward*1000+transform.up*100,ForceMode.Impulse);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -15,6 +15,14 @@ public class DistanceAttackZE : MonoBehaviour
         if(other.gameObject.GetComponent<PlayerModel>())
         {
             other.gameObject.GetComponent<PlayerModel>().life -= 10;
+            Instantiate(collision,transform.position,transform.rotation);
+            Destroy(gameObject);
         }
+        if (other.gameObject.layer == 8)
+        {
+            Instantiate(collision, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+
     }
 }

@@ -327,12 +327,12 @@ public class PlayerModel : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "GlassFragments")
-        {
-            rb.velocity = Vector3.zero;
+        //if(collision.gameObject.tag == "GlassFragments")
+        //{
+        //    rb.velocity = Vector3.zero;
 
-            collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
+        //    collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //}
     }
 
 }

@@ -73,7 +73,7 @@ public class EnemyView : MonoBehaviour
         animator.SetBool("attacking", false);
         animator.SetBool("chasing", false);
         animator.SetBool("death", false);
-        animator.SetBool("distanceAttack", true);
+        animator.SetTrigger("distanceAttack");
     }
     public void WaitForCharge()
     {

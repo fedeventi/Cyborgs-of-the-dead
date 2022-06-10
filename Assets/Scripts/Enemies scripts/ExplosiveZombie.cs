@@ -11,6 +11,7 @@ public class ExplosiveZombie : BaseEnemy
     [Header("Particle system")]
     public ParticleSystem particleSystemExplosion;
     public Transform psPosition;
+    public bool canShoot=true;
 
     public override void Start()
     {
@@ -31,21 +32,18 @@ public class ExplosiveZombie : BaseEnemy
                 hasListenGunShoot = false;
                 isInIdle = false;
                 isInPatrol = false;
-                if(distance>3)
+                
+                if (!InRangeToAttack())
                 {
-                    //rota mirando al target.
-                    var rot = Quaternion.LookRotation(player.transform.position - transform.position);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 6).normalized;
 
+                    if (canShoot)
+                    {
+                        
+                        StartCoroutine(Shoot());
+                    }
+                   
                 }
-                if (distance > 4 && distance<8)
-                {
-                    DistanceAttack();
-                }
-                else if(distance>=8 && !InRangeToAttack())
-                {
-                    fsm.Transition("Chase");
-                }
+                
             }
 
             if (hasListenGunShoot| hasTouchBullet || distance < 10 && !LookingPlayer())
@@ -58,24 +56,9 @@ public class ExplosiveZombie : BaseEnemy
             }
 
 
-            //Transicion al idle
-            if (isInIdle && !InRangeToAttack())
-            {
-                fsm.Transition("Idle");
-            }
-            //Transicion al patrol
-            if (isInPatrol && !InRangeToAttack() )
-            {
-                //ActionPatrol();
-            }
+            
 
-            if (InRangeToAttack() || distance <= 4)
-            {
-                //navMesh.speed = 0;
-                //navMesh.velocity = Vector3.zero;
-                //navMesh.stoppingDistance = 10;
-                enemyView.AttackAnimation();
-            }
+           
         }
 
         //EJECUTA LA MUERTE 
@@ -84,20 +67,52 @@ public class ExplosiveZombie : BaseEnemy
             StartCoroutine(Death());
         }
     }
-    void DistanceAttack()
+    IEnumerator Shoot()
     {
-        //navMesh.speed = 0;
-        //navMesh.velocity = Vector3.zero;
-        //navMesh.stoppingDistance = 10;
-        speed = 0;
-        stoppingDistanceChase = 10;
+        canShoot=false;
+        Transition("Range");
+        yield return new WaitForSeconds(Random.Range(7,15));
+        
+        canShoot = true;
+    }
+    public override void SetStateMachine()
+    {
+        //Estados
+        var idle = new IdleState<string>(this, enemyView);
+        var patrol = new PatrolState<string>(this, enemyView);
+        var attack = new AttackState<string>(this, enemyView);
+        var chase = new ChaseState<string>(this, enemyView);
+        var range = new RangeAttack<string>(this, enemyView);
+
+        //Transiciones
+        idle.AddTransition("Patrol", patrol); //Va de idle a patrol
+        idle.AddTransition("Chase", chase); //Va de idle a chase
+
+        patrol.AddTransition("Idle", idle); //Va de patrol a idle
+        patrol.AddTransition("Chase", chase); //Va de patrol a chase
+
+        attack.AddTransition("Chase", chase); //Va de attack a chase
+
+        range.AddTransition("Chase", chase);
+
+        chase.AddTransition("Attack", attack); //Va de chase a attack
+        chase.AddTransition("Idle", idle); //Va de chase a idle
+        chase.AddTransition("Patrol", patrol);
+        chase.AddTransition("Range", range);
+        //El FSM empieza con el patrol.
+        fsm = new FSM<string>(patrol);
+
+    }
+    public void DistanceAttack()
+    {
         enemyView.DistanceAttackAnimation();
     }
 
     //se llama en la animacion de ataque a distancia
     public void SpawnAttack()
     {
+        
         DistanceAttackZE temp = Instantiate(prefabAttack, posForDAttack.transform.position, posForDAttack.transform.rotation);
-        Destroy(temp, 1f);
+        Transition("Chase");
     }
 }
