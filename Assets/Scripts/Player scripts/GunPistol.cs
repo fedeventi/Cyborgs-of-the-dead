@@ -249,12 +249,13 @@ public class GunPistol : MonoBehaviour
             if (hit.transform.gameObject.layer == 8)
             {
                 var impactEffect = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
-                
-                if(hit.transform.gameObject.tag != "GlassFragments")
+
+                if (hit.transform.gameObject.tag != "GlassFragments")
                 {
-                    var decal = Instantiate(bulletDecal,hit.point,Quaternion.LookRotation(hit.normal));
+                    var decal = Instantiate(bulletDecal, hit.point, Quaternion.LookRotation(hit.normal));
 
                 }
+                
                 
             }
             //el hit es la explosion del enemigo explosivo
@@ -283,15 +284,7 @@ public class GunPistol : MonoBehaviour
     }
 
     //funcion para los fragmentos de vidrios de las barricadas
-    public void CloseFragments()
-    {
-        Collider[] colliders = Physics.OverlapSphere(hit.transform.position, 250, glassFragments);
-        foreach (var c in colliders)
-        {
-            c.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            c.GetComponent<Rigidbody>().isKinematic=false;
-        }
-    }
+    
 
     //corrutina para parar el movimiento de la explosion
     IEnumerator StopExplosion()

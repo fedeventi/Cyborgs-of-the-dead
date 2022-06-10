@@ -6,10 +6,13 @@ public class ExplosionForce : MonoBehaviour
 {
     // Start is called before the first frame update
     //public LayerMask layermask;
-    public string tag= "GlassFragments";
+    string tag= "GlassFragments";
+    
+    
     void Start()
     {
         //Debug.Log((int)Mathf.Sqrt((int)layermask) / 2);
+       
     }
 
     // Update is called once per frame
@@ -17,25 +20,30 @@ public class ExplosionForce : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.tag == tag)
+        if (other.gameObject.layer == 8)
         {
-            var rb= other.gameObject.GetComponent<Rigidbody>();
-            if (rb != null)
+            var obj= other.GetComponent<BreakGlass>();
+            if (obj == null) return;
+            obj.ReplaceGlass();
+            foreach (var item in obj.glasses)
             {
-                rb.constraints = RigidbodyConstraints.None;
-                rb.isKinematic = false;
-                
-                rb.AddExplosionForce(5000000, transform.position+transform.forward*10, 60);
-                
-                Debug.Log("exploto");
+                var rb = item.gameObject.GetComponent<Rigidbody>();
+
+                rb.AddExplosionForce(500000, transform.position + transform.forward * 10, 60);
+
+
             }
+            Destroy(obj.gameObject);
         }
         
     }
-    public void OnCollisionEnter(Collision collision)
+    
+
+    public void OnParticleSystemStopped()
     {
+        Destroy(gameObject);
     }
+
 }
