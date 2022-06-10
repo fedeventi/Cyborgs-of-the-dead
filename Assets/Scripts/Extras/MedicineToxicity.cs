@@ -54,9 +54,9 @@ public class MedicineToxicity : MonoBehaviour
     void RestToxicity()
     {
         timer += Time.deltaTime;
-        if(timer>0.5f)
+        if(timer>0.05f)
         {
-            player.toxicity -= 10;
+            player.toxicity -= 3;
             timer = 0;
         }
     }

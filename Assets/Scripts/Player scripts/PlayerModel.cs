@@ -125,7 +125,7 @@ public class PlayerModel : MonoBehaviour
         if (toxicity > 50 && toxicity < 80)
         {
             StartCoroutine(view.ToxicitySound());
-
+            toxicityText.text = increaseDamage ? "More damage" : "More speed";
             //mejoras, como mas daño, velocidad, lo que sea y estas se activan al azar
             //que sea por tiempo 
             toxicityText.enabled = true;
@@ -138,7 +138,7 @@ public class PlayerModel : MonoBehaviour
 
                 if (r <= 50)
                 {
-                    toxicityText.text = "More damage";
+                    
                     Debug.Log("mas daño");
                     increaseDamage = true;
                     if (hasPickUpPistol)
@@ -152,7 +152,7 @@ public class PlayerModel : MonoBehaviour
                 }
                 if (r > 50)
                 {
-                    toxicityText.text = "More speed";
+                    
                     Debug.Log("mas velocidad");
                     speed = normalSpeed * 2f;
                     runSpeed = speed * 2f;
@@ -162,10 +162,10 @@ public class PlayerModel : MonoBehaviour
 
         }
 
-        if (toxicity > 80 && toxicity < 100)
+        if (toxicity > 80 )
         {
             //se tiene que curar el jugador por que esta al borde de empezar a perder vida
-            toxicityText.text = "Toxicity bar has reach max level";
+            toxicityText.text = $" Toxicity bar has reach max level \n{(increaseDamage ? "More damage" : "More speed")}";
         }
         //resta vida mientras tiene toxinas en el cuerpo
         if (toxicity >= 100)
@@ -208,14 +208,23 @@ public class PlayerModel : MonoBehaviour
         }
     }
 
-
+    
     //Movimiento del jugador.
     public void Move(float axisHorizontal, float axisVertical)
     {
         Vector3 movement = transform.right * axisHorizontal + transform.forward * axisVertical;
-        rb.MovePosition(transform.position + movement.normalized * speed * Time.deltaTime);
+        _directionDebug = movement;
+        if (!Physics.Raycast(transform.position, movement, 50, (int)Mathf.Pow(8 * 2,2)))
+        {
+            rb.MovePosition(transform.position + movement.normalized * speed * Time.deltaTime);
+        }
     }
-
+    Vector3 _directionDebug;
+    public void OnDrawGizmos()
+    {
+        Gizmos.color= Color.yellow;
+        Gizmos.DrawRay(transform.position, _directionDebug*50);
+    }
     public void Run(float axisHorizontal, float axisVertical)
     {
         Vector3 movement = transform.right * axisHorizontal + transform.forward * axisVertical;
