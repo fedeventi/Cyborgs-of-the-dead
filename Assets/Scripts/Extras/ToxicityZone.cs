@@ -14,7 +14,7 @@ public class ToxicityZone : MonoBehaviour
 
                 if (other.gameObject.GetComponent<PlayerModel>().timerToxicity > 0.07f)
                 {
-                    other.gameObject.GetComponent<PlayerModel>().toxicity += 1;
+                    other.gameObject.GetComponent<PlayerModel>().toxicity += .5f;
                     other.gameObject.GetComponent<PlayerModel>().timerToxicity = 0;
                     other.gameObject.GetComponent<PlayerView>().toxicityScreen.enabled = true;
                 }

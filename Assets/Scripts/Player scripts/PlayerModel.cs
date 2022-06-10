@@ -39,7 +39,7 @@ public class PlayerModel : MonoBehaviour
 
     //Toxicidad de radiacion
     [Header("TOXICITY")]
-    public int toxicity = 0;
+    public float toxicity = 0;
     public float timerToxicity = 0;
     public Text toxicityText;
     public bool increaseDamage = false;
