@@ -92,18 +92,22 @@ public class WeaponHolder : MonoBehaviour
     //funcion para cambiar las armas con la ruedita 
     void ChangingWeapon()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && actualWeapon<weapons.Length)
+        
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            actualWeapon += 1;
+            if(actualWeapon<weapons.Length-1)
+                actualWeapon += 1;
+            else
+                actualWeapon = 0;
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && actualWeapon>weapons.Length)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            actualWeapon -= 1;
+            if (actualWeapon > 0)
+                actualWeapon -= 1;
+            else
+                actualWeapon = weapons.Length-1;
         }
-        if(Input.GetAxis("Mouse ScrollWheel") > 0 && actualWeapon==weapons.Length)
-        {
-            actualWeapon = 0;
-        }
+        
     }
 
 }
