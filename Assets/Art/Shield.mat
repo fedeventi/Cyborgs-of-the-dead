@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shield
+  m_Shader: {fileID: 4800000, guid: a7ca3842855cb534ea8ee55a2b9eb589, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: a7cb9a51de439b942b87574ed9d75a4e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTexture1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 2e857905b3847cb4ca4253a4bc426be9, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Bias: 0
+    - _Bias1: -25
+    - _BiasFloat: -7.72
+    - _ChromaticAberration: 0.1
+    - _DepthDistance: 2
+    - _Distance: 3.72
+    - _Distance1: 6.470588
+    - _DistanceOffset: 0.64
+    - _DownScale: 0.4480137
+    - _DownSpeed: 0.13
+    - _Float0: -63.2
+    - _Float1: 102.7
+    - _Float2: 4
+    - _Float3: 4
+    - _Float4: 3
+    - _Float5: 1
+    - _Float6: 0.5
+    - _Float7: 5
+    - _Float8: 3
+    - _Float9: 1.07
+    - _Frecuency: 1
+    - _FresnelScale: 1.73
+    - _Fresnel_Bias: 0.04
+    - _Fresnel_Power: 13.42
+    - _Fresnel_Scale: 16.42
+    - _Opacity: 0.5
+    - _OpacityController: 1
+    - _Power: 9.6
+    - _Scale: 5.53
+    - _Scale1: 51.4
+    - _ScaleFloat: 10.6
+    - _Scaletime: 3.1908565
+    - _SidewaysScale: 0.8
+    - _SidewaysSpeed: 0.3
+    - _Speed: 0.2
+    - _Speed1: 4.019897
+    - __dirty: 1
+    m_Colors:
+    - _Color: {r: 0, g: 3.8952875, b: 3.9999995, a: 0}
+    - _Color0: {r: 0, g: 3.8952875, b: 3.9999995, a: 0}
+    - _Color1: {r: 0, g: 3.7277484, b: 7.999999, a: 0}
+    - _Color2: {r: 0, g: 0.94764394, b: 1, a: 0}
+    - _DepthColor: {r: 2.4182556, g: 2.4182556, b: 2.4182556, a: 0}
+    - _Fresnel_Color: {r: 3.9999995, g: 3.9999995, b: 3.9999995, a: 0}
+    - _Fresnelcolor: {r: 1, g: 1, b: 1, a: 0}
+    - _Vector1: {r: 0, g: 0.2, b: 0, a: 0}
+    - _VerticalHexagons: {r: 1.8443027, g: 0.56005, b: 0.8014509, a: 0}
+    - _colorfortexture: {r: 0.3453186, g: 0.3523773, b: 0.754717, a: 1}
