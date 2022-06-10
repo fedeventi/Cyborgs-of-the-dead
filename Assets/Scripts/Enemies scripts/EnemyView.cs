@@ -75,6 +75,28 @@ public class EnemyView : MonoBehaviour
         animator.SetBool("death", false);
         animator.SetBool("distanceAttack", true);
     }
+    public void WaitForCharge()
+    {
+        animator.SetBool("walking", false);
+        animator.SetBool("idle", true);
+        animator.SetBool("attacking", false);
+        animator.SetBool("chasing", false);
+        animator.SetBool("charging", false);
+        animator.SetBool("death", false);
+    }
+    public void Charge()
+    {
+        animator.SetBool("walking", false);
+        animator.SetBool("idle", false);
+        animator.SetBool("attacking", false);
+        animator.SetBool("chasing", false);
+        animator.SetBool("charging", true);
+        animator.SetBool("death", false);
+    }
+    public void Stunned()
+    {
+        animator.SetTrigger("stun");
+    }
 
     //Funciones de sonidos 
     public void DamageSound()

@@ -10,7 +10,8 @@ public class HeavyEnemy : BaseEnemy
     //
     bool hasSavePlayerPos = false;
     Vector3 playerPos;
-
+    bool _stunned;
+    public bool stunned { get => _stunned; set => _stunned = value; }
     //
     float timerFollowAgain = 0;
     bool hasTouchPlayer = false;
@@ -110,6 +111,16 @@ public class HeavyEnemy : BaseEnemy
             player.isStunned = true;
         }
     }
+    IEnumerator Stunned()
+    {
+        
+        enemyView.Stunned();
+        _stunned = true;
+        yield return new WaitForSeconds(2);
+        _stunned = false;
+        Transition("Chase");
+    }
+
     protected override void OnCollisionEnter(Collision collision)
     {
         base.OnCollisionEnter(collision);
@@ -124,7 +135,7 @@ public class HeavyEnemy : BaseEnemy
                 _hasChargedPlayer = true;
             }
         if (collision.gameObject.layer == 8 && charging)
-            Transition("Chase");
+            StartCoroutine(Stunned());
     }
     public override void OnDrawGizmos()
     {

@@ -260,7 +260,7 @@ public class PlayerModel : MonoBehaviour
         if (_hasBeenHit) return;
         life -= damage;
         view.DamageFeedback();
-
+        myCamera.GetComponent<ShakeCamera>().ActivateShake(.5f);
         StartCoroutine(Invulnerability());
         StartCoroutine(HitKnockback(3.5f));
         //audioSource.PlayOneShot(myClips[1]);

@@ -15219,15 +15219,14 @@ MonoBehaviour:
   speed: 15
   deathTimer: 0.9
   stoppingDistanceChase: 190
-  viewDistance: 535.39
+  viewDistance: 544.14
   angleVision: 143
   attackDistance: 158.31
   player: {fileID: 0}
   enemyView: {fileID: 4118374770015596368}
   meleeAttack: {fileID: 8154456731316605516}
   headHight: 165.5
-  bloodSpray: {fileID: 9107305017033179171, guid: 41aef906a0798cb47abfea08eadeb4b8,
-    type: 3}
+  bloodSpray: {fileID: 119212, guid: 685804666097ffc4a92177383378ddc8, type: 3}
   hasTouchBullet: 0
   isInIdle: 0
   hasListenGunShoot: 0
@@ -15726,7 +15725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8154456730842775690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.09, y: 0, z: 5.89}
+  m_LocalPosition: {x: 3.33, y: 0, z: 11.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8154456730421426774}
@@ -15815,7 +15814,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8154456731125656544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 0, z: -4.89}
+  m_LocalPosition: {x: 2.06, y: 0, z: -2.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8154456730421426774}
@@ -15846,7 +15845,7 @@ Transform:
   m_GameObject: {fileID: 8154456731240474144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.364264, y: 10.628153, z: -59.063534}
-  m_LocalScale: {x: 76.114, y: 76.114, z: 76.114}
+  m_LocalScale: {x: 66.3501, y: 66.3501, z: 66.3501}
   m_Children:
   - {fileID: 1115821578935016777}
   - {fileID: 8154456730992857991}
@@ -15878,7 +15877,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8154456731314911986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.42, y: 0, z: -11.93}
+  m_LocalPosition: {x: -5.35, y: 0, z: -8.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8154456730421426774}

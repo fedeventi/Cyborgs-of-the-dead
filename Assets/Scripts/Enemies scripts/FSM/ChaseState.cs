@@ -46,14 +46,14 @@ public class ChaseState<T> : State<T>
 
         }
         var rot = Quaternion.LookRotation(dir);
-        _baseEnemy.transform.rotation = Quaternion.Slerp(_baseEnemy.transform.rotation, rot, Time.deltaTime * 5).normalized;
+        _baseEnemy.transform.rotation = Quaternion.Slerp(_baseEnemy.transform.rotation, rot, Time.deltaTime).normalized;
         _baseEnemy.transform.position += _baseEnemy.transform.forward * _speed*Time.deltaTime;
 
     }
     public void CheckDistanceWithTarget()
     {
         var distance = Vector3.Distance(_baseEnemy.player.transform.position, _baseEnemy.transform.position);
-        if (distance > _baseEnemy.viewDistance) _baseEnemy.Transition("Patrol");
+       // if (distance > _baseEnemy.viewDistance) _baseEnemy.Transition("Patrol");
         if (_baseEnemy.InRangeToAttack()) _baseEnemy.Transition("Attack");
     }
     

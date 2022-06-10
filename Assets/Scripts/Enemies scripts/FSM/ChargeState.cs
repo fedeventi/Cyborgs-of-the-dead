@@ -34,24 +34,26 @@ public class ChargeState<T> : State<T>
         {
 
             var distance=Vector3.Distance(_position,_source.transform.position);
-            if (!_stopCharging)
-            {
-                if (distance <= 20) _source.StartCoroutine(ChangeStopCharging()); 
-                var rot = Quaternion.LookRotation(_direction);
-                _source.transform.rotation = Quaternion.Slerp(_source.transform.rotation, rot, Time.deltaTime * 5).normalized;
-                _source.transform.position += _direction.normalized * _speed * Time.deltaTime;
-            }
-            else
-            {
-                _source.Transition("Chase");
-            }
+            if(!_source.stunned)
+                if (!_stopCharging)
+                {
+
+                    if (distance <= 20) _source.StartCoroutine(ChangeStopCharging()); 
+                    var rot = Quaternion.LookRotation(_direction);
+                    _source.transform.rotation = Quaternion.Slerp(_source.transform.rotation, rot, Time.deltaTime * 5).normalized;
+                    _source.transform.position += _direction.normalized * _speed * Time.deltaTime;
+                }
+                else
+                { 
+                        _source.Transition("Chase");
+                }
         }
         
     }
     public override void Sleep()
     {
         base.Sleep();
-        _source.StopCoroutine(ChangeStopCharging());
+        
         _source.StopCoroutine(StartCharge());
         _source.charging=false;
     }
@@ -62,8 +64,11 @@ public class ChargeState<T> : State<T>
     }
     IEnumerator StartCharge()
     {
+        _source.enemyView.WaitForCharge();
         yield return new WaitForSeconds(2);
+        _source.enemyView.Charge();
         _StartCharge = true;
     }
     
+
 }
