@@ -30,6 +30,8 @@ public class GunPistol : MonoBehaviour
     public float stopReloadAnimation;
 
     //Shoot
+    [Header("Shoot Shake")]
+    public float shake;
     [Header("Particle shoot")]
     public GameObject muzzleFlashObject;
     public ParticleSystem muzzleFlash;
@@ -278,7 +280,7 @@ public class GunPistol : MonoBehaviour
             
         }
 
-        myCamera.GetComponent<ShakeCamera>().ActivateShake(0.15f);
+        myCamera.GetComponent<ShakeCamera>().ActivateShake(shake);
         Recoil();
         SpawnLineRenderer(hit.point);
     }
