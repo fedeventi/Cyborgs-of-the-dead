@@ -212,23 +212,28 @@ public class PlayerModel : MonoBehaviour
     //Movimiento del jugador.
     public void Move(float axisHorizontal, float axisVertical)
     {
-        Vector3 movement = transform.right * axisHorizontal + transform.forward * axisVertical;
+        Vector3 movement = (transform.right * axisHorizontal + transform.forward * axisVertical).normalized;
         _directionDebug = movement;
-        if (!Physics.Raycast(transform.position, movement, 50, (int)Mathf.Pow(8 * 2,2)))
-        {
-            rb.MovePosition(transform.position + movement.normalized * speed * Time.deltaTime);
-        }
+        rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
     }
     Vector3 _directionDebug;
     public void OnDrawGizmos()
     {
         Gizmos.color= Color.yellow;
-        Gizmos.DrawRay(transform.position, _directionDebug*50);
+        //Gizmos.DrawRay(transform.position, _directionDebug * (isRunning?runSpeed:speed)*.2f);
+        Gizmos.DrawRay(transform.position, _directionDebug * 40f);
     }
     public void Run(float axisHorizontal, float axisVertical)
     {
-        Vector3 movement = transform.right * axisHorizontal + transform.forward * axisVertical;
-        rb.MovePosition(transform.position + movement.normalized * runSpeed * Time.deltaTime);
+        Vector3 movement = (transform.right * axisHorizontal + transform.forward * axisVertical).normalized;
+        _directionDebug = movement;
+        var _speed = runSpeed;
+        if (Physics.Raycast(transform.position, movement, 40, (int)Mathf.Pow(8 * 2, 2)))
+        {
+            _speed = normalSpeed;
+        }
+        rb.MovePosition(transform.position + movement * _speed * Time.deltaTime);
+
     }
 
     //Movimiento de la camara
