@@ -240,22 +240,24 @@ public class PlayerModel : MonoBehaviour
     public void RotationCamera()
     {
         var hCamera = 120 * Input.GetAxis("Mouse X") * Time.deltaTime;
-        var vCamera = Input.GetAxis("Mouse Y") * Time.deltaTime * 120;
+        var vCamera = Mathf.Clamp(Input.GetAxis("Mouse Y") * Time.deltaTime * 120,-20,20);
         transform.Rotate(0, hCamera, 0);
+        Debug.Log(vCamera);
         myCamera.transform.Rotate(-vCamera, 0, 0);
+        if (myCamera.transform.localRotation.x > 0.7f)
+        {
+            var auxRotation = myCamera.transform.localRotation;
+            auxRotation.x = 0.7f;
+            myCamera.transform.localRotation = auxRotation;
+        }
+        else if (myCamera.transform.localRotation.x < -0.7f)
+        {
+            var auxRotation = myCamera.transform.localRotation;
+            auxRotation.x = -0.7f;
+            myCamera.transform.localRotation = auxRotation;
+        }
 
-        if (myCamera.transform.localRotation.eulerAngles.x < 300 && myCamera.transform.localRotation.eulerAngles.x > 270)
-        {
-            var auxRotation = myCamera.transform.localRotation.eulerAngles;
-            auxRotation.x = 300;
-            myCamera.transform.localRotation = Quaternion.Euler(auxRotation);
-        }
-        else if (myCamera.transform.localRotation.eulerAngles.x > 70 && myCamera.transform.localRotation.eulerAngles.x < 90)
-        {
-            var auxRotation = myCamera.transform.localRotation.eulerAngles;
-            auxRotation.x = 70;
-            myCamera.transform.localRotation = Quaternion.Euler(auxRotation);
-        }
+
     }
 
 
