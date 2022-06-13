@@ -73,12 +73,12 @@ public class PatrolState<T> : State<T>
             else
             {
 
-                _timerForError += Time.deltaTime;
-                if (_timerForError > timerMax)
-                {
-                    _timerForError = 0;
-                    baseEnemy.currentWaypoint = UnityEngine.Random.Range(0, baseEnemy.waypointsEnemy.Length);
-                }
+                //_timerForError += Time.deltaTime;
+                //if (_timerForError > timerMax)
+                //{
+                //    _timerForError = 0;
+                //    baseEnemy.currentWaypoint = UnityEngine.Random.Range(0, baseEnemy.waypointsEnemy.Length);
+                //}
 
 
             }
