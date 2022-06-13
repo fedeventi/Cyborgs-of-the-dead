@@ -87,6 +87,7 @@ public class PlayerModel : MonoBehaviour
     }
     private void Update()
     {
+        
         //Recargar los niveles al morir. Inicia en la ultima posición guardada, en relación a los checkpoints.
         if(isDead)
         {
@@ -97,12 +98,13 @@ public class PlayerModel : MonoBehaviour
             }
         }
         //Muerte 
-        if(life<=0)
+        if (life <= 0)
         {
             life = 0;
             StartCoroutine(Death());
         }
-
+        else
+            view.LowLife(life);
         //random para las toxinas
         //TOXICITY
         Toxicity();
@@ -170,15 +172,19 @@ public class PlayerModel : MonoBehaviour
         //resta vida mientras tiene toxinas en el cuerpo
         if (toxicity >= 100)
         {
+            toxicity = 100;
             timerLifeToxic += Time.deltaTime;
+            view.Toxic(true);
             if (timerLifeToxic > 1)
             {
                 timerLifeToxic = 0;
                 life--;
-                //TakeDamage(1);
-                
+
             }
         }
+        else 
+            view.Toxic(false);
+
         if (toxicity <= 0)
         {
             timerLifeToxic = 0;
@@ -242,7 +248,6 @@ public class PlayerModel : MonoBehaviour
         var hCamera = 120 * Input.GetAxis("Mouse X") * Time.deltaTime;
         var vCamera = Mathf.Clamp(Input.GetAxis("Mouse Y") * Time.deltaTime * 120,-20,20);
         transform.Rotate(0, hCamera, 0);
-        Debug.Log(vCamera);
         myCamera.transform.Rotate(-vCamera, 0, 0);
         if (myCamera.transform.localRotation.x > 0.7f)
         {
@@ -268,8 +273,10 @@ public class PlayerModel : MonoBehaviour
         life -= damage;
         view.DamageFeedback();
         myCamera.GetComponent<ShakeCamera>().ActivateShake(.5f);
+        view.hitFeedback();
         StartCoroutine(Invulnerability());
         StartCoroutine(HitKnockback(3.5f));
+        StartCoroutine(view.hitFeedback());
         //audioSource.PlayOneShot(myClips[1]);
 
     }

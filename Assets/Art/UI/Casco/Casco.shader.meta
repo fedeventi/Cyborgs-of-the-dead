@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: fdc9ea9dab10e994ab43f9821dace7bf
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Casco3LowHealtMode: {fileID: 2800000, guid: 2b1f26e57fdfa9c41b8c860b9d7409f9,
+      type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

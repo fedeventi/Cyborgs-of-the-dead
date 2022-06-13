@@ -19,7 +19,12 @@ public class PlayerView : MonoBehaviour
     public float nextStepSound = 0f;
     public float delayStepSound = 1f;
     AudioSource audioSource;
-
+    //Casco
+    public Image casco;
+    [Range(0f, 1f)]
+    public float toxicityLevel;
+    [Range (0f, 1f)]
+    public float hitValue;
     [Header("Daño")]
     public List<Image> damageImage = new List<Image>();
     [Header("Stunned")]
@@ -35,6 +40,7 @@ public class PlayerView : MonoBehaviour
         //Componentes
         audioSource = GetComponent<AudioSource>();
         model = GetComponent<PlayerModel>();
+       
     }
 
     private void Update()
@@ -91,7 +97,10 @@ public class PlayerView : MonoBehaviour
             StartCoroutine(HitSound());
         }
     }
-
+    public void LowLife(float lowLife)
+    {
+        casco.material.SetInt("_LowLife", lowLife<20 ? 1 : 0);
+    }
     IEnumerator HitSound()
     {
         yield return new WaitForSeconds(0.1f);
@@ -153,8 +162,36 @@ public class PlayerView : MonoBehaviour
     {
         if(!audioSource.isPlaying)
             audioSource.PlayOneShot(audioClips[3], 0.2f);
+        hitValue = 0;
+        Debug.Log("muerto");
+        casco.material.SetFloat("_hitValue", hitValue);
     }
+    public void Toxic(bool bValue)
+    {
+        if (bValue)
+            toxicityLevel += Time.deltaTime;
+        else
+            toxicityLevel -= Time.deltaTime;
 
+        toxicityLevel = Mathf.Clamp01(toxicityLevel);
+        casco.material.SetFloat("_ToxicityValue", toxicityLevel);
+    }
+    public IEnumerator hitFeedback()
+    {
+        bool _endCycle=false;
+        float _value=1;
+        while (!_endCycle)
+        {
+            _value -= Time.deltaTime*2;
+            yield return new WaitForSeconds(.01f);
+            casco.material.SetFloat("_hitValue", _value);
+            if(_value<=0)
+                _endCycle = true;
+        }
+        
+     
+       
+    }
     //Sonido de los pasos
     //se llama en animaciones de caminata y correr
     public void StepSound()
