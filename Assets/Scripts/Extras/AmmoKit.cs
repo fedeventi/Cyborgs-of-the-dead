@@ -29,7 +29,7 @@ public class AmmoKit : MonoBehaviour
             if (player.weaponHolder.weaponsCollected.Count > 1)
             {
                 player.weaponHolder.weaponsCollected[(int)WeaponType.Pistol].GetComponent<GunPistol>().currentMaxAmmo += 14;
-                player.weaponHolder.weaponsCollected[(int)WeaponType.Pistol].GetComponent<GunPistol>().currentMaxAmmo += 6;
+                player.weaponHolder.weaponsCollected[(int)WeaponType.Shotgun].GetComponent<GunPistol>().currentMaxAmmo += 6;
             }
            
             Destroy(gameObject, 0.2f);
