@@ -21,7 +21,10 @@ public class AmmoKit : MonoBehaviour
         {
             audioSource.Play();
 
-            ps.Play();
+            if(ps != null)
+            {
+                ps.Play();
+            }
 
             if(player.hasPickUpPistol)
             {
