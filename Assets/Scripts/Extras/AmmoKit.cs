@@ -17,7 +17,7 @@ public class AmmoKit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && player.hasPickUpPistol || other.gameObject.tag=="Player" && player.hasPickUpShotgun)
+        if (other.gameObject.tag == "Player" )
         {
             audioSource.Play();
 
@@ -26,17 +26,17 @@ public class AmmoKit : MonoBehaviour
                 ps.Play();
             }
 
-            if(player.hasPickUpPistol)
+            if (player.weaponHolder.weaponsCollected.Count > 1)
             {
-                player.weaponHolder.weaponsCollected[0].GetComponent<GunPistol>().currentMaxAmmo += 14;
+                player.weaponHolder.weaponsCollected[(int)WeaponType.Pistol].GetComponent<GunPistol>().currentMaxAmmo += 14;
+                player.weaponHolder.weaponsCollected[(int)WeaponType.Pistol].GetComponent<GunPistol>().currentMaxAmmo += 6;
             }
-            if(player.hasPickUpShotgun)
-            {
-                player.weaponHolder.weaponsCollected[1].GetComponent<GunPistol>().currentMaxAmmo += 6;
-            }
+           
             Destroy(gameObject, 0.2f);
-
-            Destroy(ps, 2);
+            if (ps != null)
+            {
+                Destroy(ps, 2);
+            }
         }
     }
 }

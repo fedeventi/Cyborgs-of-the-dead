@@ -26,18 +26,20 @@ public class MedicineToxicity : MonoBehaviour
             player.isInMedicineBox = true;
             RestToxicity();
             animator.SetBool("activate", true);
-            //audioSource.Play();
-            if(!audioSource.isPlaying)
+            
+            if (!audioSource.isPlaying)
                 audioSource.PlayOneShot(audioSource.clip);
         }
 
         if(collision.gameObject.tag =="Player" && this.gameObject.tag == "MedicineObject")
         {
-            ps.Play();
+            if(ps!=null)
+                ps.Play();
             player.toxicity = 0;
             audioSource.Play();
             Destroy(gameObject, 0.5f);
-            Destroy(ps, 2);
+            if (ps != null)
+                Destroy(ps, 2);
         }
     }
 
@@ -47,7 +49,8 @@ public class MedicineToxicity : MonoBehaviour
         {
             player.isInMedicineBox = false;
             animator.SetBool("activate", false);
-            ps.Stop();
+            if (ps != null)
+                ps.Stop();
             audioSource.Stop();
         }
     }
@@ -65,6 +68,7 @@ public class MedicineToxicity : MonoBehaviour
     //se llama en la animacion
     public void StartPSAnimation()
     {
-        ps.Play();
+        if (ps != null)
+            ps.Play();
     }
 }
