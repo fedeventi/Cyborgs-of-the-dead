@@ -89,6 +89,21 @@ public class MeleeWeapon : Weapon
                 Destroy(bloodEffect, 0.5f);
             }
         }
+        if (other.gameObject.layer == 8)
+        {
+            var obj = other.GetComponent<BreakGlass>();
+            if (obj == null) return;
+            obj.ReplaceGlass();
+            foreach (var item in obj.glasses)
+            {
+                var rb = item.gameObject.GetComponent<Rigidbody>();
+
+                rb.AddExplosionForce(500000, transform.position + transform.forward * 10, 60);
+
+
+            }
+            Destroy(obj.gameObject);
+        }
     }
     void OnDrawGizmos()
     {
