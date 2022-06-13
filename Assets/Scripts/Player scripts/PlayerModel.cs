@@ -147,11 +147,11 @@ public class PlayerModel : MonoBehaviour
                     increaseDamage = true;
                     if (hasPickUpPistol)
                     {
-                        weaponHolder.weapons[0].GetComponent<GunPistol>().damage *= 2;
+                        weaponHolder.weaponsCollected[0].GetComponent<GunPistol>().damage *= 2;
                     }
                     if (hasPickUpShotgun)
                     {
-                        weaponHolder.weapons[1].GetComponent<GunPistol>().damage *= 2;
+                        weaponHolder.weaponsCollected[1].GetComponent<GunPistol>().damage *= 2;
                     }
                 }
                 if (r > 50)
@@ -187,7 +187,7 @@ public class PlayerModel : MonoBehaviour
         }
         else 
             view.Toxic(false);
-
+        
         if (toxicity <= 0)
         {
             timerLifeToxic = 0;
@@ -339,7 +339,7 @@ public class PlayerModel : MonoBehaviour
     //llamo a la funcion de disparo, para llamarla en la animacion 
     public void ShootFromGun()
     {
-        weaponHolder.weapons[weaponHolder.actualWeapon].GetComponent<GunPistol>().ShootRaycast();
+        weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<GunPistol>().Shoot();
     }
 
     private void OnCollisionEnter(Collision collision)

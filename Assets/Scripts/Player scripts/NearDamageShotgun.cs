@@ -16,11 +16,11 @@ public class NearDamageShotgun : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         //layer del enemigo
-        if (other.gameObject.layer == 9 && !weaponHolder.weapons[weaponHolder.actualWeapon].GetComponent<GunPistol>().onZoneMoreDamageShotgun)
+        if (other.gameObject.layer == 9 && !weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<GunPistol>().onZoneMoreDamageShotgun)
 
         {
-            weaponHolder.weapons[weaponHolder.actualWeapon].GetComponent<GunPistol>().onZoneMoreDamageShotgun = true;
-            weaponHolder.weapons[weaponHolder.actualWeapon].GetComponent<GunPistol>().damage = 65;
+            weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<GunPistol>().onZoneMoreDamageShotgun = true;
+            weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<GunPistol>().damage = 65;
         }
     }
 
@@ -29,8 +29,8 @@ public class NearDamageShotgun : MonoBehaviour
         //layer del enemigo
         if (other.gameObject.layer == 9)
         {
-            weaponHolder.weapons[weaponHolder.actualWeapon].GetComponent<GunPistol>().onZoneMoreDamageShotgun = false;
-            weaponHolder.weapons[weaponHolder.actualWeapon].GetComponent<GunPistol>().damage = weaponHolder.weapons[weaponHolder.actualWeapon].GetComponent<GunPistol>().startDamage;
+            weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<GunPistol>().onZoneMoreDamageShotgun = false;
+            weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<GunPistol>().damage = weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<GunPistol>().startDamage;
         }
 
     }

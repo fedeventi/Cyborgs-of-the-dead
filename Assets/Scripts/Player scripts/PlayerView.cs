@@ -113,7 +113,7 @@ public class PlayerView : MonoBehaviour
         changeHitSound = false;
         yield break;
     }
-
+    
     public IEnumerator ToxicitySound()
     {
         if (cough) yield break;

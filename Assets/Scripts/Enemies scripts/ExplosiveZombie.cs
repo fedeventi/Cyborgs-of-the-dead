@@ -7,12 +7,13 @@ public class ExplosiveZombie : BaseEnemy
     [Header("Distance attack")]
     public DistanceAttackZE prefabAttack;
     public Transform posForDAttack;
-
+    
     [Header("Particle system")]
     public ParticleSystem particleSystemExplosion;
     public Transform psPosition;
     public bool canShoot=true;
     public bool hasSeenPlayer;
+    public GameObject vomit;
     public override void Start()
     {
         base.Start();
@@ -31,19 +32,19 @@ public class ExplosiveZombie : BaseEnemy
                     CloseEnemies();
                     hasSeenPlayer = true;
                 }
-                
-                //if (!InRangeToAttack())
-                //{
 
-                //    if (canShoot)
-                //    {
-                        
-                //        StartCoroutine(Shoot());
-                //    }
-                   
-                //}
-                
+            if (!InRangeToAttack())
+            {
+
+                if (canShoot)
+                {
+
+                    StartCoroutine(Shoot());
+                }
+
             }
+
+        }
 
             
 
@@ -99,8 +100,9 @@ public class ExplosiveZombie : BaseEnemy
     //se llama en la animacion de ataque a distancia
     public void SpawnAttack()
     {
-        
-        DistanceAttackZE temp = Instantiate(prefabAttack, posForDAttack.transform.position, posForDAttack.transform.rotation);
+        Instantiate(vomit, posForDAttack.position, transform.rotation);
+        DistanceAttackZE temp = Instantiate(prefabAttack, posForDAttack.transform.position+ transform.forward*10, posForDAttack.transform.rotation);
+        temp.destinyPosition = player.transform.position;
         Transition("Chase");
     }
 }

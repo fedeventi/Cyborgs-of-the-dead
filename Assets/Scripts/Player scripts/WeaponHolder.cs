@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class WeaponHolder : MonoBehaviour
 {
-    public GameObject[] weapons;
-    public GameObject[] weaponsCollected;
-    public int actualWeapon = 0;
-
+    public List<Weapon> weaponsCollected= new List<Weapon>();
+    public Weapon[] allWeapons;
+    public WeaponType actualWeapon = 0;
+    public Image weaponImg;
     // 
-    public Image[] weaponsImagesUI;
+    public Sprite[] weaponsImagesUI;
 
     //
     GameManager gameManager;
@@ -18,9 +19,9 @@ public class WeaponHolder : MonoBehaviour
     PlayerModel model;
 
     //
-    bool hasPickUpPistol = false;
-    bool hasPickUpShotgun = false;
-
+    //bool hasPickUpPistol = false;
+    //bool hasPickUpShotgun = false;
+   
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -30,72 +31,44 @@ public class WeaponHolder : MonoBehaviour
 
     private void Update()
     {
-        //pickeo de armas
-        if(model.hasPickUpPistol && !hasPickUpPistol)
+        
+
+        
+        if (!model.isShooting && !model.isReloading)
         {
-            hasPickUpPistol = true;
-            weapons[0] = weaponsCollected[0];
-            weapons[0].SetActive(true);
-            weaponsImagesUI[0].enabled=true;
-            actualWeapon = 0;
-            model.body.SetActive(true);
-        }
-        if (model.hasPickUpShotgun && !hasPickUpShotgun)
-        {
-            hasPickUpShotgun = true;
-            weapons[1] = weaponsCollected[1];
-            weapons[1].SetActive(true);
-            weaponsImagesUI[1].enabled = true;
-            actualWeapon = 1;
-            model.body.SetActive(true);
+            ChangingWeapon();
+            ActivateOrDeactivateGameObject();
         }
 
-        if (model.hasPickUpPistol&&model.hasPickUpShotgun)
-        {
-            if (!weapons[actualWeapon].GetComponent<GunPistol>().model.isShooting && !model.isReloading)
-            {
-                ChangingWeapon();
-                ActivateOrDeactivateGameObject();
-            }
 
-            
-        }
+        
 
-        //está con la pistola
-        if (actualWeapon == 0)
-        {
-            view.animator.SetBool("isPistol", true);
-            view.animator.SetBool("isShotgun", false);
-        }
-        //está con la escopeta
-        if (actualWeapon == 1)
-        {
-            view.animator.SetBool("isPistol", false);
-            view.animator.SetBool("isShotgun", true);
-        }
+       ChangeAnimator();
     }
-
+    
     //función para activar o desactivar el gameobject de las armas
     void ActivateOrDeactivateGameObject()
     {
-        weapons[actualWeapon].SetActive(true);
-        weaponsImagesUI[actualWeapon].enabled = true;
-        for (int i = 0; i < weapons.Length; i++)
+        weaponsCollected[(int)actualWeapon].gameObject.SetActive(true);
+        weaponImg.sprite = weaponsImagesUI[(int)actualWeapon];
+        for (int i = 0; i < weaponsCollected.Count; i++)
         {
-            if (i != actualWeapon)
+            if (i != (int)actualWeapon)
             {
-                weapons[i].SetActive(false);
-                weaponsImagesUI[i].enabled = false;
+                
+                weaponsCollected[i].gameObject.SetActive(false);
+                
             }
         }
     }
     //funcion para cambiar las armas con la ruedita 
     void ChangingWeapon()
     {
-        
+        if (weaponsCollected.Count < 1) return;
+
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            if(actualWeapon<weapons.Length-1)
+            if((int)actualWeapon<weaponsCollected.Count-1)
                 actualWeapon += 1;
             else
                 actualWeapon = 0;
@@ -105,9 +78,25 @@ public class WeaponHolder : MonoBehaviour
             if (actualWeapon > 0)
                 actualWeapon -= 1;
             else
-                actualWeapon = weapons.Length-1;
+                actualWeapon = (WeaponType)weaponsCollected.Count -1;
         }
         
     }
+    void ChangeAnimator()
+    {
 
+        view.animator.SetBool(actualWeapon.ToString(), true);
+        foreach (WeaponType enumValue in Enum.GetValues(typeof(WeaponType)))
+        {
+            if(enumValue!=actualWeapon)
+            view.animator.SetBool(enumValue.ToString(), false);
+        }
+
+    }
 }
+    public enum WeaponType
+    {
+        Hammer,
+        Pistol,
+        Shotgun
+    }

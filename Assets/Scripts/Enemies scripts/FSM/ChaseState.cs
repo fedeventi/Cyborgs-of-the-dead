@@ -46,7 +46,7 @@ public class ChaseState<T> : State<T>
 
         }
         var rot = Quaternion.LookRotation(dir);
-        _baseEnemy.transform.rotation = Quaternion.Slerp(_baseEnemy.transform.rotation, rot, Time.deltaTime*2).normalized;
+        _baseEnemy.transform.rotation = Quaternion.Slerp(_baseEnemy.transform.rotation, rot, Time.deltaTime*3).normalized;
         _baseEnemy.transform.position += _baseEnemy.transform.forward * _speed*Time.deltaTime;
 
     }
@@ -54,7 +54,7 @@ public class ChaseState<T> : State<T>
     {
         var distance = Vector3.Distance(_baseEnemy.player.transform.position, _baseEnemy.transform.position);
        // if (distance > _baseEnemy.viewDistance) _baseEnemy.Transition("Patrol");
-        Debug.Log(distance);
+
         if (_baseEnemy.InRangeToAttack())
         {
             _baseEnemy.Transition("Attack");

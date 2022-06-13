@@ -4,31 +4,26 @@ using UnityEngine;
 
 public class SceneWeapons : MonoBehaviour
 {
-    PlayerModel player;
+    public WeaponType WeaponType;
     AudioSource audioSource;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        player = FindObjectOfType<PlayerModel>();
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //PICKEO DE ARMAS
-        if (this.gameObject.tag == "PistolScene" && other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             audioSource.Play();
-
-            player.hasPickUpPistol = true;
+            var poket = other.GetComponentInChildren<WeaponHolder>();
+            poket.weaponsCollected.Add(poket.allWeapons[(int)WeaponType]);
+            poket.actualWeapon = WeaponType;
             Destroy(gameObject, 0.2f);
         }
-        if (this.gameObject.tag == "ShotgunScene" && other.gameObject.tag == "Player")
-        {
-            audioSource.Play();
-
-            player.hasPickUpShotgun = true;
-            Destroy(gameObject, 0.2f);
-        }
+        
     }
 }

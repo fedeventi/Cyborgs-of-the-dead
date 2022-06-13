@@ -25,11 +25,11 @@ public class AmmoKit : MonoBehaviour
 
             if(player.hasPickUpPistol)
             {
-                player.weaponHolder.weapons[0].GetComponent<GunPistol>().currentMaxAmmo += 14;
+                player.weaponHolder.weaponsCollected[0].GetComponent<GunPistol>().currentMaxAmmo += 14;
             }
             if(player.hasPickUpShotgun)
             {
-                player.weaponHolder.weapons[1].GetComponent<GunPistol>().currentMaxAmmo += 6;
+                player.weaponHolder.weaponsCollected[1].GetComponent<GunPistol>().currentMaxAmmo += 6;
             }
             Destroy(gameObject, 0.2f);
 

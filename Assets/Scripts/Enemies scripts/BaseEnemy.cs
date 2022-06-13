@@ -234,6 +234,7 @@ public class BaseEnemy : MonoBehaviour
     //Funcion que llama el script de GunPistol
     public void TakeDamage(float damage)
     {
+        
         StartCoroutine(DamageVelocity());
         life -= damage;
         enemyView.DamageSound();
@@ -270,15 +271,13 @@ public class BaseEnemy : MonoBehaviour
     IEnumerator DamageVelocity()
     {
         isDamage = true;
-        //navMesh.speed = 0;
-        //navMesh.stoppingDistance = 100;
+        var _speedAux = speed;
         speed = 0;
-        stoppingDistanceChase = 100;
-        yield return new WaitForSeconds(0.3f);
-
+        yield return new WaitForSeconds(0.5f);
+        speed = _speedAux;
         isDamage = false;
 
-        yield break;
+       
     }
     
     //corrutina de la muerte

@@ -48,7 +48,7 @@ public class EnemyView : MonoBehaviour
     }
     public void AttackAnimation()
     {
-        Debug.Log("ataco");
+
         animator.SetBool("walking", false);
         animator.SetBool("idle", false);
         animator.SetTrigger("attacking");

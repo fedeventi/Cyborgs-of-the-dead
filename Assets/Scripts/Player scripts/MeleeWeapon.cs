@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MeleeWeapon : MonoBehaviour
+public class MeleeWeapon : Weapon
 {
     [Header("Componentes")]
     public Camera myCamera;
 
     [Header("DAMAGE")]
-    public int damage;
+    public int damage=30;
 
     //Bool
-    bool isAttacking = false;
-
+    public bool isAttacking = false;
+    bool combo;
     [Header("UI")]
     public Text ammoText;
 
@@ -27,30 +27,72 @@ public class MeleeWeapon : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            
+            if (!isAttacking)
+            {
+                Shoot();
+                combo=!combo;
+            }
         }
     }
 
 
-    IEnumerator BoolAttack()
+    
+    
+    public override void Shoot()
     {
-        isAttacking = true;
-        yield return new WaitForSeconds(0.2f);
-        isAttacking = false;
-        yield break;
+        //CheckEnemy();
+        base.Shoot();
+        var shootString = combo?"shoot":"secondShoot";
+        animator.SetTrigger(shootString);
+        animator.SetBool("idle", false);
+        animator.SetBool("walking", false);
+        animator.SetBool("running", false);
     }
-
+    public void CheckEnemy()
+    {
+        if (Physics.Raycast(myCamera.transform.position, myCamera.transform.forward, out hit, 50))
+        {
+            var target = hit.transform.GetComponent<BaseEnemy>();
+            if (target != null && !target.isDead)
+            {
+                Debug.Log("toma");
+                target.TakeDamage(damage);
+                var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(bloodEffect, 0.5f);
+            }
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        //if(collision.gameObject.tag=="Enemy" && !isAttacking)
-        //{
-        //    StartCoroutine(BoolAttack());
-
-        //    var enemy = collision.gameObject.GetComponent<BaseEnemy>();
-        //    enemy.TakeDamage(damage);
-        //    var bloodEffect = Instantiate(enemy.bloodSpray, enemy.transform.position, enemy.transform.rotation);
-        //    Destroy(bloodEffect, 0.4f);
-        //}
+        if (collision.gameObject.layer == 9)
+        {
+            var target = collision.transform.GetComponent<BaseEnemy>();
+            if (target != null && !target.isDead)
+            {
+                Debug.Log("toma collision");
+                target.TakeDamage(damage);
+                var bloodEffect = Instantiate(target.bloodSpray, transform.forward * 50, Quaternion.LookRotation(transform.forward * -1));
+                Destroy(bloodEffect, 0.5f);
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 9)
+        {
+            var target = other.transform.GetComponent<BaseEnemy>();
+            if (target != null && !target.isDead)
+            {
+              
+                target.TakeDamage(damage);
+                var bloodEffect = Instantiate(target.bloodSpray, myCamera.transform.position+myCamera.transform.forward*50,Quaternion.LookRotation(transform.forward*-1));
+                Destroy(bloodEffect, 0.5f);
+            }
+        }
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(myCamera.transform.position, myCamera.transform.forward*50);
     }
 
 }

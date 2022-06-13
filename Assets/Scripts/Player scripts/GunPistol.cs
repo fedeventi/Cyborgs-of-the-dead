@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class GunPistol : MonoBehaviour
+public class GunPistol : Weapon
 {
     //Variables 
     //Componentes 
     [Header("Componentes")]
     public Camera myCamera;
-    public Animator animator;
-    public PlayerModel model;
+    PlayerModel model;
     public Transform forwardWeapons;
 
     [Header("UI")]
@@ -58,7 +57,7 @@ public class GunPistol : MonoBehaviour
     public float timerToShootAgain;
 
     //
-    public RaycastHit hit;
+    
 
     //Recoil
     [Header("RECOIL")]
@@ -103,7 +102,7 @@ public class GunPistol : MonoBehaviour
         //Shoot
         if (Input.GetMouseButtonDown(0) && currentAmmo>0)
         {
-            Shoot();
+            ShootNoAmmo();
         }
         else if(Input.GetMouseButtonDown(0) && currentAmmo <= 0)
         {
@@ -190,7 +189,7 @@ public class GunPistol : MonoBehaviour
     }
 
     //Funcion de disparo, produce la animacion de este
-    public void Shoot()
+    public override void ShootNoAmmo()
     {
         if (!model.isShooting && !model.isReloading)
         {
@@ -213,7 +212,7 @@ public class GunPistol : MonoBehaviour
         }
     }
     //funcion disparo con raycast + efectos. //se llama en el playerModel, en cierto momento de la animacion
-    public void ShootRaycast()
+    public override void Shoot()
     {
         muzzleFlashObject.SetActive(true);
         StartCoroutine(MuzzleFlash());
