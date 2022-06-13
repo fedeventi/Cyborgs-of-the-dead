@@ -47,11 +47,11 @@ public class HeavyEnemy : BaseEnemy
     public void Charge()
     {
         var roulleteWheel = new RoulleteWheel<bool>();
-        var probabilities = new List<Tuple<int, bool>> { new Tuple<int, bool>(6,false),
-                                                         new Tuple<int, bool>(10,true) };
+        var probabilities = new List<Tuple<int, bool>> { new Tuple<int, bool>(6,true),
+                                                         new Tuple<int, bool>(10,false) };
         if (roulleteWheel.ProbabilityCalculator(probabilities))
         {
-            Debug.Log("charge");
+
             Transition("Charge");
         }
     }

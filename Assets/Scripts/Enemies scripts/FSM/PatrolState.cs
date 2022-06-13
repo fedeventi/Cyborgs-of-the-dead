@@ -7,7 +7,9 @@ public class PatrolState<T> : State<T>
 {
     BaseEnemy baseEnemy;
     EnemyView enemyView;
-    float timerMax;
+    float _timerForError;
+    float timerMax=7;
+    float _timerToIdle;
     float _speed;
     bool _lame;
     public PatrolState(BaseEnemy enemy, EnemyView view)
@@ -41,20 +43,52 @@ public class PatrolState<T> : State<T>
             enemyView.WalkingAnimation();
             Vector3 target = baseEnemy.waypointsEnemy[baseEnemy.currentWaypoint].position;
             target.y = baseEnemy.transform.position.y;
-            if (target == Vector3.zero)
-            {
-                baseEnemy.currentWaypoint++;
-            }
             var distanceWP = Vector3.Distance(baseEnemy.waypointsEnemy[baseEnemy.currentWaypoint].position, baseEnemy.transform.position);
-            //cuando esta cerca del waypoint, se pone  en idle.
+          
+
+            var roulleteWheel = new RoulleteWheel<bool>();
+            var probabilitiesToChangeWaypoint = new List<Tuple<int, bool>> { new Tuple<int, bool>(3,true),
+                                                                             new Tuple<int, bool>(10,false) };
+
+            _timerToIdle += Time.deltaTime;
+            if (_timerToIdle > 6)
+            {
+                var roulleteWheel2 = new RoulleteWheel<bool>();
+                var probabilitieToIdle = new List<Tuple<int, bool>> { new Tuple<int, bool>(3,true),
+                                                                                 new Tuple<int, bool>(6,false) };
+                if (roulleteWheel.ProbabilityCalculator(probabilitieToIdle))
+                    baseEnemy.Transition("Idle");
+                _timerToIdle = 0;
+            }
             if (distanceWP <= 50f)
             {
-                //baseEnemy.StartCoroutine(baseEnemy.WaitOnWaypoint());
-                baseEnemy.currentWaypoint++;
+               
+                
+                if (roulleteWheel.ProbabilityCalculator(probabilitiesToChangeWaypoint))
+                    baseEnemy.currentWaypoint = UnityEngine.Random.Range(0, baseEnemy.waypointsEnemy.Length );
+                else
+                    baseEnemy.currentWaypoint++;
+
+            }
+            else
+            {
+
+                _timerForError += Time.deltaTime;
+                if (_timerForError > timerMax)
+                {
+                    _timerForError = 0;
+                    baseEnemy.currentWaypoint = UnityEngine.Random.Range(0, baseEnemy.waypointsEnemy.Length);
+                }
+
+
             }
             if (baseEnemy.currentWaypoint >= baseEnemy.waypointsEnemy.Length)
             {
-                baseEnemy.currentWaypoint = 0;
+                
+                if (roulleteWheel.ProbabilityCalculator(probabilitiesToChangeWaypoint))
+                    baseEnemy.currentWaypoint = UnityEngine.Random.Range(0, baseEnemy.waypointsEnemy.Length );
+                else
+                    baseEnemy.currentWaypoint=0;
             }
             
             Vector3 dir = target - baseEnemy.transform.position;
@@ -73,18 +107,19 @@ public class PatrolState<T> : State<T>
             
             
             //rota mirando al target
-            baseEnemy.transform.forward = Vector3.Slerp(baseEnemy.transform.forward, dir, Time.deltaTime * 5).normalized;
-            baseEnemy.transform.position += baseEnemy.transform.forward * _speed*Time.deltaTime;
+            baseEnemy.transform.forward = Vector3.Slerp(baseEnemy.transform.forward, dir, Time.deltaTime * 2).normalized;
+            //baseEnemy.transform.position += baseEnemy.transform.forward * _speed * Time.deltaTime;
+            baseEnemy.rb.MovePosition(baseEnemy.transform.position + baseEnemy.transform.forward * _speed * Time.deltaTime);
         }
     }
     IEnumerator changeSpeed()
     {
         while (true)
         {
-            _speed = baseEnemy.speed*3f;
+            _speed = baseEnemy.speed * 1.5f;
             yield return new WaitForSeconds(.5f);
 
-            _speed = baseEnemy.speed * 1.5f;
+            _speed = baseEnemy.speed * 3f;
             yield return new WaitForSeconds(.3f);
             
         }

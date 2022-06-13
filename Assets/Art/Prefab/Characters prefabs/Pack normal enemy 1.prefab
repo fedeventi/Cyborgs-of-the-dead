@@ -5817,6 +5817,7 @@ Transform:
   m_Children:
   - {fileID: 2190499137148132960}
   - {fileID: 7197724412600114814}
+  - {fileID: 7197724412571162681}
   m_Father: {fileID: 3022234311480013096}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 8.479906, y: 7.9880366, z: -10.986517}
@@ -11410,7 +11411,7 @@ Transform:
   - {fileID: 7197724413216198606}
   - {fileID: 7197724412238699768}
   m_Father: {fileID: 7197724413188156457}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7197724411687667667
 GameObject:
@@ -11528,7 +11529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7197724412238699775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.73, y: 0.093, z: -5.33}
+  m_LocalPosition: {x: 2.68, y: 0.093, z: -5.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7197724411254809371}
@@ -11558,7 +11559,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7197724412416907088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.81, y: 0.34, z: 7.86}
+  m_LocalPosition: {x: -2.12, y: 0.34, z: 5.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7197724411254809371}
@@ -11589,13 +11590,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7197724412571162680}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.16213, y: 111.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.06407887, y: 0.064078875, z: 0.064078875}
   m_Children: []
-  m_Father: {fileID: 7197724413188156457}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 847421679582520911}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!114 &7197724412571162683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11620,10 +11621,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 8.801318
-  m_Height: 17.675903
+  m_Radius: 7.3
+  m_Height: 22.02
   m_Direction: 1
-  m_Center: {x: -1.2971654, y: 1.2781998, z: -1.1004423}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7197724412600114813
 GameObject:
   m_ObjectHideFlags: 0
@@ -11727,7 +11728,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7197724412618359060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.68, y: 0.131, z: 4.54}
+  m_LocalPosition: {x: 3.8, y: 0.131, z: 4.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7197724411254809371}
@@ -11761,7 +11762,6 @@ Transform:
   m_LocalScale: {x: 0.97592044, y: 0.97592044, z: 0.97592044}
   m_Children:
   - {fileID: 4910189781372407617}
-  - {fileID: 7197724412571162681}
   - {fileID: 7197724411254809371}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -11790,7 +11790,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7197724413216198605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.12, y: 0.15900035, z: -4.72}
+  m_LocalPosition: {x: -1.26, y: 0.15900035, z: -5.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7197724411254809371}
@@ -16795,7 +16795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8250355166027611474}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.2, y: 0, z: 0}
+  m_LocalPosition: {x: 29.3, y: 0, z: -68.5}
   m_LocalScale: {x: 15.605768, y: 15.605768, z: 15.605768}
   m_Children:
   - {fileID: 1027489411882353104}
@@ -16951,8 +16951,8 @@ Rigidbody:
   m_Mass: 50
   m_Drag: 10
   m_AngularDrag: 10
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 3
@@ -16973,11 +16973,12 @@ MonoBehaviour:
   speed: 25
   deathTimer: 2
   stoppingDistanceChase: 145
-  viewDistance: 276.7
-  angleVision: 52
+  viewDistance: 677.2
+  angleVision: 83
   attackDistance: 101.23
   player: {fileID: 0}
   enemyView: {fileID: 0}
+  rb: {fileID: 0}
   meleeAttack: {fileID: 3031916779916732608}
   headHight: 100
   bloodSpray: {fileID: 9107305017033179171, guid: 41aef906a0798cb47abfea08eadeb4b8,

@@ -15,14 +15,24 @@ public class IdleState<T> : State<T>
     public override void Awake()
     {
         baseEnemy.isInIdle = true;
+        baseEnemy.StartCoroutine(Wait(2.5f));
     }
     public override void Execute()
     {
         enemyView.IdleAnimation();
-        baseEnemy.speed = 0;
+        
     }
     public override void Sleep()
     {
         baseEnemy.isInIdle = false;
+    }
+    IEnumerator Wait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        var transition = "Patrol";
+        if (baseEnemy.LookingPlayer())
+            transition = "Chase";
+
+        baseEnemy.Transition(transition);
     }
 }

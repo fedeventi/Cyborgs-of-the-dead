@@ -12,7 +12,7 @@ public class ExplosiveZombie : BaseEnemy
     public ParticleSystem particleSystemExplosion;
     public Transform psPosition;
     public bool canShoot=true;
-
+    public bool hasSeenPlayer;
     public override void Start()
     {
         base.Start();
@@ -20,52 +20,40 @@ public class ExplosiveZombie : BaseEnemy
 
     public override void Update()
     {
-        if(life>0)
-        {
-            fsm.OnUpdate();
 
-            var distance = Vector3.Distance(transform.position, player.transform.position);
+        base.Update();
+
 
             if (LookingPlayer())
             {
-                CloseEnemies();
-                hasListenGunShoot = false;
-                isInIdle = false;
-                isInPatrol = false;
-                
-                if (!InRangeToAttack())
+                if (!hasSeenPlayer)
                 {
-
-                    if (canShoot)
-                    {
-                        
-                        StartCoroutine(Shoot());
-                    }
-                   
+                    CloseEnemies();
+                    hasSeenPlayer = true;
                 }
                 
+                //if (!InRangeToAttack())
+                //{
+
+                //    if (canShoot)
+                //    {
+                        
+                //        StartCoroutine(Shoot());
+                //    }
+                   
+                //}
+                
             }
 
-            if (hasListenGunShoot| hasTouchBullet || distance < 10 && !LookingPlayer())
-            {
-                
-                isInIdle = true;
-                isInPatrol = false;
-                CloseEnemies();
-                StartCoroutine(TouchBulletBool());
-            }
+            
 
 
             
 
            
-        }
+        
 
-        //EJECUTA LA MUERTE 
-        else if (life <= 0 && !isDead)
-        {
-            StartCoroutine(Death());
-        }
+      
     }
     IEnumerator Shoot()
     {

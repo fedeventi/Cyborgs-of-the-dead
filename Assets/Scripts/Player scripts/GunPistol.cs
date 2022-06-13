@@ -40,6 +40,7 @@ public class GunPistol : MonoBehaviour
     public GameObject bulletDecal;
     [Header("Bullet")]
     public GameObject lineBullet;
+    public Collider gunSoundArea;
 
     //Sonidos
     [Header("Sonidos")]
@@ -196,7 +197,7 @@ public class GunPistol : MonoBehaviour
             model.isShooting = true;
             model.animationShooting = true;
             StartCoroutine(BoolShoot());
-
+            
             ShootSound();
 
             animator.SetTrigger("shoot");
@@ -220,7 +221,7 @@ public class GunPistol : MonoBehaviour
         currentAmmo--;
         countBullets++;
 
-        if (Physics.Raycast(forwardWeapons.transform.position, myCamera.transform.forward, out hit, 10000))
+        if (Physics.Raycast(myCamera.transform.position, myCamera.transform.forward, out hit, 10000))
         {
             //Si el hit es BaseEnemy, ejecuto el daño de este enemigo.
             var target = hit.transform.GetComponent<BaseEnemy>();
@@ -327,8 +328,10 @@ public class GunPistol : MonoBehaviour
 
     IEnumerator BoolShoot()
     {
+        gunSoundArea.enabled = true;
         yield return new WaitForSeconds(0.4f);
         model.animationShooting = false;
+        gunSoundArea.enabled = false;
         yield return new WaitForSeconds(timerToShootAgain);
         model.isShooting = false;
         yield break;

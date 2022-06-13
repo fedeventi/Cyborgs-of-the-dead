@@ -26,7 +26,6 @@ public class EnemyView : MonoBehaviour
     {
         animator.SetBool("walking", true);
         animator.SetBool("idle", false);
-        animator.SetBool("attacking", false);
         animator.SetBool("chasing", false);
         animator.SetBool("distanceAttack", false);
     }
@@ -36,7 +35,7 @@ public class EnemyView : MonoBehaviour
         animator.SetBool("chasing", true);
         animator.SetBool("walking", false);
         animator.SetBool("idle", false);
-        animator.SetBool("attacking", false);
+       
         animator.SetBool("distanceAttack", false);
     }
 
@@ -44,15 +43,15 @@ public class EnemyView : MonoBehaviour
     {
         animator.SetBool("walking", false);
         animator.SetBool("idle", true);
-        animator.SetBool("attacking", false);
         animator.SetBool("chasing", false);
         animator.SetBool("distanceAttack", false);
     }
     public void AttackAnimation()
     {
+        Debug.Log("ataco");
         animator.SetBool("walking", false);
         animator.SetBool("idle", false);
-        animator.SetBool("attacking", true);
+        animator.SetTrigger("attacking");
         animator.SetBool("chasing", false);
         animator.SetBool("distanceAttack", false);
     }
@@ -60,7 +59,7 @@ public class EnemyView : MonoBehaviour
     {
         animator.SetBool("walking", false);
         animator.SetBool("idle", false);
-        animator.SetBool("attacking", false);
+       
         animator.SetBool("chasing", false);
         animator.SetBool("death", true);
         animator.SetBool("distanceAttack",false);
@@ -70,7 +69,7 @@ public class EnemyView : MonoBehaviour
     {
         animator.SetBool("walking", false);
         animator.SetBool("idle", false);
-        animator.SetBool("attacking", false);
+
         animator.SetBool("chasing", false);
         animator.SetBool("death", false);
         animator.SetTrigger("distanceAttack");
@@ -79,7 +78,7 @@ public class EnemyView : MonoBehaviour
     {
         animator.SetBool("walking", false);
         animator.SetBool("idle", true);
-        animator.SetBool("attacking", false);
+       
         animator.SetBool("chasing", false);
         animator.SetBool("charging", false);
         animator.SetBool("death", false);
@@ -88,7 +87,7 @@ public class EnemyView : MonoBehaviour
     {
         animator.SetBool("walking", false);
         animator.SetBool("idle", false);
-        animator.SetBool("attacking", false);
+        
         animator.SetBool("chasing", false);
         animator.SetBool("charging", true);
         animator.SetBool("death", false);

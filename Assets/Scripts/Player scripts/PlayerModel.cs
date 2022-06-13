@@ -143,7 +143,7 @@ public class PlayerModel : MonoBehaviour
                 if (r <= 50)
                 {
                     
-                    Debug.Log("mas daño");
+                   
                     increaseDamage = true;
                     if (hasPickUpPistol)
                     {
@@ -157,7 +157,7 @@ public class PlayerModel : MonoBehaviour
                 if (r > 50)
                 {
                     
-                    Debug.Log("mas velocidad");
+
                     speed = normalSpeed * 2f;
                     runSpeed = speed * 2f;
                 }

@@ -20,7 +20,7 @@ public class BaseEnemy : MonoBehaviour
     [Header("Player")]
     public PlayerModel player;
     public EnemyView enemyView;
-    Rigidbody rb;
+    public Rigidbody rb;
     CapsuleCollider myCollider;
     [Header("Enemy melee attack")]
     public EnemyMeleeAttack meleeAttack;
@@ -99,6 +99,8 @@ public class BaseEnemy : MonoBehaviour
     
     public virtual void Update()
     {
+       
+
         if (life>0)
         {
            
@@ -110,59 +112,8 @@ public class BaseEnemy : MonoBehaviour
             
 
             
-
-            //si escucha el sonido del disparo, y no esta viendo al jugador, mira para su direccion para poder perseguirlo.
-            //si recibe un disparo del jugador, y no esta viendo al jugador, mira para su direccion para poder perseguirlo.
-            //si esta a tal distancia del jugador, y no esta viendo al jugador, mira para su direccion para poder perseguirlo.
             
-           
             
-
-            //Transicion al idle
-            //if (isInIdle)
-            //{
-            //    fsm.Transition("Idle");
-            //}
-
-            //RULETA (IDLE - PATROL)
-            //if(this.gameObject.tag=="NormalEnemy")
-            //{
-            //    if (!isLookingAtPlayer || !LookingPlayer())
-            //    {
-            //        //Timer para que se ponga en idle
-            //        timerRoulette += Time.deltaTime;
-            //        if (timerRoulette > 5f)
-            //        {
-            //            //Aca quiero que elija patrol o idle
-            //            if (!actionOfRoulette)
-            //            {
-            //                Dictionary<string, int> dic = new Dictionary<string, int>(); //Añado ambos estados al diccionario
-            //                dic.Add("GoIdle", 40);
-            //                dic.Add("KeepPatrol", 30);
-            //                actionToDo = roulette.Execute(dic); //Ejecuto la ruleta 
-
-            //                if (actionToDo == "GoIdle")
-            //                {
-            //                    isInIdle = true;
-            //                    isInPatrol = false;
-            //                    actionOfRoulette = true;
-            //                }
-            //                if (actionToDo == "KeepPatrol")
-            //                {
-            //                    isInIdle = false;
-            //                    isInPatrol = true;
-            //                    actionOfRoulette = true;
-            //                }
-            //            }
-            //            if (timerRoulette > 10f)
-            //            {
-            //                timerRoulette = 0f;
-            //                isInIdle = false;
-            //                actionOfRoulette = false;
-            //            }
-            //        }
-            //    }
-            //}
             
         }
 
@@ -184,17 +135,39 @@ public class BaseEnemy : MonoBehaviour
             return false;
     }
 
-    //funcion para avisar a los enemigos cercanos, que miren al jugador.
+    //funcion para avisar a los enemigos cercanos, que miren al jugador. No usada
     public void CloseEnemies()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, 500, enemiesMask);
         foreach (var c in colliders)
         {
-            //activa el looking player
-            //c.GetComponent<BaseEnemy>().isLookingAtPlayer = true;
+            c.gameObject.GetComponent<BaseEnemy>().SeeEnemy();
         }
     }
-    
+    //Automaticamente ve al jugador
+    public IEnumerator SeeEnemy()
+    {
+        Transition("Idle");
+        var distance = Vector3.Distance(player.transform.position, transform.position);
+        if(viewDistance<distance)
+            viewDistance = distance;
+        
+        var target = player.transform.position;
+        target.y = transform.position.y;
+
+        Vector3 dir = target - transform.position;
+
+        var rot = Quaternion.LookRotation(dir);
+        var angle=Vector3.Angle(transform.forward, dir);
+        while (angle>30)
+        {
+            yield return new WaitForSeconds(0.05f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 3).normalized;
+            angle = Vector3.Angle(transform.forward, dir);
+        }
+        yield break;
+        
+    }
    
 
     //Esta funcion solamente es un bool para saber si ve o no al jugador
@@ -264,6 +237,8 @@ public class BaseEnemy : MonoBehaviour
         StartCoroutine(DamageVelocity());
         life -= damage;
         enemyView.DamageSound();
+        if (!LookingPlayer())
+            StartCoroutine(SeeEnemy());
 
     }
     //Creo la state Machine
@@ -271,7 +246,7 @@ public class BaseEnemy : MonoBehaviour
     {
         //FSM
         var idle = new IdleState<string>(baseEnemy, enemyView);
-        var patrol = new PatrolState<string>(baseEnemy, enemyView);
+        var patrol = new PatrolState<string>(baseEnemy, enemyView,true);
 
         var attack = new AttackState<string>(baseEnemy, enemyView);
         var chase = new ChaseState<string>(baseEnemy, enemyView);
@@ -323,30 +298,7 @@ public class BaseEnemy : MonoBehaviour
         yield break;
     }
 
-    //corrutina para poner en falso, el bool de si colisiono con la bala
-    public IEnumerator TouchBulletBool()
-    {
-        yield return new WaitForSeconds(0.2f);
-        hasTouchBullet = false;
-        yield break;
-    }
-
-    //corrutina para pararse en los waypoints, y para volver a patrullar
-    public IEnumerator WaitOnWaypoint()
-    {
-
-        waitOnWP = true;
-        isInPatrol = false;
-        isInIdle = true;
-
-        yield return new WaitForSeconds(2.5f);
-
-        isInPatrol = true;
-        isInIdle = false;
-        waitOnWP = false;
-
-        yield break;
-    }
+    
 
 
     //Colisiones 
@@ -354,23 +306,20 @@ public class BaseEnemy : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         //Colision con el area del sonido del arma y si esta dispara, se activa el bool
-        if (other.gameObject.tag == "GunSoundArea" && weaponHolder.weapons[weaponHolder.actualWeapon].GetComponent<GunPistol>().model.isShooting)
+        if (other.gameObject.tag == "GunSoundArea")
         {
             hasListenGunShoot = true;
+            if(!LookingPlayer()) StartCoroutine(SeeEnemy());
         }
     }
 
     protected virtual void OnTriggerStay(Collider other)
     {
-        //Colision con el area del sonido del arma y si esta dispara, se activa el bool
-        if (other.gameObject.tag == "GunSoundArea" && weaponHolder.weapons[weaponHolder.actualWeapon].GetComponent<GunPistol>().model.isShooting)
-        {
-            hasListenGunShoot = true;
-        }
+        
     }
     protected virtual void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "GunSoundArea" && weaponHolder.weapons[weaponHolder.actualWeapon].GetComponent<GunPistol>().model.isShooting)
+        if (other.gameObject.tag == "GunSoundArea")
         {
             hasListenGunShoot = false;
         }

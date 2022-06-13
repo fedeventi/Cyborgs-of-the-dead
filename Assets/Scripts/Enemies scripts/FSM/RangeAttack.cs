@@ -16,7 +16,9 @@ public class RangeAttack<T> : State<T>
     public override void Execute()
     {
         var target = _baseEnemy.player.transform.position;
+        target.y = _baseEnemy.transform.position.y;
         Vector3 dir = target - _baseEnemy.transform.position;
+
         var rot = Quaternion.LookRotation(dir);
         _baseEnemy.transform.rotation = Quaternion.Slerp(_baseEnemy.transform.rotation, rot, Time.deltaTime).normalized;
         var angle = Vector3.Angle(dir, _baseEnemy.transform.forward);

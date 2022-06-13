@@ -18,6 +18,7 @@ public class ChaseState<T> : State<T>
         if (!_baseEnemy.isDamage)
         {
             FollowPlayer();
+            
         }
     }
 
@@ -26,12 +27,11 @@ public class ChaseState<T> : State<T>
         _speed = _baseEnemy.speed*5;
         enemyView.ChasingAnimation();
         var target = _baseEnemy.player.transform.position;
-        Vector3 playerPos = _baseEnemy.player.transform.position;
         target.y = _baseEnemy.transform.position.y;
 
         
-
         Vector3 dir = target - _baseEnemy.transform.position;
+
         if (_baseEnemy.targetDetection.MyClosestObstacle())
         {
 
@@ -54,7 +54,11 @@ public class ChaseState<T> : State<T>
     {
         var distance = Vector3.Distance(_baseEnemy.player.transform.position, _baseEnemy.transform.position);
        // if (distance > _baseEnemy.viewDistance) _baseEnemy.Transition("Patrol");
-        if (_baseEnemy.InRangeToAttack()) _baseEnemy.Transition("Attack");
+        Debug.Log(distance);
+        if (_baseEnemy.InRangeToAttack())
+        {
+            _baseEnemy.Transition("Attack");
+        }
     }
     
 
