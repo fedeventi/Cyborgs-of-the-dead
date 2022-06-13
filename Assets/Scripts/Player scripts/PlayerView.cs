@@ -105,7 +105,7 @@ public class PlayerView : MonoBehaviour
         casco.material.SetInt("_LowLife", lowLife<20 ? 1 : 0);
         if (lowLife < 20) 
             if(!audioSource.isPlaying)
-                audioSource.PlayOneShot(heartBeat, 1);
+                audioSource.PlayOneShot(heartBeat, 10);
     }
     IEnumerator HitSound()
     {
@@ -120,7 +120,7 @@ public class PlayerView : MonoBehaviour
         if (!audioSource.isPlaying)
         {
             cough = true;
-            audioSource.PlayOneShot(audioClips[5], 1f);
+            audioSource.PlayOneShot(audioClips[5], 3f);
         }
         yield return new WaitForSeconds(Random.Range(5, 16));
         cough = false;

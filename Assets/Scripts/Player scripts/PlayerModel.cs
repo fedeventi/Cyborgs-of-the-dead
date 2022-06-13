@@ -97,14 +97,15 @@ public class PlayerModel : MonoBehaviour
                 life = 100;
             }
         }
+        else
+            view.LowLife(life);
         //Muerte 
         if (life <= 0)
         {
             life = 0;
             StartCoroutine(Death());
         }
-        else
-            view.LowLife(life);
+        
         //random para las toxinas
         //TOXICITY
         Toxicity();
