@@ -11,7 +11,7 @@ public class MedicineToxicity : MonoBehaviour
 
     public Animator animator;
     public ParticleSystem ps;
-    private AudioSource audioSource;
+    AudioSource audioSource;
 
     private void Start()
     {
