@@ -123,10 +123,11 @@ public class PlayerModel : MonoBehaviour
     //Toxicity 
     void Toxicity()
     {
+        if(toxicity>25)
+            StartCoroutine(view.ToxicitySound());
 
         if (toxicity > 50 && toxicity < 80)
         {
-            StartCoroutine(view.ToxicitySound());
             toxicityText.text = increaseDamage ? "More damage" : "More speed";
             //mejoras, como mas daño, velocidad, lo que sea y estas se activan al azar
             //que sea por tiempo 
@@ -163,11 +164,12 @@ public class PlayerModel : MonoBehaviour
 
 
         }
-
+        
         if (toxicity > 80 )
         {
             //se tiene que curar el jugador por que esta al borde de empezar a perder vida
             toxicityText.text = $" Toxicity bar has reach max level \n{(increaseDamage ? "More damage" : "More speed")}";
+
         }
         //resta vida mientras tiene toxinas en el cuerpo
         if (toxicity >= 100)

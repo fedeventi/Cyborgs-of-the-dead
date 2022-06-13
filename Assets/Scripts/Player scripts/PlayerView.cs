@@ -16,6 +16,9 @@ public class PlayerView : MonoBehaviour
     //Sonido 
     [Header("Sonidos")]
     public List<AudioClip> audioClips = new List<AudioClip>();
+    bool cough;
+    public AudioClip heartBeat;
+    
     public float nextStepSound = 0f;
     public float delayStepSound = 1f;
     AudioSource audioSource;
@@ -100,6 +103,9 @@ public class PlayerView : MonoBehaviour
     public void LowLife(float lowLife)
     {
         casco.material.SetInt("_LowLife", lowLife<20 ? 1 : 0);
+        if (lowLife < 20) 
+            if(!audioSource.isPlaying)
+                audioSource.PlayOneShot(heartBeat, 1);
     }
     IEnumerator HitSound()
     {
@@ -110,10 +116,15 @@ public class PlayerView : MonoBehaviour
 
     public IEnumerator ToxicitySound()
     {
+        if (cough) yield break;
         if (!audioSource.isPlaying)
-            audioSource.PlayOneShot(audioClips[5], 0.4f);
-        yield return new WaitForSeconds(0.5f);
-        yield break;
+        {
+            cough = true;
+            audioSource.PlayOneShot(audioClips[5], 1f);
+        }
+        yield return new WaitForSeconds(Random.Range(5, 16));
+        cough = false;
+
     }
 
     void DamageImages()
