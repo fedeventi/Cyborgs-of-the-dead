@@ -11,11 +11,12 @@ public class MedicineToxicity : MonoBehaviour
 
     public Animator animator;
     public ParticleSystem ps;
-    public AudioSource audioSource;
+    AudioSource audioSource;
 
     private void Start()
     {
         player = FindObjectOfType<PlayerModel>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerStay(Collider collision)
