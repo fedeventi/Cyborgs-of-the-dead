@@ -8,7 +8,7 @@ public class PatrolState<T> : State<T>
     BaseEnemy baseEnemy;
     EnemyView enemyView;
     float _timerForError;
-    float timerMax=7;
+    float timerMax=15;
     float _timerToIdle;
     float _speed;
     bool _lame;
@@ -47,7 +47,7 @@ public class PatrolState<T> : State<T>
           
 
             var roulleteWheel = new RoulleteWheel<bool>();
-            var probabilitiesToChangeWaypoint = new List<Tuple<int, bool>> { new Tuple<int, bool>(3,true),
+            var probabilitiesToChangeWaypoint = new List<Tuple<int, bool>> { /*new Tuple<int, bool>(3,true),*/
                                                                              new Tuple<int, bool>(10,false) };
 
             _timerToIdle += Time.deltaTime;
