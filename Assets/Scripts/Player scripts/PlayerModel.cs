@@ -54,7 +54,8 @@ public class PlayerModel : MonoBehaviour
     public WeaponHolder weaponHolder;
     public bool hasPickUpPistol = false;
     public bool hasPickUpShotgun = false;
-
+    
+    
 
     private void Start()
     {
@@ -83,7 +84,7 @@ public class PlayerModel : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb.AddForce(Physics.gravity * rb.mass*20);
+       
     }
     private void Update()
     {
@@ -230,7 +231,7 @@ public class PlayerModel : MonoBehaviour
     {
         Gizmos.color= Color.yellow;
         //Gizmos.DrawRay(transform.position, _directionDebug * (isRunning?runSpeed:speed)*.2f);
-        Gizmos.DrawRay(transform.position, _directionDebug * 40f);
+       //Gizmos.DrawRay(transform.position, _directionDebug * 40f);
     }
     public void Run(float axisHorizontal, float axisVertical)
     {
@@ -339,7 +340,7 @@ public class PlayerModel : MonoBehaviour
     //llamo a la funcion de disparo, para llamarla en la animacion 
     public void ShootFromGun()
     {
-        weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<GunPistol>().Shoot();
+        weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<Weapon>().Shoot();
     }
 
     private void OnCollisionEnter(Collision collision)

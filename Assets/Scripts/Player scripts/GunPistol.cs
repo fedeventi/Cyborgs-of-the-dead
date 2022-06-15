@@ -68,8 +68,7 @@ public class GunPistol : Weapon
     //
     bool explosionForce = false;
 
-    [Header("GlassFragments")]
-    public LayerMask glassFragments;
+    
 
     void Start()
     {
@@ -220,7 +219,7 @@ public class GunPistol : Weapon
         currentAmmo--;
         countBullets++;
 
-        if (Physics.Raycast(myCamera.transform.position, myCamera.transform.forward, out hit, 10000))
+        if (Physics.Raycast(myCamera.transform.position, myCamera.transform.forward,out hit,5000,collisionMask))
         {
             //Si el hit es BaseEnemy, ejecuto el daño de este enemigo.
             var target = hit.transform.GetComponent<BaseEnemy>();

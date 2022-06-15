@@ -16,7 +16,10 @@ public class MeleeWeapon : Weapon
     bool combo;
     [Header("UI")]
     public Text ammoText;
-
+    [Header("PARTICULA ")]
+    public GameObject particle;
+    public GameObject shockwave;
+    public TimeManager timeManager;
     private void Update()
     {
         //Actualiza el texto de la munición.
@@ -40,7 +43,7 @@ public class MeleeWeapon : Weapon
     
     public override void Shoot()
     {
-        //CheckEnemy();
+        
         base.Shoot();
         var shootString = combo?"shoot":"secondShoot";
         animator.SetTrigger(shootString);
@@ -48,32 +51,12 @@ public class MeleeWeapon : Weapon
         animator.SetBool("walking", false);
         animator.SetBool("running", false);
     }
-    public void CheckEnemy()
-    {
-        if (Physics.Raycast(myCamera.transform.position, myCamera.transform.forward, out hit, 50))
-        {
-            var target = hit.transform.GetComponent<BaseEnemy>();
-            if (target != null && !target.isDead)
-            {
-                Debug.Log("toma");
-                target.TakeDamage(damage);
-                var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(bloodEffect, 0.5f);
-            }
-        }
-    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 9)
         {
-            var target = collision.transform.GetComponent<BaseEnemy>();
-            if (target != null && !target.isDead)
-            {
-                Debug.Log("toma collision");
-                target.TakeDamage(damage);
-                var bloodEffect = Instantiate(target.bloodSpray, transform.forward * 50, Quaternion.LookRotation(transform.forward * -1));
-                Destroy(bloodEffect, 0.5f);
-            }
+            
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -87,27 +70,23 @@ public class MeleeWeapon : Weapon
                 target.TakeDamage(damage);
                 var bloodEffect = Instantiate(target.bloodSpray, myCamera.transform.position+myCamera.transform.forward*50,Quaternion.LookRotation(transform.forward*-1));
                 Destroy(bloodEffect, 0.5f);
+                Instantiate(shockwave, myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
+                timeManager.SlowMo();
             }
         }
         if (other.gameObject.layer == 8)
         {
             var obj = other.GetComponent<BreakGlass>();
+            var _myParticle=Instantiate(particle, myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
+            _myParticle.transform.localScale = Vector3.one*10;
             if (obj == null) return;
             obj.ReplaceGlass();
-            foreach (var item in obj.glasses)
-            {
-                var rb = item.gameObject.GetComponent<Rigidbody>();
-
-                rb.AddExplosionForce(500000, transform.position + transform.forward * 10, 60);
-
-
-            }
             Destroy(obj.gameObject);
         }
     }
     void OnDrawGizmos()
     {
-        Gizmos.DrawRay(myCamera.transform.position, myCamera.transform.forward*50);
+        //Gizmos.DrawRay(myCamera.transform.position, myCamera.transform.forward*50);
     }
-
+    
 }

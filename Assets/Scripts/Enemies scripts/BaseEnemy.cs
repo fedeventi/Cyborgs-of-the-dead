@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using System.Linq;
 
 public class BaseEnemy : MonoBehaviour
 {
@@ -73,8 +74,10 @@ public class BaseEnemy : MonoBehaviour
     string actionToDo;
     bool actionOfRoulette = false;
     float timerRoulette = 0;
+    [Header("RAGDOLL")]
+    public List<Collider> ragdollColliders = new List<Collider>();
+    
 
-   
     public virtual void Start()
     {
         //Componentes
@@ -139,9 +142,12 @@ public class BaseEnemy : MonoBehaviour
     public void CloseEnemies()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, 500, enemiesMask);
+        
         foreach (var c in colliders)
         {
-            c.gameObject.GetComponent<BaseEnemy>().SeeEnemy();
+            var enemy = c.gameObject.GetComponent<BaseEnemy>();
+            if(enemy != null)
+                enemy.SeeEnemy();
         }
     }
     //Automaticamente ve al jugador
@@ -281,19 +287,25 @@ public class BaseEnemy : MonoBehaviour
     }
     
     //corrutina de la muerte
-    public IEnumerator Death()
+    public virtual IEnumerator Death()
     {
+        
         isDead = true;
-        //navMesh.speed = 0;
         speed = 0;
-        //navMesh.stoppingDistance = 100;
-        stoppingDistanceChase = 100;
+        bool hasFinished;
+        foreach (var item in ragdollColliders)
+        {
+            item.enabled = true;
+            item.GetComponent<Rigidbody>().isKinematic = false;
+        }
+        
+        GetComponentInChildren<EnemyMeleeAttack>().enabled = false;
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        enemyView.DeathAnimation();
         //Destroy(gameObject, deathTimer);
         myCollider.enabled = false;
+        enemyView.DeathAnimation();
         yield break;
     }
 

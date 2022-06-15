@@ -14,6 +14,7 @@ public class EnemyView : MonoBehaviour
     [Header("Sonidos")]
     public List<AudioClip> myClips = new List<AudioClip>();
 
+    
 
     private void Start()
     {
@@ -57,12 +58,13 @@ public class EnemyView : MonoBehaviour
     }
     public void DeathAnimation()
     {
-        animator.SetBool("walking", false);
-        animator.SetBool("idle", false);
-       
-        animator.SetBool("chasing", false);
-        animator.SetBool("death", true);
-        animator.SetBool("distanceAttack",false);
+        //animator.SetBool("walking", false);
+        //animator.SetBool("idle", false);
+
+        //animator.SetBool("chasing", false);
+        //animator.SetBool("death", true);
+        //animator.SetBool("distanceAttack",false);
+        animator.enabled = false;
     }
 
     public void DistanceAttackAnimation()
