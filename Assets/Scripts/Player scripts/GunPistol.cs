@@ -14,8 +14,8 @@ public class GunPistol : Weapon
     public Transform forwardWeapons;
 
     [Header("UI")]
-    public Text ammoTextCurrent;
-    public Text ammoTextTotal;
+    public Text ammoText;
+    
 
     //Ammo
     [Header("Ammo")]
@@ -93,10 +93,10 @@ public class GunPistol : Weapon
     void Update()
     {
         //Actualiza el texto de la munición.
-        if(ammoTextCurrent != null && ammoTextTotal!=null) 
-        { 
-            ammoTextCurrent.text = currentAmmo.ToString();
-            ammoTextTotal.text = currentMaxAmmo.ToString();
+        if (ammoText != null)
+        {
+            ammoText.text = $"{currentAmmo}/{currentMaxAmmo}";
+
         }
         //Shoot
         if (Input.GetMouseButtonDown(0) && currentAmmo>0)
