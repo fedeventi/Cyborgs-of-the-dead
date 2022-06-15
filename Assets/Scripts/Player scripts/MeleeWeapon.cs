@@ -18,7 +18,6 @@ public class MeleeWeapon : Weapon
     public Text ammoText;
     [Header("PARTICULA ")]
     public GameObject particle;
-    public GameObject shockwave;
     public TimeManager timeManager;
     private void Update()
     {
