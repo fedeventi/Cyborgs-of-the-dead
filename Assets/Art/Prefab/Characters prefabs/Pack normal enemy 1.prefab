@@ -3024,7 +3024,7 @@ SphereCollider:
   m_GameObject: {fileID: 7387533565192123130}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.81
   m_Center: {x: 0, y: 0, z: 0}
@@ -3646,7 +3646,7 @@ MonoBehaviour:
   headExplosion: {fileID: 7104768906479164596, guid: 9a8b7a039a4341a4b8a052e0a1a650ae,
     type: 3}
   myClips:
-  - {fileID: 8300000, guid: a326442829b365a4fb381352725024dd, type: 3}
+  - {fileID: 8300000, guid: bdd5566aaea824e42b97144905ae7604, type: 3}
   - {fileID: 8300000, guid: 8e7371b657d367d4b8d4bce3331b9b09, type: 3}
   - {fileID: 8300000, guid: e63af9ce02d715744b63f4f830bf59b8, type: 3}
   - {fileID: 8300000, guid: f62dc640c07600a4e9d70937342c601d, type: 3}

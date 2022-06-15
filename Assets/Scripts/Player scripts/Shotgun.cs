@@ -259,20 +259,7 @@ public class Shotgun : Weapon
 
                 }
                 //el hit es la explosion del enemigo explosivo
-                if (hit.transform.gameObject.tag == "ExplosionZoneZE" && !explosionForce)
-                {
-                    if (hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.life > 0)
-                    {
-                        explosionForce = true;
-                        hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.life = 0;
-                        hit.transform.GetComponent<ExplosionZoneZE>().hasCollision = true;
-                        var p = Instantiate(hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.particleSystemExplosion, hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.psPosition);
-                        Destroy(p, 1f);
-                    }
-
-                    
-                    myCamera.GetComponent<ShakeCamera>().ActivateShake(2f);
-                }
+                
 
 
             }
@@ -378,6 +365,11 @@ public class Shotgun : Weapon
     {
         for (int i = 0; i < 5; i++)
         {
+            if(!_debug)
+            {
+                y[i]=  Random.Range(-angle, angle);
+                x[i] = Random.Range(-angle, angle);
+            }
 
             Gizmos.DrawRay(myCamera.transform.position, (Quaternion.AngleAxis(x[i], myCamera.transform.up)
                                                                * Quaternion.AngleAxis(y[i], myCamera.transform.right)

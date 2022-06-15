@@ -4,33 +4,27 @@ using UnityEngine;
 
 public class DamageZoneZE : MonoBehaviour
 {
-    [Header("Transform")]
-    public Transform transformZone;
-    [Header("Enemigo")]
-    public ExplosiveZombie myEnemy;
-    [Header("Explosion zone")]
-    public ExplosionZoneZE explosionZone;
+    
+    
+    public int damage;
+   
+
 
     private void Update()
     {
-        //Sigue la posicion actual del enemigo.
-        if (myEnemy.life > 0)
-        {
-            transform.position = transformZone.position;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        
+        
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (explosionZone.hasCollision && other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            explosionZone.hasCollision = false;
-            other.gameObject.GetComponent<PlayerModel>().life -= 50;
-            other.gameObject.GetComponent<PlayerModel>().toxicity += 50;
+         
+            other.gameObject.GetComponent<PlayerModel>().TakeDamage(damage);
+            other.gameObject.GetComponent<PlayerModel>().toxicity+=50;
+            GetComponent<SphereCollider>().enabled = false;
+            
         }
     }
 }
