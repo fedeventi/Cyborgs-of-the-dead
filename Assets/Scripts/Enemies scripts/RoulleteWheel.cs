@@ -11,8 +11,12 @@ public class RoulleteWheel<T>
     
     int ProbabilityToDropSomething=100;
 
-  
-    public T ProbabilityCalculator(List<Tuple<int,T>> list)
+    public T ProbabilityCalculator(Tuple<int, T>[] list)
+    {
+        var _list=new List<Tuple<int, T>>(list);
+        return ProbabilityCalculator(_list);
+    }
+    public T ProbabilityCalculator(List<Tuple<int, T>> list)
     {
         int dropChance = UnityEngine.Random.Range(0, 101);
         if (dropChance >ProbabilityToDropSomething)

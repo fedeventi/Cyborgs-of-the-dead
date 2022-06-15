@@ -378,6 +378,11 @@ public class Shotgun : Weapon
     {
         for (int i = 0; i < 5; i++)
         {
+            if(!_debug)
+            {
+                y[i]=  Random.Range(-angle, angle);
+                x[i] = Random.Range(-angle, angle);
+            }
 
             Gizmos.DrawRay(myCamera.transform.position, (Quaternion.AngleAxis(x[i], myCamera.transform.up)
                                                                * Quaternion.AngleAxis(y[i], myCamera.transform.right)

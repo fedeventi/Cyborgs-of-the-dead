@@ -294,8 +294,17 @@ public class BaseEnemy : MonoBehaviour
     {
         
         speed = 0;
-        deathAction();
         meleeAttack.gameObject.SetActive(false);
+        enemyView.DisableAnimator();
+        RoulleteWheel<bool> rw = new RoulleteWheel<bool>();
+        Tuple<int, bool>[] probabilities = new Tuple<int, bool>[2]
+        {
+            new Tuple<int,bool>(100, false),
+            new Tuple<int,bool>(enemyView.head?10:200, true),
+        };
+        if (rw.ProbabilityCalculator(probabilities))
+                deathAction();
+
         isDead = true;
         foreach (var item in ragdollColliders)
         {
@@ -306,7 +315,6 @@ public class BaseEnemy : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         myCollider.enabled = false;
-        enemyView.DisableAnimator();
         
         yield break;
     }
