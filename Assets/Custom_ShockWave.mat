@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Custom_ShockWave
+  m_Shader: {fileID: 4800000, guid: 076b838003b314f45bff3b5d74f6a2b4, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Texture0:
+        m_Texture: {fileID: 2800000, guid: 827643247c5396045ab168f4d32a7e92, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex3coord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Deformation: 0.15294118
+    - _Float0: 3.98
+    - _Float1: 0.5
+    - _Float2: 36.12
+    - _Float3: 0.006616214
+    - _Float4: 0.87
+    - _Float5: 1.34
+    - _Float6: 1.1
+    - _Float7: 0.92
+    - _Float8: -0.85
+    - _Float9: 1
+    - __dirty: 0
+    - _cycle: 36.12
+    - _opacity: 1
+    m_Colors:
+    - _Color0: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 0}
+    - _Vector0: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _Vector1: {r: 1.5, g: 1, b: 0, a: 0}

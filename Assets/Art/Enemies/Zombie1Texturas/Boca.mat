@@ -10,7 +10,7 @@ Material:
   m_Name: Boca
   m_Shader: {fileID: 4800000, guid: 43fa820114c986e4f943e475fd6c3cfc, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 9e4d24db7aa27e74aad876696189202d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1a8e6cae05a3da74db048baf5164a642, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
-        m_Texture: {fileID: 2800000, guid: 1f3a1db6acaae394683b9394b75f44f0, type: 3}
+        m_Texture: {fileID: 2800000, guid: d45cfd269b0754d4e9e00e13b39c6122, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:

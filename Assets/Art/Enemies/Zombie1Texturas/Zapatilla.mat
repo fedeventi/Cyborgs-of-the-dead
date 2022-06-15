@@ -10,7 +10,7 @@ Material:
   m_Name: Zapatilla
   m_Shader: {fileID: 4800000, guid: 43fa820114c986e4f943e475fd6c3cfc, type: 3}
   m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
-  m_LightmapFlags: 6
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 856326a3d8230c247ac81487a3d4094a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 90413c58ff408b140b5bb566a916ebee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f0a9dee04581f1942bb56d635d7e769e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
-        m_Texture: {fileID: 2800000, guid: db95f261b7659d948b5984cc35315583, type: 3}
+        m_Texture: {fileID: 2800000, guid: c1aea63a2da17864683afe1435a77ce3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:

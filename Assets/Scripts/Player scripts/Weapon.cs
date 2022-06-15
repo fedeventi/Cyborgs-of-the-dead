@@ -7,6 +7,8 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     public Animator animator;
     public RaycastHit hit;
+    [Header("Collision Mask")]
+    public LayerMask collisionMask;
     void Start()
     {
         

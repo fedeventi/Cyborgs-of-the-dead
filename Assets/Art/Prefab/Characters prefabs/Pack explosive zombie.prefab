@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7306075961135054943}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CATRigLLeg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3786554419975323368}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CATRigLArm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5622448225822785333}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CATRigRLeg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4908619184808520535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CATRigLLeg2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,8 +495,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 809204034769036488}
-  - component: {fileID: 2858181491052469025}
   - component: {fileID: 2858181491052469024}
+  - component: {fileID: 8176337111371010410}
   m_Layer: 0
   m_Name: EnemyMeleeAttack
   m_TagString: Untagged
@@ -523,19 +523,6 @@ Transform:
   m_Father: {fileID: 3786554419975323368}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -23.398232, y: -23.966806, z: 95.473915}
---- !u!135 &2858181491052469025
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2858181491052469027}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.4
-  m_Center: {x: -0.15350401, y: -0.000000028006598, z: 0.0000000095969765}
 --- !u!114 &2858181491052469024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,6 +537,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 15
   hasHit: 0
+--- !u!135 &8176337111371010410
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858181491052469027}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.46
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2926716116186217183
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,7 +746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8700055682510261155}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CATRigRArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,14 +760,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3619178607329040254}
-  m_LocalRotation: {x: 0.059708312, y: -0.45714098, z: 0.14107141, w: 0.8761027}
+  m_LocalRotation: {x: 0.0014635249, y: -0.088910185, z: 0.15317987, w: 0.9841894}
   m_LocalPosition: {x: -0.0746936, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7933550460243144207}
   m_Father: {fileID: 7926796458609725538}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 46.558846, y: -86.029335, z: -56.50849}
+  m_LocalEulerAnglesHint: {x: 1.7260001, y: -10.058001, z: 17.541}
 --- !u!1 &3632654335602256294
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,7 +994,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5630527648195344729}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CATRigHub001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1409,6 +1409,18 @@ MonoBehaviour:
   - {fileID: 4903883375225454606}
   - {fileID: 4903883375377073334}
   currentWaypoint: 0
+  ragdollColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1256321880801010068}
   prefabAttack: {fileID: 3241722944897126280, guid: cd6c4c7313159d149a8c095a55a51de2,
     type: 3}
   posForDAttack: {fileID: 4903883374972081687}
@@ -1477,7 +1489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7933550460243144207}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CATRigRArm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1617,7 +1629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4903883375225454601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.72, y: 0, z: -22.32}
+  m_LocalPosition: {x: -3.72, y: -0.075, z: -22.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4903883376481764855}
@@ -1647,7 +1659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4903883375377073329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.96, y: 0, z: -2.73}
+  m_LocalPosition: {x: 1.96, y: -0.074, z: -2.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4903883376481764855}
@@ -1677,7 +1689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4903883375526925946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.42, y: 0, z: -14.34}
+  m_LocalPosition: {x: 4.42, y: -0.067, z: -14.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4903883376481764855}
@@ -1818,7 +1830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4903883376691333701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.64, y: 0, z: -12.8}
+  m_LocalPosition: {x: -7.64, y: -0.197, z: -12.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4903883376481764855}
@@ -2440,7 +2452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 707103222242238158}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CATRigSpine3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2594,7 +2606,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4153099577519861216}
-  m_Layer: 0
+  - component: {fileID: 1256321880801010068}
+  m_Layer: 9
   m_Name: CATRigHub003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2617,6 +2630,19 @@ Transform:
   m_Father: {fileID: 3388723212061590834}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.011975165, y: 0.008204017, z: 13.454558}
+--- !u!135 &1256321880801010068
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8086820963682282249}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.16
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8318043725726412179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,7 +2744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8829257212165234169}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CATRigLArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2732,14 +2758,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8457253803692953022}
-  m_LocalRotation: {x: -0.059707493, y: 0.45713618, z: 0.14107178, w: 0.8761052}
+  m_LocalRotation: {x: -0.006105884, y: 0.11870228, z: 0.15306519, w: 0.9810421}
   m_LocalPosition: {x: -0.07469362, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3786554419975323368}
   m_Father: {fileID: 6363668069078996695}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -17.143757, y: 80.463394, z: -37.801155}
+  m_LocalEulerAnglesHint: {x: -2.7700002, y: 13.374001, z: 17.411001}
 --- !u!1 &8588673918430542167
 GameObject:
   m_ObjectHideFlags: 0
@@ -2809,7 +2835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1043325586275113801}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CATRigRLeg2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

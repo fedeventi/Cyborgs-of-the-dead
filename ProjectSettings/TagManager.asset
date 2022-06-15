@@ -19,6 +19,7 @@ TagManager:
   - GlassFragments
   - Missile
   - FxTemporaire
+  - headshot
   layers:
   - Default
   - TransparentFX
