@@ -224,7 +224,7 @@ public class GunPistol : Weapon
             //Si el hit es BaseEnemy, ejecuto el daño de este enemigo.
             var target = hit.transform.GetComponent<BaseEnemy>();
             bool headshot = hit.transform.gameObject.tag == "headshot";
-            var _damage = headshot?damage:damage*3;
+            var _damage = headshot?damage*3:damage;
             
             if (headshot)
             {

@@ -9,7 +9,7 @@ public class EnemyView : MonoBehaviour
     //Componentes
     public Animator animator;
     AudioSource audioSource;
-
+    public GameObject head;
     //
     [Header("Sonidos")]
     public List<AudioClip> myClips = new List<AudioClip>();

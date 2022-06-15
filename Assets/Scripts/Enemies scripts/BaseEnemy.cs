@@ -290,22 +290,21 @@ public class BaseEnemy : MonoBehaviour
     public virtual IEnumerator Death()
     {
         
-        isDead = true;
         speed = 0;
-        bool hasFinished;
+        
+        meleeAttack.gameObject.SetActive(false);
+        isDead = true;
         foreach (var item in ragdollColliders)
         {
             item.enabled = true;
             item.GetComponent<Rigidbody>().isKinematic = false;
         }
-        
-        GetComponentInChildren<EnemyMeleeAttack>().enabled = false;
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        //Destroy(gameObject, deathTimer);
         myCollider.enabled = false;
         enemyView.DeathAnimation();
+        
         yield break;
     }
 

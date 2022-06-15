@@ -10,7 +10,7 @@ Material:
   m_Name: Lompa Zombie1
   m_Shader: {fileID: 4800000, guid: 43fa820114c986e4f943e475fd6c3cfc, type: 3}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
-  m_LightmapFlags: 6
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 9e129f4780f4c9d4ba6fc1ac1aba36c9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 603420786ee9d90428be2ec3802edb8b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
-        m_Texture: {fileID: 2800000, guid: f5fc5423617c3dd4d82f46d895198ed2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 35770d4a44f7e854f80fe3c8ab50e83f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:

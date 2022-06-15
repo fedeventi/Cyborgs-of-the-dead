@@ -229,26 +229,25 @@ public class Shotgun : Weapon
                                                            * myCamera.transform.forward * 20),out hit, 1000, collisionMask))
 
             {
-                Debug.Log(hit.transform.gameObject.name);
-                //Si el hit es BaseEnemy, ejecuto el daño de este enemigo.
                 var target = hit.transform.GetComponent<BaseEnemy>();
-                if (target != null && !target.isDead)
+                bool headshot = hit.transform.gameObject.tag == "headshot";
+                var _damage = headshot ? damage*3 : damage ;
+
+                Debug.Log(_damage);
+                if (headshot)
                 {
-                    target.hasTouchBullet = true;
-                    target.TakeDamage(damage);
+                    Debug.Log("headshot");
+
+                    target = hit.transform.GetComponentInParent<BaseEnemy>();
+                }
+                if (target)
+                {
+
+                    target.TakeDamage(_damage);
                     var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
                     Destroy(bloodEffect, 0.5f);
                 }
-                //Si el hit es el headshot, el enemigo recibe el doble de daño
-                var headShot = hit.transform.GetComponent<HeadShot>();
-                if (headShot != null && !headShot.myEnemy.isDead)
-                {
-                    target.TakeDamage(damage*2);
-                    headShot.myEnemy.CloseEnemies();
-                    var bloodE = Instantiate(headShot.myEnemy.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
-                    Destroy(bloodE, 0.5f);
-                }
-                
+
                 //Layer del escanario. Si colisiona con algun objeto, genera el bullet hole
                 if (hit.transform.gameObject.layer == 8)
                 {
