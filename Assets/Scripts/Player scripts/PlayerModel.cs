@@ -214,7 +214,7 @@ public class PlayerModel : MonoBehaviour
 
     public void CriticalKill()
     {
-
+        
         timeManager.CreateShockwave(myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
     }
 
