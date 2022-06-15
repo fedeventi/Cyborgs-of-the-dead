@@ -28,6 +28,8 @@ public class MeleeWeapon : Weapon
             ammoText.text = "";
         }
 
+        if(timeManager ==null) timeManager =FindObjectOfType<TimeManager>();
+
         if (Input.GetMouseButtonDown(0))
         {
             if (!isAttacking)
@@ -64,14 +66,19 @@ public class MeleeWeapon : Weapon
         if (other.gameObject.layer == 9)
         {
             var target = other.transform.GetComponent<BaseEnemy>();
+            bool headshot = other.transform.gameObject.tag == "headshot";
+            var _damage = headshot ? damage * 3 : damage;
+            
+            if (headshot)
+            {
+                target = other.transform.GetComponentInParent<BaseEnemy>();
+            }
             if (target != null && !target.isDead)
             {
-              
-                target.TakeDamage(damage);
+              if(headshot)
+                    target.TakeDamage(_damage,headshot);
                 var bloodEffect = Instantiate(target.bloodSpray, myCamera.transform.position+myCamera.transform.forward*50,Quaternion.LookRotation(transform.forward*-1));
                 Destroy(bloodEffect, 0.5f);
-                Instantiate(shockwave, myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
-                timeManager.SlowMo();
             }
         }
         if (other.gameObject.layer == 8)

@@ -55,7 +55,7 @@ public class PlayerModel : MonoBehaviour
     public bool hasPickUpPistol = false;
     public bool hasPickUpShotgun = false;
     
-    
+    public TimeManager timeManager;
 
     private void Start()
     {
@@ -112,14 +112,7 @@ public class PlayerModel : MonoBehaviour
         Toxicity();
 
         //
-        //RaycastHit hit;
-        //if (Physics.Raycast(transform.position, myCamera.transform.forward, out hit, 200))
-        //{
-        //    if(hit.transform.gameObject.layer == 8)
-        //    {
-        //        Debug.Log("hay una pared");
-        //    }
-        //}
+        
     }
 
     //Toxicity 
@@ -166,7 +159,7 @@ public class PlayerModel : MonoBehaviour
 
 
         }
-        
+                
         if (toxicity > 80 )
         {
             //se tiene que curar el jugador por que esta al borde de empezar a perder vida
@@ -218,7 +211,13 @@ public class PlayerModel : MonoBehaviour
         }
     }
 
-    
+
+    public void CriticalKill()
+    {
+
+        timeManager.CreateShockwave(myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
+    }
+
     //Movimiento del jugador.
     public void Move(float axisHorizontal, float axisVertical)
     {

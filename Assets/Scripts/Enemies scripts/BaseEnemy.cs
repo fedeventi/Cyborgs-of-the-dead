@@ -22,7 +22,7 @@ public class BaseEnemy : MonoBehaviour
     public PlayerModel player;
     public EnemyView enemyView;
     public Rigidbody rb;
-    CapsuleCollider myCollider;
+    protected CapsuleCollider myCollider;
     [Header("Enemy melee attack")]
     public EnemyMeleeAttack meleeAttack;
     public float headHight=100;
@@ -40,6 +40,8 @@ public class BaseEnemy : MonoBehaviour
     //Efecto sangre 
     [Header("Blood spray")]
     public GameObject bloodSpray;
+    public event Action deathAction;
+    
 
     //bool 
     [Header("BOOLS")]
@@ -54,9 +56,6 @@ public class BaseEnemy : MonoBehaviour
 
     //FSM
     public QuestionNode isSeeingPlayer;
-
-    ActionNode patrolAction;
-    ActionNode chaseAction;
 
     public FSM<string> fsm;
 
@@ -82,6 +81,7 @@ public class BaseEnemy : MonoBehaviour
     {
         //Componentes
         player = FindObjectOfType<PlayerModel>();
+        deathAction += player.CriticalKill;
         enemyView = GetComponent<EnemyView>();
         rb = GetComponent<Rigidbody>();
         myCollider = GetComponent<CapsuleCollider>();
@@ -94,7 +94,7 @@ public class BaseEnemy : MonoBehaviour
 
 
         
-        isSeeingPlayer = new QuestionNode(LookingPlayer, chaseAction, patrolAction);
+        
 
         //roulette
         roulette = new Roulette();
@@ -238,11 +238,14 @@ public class BaseEnemy : MonoBehaviour
 
     //Daño que recibe
     //Funcion que llama el script de GunPistol
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage,bool headshot=false)
     {
         
-        StartCoroutine(DamageVelocity());
+        //StartCoroutine(DamageVelocity());
         life -= damage;
+        if (headshot)
+            if (life <= 0)
+                enemyView.DestroyHead();
         enemyView.DamageSound();
         if (!LookingPlayer())
             StartCoroutine(SeeEnemy());
@@ -291,7 +294,7 @@ public class BaseEnemy : MonoBehaviour
     {
         
         speed = 0;
-        
+        deathAction();
         meleeAttack.gameObject.SetActive(false);
         isDead = true;
         foreach (var item in ragdollColliders)
@@ -303,7 +306,7 @@ public class BaseEnemy : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         myCollider.enabled = false;
-        enemyView.DeathAnimation();
+        enemyView.DisableAnimator();
         
         yield break;
     }

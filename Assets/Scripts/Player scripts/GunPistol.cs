@@ -234,7 +234,7 @@ public class GunPistol : Weapon
             if (target)
             {
 
-                target.TakeDamage(_damage);
+                target.TakeDamage(_damage,headshot);
                 var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(bloodEffect, 0.5f);
             }

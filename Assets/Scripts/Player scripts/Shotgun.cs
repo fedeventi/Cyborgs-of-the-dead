@@ -236,14 +236,11 @@ public class Shotgun : Weapon
                 Debug.Log(_damage);
                 if (headshot)
                 {
-                    Debug.Log("headshot");
-
                     target = hit.transform.GetComponentInParent<BaseEnemy>();
                 }
                 if (target)
                 {
-
-                    target.TakeDamage(_damage);
+                    target.TakeDamage(_damage,headshot);
                     var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
                     Destroy(bloodEffect, 0.5f);
                 }

@@ -10,7 +10,7 @@ public class EnemyView : MonoBehaviour
     public Animator animator;
     AudioSource audioSource;
     public GameObject head;
-    //
+    public GameObject headExplosion;
     [Header("Sonidos")]
     public List<AudioClip> myClips = new List<AudioClip>();
 
@@ -58,15 +58,18 @@ public class EnemyView : MonoBehaviour
     }
     public void DeathAnimation()
     {
-        //animator.SetBool("walking", false);
-        //animator.SetBool("idle", false);
+        animator.SetBool("walking", false);
+        animator.SetBool("idle", false);
 
-        //animator.SetBool("chasing", false);
-        //animator.SetBool("death", true);
-        //animator.SetBool("distanceAttack",false);
-        animator.enabled = false;
+        animator.SetBool("chasing", false);
+        animator.SetBool("death", true);
+        animator.SetBool("distanceAttack", false);
     }
+    public void DisableAnimator()
+    {
+        animator.enabled = false;
 
+    }
     public void DistanceAttackAnimation()
     {
         animator.SetBool("walking", false);
@@ -93,6 +96,13 @@ public class EnemyView : MonoBehaviour
         animator.SetBool("chasing", false);
         animator.SetBool("charging", true);
         animator.SetBool("death", false);
+    }
+    public void DestroyHead()
+    {
+
+        if (head==null) return;
+        Instantiate(headExplosion,head.transform.position,head.transform.rotation,head.GetComponent<SkinnedMeshRenderer>().rootBone);
+        Destroy(head);
     }
     public void Stunned()
     {

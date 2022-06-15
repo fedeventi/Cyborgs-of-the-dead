@@ -56,6 +56,21 @@ public class ExplosiveZombie : BaseEnemy
 
       
     }
+    public override IEnumerator Death()
+    {
+
+        speed = 0;
+
+        meleeAttack.gameObject.SetActive(false);
+        isDead = true;
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        myCollider.enabled = false;
+        enemyView.DeathAnimation();
+
+        yield break;
+    }
     IEnumerator Shoot()
     {
         canShoot=false;

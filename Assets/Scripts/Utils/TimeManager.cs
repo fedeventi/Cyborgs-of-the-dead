@@ -6,6 +6,7 @@ public class TimeManager : MonoBehaviour
 {
     public float slowdownFactor=0.05f;
     public float slowdownLenght=2;
+    public GameObject shockWave;
     float fixedDeltaTime;
     // Start is called before the first frame update
     void Start()
@@ -36,5 +37,11 @@ public class TimeManager : MonoBehaviour
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
     }
-    
+    public void CreateShockwave(Vector3 position,Quaternion rotation)
+    {
+        
+        Instantiate(shockWave, position, rotation);
+        SlowMo();
+    }
+
 }

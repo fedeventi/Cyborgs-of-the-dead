@@ -3642,6 +3642,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3000049628362465733}
+  head: {fileID: 9051173013538543583}
+  headExplosion: {fileID: 7104768906479164596, guid: 9a8b7a039a4341a4b8a052e0a1a650ae,
+    type: 3}
   myClips:
   - {fileID: 8300000, guid: a326442829b365a4fb381352725024dd, type: 3}
   - {fileID: 8300000, guid: 8e7371b657d367d4b8d4bce3331b9b09, type: 3}
@@ -3842,14 +3845,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9051173013538543583}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.048422623, y: 3.6215518, z: -0.08891996}
+  m_LocalRotation: {x: 0.017540434, y: 0.0038767317, z: 0.0087767355, w: 0.99980015}
+  m_LocalPosition: {x: -0.092, y: 6.5, z: 0.858}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 958788733833789998}
   m_Father: {fileID: 5127439419539901631}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -15.615473, y: -4.245479, z: 16.80369}
 --- !u!137 &489066411047929154
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
