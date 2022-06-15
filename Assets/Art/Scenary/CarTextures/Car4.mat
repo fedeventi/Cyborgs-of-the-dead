@@ -91,10 +91,10 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RimOffset: 1.2
-    - _RimPower: 0.913
+    - _RimPower: 1
     - _SmoothnessTextureChannel: 0
     - _SpecIntensity: 0.138
-    - _SpecPower: 0.3
+    - _SpecPower: 1.29
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
