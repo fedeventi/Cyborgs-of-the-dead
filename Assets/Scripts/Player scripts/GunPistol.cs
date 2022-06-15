@@ -219,33 +219,26 @@ public class GunPistol : Weapon
         currentAmmo--;
         countBullets++;
 
-        if (Physics.Raycast(myCamera.transform.position, myCamera.transform.forward,out hit,5000,collisionMask))
+        if (Physics.Raycast(myCamera.transform.position, myCamera.transform.forward, out hit, 5000, collisionMask))
         {
             //Si el hit es BaseEnemy, ejecuto el daño de este enemigo.
             var target = hit.transform.GetComponent<BaseEnemy>();
-            if (target != null && !target.isDead)
+            bool headshot = hit.transform.gameObject.tag == "headshot";
+            var _damage = headshot?damage:damage*3;
+            
+            if (headshot)
             {
-                target.hasTouchBullet = true;
-                target.TakeDamage(damage);
+               Debug.Log("headshot");
+                target = hit.transform.GetComponentInParent<BaseEnemy>();
+            }
+            if (target)
+            {
+
+                target.TakeDamage(_damage);
                 var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(bloodEffect, 0.5f);
             }
-            //Si el hit es el headshot, el enemigo muere al instante.
-            var headShot = hit.transform.GetComponent<HeadShot>();
-            if (headShot != null && headShot.myEnemy.tag == "NormalEnemy"&&!headShot.myEnemy.isDead)
-            {
-                headShot.myEnemy.life = 0;
-                headShot.myEnemy.CloseEnemies();
-                var bloodE = Instantiate(headShot.myEnemy.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(bloodE, 0.5f);
-            }
-            if (headShot != null && headShot.myEnemy.tag == "ZFEnemy" && !headShot.myEnemy.isDead)
-            {
-                headShot.myEnemy.life -= damage*2;
-                headShot.myEnemy.CloseEnemies();
-                var bloodE = Instantiate(headShot.myEnemy.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
-                Destroy(bloodE, 0.5f);
-            }
+            
             //Layer del escanario. Si colisiona con algun objeto, genera el bullet hole
             if (hit.transform.gameObject.layer == 8)
             {
@@ -264,15 +257,14 @@ public class GunPistol : Weapon
             {
                 if(hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.life>0)
                 {
-                    explosionForce = true;
-                    hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.life = 0;
-                    hit.transform.GetComponent<ExplosionZoneZE>().hasCollision = true;
-                    var p = Instantiate(hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.particleSystemExplosion, hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.psPosition);
-                    Destroy(p, 1f);
+                    //explosionForce = true;
+                    //hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.life = 0;
+                    //hit.transform.GetComponent<ExplosionZoneZE>().hasCollision = true;
+                    //var p = Instantiate(hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.particleSystemExplosion, hit.transform.GetComponent<ExplosionZoneZE>().myEnemy.psPosition);
+                    //Destroy(p, 1f);
                 }
 
-                //StartCoroutine(StopExplosion());
-                //trabajar en esto
+                
                 myCamera.GetComponent<ShakeCamera>().ActivateShake(2f);
             }
 
