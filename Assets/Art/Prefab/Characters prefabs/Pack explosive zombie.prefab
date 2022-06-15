@@ -1050,83 +1050,6 @@ Transform:
   m_Father: {fileID: 7899495339060413239}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 1.311106, y: -80.872894, z: -17.41501}
---- !u!1 &4437393699973325949
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4011116875015441009}
-  - component: {fileID: 6629760683277903686}
-  - component: {fileID: 5558011319637955407}
-  - component: {fileID: 3274100398018214219}
-  m_Layer: 0
-  m_Name: DamageZone-Explosion
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4011116875015441009
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4437393699973325949}
-  m_LocalRotation: {x: 0.50000006, y: -0.4999999, z: -0.49999994, w: 0.5000001}
-  m_LocalPosition: {x: -0.06, y: -0.125, z: 1.12}
-  m_LocalScale: {x: 50, y: 50, z: 50}
-  m_Children: []
-  m_Father: {fileID: 4903883374846823500}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6629760683277903686
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4437393699973325949}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.13
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &5558011319637955407
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4437393699973325949}
-  serializedVersion: 2
-  m_Mass: 0.5
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!114 &3274100398018214219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4437393699973325949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e9b5f1200b929849b6ba9d7b6086f43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformZone: {fileID: 4903883374881481852}
-  myEnemy: {fileID: 4620488465811519170}
-  explosionZone: {fileID: 4903883376026593722}
 --- !u!1 &4474649337802645172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1122,7 @@ Transform:
   - {fileID: 7741021653024401621}
   - {fileID: 4120078241287678562}
   m_Father: {fileID: 4903883374846823500}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &4620488465811519172
 CapsuleCollider:
@@ -1336,7 +1259,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4620488465811519229}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 1763a9b476c9fe54bb84c12b3eaffd98, type: 3}
   m_Controller: {fileID: 9100000, guid: 2abc0e696886c9841891091294c7738a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -1426,7 +1349,7 @@ MonoBehaviour:
   prefabAttack: {fileID: 3241722944897126280, guid: cd6c4c7313159d149a8c095a55a51de2,
     type: 3}
   posForDAttack: {fileID: 4903883374972081687}
-  particleSystemExplosion: {fileID: 19899100, guid: 2c82b2af38b82f442bd9a24539b8d33c,
+  Explosion: {fileID: 2613448725420738769, guid: 8c6878cdf7524654497635861a2c3024,
     type: 3}
   psPosition: {fileID: 5630527648195344729}
   canShoot: 1
@@ -1540,10 +1463,8 @@ Transform:
   m_LocalPosition: {x: 7.016476, y: 12.423033, z: -71.38536}
   m_LocalScale: {x: 28.100025, y: 28.100025, z: 28.100025}
   m_Children:
-  - {fileID: 4903883376026593716}
   - {fileID: 8521967316826244334}
   - {fileID: 4903883376481764855}
-  - {fileID: 4011116875015441009}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1697,83 +1618,6 @@ Transform:
   m_Father: {fileID: 4903883376481764855}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4903883376026593719
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4903883376026593716}
-  - component: {fileID: 4903883376026593717}
-  - component: {fileID: 4903883376026593722}
-  - component: {fileID: 4903883376026593723}
-  m_Layer: 0
-  m_Name: ExplosionZone
-  m_TagString: ExplosionZoneZE
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4903883376026593716
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4903883376026593719}
-  m_LocalRotation: {x: 0.50000006, y: -0.4999999, z: -0.49999994, w: 0.5000001}
-  m_LocalPosition: {x: -0.16, y: -0.125, z: 1.44}
-  m_LocalScale: {x: 4.4042463, y: 4.4042463, z: 4.4042463}
-  m_Children: []
-  m_Father: {fileID: 4903883374846823500}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &4903883376026593717
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4903883376026593719}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4903883376026593722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4903883376026593719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbbb08963bbf0c54f95eacffe5916935, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformZone: {fileID: 4903883374881481852}
-  myEnemy: {fileID: 4620488465811519170}
-  hasCollision: 0
---- !u!54 &4903883376026593723
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4903883376026593719}
-  serializedVersion: 2
-  m_Mass: 0.5
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
 --- !u!1 &4903883376481764854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,7 +1650,7 @@ Transform:
   - {fileID: 4903883375225454606}
   - {fileID: 4903883375377073334}
   m_Father: {fileID: 4903883374846823500}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4903883376691333701
 GameObject:

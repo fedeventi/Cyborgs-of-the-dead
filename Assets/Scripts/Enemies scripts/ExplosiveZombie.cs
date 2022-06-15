@@ -9,11 +9,12 @@ public class ExplosiveZombie : BaseEnemy
     public Transform posForDAttack;
     
     [Header("Particle system")]
-    public ParticleSystem particleSystemExplosion;
+    public GameObject Explosion;
     public Transform psPosition;
     public bool canShoot=true;
     public bool hasSeenPlayer;
     public GameObject vomit;
+
     public override void Start()
     {
         base.Start();
@@ -59,8 +60,12 @@ public class ExplosiveZombie : BaseEnemy
     public override IEnumerator Death()
     {
 
+        
         speed = 0;
-
+        
+        
+        var particle = Instantiate(Explosion, transform.position+transform.up*(headHight/2), transform.rotation);
+        
         meleeAttack.gameObject.SetActive(false);
         isDead = true;
         rb.isKinematic = true;
