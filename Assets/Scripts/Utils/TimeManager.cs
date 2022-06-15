@@ -34,7 +34,7 @@ public class TimeManager : MonoBehaviour
     {
         fixedDeltaTime = Time.fixedDeltaTime;
         Time.timeScale = slowdownFactor;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        Time.fixedDeltaTime = Time.timeScale *slowdownFactor;
 
     }
     public void CreateShockwave(Vector3 position,Quaternion rotation)

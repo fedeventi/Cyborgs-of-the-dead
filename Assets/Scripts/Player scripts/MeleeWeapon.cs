@@ -73,12 +73,12 @@ public class MeleeWeapon : Weapon
             {
                 target = other.transform.GetComponentInParent<BaseEnemy>();
             }
-            if (target != null && !target.isDead)
+            if (target != null )
             {
-              if(headshot)
+                if(!target.isDead)
                     target.TakeDamage(_damage,headshot);
                 var bloodEffect = Instantiate(target.bloodSpray, myCamera.transform.position+myCamera.transform.forward*50,Quaternion.LookRotation(transform.forward*-1));
-                Destroy(bloodEffect, 0.5f);
+                //Destroy(bloodEffect, 0.5f);
             }
         }
         if (other.gameObject.layer == 8)
