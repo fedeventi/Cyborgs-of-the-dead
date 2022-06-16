@@ -29,12 +29,12 @@ public class PlayerController : MonoBehaviour
         {
             model.isRunning = true;
             model.Run(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            view.RunningAnimation(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             model.isRunning = false;
         }
+        view.RunningAnimation(model.isRunning);
 
     }
     private void Update()

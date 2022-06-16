@@ -151,6 +151,7 @@ public class GunPistol : Weapon
     //Recargar.
     IEnumerator Reload()
     {
+        Debug.Log("reload");
         if(!model.isShooting)
         {
             model.isReloading = true;
@@ -160,7 +161,7 @@ public class GunPistol : Weapon
                 audioSource.PlayOneShot(myClips[1], 0.2f);
                 nextReloadSound += delayReloadSound;
             }
-            animator.SetBool("reloading", true);
+            animator.SetTrigger("reloading");
             animator.SetBool("idle", false);
             animator.SetBool("walking", false);
             animator.SetBool("running", false);
@@ -198,7 +199,7 @@ public class GunPistol : Weapon
             
             ShootSound();
 
-            animator.SetTrigger("shoot");
+            animator.SetTrigger("attack");
             animator.SetBool("idle", false);
             animator.SetBool("walking", false);
             animator.SetBool("running", false);

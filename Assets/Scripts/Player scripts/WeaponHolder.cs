@@ -6,10 +6,13 @@ using System;
 
 public class WeaponHolder : MonoBehaviour
 {
+    public Animator animator;
     public List<Weapon> weaponsCollected= new List<Weapon>();
     public Weapon[] allWeapons;
     public WeaponType actualWeapon = 0;
     public Image weaponImg;
+    public AnimatorOverrideController[] myClips=new AnimatorOverrideController[3];
+    
     // 
     public Sprite[] weaponsImagesUI;
 
@@ -24,6 +27,7 @@ public class WeaponHolder : MonoBehaviour
    
     private void Start()
     {
+        myClips[0] = new AnimatorOverrideController(animator.runtimeAnimatorController);
         gameManager = FindObjectOfType<GameManager>();
         view = FindObjectOfType<PlayerView>();
         model = FindObjectOfType<PlayerModel>();
@@ -45,12 +49,14 @@ public class WeaponHolder : MonoBehaviour
 
        ChangeAnimator();
     }
-    
+
     //función para activar o desactivar el gameobject de las armas
     void ActivateOrDeactivateGameObject()
     {
         weaponsCollected[(int)actualWeapon].gameObject.SetActive(true);
         weaponImg.sprite = weaponsImagesUI[(int)actualWeapon];
+        animator.runtimeAnimatorController = myClips[(int)actualWeapon];
+
         for (int i = 0; i < weaponsCollected.Count; i++)
         {
             if (i != (int)actualWeapon)

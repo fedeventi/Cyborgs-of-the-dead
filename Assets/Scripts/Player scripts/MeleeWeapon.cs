@@ -19,6 +19,7 @@ public class MeleeWeapon : Weapon
     [Header("PARTICULA ")]
     public GameObject particle;
     public TimeManager timeManager;
+    string shootString;
     private void Update()
     {
         //Actualiza el texto de la munición.
@@ -45,8 +46,9 @@ public class MeleeWeapon : Weapon
     public override void Shoot()
     {
         
-        base.Shoot();
-        var shootString = combo?"shoot":"secondShoot";
+        
+        isAttacking = true;
+        shootString = combo?"attack":"secondAttack";
         animator.SetTrigger(shootString);
         animator.SetBool("idle", false);
         animator.SetBool("walking", false);

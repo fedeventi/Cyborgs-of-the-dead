@@ -71,21 +71,11 @@ public class PlayerView : MonoBehaviour
         }
     }
 
-    public void RunningAnimation(float auxAxisV, float auxAxisH)
+    public void RunningAnimation(bool running)
     {
         if (!model.isReloading && !model.animationShooting)
         {
-            if (auxAxisV != 0 || auxAxisH != 0)
-            {
-                animator.SetBool("running", true);
-                animator.SetBool("idle", false);
-                animator.SetBool("walking", false);
-            }
-            else if (auxAxisH == 0 || auxAxisV == 0)
-            {
-                animator.SetBool("running", false);
-                animator.SetBool("idle", true);
-            }
+            animator.SetBool("running", running);
         }
     }
     //Daño 
@@ -174,7 +164,7 @@ public class PlayerView : MonoBehaviour
         if(!audioSource.isPlaying)
             audioSource.PlayOneShot(audioClips[3], 0.2f);
         hitValue = 0;
-        Debug.Log("muerto");
+        animator.SetBool("Death", true);
         casco.material.SetFloat("_hitValue", hitValue);
     }
     public void Toxic(bool bValue)

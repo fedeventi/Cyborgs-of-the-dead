@@ -235,6 +235,7 @@ public class PlayerModel : MonoBehaviour
     public void Run(float axisHorizontal, float axisVertical)
     {
         Vector3 movement = (transform.right * axisHorizontal + transform.forward * axisVertical).normalized;
+        if(movement.magnitude<=0) isRunning = false;
         _directionDebug = movement;
         var _speed = runSpeed;
         if (Physics.Raycast(transform.position, movement, 40, (int)Mathf.Pow(8 * 2, 2)))
@@ -339,8 +340,10 @@ public class PlayerModel : MonoBehaviour
     //llamo a la funcion de disparo, para llamarla en la animacion 
     public void ShootFromGun()
     {
+        Debug.Log("disparo");
         weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<Weapon>().Shoot();
     }
+    
 
     private void OnCollisionEnter(Collision collision)
     {

@@ -26,7 +26,7 @@ public class Shotgun : Weapon
     //
     int countBullets = 0;
     //flotante dependiendo del arma, para terminar la animacion de recarga
-    public float stopReloadAnimation;
+    public float ReloadTime=1;
 
     //Shoot
     [Header("Shoot Shake")]
@@ -114,6 +114,7 @@ public class Shotgun : Weapon
         {
             if(currentMaxAmmo>0)
             {
+                if(!model.isReloading)
                 StartCoroutine(Reload());
             }
         }
@@ -151,7 +152,7 @@ public class Shotgun : Weapon
     //Recargar.
     IEnumerator Reload()
     {
-        if(!model.isShooting)
+        if(!model.isShooting && !model.isReloading)
         {
             model.isReloading = true;
 
@@ -160,13 +161,13 @@ public class Shotgun : Weapon
                 audioSource.PlayOneShot(myClips[1], 0.2f);
                 nextReloadSound += delayReloadSound;
             }
-            animator.SetBool("reloading", true);
+            animator.SetTrigger("reloading");
             animator.SetBool("idle", false);
             animator.SetBool("walking", false);
             animator.SetBool("running", false);
-            yield return new WaitForSeconds(stopReloadAnimation);
-            animator.SetBool("reloading", false);
-            yield return new WaitForSeconds(stopReloadAnimation + 0.1f);
+            yield return new WaitForSeconds(ReloadTime);
+           
+            
 
             nextReloadSound = 0;
 
@@ -198,7 +199,7 @@ public class Shotgun : Weapon
             
             ShootSound();
 
-            animator.SetTrigger("shoot");
+            animator.SetTrigger("attack");
             animator.SetBool("idle", false);
             animator.SetBool("walking", false);
             animator.SetBool("running", false);
@@ -213,6 +214,7 @@ public class Shotgun : Weapon
     //funcion disparo con raycast + efectos. //se llama en el playerModel, en cierto momento de la animacion
     public override void Shoot()
     {
+
         muzzleFlashObject.SetActive(true);
         StartCoroutine(MuzzleFlash());
 
@@ -233,7 +235,7 @@ public class Shotgun : Weapon
                 bool headshot = hit.transform.gameObject.tag == "headshot";
                 var _damage = headshot ? damage*3 : damage ;
 
-                Debug.Log(_damage);
+
                 if (headshot)
                 {
                     target = hit.transform.GetComponentInParent<BaseEnemy>();
