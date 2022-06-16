@@ -123,7 +123,6 @@ public class PlayerModel : MonoBehaviour
 
         if (toxicity > 50 && toxicity < 80)
         {
-            toxicityText.text = increaseDamage ? "More damage" : "More speed";
             //mejoras, como mas daño, velocidad, lo que sea y estas se activan al azar
             //que sea por tiempo 
             toxicityText.enabled = true;
@@ -155,6 +154,7 @@ public class PlayerModel : MonoBehaviour
                     speed = normalSpeed * 2f;
                     runSpeed = speed * 2f;
                 }
+                view.ChangeSprite(increaseDamage ? 1 : 2);
             }
 
 
@@ -163,7 +163,8 @@ public class PlayerModel : MonoBehaviour
         if (toxicity > 80 )
         {
             //se tiene que curar el jugador por que esta al borde de empezar a perder vida
-            toxicityText.text = $" Toxicity bar has reach max level \n{(increaseDamage ? "More damage" : "More speed")}";
+            toxicityText.text = $" Toxicity bar has reach max level ";
+            
 
         }
         //resta vida mientras tiene toxinas en el cuerpo
@@ -202,6 +203,7 @@ public class PlayerModel : MonoBehaviour
             runSpeed = normalSpeed * 2;
             increaseDamage = false;
             toxicityText.enabled = false;
+            view.ChangeSprite( 0);
         }
 
         //sacar la screen toxicity

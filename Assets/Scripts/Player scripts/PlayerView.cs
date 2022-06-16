@@ -34,7 +34,8 @@ public class PlayerView : MonoBehaviour
     public Image stunnedScreen;
     [Header("Toxicity screen")]
     public Image toxicityScreen;
-
+    public Sprite[] toxicityEffects=new Sprite[2];
+    public Image mytoxicityEffect ;
     //
     bool changeHitSound = false;
 
@@ -70,7 +71,12 @@ public class PlayerView : MonoBehaviour
             }
         }
     }
-
+    public void ChangeSprite(int effect)
+    {
+        if (effect == 0) mytoxicityEffect.gameObject.SetActive(false);
+        else mytoxicityEffect.gameObject.SetActive(true);
+        mytoxicityEffect.sprite=toxicityEffects[effect];
+    }
     public void RunningAnimation(bool running)
     {
         if (!model.isReloading && !model.animationShooting)

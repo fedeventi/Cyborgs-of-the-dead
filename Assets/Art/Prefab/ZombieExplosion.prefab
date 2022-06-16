@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8484459029393260071}
-  - component: {fileID: 6683125088831537562}
-  - component: {fileID: 1056076666082050516}
   - component: {fileID: 7351943200425383936}
   - component: {fileID: 1058887368665497437}
   m_Layer: 0
@@ -35,32 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6683125088831537562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2613448725420738769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e9b5f1200b929849b6ba9d7b6086f43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 35
---- !u!135 &1056076666082050516
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2613448725420738769}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 50.63
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!199 &7351943200425383936
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4715,6 +4687,32 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!135 &1408677930947204200
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7836156645612020976}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.48
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5093262575137736598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7836156645612020976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9b5f1200b929849b6ba9d7b6086f43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 35
 --- !u!1001 &7836156645612136624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4788,6 +4786,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c82b2af38b82f442bd9a24539b8d33c, type: 3}
+--- !u!1 &7836156645612020976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 150592, guid: 2c82b2af38b82f442bd9a24539b8d33c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7836156645612136624}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7836156645611754686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 424974, guid: 2c82b2af38b82f442bd9a24539b8d33c,
