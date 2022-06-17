@@ -73,6 +73,7 @@ public class PlayerView : MonoBehaviour
     }
     public void ChangeSprite(int effect)
     {
+        if (mytoxicityEffect == null) return; 
         if (effect == 0) mytoxicityEffect.gameObject.SetActive(false);
         else mytoxicityEffect.gameObject.SetActive(true);
         mytoxicityEffect.sprite=toxicityEffects[effect];

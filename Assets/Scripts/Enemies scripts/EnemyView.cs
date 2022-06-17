@@ -82,7 +82,7 @@ public class EnemyView : MonoBehaviour
     public void WaitForCharge()
     {
         animator.SetBool("walking", false);
-        animator.SetBool("idle", true);
+        animator.SetBool("Preparation", true);
        
         animator.SetBool("chasing", false);
         animator.SetBool("charging", false);
@@ -91,8 +91,8 @@ public class EnemyView : MonoBehaviour
     public void Charge()
     {
         animator.SetBool("walking", false);
-        animator.SetBool("idle", false);
-        
+        animator.SetBool("Preparation", false);
+
         animator.SetBool("chasing", false);
         animator.SetBool("charging", true);
         animator.SetBool("death", false);

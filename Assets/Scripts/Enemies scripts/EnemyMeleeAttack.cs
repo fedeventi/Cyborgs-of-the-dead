@@ -16,6 +16,7 @@ public class EnemyMeleeAttack : MonoBehaviour
     {
         if(other.gameObject.tag=="Player")
         {
+            Debug.Log("golpe");
             other.gameObject.GetComponent<PlayerModel>().TakeDamage(damage);
             hasHit = true;
             StartCoroutine(BoolHit());

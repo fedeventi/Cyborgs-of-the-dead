@@ -65,7 +65,7 @@ public class ChargeState<T> : State<T>
     IEnumerator StartCharge()
     {
         _source.enemyView.WaitForCharge();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         _source.enemyView.Charge();
         _StartCharge = true;
     }
