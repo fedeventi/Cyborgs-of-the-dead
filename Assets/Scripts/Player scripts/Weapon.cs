@@ -9,6 +9,11 @@ public class Weapon : MonoBehaviour
     public RaycastHit hit;
     [Header("Collision Mask")]
     public LayerMask collisionMask;
+    [Header("Ammo")]
+    public int maxClip;
+    public int maxAmmo;
+    public int currentAmmo;
+    public int currentMaxAmmo;
     void Start()
     {
         

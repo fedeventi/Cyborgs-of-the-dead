@@ -23,9 +23,9 @@ public class LifeKit : MonoBehaviour
                 ps.Play();
 
                 other.gameObject.GetComponent<PlayerModel>().life = 100;
+                Destroy(ps, 2);
                 Destroy(gameObject, 0.5f);
 
-                Destroy(ps, 2);
             }
         }
     }

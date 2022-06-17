@@ -18,11 +18,7 @@ public class Shotgun : Weapon
     
 
     //Ammo
-    [Header("Ammo")]
-    public int maxClip;
-    public int maxAmmo;
-    int currentAmmo;
-    public int currentMaxAmmo;
+    
     //
     int countBullets = 0;
     //flotante dependiendo del arma, para terminar la animacion de recarga
