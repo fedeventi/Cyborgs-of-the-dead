@@ -15641,6 +15641,7 @@ MonoBehaviour:
   walls:
     serializedVersion: 2
     m_Bits: 256
+  amount: 9
   debugBool: 1
   verticalOffset: 18.2
   _obstacleAvoidance: 109
