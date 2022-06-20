@@ -8,6 +8,7 @@ public class TimeManager : MonoBehaviour
     public float slowdownLenght=2;
     public GameObject shockWave;
     float fixedDeltaTime;
+    bool _isSlowmo;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +23,13 @@ public class TimeManager : MonoBehaviour
         }
         else if(Time.timeScale > 1)
         {
-            Time.timeScale= 1;
-            Time.fixedDeltaTime = fixedDeltaTime;
+            if (_isSlowmo)
+            {
+                Time.timeScale= 1;
+                Time.fixedDeltaTime = fixedDeltaTime;
+                _isSlowmo = false;
+            }
+            
         }
         
         
@@ -32,6 +38,8 @@ public class TimeManager : MonoBehaviour
 
     public void SlowMo()
     {
+        
+        _isSlowmo = true;
         fixedDeltaTime = Time.fixedDeltaTime;
         Time.timeScale = slowdownFactor;
         Time.fixedDeltaTime = Time.timeScale *slowdownFactor;
@@ -39,7 +47,7 @@ public class TimeManager : MonoBehaviour
     }
     public void CreateShockwave(Vector3 position,Quaternion rotation)
     {
-        
+        if (_isSlowmo) return;
         Instantiate(shockWave, position, rotation);
         SlowMo();
     }
