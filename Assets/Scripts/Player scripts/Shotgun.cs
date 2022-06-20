@@ -106,18 +106,15 @@ public class Shotgun : Weapon
 
 
         //Recargar
-        if (currentAmmo == 0 || Input.GetKey(KeyCode.R) && currentAmmo<maxClip)
+        if (currentAmmo == 0 || Input.GetKeyDown(KeyCode.R) && currentAmmo<maxClip)
         {
             if(currentMaxAmmo>0)
             {
-                if(!model.isReloading)
-                StartCoroutine(Reload());
+                
+                    StartCoroutine(Reload());
             }
         }
-        if (model.isReloading)
-        {
-            return;
-        }
+       
 
         //AIM
         //Aim();
@@ -172,6 +169,7 @@ public class Shotgun : Weapon
                 model.isReloading = false;
                 currentMaxAmmo -= countBullets;
                 currentAmmo = maxClip;
+
             }
             else if (currentAmmo < maxClip && model.isReloading)
             {
@@ -180,7 +178,7 @@ public class Shotgun : Weapon
                 currentMaxAmmo = 0;
             }
 
-            yield break;
+
         }
     }
 
