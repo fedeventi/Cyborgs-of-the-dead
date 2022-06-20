@@ -8,7 +8,9 @@ public class TargetDetection: MonoBehaviour
     int debugIndex;
     [SerializeField]
     LayerMask walls;
-    bool[] debugIndexBoolColliding = new bool[8];
+    [Range(5, 25)]
+    public int amount=9;
+    bool[] debugIndexBoolColliding = new bool[25];
     public bool[] DebugIndexBoolColliding { get => debugIndexBoolColliding; set => debugIndexBoolColliding = value; }
     public bool debugBool;
     [Range(-1, 100)]
@@ -39,36 +41,31 @@ public class TargetDetection: MonoBehaviour
 
         return _closest;
     }
-    
+
     public Vector3 MyClosestPointToTarget(Vector3 myTarget)
     {
-        Vector3[] possiblePoints = new Vector3[5];
-        Vector3[] directions = new Vector3[5]
-        {
-            (transform.forward),
-            (transform.forward+transform.right),
-            (transform.right),
-            (transform.right*-1),
-            (transform.forward+(transform.right*-1))
-        };
+        Vector3[] possiblePoints = new Vector3[25];
+
         int positionIndex = 0;
         int targetIndex = 0;
         float distance = new float();
         float distanceAux = new float();
 
 
-        for (int i = 0; i < directions.Length; i++)
+        for (int i = 0; i < amount; i++)
         {
 
-            Vector3 targetDir = directions[i].normalized;
+            Vector3 targetDir = ((Quaternion.AngleAxis((180f / (amount - 1)) * i, transform.up) * transform.right * -1)).normalized;
 
 
             if (!Physics.Raycast(transform.position + new Vector3(0, verticalOffset, 0), (targetDir + transform.position) - transform.position, _obstacleAvoidance, walls))
             {
 
-                possiblePoints[positionIndex] = transform.position + directions[i].normalized * _obstacleAvoidance;
+                
+                    
 
-                distanceAux = Vector3.Distance(transform.position + directions[i].normalized * _obstacleAvoidance,
+                possiblePoints[positionIndex] = transform.position + targetDir.normalized * _obstacleAvoidance;
+                distanceAux = Vector3.Distance(transform.position + targetDir.normalized * _obstacleAvoidance,
                                                                      new Vector3(myTarget.x,
                                                                                         transform.position.y,
                                                                                myTarget.z));
@@ -97,6 +94,7 @@ public class TargetDetection: MonoBehaviour
             else
             {
                 debugIndexBoolColliding[i] = true;
+                
             }
             positionIndex++;
         }
@@ -105,41 +103,43 @@ public class TargetDetection: MonoBehaviour
 
         return possiblePoints[targetIndex];
     }
+   
     private void OnDrawGizmos()
     {
 
 
 
         Gizmos.DrawWireSphere(transform.position, obstacleDetection);
-        Vector3[] directions = new Vector3[5]
-        {
-            (transform.forward),
-            (transform.forward+transform.right),
-            (transform.right),
-            (transform.right*-1),
-            (transform.forward+(transform.right*-1))
-
-        };
-
-        for (int i = 0; i < directions.Length; i++)
+       
+        for (int i = 0; i < amount; i++)
         {
             Gizmos.color = Color.yellow;
             if (debugBool)
             {
                 if (debugIndexBoolColliding[i]) Gizmos.color = Color.magenta;
-                else Gizmos.color = Color.yellow;
+                else
+                    Gizmos.color = Color.yellow;
 
 
                 Gizmos.DrawRay(transform.position + new Vector3(0, verticalOffset, 0),
-                    ((directions[i].normalized + transform.position) - transform.position) * obstacleDetection);
+                    ((Quaternion.AngleAxis((180f/(amount-1))*i,transform.up)*transform.right*-1+ transform.position) - transform.position) * obstacleDetection);
+
+
+                if (debugIndex == i)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawWireSphere((transform.position + new Vector3(0, verticalOffset, 0) +
+                                  ((Quaternion.AngleAxis((180f / (amount - 1)) * i, transform.up) * 
+                                  transform.right * -1 + transform.position) - transform.position)* 
+                                  obstacleDetection), 5f);
+                }
+
             }
         }
+        
         if (debugBool)
         {
-            Gizmos.color = Color.blue;
-            
-            Gizmos.DrawWireSphere((transform.position + new Vector3(0, verticalOffset, 0) +
-                         directions[debugIndex].normalized * obstacleDetection), .5f);
+           
 
         }
 
