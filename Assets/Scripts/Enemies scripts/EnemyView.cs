@@ -14,7 +14,7 @@ public class EnemyView : MonoBehaviour
     [Header("Sonidos")]
     public List<AudioClip> myClips = new List<AudioClip>();
 
-    
+    public Grid grid;
 
     private void Start()
     {
@@ -125,5 +125,9 @@ public class EnemyView : MonoBehaviour
     public void AttackSound()
     {
         audioSource.PlayOneShot(myClips[3]);
+    }
+    public void OnDrawGizmos()
+    {
+        
     }
 }
