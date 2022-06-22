@@ -16,6 +16,7 @@ public class IdleState<T> : State<T>
     {
         baseEnemy.isInIdle = true;
         baseEnemy.StartCoroutine(Wait(2.5f));
+        
     }
     public override void Execute()
     {

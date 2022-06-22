@@ -21,9 +21,9 @@ public class HeavyEnemy : BaseEnemy
     bool _hasChargedPlayer;
     public void ChargedPlayer()=>_hasChargedPlayer=false; 
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
     }
     public override void Update()
     {

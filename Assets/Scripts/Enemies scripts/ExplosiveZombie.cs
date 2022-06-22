@@ -15,9 +15,9 @@ public class ExplosiveZombie : BaseEnemy
     public bool hasSeenPlayer;
     public GameObject vomit;
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
     }
 
     public override void Update()
