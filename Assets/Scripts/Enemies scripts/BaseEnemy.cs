@@ -5,13 +5,12 @@ using UnityEngine.AI;
 using System;
 using System.Linq;
 
-public class BaseEnemy : MonoBehaviour
+public class BaseEnemy : MonoBehaviour , IPooleable<BaseEnemy>
 {
     //Variables
     public float life;
     public float dist;
     public float speed=1;
-    public float deathTimer;
     public float stoppingDistanceChase;
     public float viewDistance=200;
     [Range(0,360)]
@@ -41,8 +40,11 @@ public class BaseEnemy : MonoBehaviour
     [Header("Blood spray")]
     public GameObject bloodSpray;
     public event Action deathAction;
-    
-
+    public event Action<BaseEnemy> Recycle;
+    //Recycle Variables
+    Vector3 _initialPosition;
+    float _initialSpeed;
+    float _initialLife;
     //bool 
     [Header("BOOLS")]
     public bool hasTouchBullet=false;
@@ -64,7 +66,7 @@ public class BaseEnemy : MonoBehaviour
     public LayerMask enemiesMask;
 
     [Header("Patrol waypoints")]
-    public Transform[] waypointsEnemy;
+    public Vector3[] waypointsEnemy;
     public int currentWaypoint = 0;
 
     //Roulette
@@ -76,12 +78,20 @@ public class BaseEnemy : MonoBehaviour
     [Header("RAGDOLL")]
     public List<Collider> ragdollColliders = new List<Collider>();
     
-
-    public virtual void Start()
+    public BaseEnemy SetRecycleAction(Action<BaseEnemy> action)
+    {
+        Recycle += action;
+        
+        return this;
+    }
+    public virtual void Awake()
     {
         //Componentes
         player = FindObjectOfType<PlayerModel>();
         deathAction += player.CriticalKill;
+        _initialPosition = transform.position;
+        _initialSpeed = speed;
+        _initialLife = life;
         enemyView = GetComponent<EnemyView>();
         rb = GetComponent<Rigidbody>();
         myCollider = GetComponent<CapsuleCollider>();
@@ -99,7 +109,7 @@ public class BaseEnemy : MonoBehaviour
         //roulette
         roulette = new Roulette();
     }
-    
+   
     public virtual void Update()
     {
        
@@ -215,7 +225,11 @@ public class BaseEnemy : MonoBehaviour
         {
             Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(i, transform.up) * transform.forward * viewDistance);
         }
-        
+        foreach (Vector3 pos in waypointsEnemy)
+        {
+            Gizmos.DrawSphere(pos, 10);
+
+        }
         Gizmos.color = Color.red;
         for (int i = -angleVision/2; i < angleVision/2; i += 5)
         {
@@ -234,7 +248,7 @@ public class BaseEnemy : MonoBehaviour
     {
         fsm.Transition(actionName);
     }
-    
+   
 
     //Daño que recibe
     //Funcion que llama el script de GunPistol
@@ -268,7 +282,7 @@ public class BaseEnemy : MonoBehaviour
         patrol.AddTransition("Chase", chase); //Va de patrol a chase
 
         attack.AddTransition("Chase", chase); //Va de attack a chase
-
+        attack.AddTransition("Patrol", patrol);
         chase.AddTransition("Attack", attack); //Va de chase a attack
         chase.AddTransition("Idle", idle); //Va de chase a idle
         chase.AddTransition("Patrol", patrol);
@@ -292,15 +306,16 @@ public class BaseEnemy : MonoBehaviour
     //corrutina de la muerte
     public virtual IEnumerator Death()
     {
+
         
-        speed = 0;
         meleeAttack.gameObject.SetActive(false);
-        enemyView.DisableAnimator();
+        enemyView.SetAnimator(false);
         RoulleteWheel<bool> rw = new RoulleteWheel<bool>();
+        bool lostHead = enemyView.head && !enemyView.head.activeSelf;
         Tuple<int, bool>[] probabilities = new Tuple<int, bool>[2]
         {
             new Tuple<int,bool>(100, false),
-            new Tuple<int,bool>(enemyView.head?10:200, true),
+            new Tuple<int,bool>(lostHead?200:10, true),
         };
         if (rw.ProbabilityCalculator(probabilities))
                 deathAction();
@@ -313,13 +328,38 @@ public class BaseEnemy : MonoBehaviour
         }
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
-        rb.constraints = RigidbodyConstraints.FreezeAll;
         myCollider.enabled = false;
-        
+        StartCoroutine(RecycleCR());
         yield break;
     }
 
-    
+    IEnumerator RecycleCR()
+    {
+        yield return new WaitForSeconds(3);
+        if (Recycle != null)
+        {
+            transform.position = _initialPosition;
+            fsm.GetState();
+            life = _initialLife;
+            speed = _initialSpeed;
+            
+            enemyView.SetAnimator(true);
+            Destroy(enemyView.lastHeadExplosion);
+            enemyView.head.SetActive(true);
+            meleeAttack.gameObject.SetActive(true);
+            isDead = false;
+            foreach (var item in ragdollColliders)
+            {
+                if (item.tag == "headshot") continue;
+                item.enabled = false;
+                item.GetComponent<Rigidbody>().isKinematic = true;
+            }
+            rb.isKinematic = false;
+            myCollider.enabled = true;
+            Recycle(this);
+            
+        }
+    }
 
 
     //Colisiones 
@@ -365,4 +405,24 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
+    public void TurnOn()
+    {
+        gameObject.SetActive(true);
+        Transition("Idle");
+    }
+
+    public void TurnOff()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public static void TurnOn(BaseEnemy obj)
+    {
+        obj.TurnOn();
+    }
+
+    public static void TurnOff(BaseEnemy obj)
+    {
+        obj.TurnOff();
+    }
 }

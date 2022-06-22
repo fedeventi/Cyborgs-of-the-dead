@@ -61,7 +61,7 @@ public class PlayerModel : MonoBehaviour
     {
         //Game Master. Posicion al iniciar el juego.
         gameMaster = FindObjectOfType<GameMaster>();
-        transform.position = gameMaster.lastCPos;
+       
         //Escena actual.
         actualScene = SceneManager.GetActiveScene();
 

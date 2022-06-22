@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyView : MonoBehaviour
 {
     //feedback de los enemigos
@@ -13,7 +14,8 @@ public class EnemyView : MonoBehaviour
     public GameObject headExplosion;
     [Header("Sonidos")]
     public List<AudioClip> myClips = new List<AudioClip>();
-
+    GameObject _lastHeadExplosion;
+    public GameObject lastHeadExplosion { get => _lastHeadExplosion; }
     public Grid grid;
 
     private void Start()
@@ -65,9 +67,9 @@ public class EnemyView : MonoBehaviour
         animator.SetBool("death", true);
         animator.SetBool("distanceAttack", false);
     }
-    public void DisableAnimator()
+    public void SetAnimator(bool value)
     {
-        animator.enabled = false;
+        animator.enabled = value;
 
     }
     public void DistanceAttackAnimation()
@@ -100,9 +102,9 @@ public class EnemyView : MonoBehaviour
     public void DestroyHead()
     {
 
-        if (head==null) return;
-        Instantiate(headExplosion,head.transform.position,head.transform.rotation,head.GetComponent<SkinnedMeshRenderer>().rootBone);
-        Destroy(head);
+        if (!head.activeSelf) return;
+        _lastHeadExplosion= Instantiate(headExplosion,head.transform.position,head.transform.rotation,head.GetComponent<SkinnedMeshRenderer>().rootBone);
+        head.SetActive(false);
     }
     public void Stunned()
     {

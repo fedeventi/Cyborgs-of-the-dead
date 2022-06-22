@@ -21,7 +21,12 @@ public class PathFindingUnit : MonoBehaviour {
 	void Start() 
 	{
 
-		StartCoroutine(UpdatePath());
+		Vector3 pos= transform.position + Random.insideUnitSphere * 800;
+		pos.y = transform.position.y;
+		//if(target != null)
+		//	target = new GameObject().transform;
+		//target.position = pos;
+		StartCoroutine(UpdatePath());	
 	}
 
 	public void OnPathFound(Vector3[] waypoints, bool pathSuccessful) {
@@ -37,8 +42,12 @@ public class PathFindingUnit : MonoBehaviour {
 		
 		return positions;
     }
-	IEnumerator UpdatePath() {
+	public IEnumerator UpdatePath() 
+	{
 
+	
+		if (target == null) yield break;
+		
 		if (Time.timeSinceLevelLoad < .3f) {
 			yield return new WaitForSeconds (.3f);
 		}
@@ -47,14 +56,15 @@ public class PathFindingUnit : MonoBehaviour {
 		float sqrMoveThreshold = pathUpdateMoveThreshold * pathUpdateMoveThreshold;
 		Vector3 targetPosOld = target.position;
 
-		do {
+		while (_updateAlways) 
+		{
 			yield return new WaitForSeconds (minPathUpdateTime);
 			
 			if ((target.position - targetPosOld).sqrMagnitude > sqrMoveThreshold) {
 				PathRequestManager.RequestPath (new PathRequest(transform.position, target.position, OnPathFound));
 				targetPosOld = target.position;
 			}
-		}while (_updateAlways);
+		}
 	}
 
 	IEnumerator FollowPath() {

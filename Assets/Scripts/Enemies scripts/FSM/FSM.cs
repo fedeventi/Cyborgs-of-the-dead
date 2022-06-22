@@ -34,4 +34,8 @@ public class FSM<T>
         //Reproducis el componente de entrada del nuevo estado
         currentState.Awake();
     }
+    public string GetState()
+    {
+        return currentState.ToString();
+    }
 }
