@@ -90,16 +90,8 @@ public class PlayerModel : MonoBehaviour
     {
         
         //Recargar los niveles al morir. Inicia en la ultima posición guardada, en relación a los checkpoints.
-        if(isDead)
-        {
-            
-            if (actualScene.name == "Level")
-            {
-                SceneManager.LoadScene("Level");
-                life = 100;
-            }
-        }
-        else
+      
+        if(!IsDead)
             view.LowLife(life);
         //Muerte 
         if (life <= 0)
@@ -331,13 +323,13 @@ public class PlayerModel : MonoBehaviour
     //Muerte
     IEnumerator Death()
     {
+        isDead = true;
         view.DeathFeedback();
         speed = 0;
         runSpeed = 0;
         //audioSource.PlayOneShot(myClips[0]);
-        yield return new WaitForSeconds(1f);
-        isDead = true;
-        yield break;
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     //llamo a la funcion de disparo, para llamarla en la animacion 
