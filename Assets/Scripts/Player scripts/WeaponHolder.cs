@@ -35,9 +35,16 @@ public class WeaponHolder : MonoBehaviour
 
     private void Update()
     {
-        
 
-        
+
+        if (model.IsDead)
+        {
+            foreach (var item in weaponsCollected)
+            {
+                item.gameObject.SetActive(false);
+            }
+            return;
+        }
         if (!model.isShooting && !model.isReloading)
         {
             ChangingWeapon();
