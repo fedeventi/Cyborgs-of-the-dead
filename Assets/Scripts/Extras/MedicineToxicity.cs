@@ -12,11 +12,13 @@ public class MedicineToxicity : MonoBehaviour
     public Animator animator;
     public ParticleSystem ps;
     AudioSource audioSource;
-
+    public GameObject healingEffect;
     private void Start()
     {
         player = FindObjectOfType<PlayerModel>();
         audioSource = GetComponent<AudioSource>();
+        if(healingEffect!=null)
+            healingEffect.SetActive(false);
     }
 
     private void OnTriggerStay(Collider collision)
@@ -26,7 +28,9 @@ public class MedicineToxicity : MonoBehaviour
             player.isInMedicineBox = true;
             RestToxicity();
             animator.SetBool("activate", true);
-            
+            if(healingEffect != null)
+                healingEffect.SetActive(true);
+
             if (!audioSource.isPlaying)
                 audioSource.PlayOneShot(audioSource.clip);
         }
@@ -47,6 +51,9 @@ public class MedicineToxicity : MonoBehaviour
     {
         if(collision.gameObject.tag =="Player" && this.gameObject.tag == "MedicineBox")
         {
+            if (healingEffect != null)
+                healingEffect.SetActive(false);
+
             player.isInMedicineBox = false;
             animator.SetBool("activate", false);
             if (ps != null)
