@@ -37,6 +37,7 @@ public class PlayerView : MonoBehaviour
     public Sprite[] toxicityEffects=new Sprite[2];
     public Image mytoxicityEffect ;
     //
+    public AnimatorOverrideController deathController;
     bool changeHitSound = false;
 
     private void Start()
@@ -168,6 +169,7 @@ public class PlayerView : MonoBehaviour
     //Muerte 
     public void DeathFeedback()
     {
+        animator.runtimeAnimatorController = deathController;
         if(!audioSource.isPlaying)
             audioSource.PlayOneShot(audioClips[3], 0.2f);
         hitValue = 0;

@@ -35,9 +35,9 @@ public class WeaponHolder : MonoBehaviour
 
     private void Update()
     {
-        
 
-        
+
+        if (model.IsDead) return;
         if (!model.isShooting && !model.isReloading)
         {
             ChangingWeapon();

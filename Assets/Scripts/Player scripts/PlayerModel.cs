@@ -56,7 +56,7 @@ public class PlayerModel : MonoBehaviour
     public bool hasPickUpShotgun = false;
     
     public TimeManager timeManager;
-
+    public bool IsDead => isDead;
     private void Start()
     {
         //Game Master. Posicion al iniciar el juego.
@@ -92,6 +92,7 @@ public class PlayerModel : MonoBehaviour
         //Recargar los niveles al morir. Inicia en la ultima posición guardada, en relación a los checkpoints.
         if(isDead)
         {
+            
             if (actualScene.name == "Level")
             {
                 SceneManager.LoadScene("Level");
