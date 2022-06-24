@@ -20,6 +20,17 @@ public class MeleeWeapon : Weapon
     public GameObject particle;
     public TimeManager timeManager;
     string shootString;
+
+    //
+    [Header("SONIDOS")]
+    public List<AudioClip> clips = new List<AudioClip>();
+    AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         //Actualiza el texto de la munición.
@@ -36,6 +47,7 @@ public class MeleeWeapon : Weapon
             {
                 Shoot();
                 combo=!combo;
+                audioSource.PlayOneShot(clips[0]);
             }
         }
     }
@@ -67,6 +79,8 @@ public class MeleeWeapon : Weapon
     {
         if (other.gameObject.layer == 9)
         {
+            audioSource.PlayOneShot(clips[1]);
+            
             var target = other.transform.GetComponent<BaseEnemy>();
             bool headshot = other.transform.gameObject.tag == "headshot";
             var _damage = headshot ? damage * 3 : damage;
@@ -91,6 +105,8 @@ public class MeleeWeapon : Weapon
             _myParticle.transform.localScale = Vector3.one*10;
             if (obj == null) return;
             obj.ReplaceGlass();
+            //sonido de los vidrios rompiendose 
+            audioSource.PlayOneShot(clips[2]);
             Destroy(obj.gameObject);
         }
     }

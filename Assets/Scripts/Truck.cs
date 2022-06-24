@@ -15,10 +15,13 @@ public class Truck : MonoBehaviour
     Animator _animator;
     Action<float, bool> _view;
     public float movementThreshold=600;
-    
+    AudioSource audioSource;
+    public List<AudioClip> clips = new List<AudioClip>();
+
     void Start()
     {
         _animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         startPosition = transform.position;
     }
     void Interaction(bool pressing)
@@ -27,6 +30,7 @@ public class Truck : MonoBehaviour
         if (pressed)
         {
             Debug.Log("presionado");
+            audioSource.PlayOneShot(clips[0]);
             
         }
             
@@ -93,5 +97,10 @@ public class Truck : MonoBehaviour
             playerModel.interaction -= Interaction;
             _view -= playerModel.GetComponent<PlayerView>().SetInteractionTimer;
         }
+    }
+
+    public void MovingSound()
+    {
+        audioSource.PlayOneShot(clips[1]);
     }
 }

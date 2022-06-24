@@ -223,7 +223,7 @@ public class PlayerView : MonoBehaviour
     //se llama en animaciones de caminata y correr
     public void StepSound()
     {
-        audioSource.PlayOneShot(audioClips[4], 0.02f);
+        audioSource.PlayOneShot(audioClips[4], 0.1f);
     }
 }
 

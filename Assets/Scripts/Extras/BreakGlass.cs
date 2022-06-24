@@ -7,10 +7,6 @@ public class BreakGlass : MonoBehaviour
     // Start is called before the first frame update
     public List<GameObject> glasses = new List<GameObject>();
 
-    void Start()
-    {
-      
-    }
 
     // Update is called once per frame
     void Update()
@@ -19,7 +15,9 @@ public class BreakGlass : MonoBehaviour
     }
     public void ReplaceGlass()
     {
+
         
+
         foreach (var item in glasses)
         {
             item.gameObject.SetActive(true);

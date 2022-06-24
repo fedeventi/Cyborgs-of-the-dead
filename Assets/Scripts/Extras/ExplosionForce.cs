@@ -7,11 +7,15 @@ public class ExplosionForce : MonoBehaviour
     // Start is called before the first frame update
     //public LayerMask layermask;
     string tag= "GlassFragments";
+
+    AudioSource audioSource;
     
     
     void Start()
     {
         //Debug.Log((int)Mathf.Sqrt((int)layermask) / 2);
+
+        audioSource = GetComponent<AudioSource>();
        
     }
 
@@ -27,6 +31,8 @@ public class ExplosionForce : MonoBehaviour
             var obj= other.GetComponent<BreakGlass>();
             if (obj == null) return;
             obj.ReplaceGlass();
+            //sonido de los vidrios rompiendose 
+            audioSource.PlayOneShot(audioSource.clip);
             foreach (var item in obj.glasses)
             {
                 var rb = item.gameObject.GetComponent<Rigidbody>();
