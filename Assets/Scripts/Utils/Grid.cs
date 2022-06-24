@@ -6,13 +6,13 @@ using System.Collections.Generic;
 public class Grid : MonoBehaviour {
 
 	public bool displayGridGizmos;
+	public LayerMask walkableMask;
 	public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
 	public TerrainType[] walkableRegions;
 	public int obstacleProximityPenalty = 10;
 	Dictionary<int,int> walkableRegionsDictionary = new Dictionary<int, int>();
-	LayerMask walkableMask;
 
 	Node[,] grid;
 
@@ -22,7 +22,8 @@ public class Grid : MonoBehaviour {
 	int penaltyMin = int.MaxValue;
 	int penaltyMax = int.MinValue;
 
-	void Awake() {
+	public void Awake() {
+
 		GenerateGrid();
 	}
 
@@ -174,7 +175,8 @@ public class Grid : MonoBehaviour {
 				Gizmos.color = Color.Lerp (Color.white, Color.black, Mathf.InverseLerp (penaltyMin, penaltyMax, n.movementPenalty));
 				Gizmos.color = (n.walkable)?Gizmos.color:Color.red;
 				if(n.walkable) 
-					Gizmos.DrawCube(n.worldPosition, new Vector3(nodeDiameter * 0.8f, 1, nodeDiameter * 0.8f));
+					Gizmos.DrawCube(n.worldPosition, new Vector3(nodeDiameter * 0.8f, nodeDiameter, nodeDiameter * 0.8f));
+
             }
 		}
 	}

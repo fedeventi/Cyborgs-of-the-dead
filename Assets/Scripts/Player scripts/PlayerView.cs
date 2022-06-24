@@ -36,12 +36,13 @@ public class PlayerView : MonoBehaviour
     public Image toxicityScreen;
     public Sprite[] toxicityEffects=new Sprite[2];
     public Image mytoxicityEffect ;
+    bool hasPickGas;
     public Image gas;
     //
     public AnimatorOverrideController deathController;
     bool changeHitSound = false;
 
-    public Image interaction;
+    public Slider interaction;
     private void Start()
     {
         //Componentes
@@ -74,6 +75,11 @@ public class PlayerView : MonoBehaviour
                 animator.SetBool("idle", true);
             }
         }
+    }
+    public void SetInteractionTimer(float value01,bool enabled)
+    {
+        interaction.gameObject.SetActive(enabled);
+        interaction.value= value01;
     }
     public void ChangeSprite(int effect)
     {
@@ -129,7 +135,12 @@ public class PlayerView : MonoBehaviour
     }
     void GasLevel()
     {
-        gas.fillAmount = model.Gas/100;
+        if(model.Gas>0) hasPickGas = true;
+        else hasPickGas = false;
+
+        gas.gameObject.SetActive(hasPickGas);
+        if(gas && hasPickGas)
+            gas.fillAmount = model.Gas/100;
     }
     void DamageImages()
     {

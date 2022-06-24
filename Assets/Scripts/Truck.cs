@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Truck : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class Truck : MonoBehaviour
     public float speed = 10;
     Vector3 startPosition;
     Animator _animator;
+    Action<float, bool> _view;
     public float movementThreshold=600;
+    
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -38,15 +41,20 @@ public class Truck : MonoBehaviour
                 if (timePressed < timeToMove)
                 {
                     timePressed += Time.deltaTime;
-
+                    _view(timePressed / timeToMove, true);
                 }
                 else
                 {
                     finished = true;
+                    _view(1, false);
                 }
             }
             else
+            {
                 timePressed = 0;
+                if(_view!=null)
+                        _view(0, false);
+            }
         }
         else
         {
@@ -60,21 +68,30 @@ public class Truck : MonoBehaviour
                 _animator.SetFloat("Movement", 0);
             }
 
-
-            playerModel.interaction -= Interaction;
+            if(playerModel!=null)
+                playerModel.interaction -= Interaction;
         }
                     
     }
-    void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         playerModel=other.GetComponent<PlayerModel>();
-        if (!finished)
+        if (playerModel != null)
         {
-            playerModel.interaction += Interaction;
+            if (!finished)
+            {
+                playerModel.interaction += Interaction;
+                _view += playerModel.GetComponent<PlayerView>().SetInteractionTimer;
+            }
         }
     }
-    void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
-        playerModel.interaction -= Interaction;
+        if (playerModel != null)
+        {
+            pressed = false;
+            playerModel.interaction -= Interaction;
+            _view -= playerModel.GetComponent<PlayerView>().SetInteractionTimer;
+        }
     }
 }

@@ -242,7 +242,7 @@ public class Shotgun : Weapon
                 }
 
                 //Layer del escanario. Si colisiona con algun objeto, genera el bullet hole
-                if (hit.transform.gameObject.layer == 8)
+                if (hit.transform.gameObject.layer == 8 || hit.transform.gameObject.layer == 11)
                 {
                     var impactEffect = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
                     

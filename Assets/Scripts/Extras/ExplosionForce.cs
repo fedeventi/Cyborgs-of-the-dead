@@ -22,7 +22,7 @@ public class ExplosionForce : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 11)
         {
             var obj= other.GetComponent<BreakGlass>();
             if (obj == null) return;

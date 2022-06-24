@@ -83,7 +83,8 @@ public class MeleeWeapon : Weapon
                 //Destroy(bloodEffect, 0.5f);
             }
         }
-        if (other.gameObject.layer == 8)
+        
+        if (other.transform.gameObject.tag == "GlassFragments")
         {
             var obj = other.GetComponent<BreakGlass>();
             var _myParticle=Instantiate(particle, myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);

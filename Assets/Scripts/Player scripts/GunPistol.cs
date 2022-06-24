@@ -234,24 +234,24 @@ public class GunPistol : Weapon
                 var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(bloodEffect, 0.5f);
             }
-            
+
             //Layer del escanario. Si colisiona con algun objeto, genera el bullet hole
-            if (hit.transform.gameObject.layer == 8)
+            if (hit.transform.gameObject.layer == 8 || hit.transform.gameObject.layer==11)
             {
                 var impactEffect = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
-
+                
                 if (hit.transform.gameObject.tag != "GlassFragments")
                 {
                     var decal = Instantiate(bulletDecal, hit.point, Quaternion.LookRotation(hit.normal));
 
                 }
-                
-                
+
+
             }
             //el hit es la explosion del enemigo explosivo
-           
 
-            
+
+
         }
 
         myCamera.GetComponent<ShakeCamera>().ActivateShake(shake);
