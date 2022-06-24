@@ -38,8 +38,8 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _Float1: 100
-    - _Float2: 0.009003924
-    - _Mask: 0
+    - _Float2: 0.0483
+    - _Mask: 144.29
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

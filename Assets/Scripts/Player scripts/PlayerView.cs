@@ -36,10 +36,12 @@ public class PlayerView : MonoBehaviour
     public Image toxicityScreen;
     public Sprite[] toxicityEffects=new Sprite[2];
     public Image mytoxicityEffect ;
+    public Image gas;
     //
     public AnimatorOverrideController deathController;
     bool changeHitSound = false;
 
+    public Image interaction;
     private void Start()
     {
         //Componentes
@@ -52,6 +54,7 @@ public class PlayerView : MonoBehaviour
     {
         //screen de daño en el casco
         DamageImages();
+        GasLevel();
     }
 
     //Movimiento
@@ -124,7 +127,10 @@ public class PlayerView : MonoBehaviour
         cough = false;
 
     }
-
+    void GasLevel()
+    {
+        gas.fillAmount = model.Gas/100;
+    }
     void DamageImages()
     {
         if(model.life<35)

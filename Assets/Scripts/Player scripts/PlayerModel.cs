@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using UnityEngine.SceneManagement;
 
 public class PlayerModel : MonoBehaviour
@@ -54,8 +55,10 @@ public class PlayerModel : MonoBehaviour
     public WeaponHolder weaponHolder;
     public bool hasPickUpPistol = false;
     public bool hasPickUpShotgun = false;
-    
+    public float Gas;
     public TimeManager timeManager;
+    
+    public Action<bool> interaction;
     public bool IsDead => isDead;
     private void Start()
     {
@@ -124,7 +127,7 @@ public class PlayerModel : MonoBehaviour
             {
                 toxicityImprovementsRandom = true;
 
-                var r = Random.Range(0, 100);
+                var r = UnityEngine.Random.Range(0, 100);
 
                 if (r <= 50)
                 {
@@ -240,7 +243,11 @@ public class PlayerModel : MonoBehaviour
         rb.MovePosition(transform.position + movement * _speed * Time.deltaTime);
 
     }
-
+    public void Interact(bool pressed)
+    {
+        if(interaction!=null)
+                    interaction(pressed);
+    }
     //Movimiento de la camara
     public void RotationCamera()
     {
@@ -339,7 +346,7 @@ public class PlayerModel : MonoBehaviour
         weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<Weapon>().Shoot();
     }
     
-
+   
     private void OnCollisionEnter(Collision collision)
     {
         //if(collision.gameObject.tag == "GlassFragments")
