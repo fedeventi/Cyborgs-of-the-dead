@@ -53,12 +53,12 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy>
        return Instantiate(zombie, transform.position+randomPosition, transform.rotation).SetRecycleAction(Recycle);
     }
   
-    void OnDrawGizmos()
-    {
-        UnityEditor.Handles.color = Color.yellow;
-        UnityEditor.Handles.DrawWireDisc(transform.position, transform.up,RangeToSpawn );
+    //void OnDrawGizmos()
+    //{
+    //    UnityEditor.Handles.color = Color.yellow;
+    //    UnityEditor.Handles.DrawWireDisc(transform.position, transform.up,RangeToSpawn );
         
             
-    }
+    //}
     
 }
