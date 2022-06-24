@@ -17,28 +17,21 @@ public class Gasoil : MonoBehaviour
     {
         
     }
-    void FillGas( bool pressed)
-    {
-        if (pressed)
-        {
-            playerModel.Gas += amount;
-            playerModel.interaction -= FillGas;
-            Destroy(gameObject);
-        }
-    }
+    
     void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<PlayerModel>())
         {
              playerModel = other.GetComponent<PlayerModel>();
-             playerModel.interaction = FillGas;
+             
+            if(playerModel)
+                playerModel.Gas += amount;
+            Destroy(gameObject);
+            
+            
+                
+            
         }
     }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<PlayerModel>())
-        {
-            playerModel.interaction -= FillGas;
-        }
-    }
+    
 }

@@ -8,7 +8,7 @@ public class MedicineToxicity : MonoBehaviour
 
     //
     float timer;
-
+    bool pressed;
     public Animator animator;
     public ParticleSystem ps;
     AudioSource audioSource;
@@ -20,19 +20,47 @@ public class MedicineToxicity : MonoBehaviour
         if(healingEffect!=null)
             healingEffect.SetActive(false);
     }
+    void Interaction(bool pressing)
+    {
+        
+        pressed = pressing;
+       
 
+    }
+    void OnTriggerEnter(Collider collision)
+    {
+        player.interaction += Interaction;
+    }
     private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.tag == "Player" && this.gameObject.tag == "MedicineBox")
         {
-            player.isInMedicineBox = true;
-            RestToxicity();
-            animator.SetBool("activate", true);
-            if(healingEffect != null)
-                healingEffect.SetActive(true);
+            if (pressed)
+            {
 
-            if (!audioSource.isPlaying)
-                audioSource.PlayOneShot(audioSource.clip);
+                player.isInMedicineBox = true;
+                RestToxicity();
+                animator.SetBool("activate", true);
+                if(healingEffect != null)
+                    healingEffect.SetActive(true);
+
+                if (!audioSource.isPlaying)
+                    audioSource.PlayOneShot(audioSource.clip);
+
+            }
+            else
+            {
+                if (healingEffect != null)
+                    healingEffect.SetActive(false);
+
+                player.isInMedicineBox = false;
+                animator.SetBool("activate", false);
+                if (ps != null)
+                    ps.Stop();
+                audioSource.Stop();
+
+            }
+
         }
 
         if(collision.gameObject.tag =="Player" && this.gameObject.tag == "MedicineObject")
@@ -51,6 +79,7 @@ public class MedicineToxicity : MonoBehaviour
     {
         if(collision.gameObject.tag =="Player" && this.gameObject.tag == "MedicineBox")
         {
+            player.interaction -= Interaction;
             if (healingEffect != null)
                 healingEffect.SetActive(false);
 
