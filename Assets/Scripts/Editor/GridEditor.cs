@@ -20,6 +20,7 @@ public class GridEditor : Editor
         base.OnInspectorGUI();
         if (GUILayout.Button("Create"))
         {
+            _target.Clear(); 
             _target.GenerateGrid();
         }
     }

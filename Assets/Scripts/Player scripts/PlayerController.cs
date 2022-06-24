@@ -36,7 +36,18 @@ public class PlayerController : MonoBehaviour
         }
         view.RunningAnimation(model.isRunning);
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+             model.Interact(true);
+            
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            model.Interact(false);
+        }
+
     }
+    
     private void Update()
     {
         //Movimiento del jugador
