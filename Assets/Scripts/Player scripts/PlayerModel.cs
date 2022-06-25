@@ -25,7 +25,8 @@ public class PlayerModel : MonoBehaviour
 
     //Vida y muerte
     [Header("Vida")]
-    public int life;
+    public float life;
+    public float lifeSlow;
     bool isDead = false;
     float timerLifeToxic = 0;
     bool _hasBeenHit;
@@ -77,6 +78,7 @@ public class PlayerModel : MonoBehaviour
 
         //Variables
         life = 100;
+        lifeSlow = 100;
 
         //
         toxicityText.enabled = false;

@@ -10,7 +10,9 @@ public class LifeBar : MonoBehaviour
 
     [Header("BARRA DE VIDA")]
     public Image myImage;
+    public Image myImageSlow;
 
+    float t = 0;
     //
     float maxLife = 100;
 
@@ -20,10 +22,18 @@ public class LifeBar : MonoBehaviour
         player = FindObjectOfType<PlayerModel>();
 
         myImage.fillAmount = 0;
+        myImageSlow.fillAmount = 0;
     }
 
     private void Update()
     {
         myImage.fillAmount = player.life / maxLife;
+        myImageSlow.fillAmount = player.lifeSlow / maxLife;
+
+        if(player.lifeSlow != player.life)
+        {
+            player.lifeSlow = Mathf.Lerp(player.lifeSlow, player.life, t);
+            t += 1.0f * Time.deltaTime;
+        }
     }
 }
