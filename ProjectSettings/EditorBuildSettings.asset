@@ -8,8 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 1f794a09b31a6064e940e90698c9676a
+  - enabled: 1
+    path: Assets/Scenes/IntroCinematic.unity
+    guid: 79ae22f69215c374d8f238a529173307
   - enabled: 0
-    path: Assets/Scenes/Level1.unity
+    path: 
     guid: 1da76d2fdfb963c4a94e8a40d31f0d93
   - enabled: 1
     path: Assets/Scenes/Level.unity

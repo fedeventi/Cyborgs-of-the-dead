@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToPlay()
     {
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("IntroCinematic");
     }
 
     public void QuitGame()
