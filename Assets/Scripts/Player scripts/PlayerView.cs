@@ -48,7 +48,7 @@ public class PlayerView : MonoBehaviour
         //Componentes
         audioSource = GetComponent<AudioSource>();
         model = GetComponent<PlayerModel>();
-       
+        ResetCasco();
     }
 
     private void Update()
@@ -129,7 +129,7 @@ public class PlayerView : MonoBehaviour
             cough = true;
             audioSource.PlayOneShot(audioClips[5], 3f);
         }
-        yield return new WaitForSeconds(Random.Range(5, 16));
+        yield return new WaitForSeconds(Random.Range(15, 20));
         cough = false;
 
     }
@@ -192,6 +192,7 @@ public class PlayerView : MonoBehaviour
         hitValue = 0;
         animator.SetBool("Death", true);
         casco.material.SetFloat("_hitValue", hitValue);
+        
     }
     public void Toxic(bool bValue)
     {
@@ -202,6 +203,15 @@ public class PlayerView : MonoBehaviour
 
         toxicityLevel = Mathf.Clamp01(toxicityLevel);
         casco.material.SetFloat("_ToxicityValue", toxicityLevel);
+    }
+    void ResetCasco()
+    {
+        if (casco != null)
+        {
+            casco.material.SetFloat("_ToxicityValue", 0);
+            casco.material.SetFloat("_hitValue", 0);
+            casco.material.SetInt("_LowLife", 0);
+        }
     }
     public IEnumerator hitFeedback()
     {
@@ -224,6 +234,10 @@ public class PlayerView : MonoBehaviour
     public void StepSound()
     {
         audioSource.PlayOneShot(audioClips[4], 0.1f);
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, 5000);
     }
 }
 

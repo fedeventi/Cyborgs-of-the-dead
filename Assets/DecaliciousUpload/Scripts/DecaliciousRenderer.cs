@@ -197,17 +197,17 @@ namespace ThreeEyedGames
                             {
                                 // If the renderer is statically batched, the mesh is in world space (i.e. we use identity matrix)
 #if UNITY_2018_1_OR_NEWER
-                                _bufferLimitTo.DrawMesh(mf.sharedMesh, Matrix4x4.identity, _materialLimitToGameObjects, mr.subMeshStartIndex);
-#else
-                                _bufferLimitTo.DrawMesh(mf.sharedMesh, Matrix4x4.identity, _materialLimitToGameObjects);
+//                                _bufferLimitTo.DrawMesh(mf.sharedMesh, Matrix4x4.identity, _materialLimitToGameObjects, mr.subMeshStartIndex);
+//#else|
+//                                _bufferLimitTo.DrawMesh(mf.sharedMesh, Matrix4x4.identity, _materialLimitToGameObjects);
 #endif
                             }
                             else
                             {
 #if UNITY_2018_1_OR_NEWER
-                                _bufferLimitTo.DrawMesh(mf.sharedMesh, mr.transform.localToWorldMatrix, _materialLimitToGameObjects, mr.subMeshStartIndex);
-#else
-                                _bufferLimitTo.DrawMesh(mf.sharedMesh, mr.transform.localToWorldMatrix, _materialLimitToGameObjects);
+                                //                                _bufferLimitTo.DrawMesh(mf.sharedMesh, mr.transform.localToWorldMatrix, _materialLimitToGameObjects, mr.subMeshStartIndex);
+                                //#else
+                                //                                _bufferLimitTo.DrawMesh(mf.sharedMesh, mr.transform.localToWorldMatrix, _materialLimitToGameObjects);
 #endif
                             }
                         }

@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: b96ad67accb0fb448851052ab208dafe, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: d96a4c89651aa8746bbba800bfd78515, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -959,7 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: b96ad67accb0fb448851052ab208dafe, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -1397,7 +1397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: d96a4c89651aa8746bbba800bfd78515, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -1926,7 +1926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: d96a4c89651aa8746bbba800bfd78515, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -3249,7 +3249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: b96ad67accb0fb448851052ab208dafe, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -4244,11 +4244,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 410511823}
+  head: {fileID: 0}
+  headExplosion: {fileID: 0}
   myClips:
   - {fileID: 8300000, guid: bdd5566aaea824e42b97144905ae7604, type: 3}
   - {fileID: 8300000, guid: 8d7b04951f386a24fa9e5dfe461acd8b, type: 3}
   - {fileID: 8300000, guid: e63af9ce02d715744b63f4f830bf59b8, type: 3}
   - {fileID: 8300000, guid: 267bcbe8bf89758418a304a5b6927c5b, type: 3}
+  grid: {fileID: 0}
 --- !u!195 &410511819
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4965,7 +4968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: d96a4c89651aa8746bbba800bfd78515, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -5410,7 +5413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: d96a4c89651aa8746bbba800bfd78515, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -5955,7 +5958,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571390480}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b4ddc40d14eb93449a7550ca0ac0573, type: 3}
   m_Name: 
@@ -6773,11 +6776,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 649728995}
+  head: {fileID: 0}
+  headExplosion: {fileID: 0}
   myClips:
   - {fileID: 8300000, guid: bdd5566aaea824e42b97144905ae7604, type: 3}
   - {fileID: 8300000, guid: 8d7b04951f386a24fa9e5dfe461acd8b, type: 3}
   - {fileID: 8300000, guid: e63af9ce02d715744b63f4f830bf59b8, type: 3}
   - {fileID: 8300000, guid: 267bcbe8bf89758418a304a5b6927c5b, type: 3}
+  grid: {fileID: 0}
 --- !u!195 &649728991
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12197,7 +12203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: b96ad67accb0fb448851052ab208dafe, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -12564,7 +12570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: b96ad67accb0fb448851052ab208dafe, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -12757,7 +12763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: d96a4c89651aa8746bbba800bfd78515, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -13362,11 +13368,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 880165125}
+  head: {fileID: 0}
+  headExplosion: {fileID: 0}
   myClips:
   - {fileID: 8300000, guid: bdd5566aaea824e42b97144905ae7604, type: 3}
   - {fileID: 8300000, guid: 8d7b04951f386a24fa9e5dfe461acd8b, type: 3}
   - {fileID: 8300000, guid: e63af9ce02d715744b63f4f830bf59b8, type: 3}
   - {fileID: 8300000, guid: 267bcbe8bf89758418a304a5b6927c5b, type: 3}
+  grid: {fileID: 0}
 --- !u!195 &880165121
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -13754,7 +13763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: d96a4c89651aa8746bbba800bfd78515, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -14745,7 +14754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: d96a4c89651aa8746bbba800bfd78515, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -17022,7 +17031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: b96ad67accb0fb448851052ab208dafe, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -17573,7 +17582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: b96ad67accb0fb448851052ab208dafe, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -18104,7 +18113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: d96a4c89651aa8746bbba800bfd78515, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -18319,11 +18328,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1427366189}
+  head: {fileID: 0}
+  headExplosion: {fileID: 0}
   myClips:
   - {fileID: 8300000, guid: bdd5566aaea824e42b97144905ae7604, type: 3}
   - {fileID: 8300000, guid: 8d7b04951f386a24fa9e5dfe461acd8b, type: 3}
   - {fileID: 8300000, guid: e63af9ce02d715744b63f4f830bf59b8, type: 3}
   - {fileID: 8300000, guid: 267bcbe8bf89758418a304a5b6927c5b, type: 3}
+  grid: {fileID: 0}
 --- !u!195 &1427366185
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -19050,7 +19062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: b96ad67accb0fb448851052ab208dafe, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -22262,7 +22274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: d96a4c89651aa8746bbba800bfd78515, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -29312,7 +29324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eedcc4d95e2ff0844be941660014c276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RenderMode: 0
+  RenderMode: 1
   Material: {fileID: 2100000, guid: 60d76904968e179448e0ef2d85dadb13, type: 2}
   RenderOrder: 98
   Fade: 1
@@ -31854,11 +31866,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4641101080891323196}
+  head: {fileID: 0}
+  headExplosion: {fileID: 0}
   myClips:
   - {fileID: 8300000, guid: bdd5566aaea824e42b97144905ae7604, type: 3}
   - {fileID: 8300000, guid: 8d7b04951f386a24fa9e5dfe461acd8b, type: 3}
   - {fileID: 8300000, guid: e63af9ce02d715744b63f4f830bf59b8, type: 3}
   - {fileID: 8300000, guid: 267bcbe8bf89758418a304a5b6927c5b, type: 3}
+  grid: {fileID: 0}
 --- !u!195 &1781695708797545561
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -32482,11 +32497,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8908399881017702812}
+  head: {fileID: 0}
+  headExplosion: {fileID: 0}
   myClips:
   - {fileID: 8300000, guid: bdd5566aaea824e42b97144905ae7604, type: 3}
   - {fileID: 8300000, guid: 8d7b04951f386a24fa9e5dfe461acd8b, type: 3}
   - {fileID: 8300000, guid: e63af9ce02d715744b63f4f830bf59b8, type: 3}
   - {fileID: 8300000, guid: 267bcbe8bf89758418a304a5b6927c5b, type: 3}
+  grid: {fileID: 0}
 --- !u!195 &2554003228009391865
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -32693,11 +32711,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8893363899834216398}
+  head: {fileID: 0}
+  headExplosion: {fileID: 0}
   myClips:
   - {fileID: 8300000, guid: bdd5566aaea824e42b97144905ae7604, type: 3}
   - {fileID: 8300000, guid: 8d7b04951f386a24fa9e5dfe461acd8b, type: 3}
   - {fileID: 8300000, guid: e63af9ce02d715744b63f4f830bf59b8, type: 3}
   - {fileID: 8300000, guid: 267bcbe8bf89758418a304a5b6927c5b, type: 3}
+  grid: {fileID: 0}
 --- !u!54 &2574591414958878890
 Rigidbody:
   m_ObjectHideFlags: 0

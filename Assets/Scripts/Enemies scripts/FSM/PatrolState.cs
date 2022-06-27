@@ -39,6 +39,7 @@ public class PatrolState<T> : State<T>
 
         _destination = baseEnemy.transform.position+UnityEngine.Random.insideUnitSphere * randomRange;
         _destination.y = 0;
+       
         baseEnemy.StartCoroutine(UpdatePath());
         _currentWaypoint = 0;
 
@@ -57,21 +58,21 @@ public class PatrolState<T> : State<T>
             yield return new WaitForSeconds(.3f);
         }
         PathRequestManager.RequestPath(new PathRequest(baseEnemy.transform.position,_destination , OnPathFound));
-
+        Debug.Log("calculo PathFinding");
         float sqrMoveThreshold = pathUpdateMoveThreshold * pathUpdateMoveThreshold;
         Vector3 targetPosOld = _destination;
 
-        while (_updateAlways)
-        {
-            yield return new WaitForSeconds(minPathUpdateTime);
-            //chequea si el objetivo se movio de lugar
-            if ((baseEnemy.player.transform.position - targetPosOld).sqrMagnitude > sqrMoveThreshold)
-            {
+        //while (_updateAlways)
+        //{
+        //    yield return new WaitForSeconds(minPathUpdateTime);
+        //    //chequea si el objetivo se movio de lugar
+        //    if ((baseEnemy.player.transform.position - targetPosOld).sqrMagnitude > sqrMoveThreshold)
+        //    {
 
-                PathRequestManager.RequestPath(new PathRequest(baseEnemy.transform.position, _destination, OnPathFound));
-                targetPosOld = _destination;
-            }
-        }
+        //        PathRequestManager.RequestPath(new PathRequest(baseEnemy.transform.position, _destination, OnPathFound));
+        //        targetPosOld = _destination;
+        //    }
+        //}
     }
     public override void Execute()
     {
@@ -86,15 +87,15 @@ public class PatrolState<T> : State<T>
     public void Patrol()
     {
         if (_waypoints.Count <= 0) return;
+        if (_currentWaypoint >= _waypoints.Count) return;
+       
         enemyView.WalkingAnimation();
-
+        
         Vector3 target = _waypoints[_currentWaypoint];
+        
         target.y=baseEnemy.transform.position.y;
         Vector3 dir = target - baseEnemy.transform.position;
-        //if (baseEnemy.targetDetection.MyClosestObstacle())
-        //{
-        //    dir = (baseEnemy.targetDetection.MyClosestPointToTarget(target) - baseEnemy.transform.position);
-        //}
+       
         float distanceToWaypoint = Vector3.Distance(baseEnemy.transform.position, _waypoints[_currentWaypoint]);
         if(distanceToWaypoint< _distanceTreshold)
         {
@@ -105,7 +106,12 @@ public class PatrolState<T> : State<T>
                 _currentWaypoint = 0;
                 _destination = baseEnemy.transform.position + UnityEngine.Random.insideUnitSphere * randomRange;
                 _destination.y = 0;
-                baseEnemy.StartCoroutine(UpdatePath());
+                
+                if (Vector3.Distance(_destination, baseEnemy.transform.position) > 100)
+                {
+                    baseEnemy.StartCoroutine(UpdatePath());
+                }
+                
             }
 
         }

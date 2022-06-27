@@ -47,7 +47,8 @@ public class MeleeWeapon : Weapon
             {
                 Shoot();
                 combo=!combo;
-                audioSource.PlayOneShot(clips[0]);
+                if(audioSource != null)
+                    audioSource.PlayOneShot(clips[0]);
             }
         }
     }
@@ -106,7 +107,8 @@ public class MeleeWeapon : Weapon
             if (obj == null) return;
             obj.ReplaceGlass();
             //sonido de los vidrios rompiendose 
-            audioSource.PlayOneShot(clips[2]);
+            if(audioSource!=null)
+                audioSource.PlayOneShot(clips[2]);
             Destroy(obj.gameObject);
         }
     }

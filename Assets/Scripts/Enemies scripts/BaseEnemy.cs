@@ -112,22 +112,16 @@ public class BaseEnemy : MonoBehaviour , IPooleable<BaseEnemy>
    
     public virtual void Update()
     {
-       
 
-        if (life>0)
+        if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 5000)
         {
-           
+            StopAllCoroutines();
+            return;
+        }
+        if (life>0)
+        {           
             fsm.OnUpdate();
-            
 
-            
-           
-            
-
-            
-            
-            
-            
         }
 
         //EJECUTA LA MUERTE 
