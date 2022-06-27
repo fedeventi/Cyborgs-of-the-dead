@@ -113,7 +113,7 @@ public class BaseEnemy : MonoBehaviour , IPooleable<BaseEnemy>
     public virtual void Update()
     {
 
-        if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 5000)
+        if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)
         {
             
             return;
