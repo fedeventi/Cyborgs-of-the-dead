@@ -26,7 +26,7 @@ public class ExplosionForce : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 11)
+        if (other.transform.gameObject.tag == "GlassFragments")
         {
             var obj= other.GetComponent<BreakGlass>();
             if (obj == null) return;

@@ -99,12 +99,16 @@ public class MeleeWeapon : Weapon
                 //Destroy(bloodEffect, 0.5f);
             }
         }
-        
+        else
+        {
+            var _myParticle=Instantiate(particle, myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
+            _myParticle.transform.localScale = Vector3.one*10;
+
+        }
+
         if (other.transform.gameObject.tag == "GlassFragments")
         {
             var obj = other.GetComponent<BreakGlass>();
-            var _myParticle=Instantiate(particle, myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
-            _myParticle.transform.localScale = Vector3.one*10;
             if (obj == null) return;
             obj.ReplaceGlass();
             //sonido de los vidrios rompiendose 

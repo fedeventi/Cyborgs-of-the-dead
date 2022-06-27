@@ -8,7 +8,7 @@ public class AmmoKit : MonoBehaviour
 
     public ParticleSystem ps;
     AudioSource audioSource;
-
+    int[] ammoByWeapon = new int[3] {0,14,6 };
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -28,8 +28,12 @@ public class AmmoKit : MonoBehaviour
 
             if (player.weaponHolder.weaponsCollected.Count > 1)
             {
-                player.weaponHolder.weaponsCollected[(int)WeaponType.Pistol].GetComponent<Weapon>().currentMaxAmmo += 14;
-                player.weaponHolder.weaponsCollected[(int)WeaponType.Shotgun].GetComponent<Weapon>().currentMaxAmmo += 6;
+                for (int i = 1; i < player.weaponHolder.weaponsCollected.Count; i++)
+                {
+                    player.weaponHolder.weaponsCollected[i].GetComponent<Weapon>().currentMaxAmmo += ammoByWeapon[i];
+
+                }
+                
             }
            
             Destroy(gameObject, 0.2f);
