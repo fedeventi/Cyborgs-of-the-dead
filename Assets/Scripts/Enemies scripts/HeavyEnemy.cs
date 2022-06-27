@@ -80,7 +80,7 @@ public class HeavyEnemy : BaseEnemy
         chase.AddTransition("Patrol", patrol);
         chase.AddTransition("Charge", charge);
         //El FSM empieza con el patrol.
-        fsm = new FSM<string>(patrol);
+        fsm = new FSM<string>(idle);
     }
     IEnumerator WaitOnPoint()
     {

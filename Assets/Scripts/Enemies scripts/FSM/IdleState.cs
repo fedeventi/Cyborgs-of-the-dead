@@ -6,6 +6,7 @@ public class IdleState<T> : State<T>
 {
     EnemyView enemyView;
     BaseEnemy baseEnemy;
+    float timer;
     public IdleState(BaseEnemy enemy, EnemyView view)
     {
         baseEnemy = enemy;
@@ -15,25 +16,31 @@ public class IdleState<T> : State<T>
     public override void Awake()
     {
         baseEnemy.isInIdle = true;
-        baseEnemy.StartCoroutine(Wait(2.5f));
+        
         
     }
     public override void Execute()
     {
+        if(Vector3.Distance(baseEnemy.transform.position,baseEnemy.player.transform.position)<5000)
+            Wait(2.5f);
         enemyView.IdleAnimation();
-        
     }
     public override void Sleep()
     {
         baseEnemy.isInIdle = false;
     }
-    IEnumerator Wait(float seconds)
+    public void Wait(float seconds)
     {
-        yield return new WaitForSeconds(seconds);
-        var transition = "Patrol";
-        if (baseEnemy.LookingPlayer())
-            transition = "Chase";
+        if (timer >= seconds)
+        {
+            var transition = "Patrol";
+            if (baseEnemy.LookingPlayer())
+                transition = "Chase";
 
-        baseEnemy.Transition(transition);
+            baseEnemy.Transition(transition);
+            timer = 0;
+        }
+        timer += Time.deltaTime;
     }
+   
 }

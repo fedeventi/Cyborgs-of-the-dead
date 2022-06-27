@@ -39,7 +39,8 @@ public class PatrolState<T> : State<T>
 
         _destination = baseEnemy.transform.position+UnityEngine.Random.insideUnitSphere * randomRange;
         _destination.y = 0;
-       
+
+        Debug.Log("entro al estado de patrol");
         baseEnemy.StartCoroutine(UpdatePath());
         _currentWaypoint = 0;
 
@@ -58,7 +59,6 @@ public class PatrolState<T> : State<T>
             yield return new WaitForSeconds(.3f);
         }
         PathRequestManager.RequestPath(new PathRequest(baseEnemy.transform.position,_destination , OnPathFound));
-        Debug.Log("calculo PathFinding");
         float sqrMoveThreshold = pathUpdateMoveThreshold * pathUpdateMoveThreshold;
         Vector3 targetPosOld = _destination;
 

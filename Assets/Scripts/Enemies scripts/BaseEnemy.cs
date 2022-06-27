@@ -115,7 +115,7 @@ public class BaseEnemy : MonoBehaviour , IPooleable<BaseEnemy>
 
         if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 5000)
         {
-            StopAllCoroutines();
+            
             return;
         }
         if (life>0)
@@ -281,7 +281,7 @@ public class BaseEnemy : MonoBehaviour , IPooleable<BaseEnemy>
         chase.AddTransition("Idle", idle); //Va de chase a idle
         chase.AddTransition("Patrol", patrol);
         //El FSM empieza con el patrol.
-        fsm = new FSM<string>(patrol);
+        fsm = new FSM<string>(idle);
     }
     
     //corrutina para delay en la velocidad cuando recibe daño.

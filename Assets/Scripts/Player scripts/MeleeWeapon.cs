@@ -80,7 +80,8 @@ public class MeleeWeapon : Weapon
     {
         if (other.gameObject.layer == 9)
         {
-            audioSource.PlayOneShot(clips[1]);
+            if(audioSource!=null)
+                audioSource.PlayOneShot(clips[1]);
             
             var target = other.transform.GetComponent<BaseEnemy>();
             bool headshot = other.transform.gameObject.tag == "headshot";

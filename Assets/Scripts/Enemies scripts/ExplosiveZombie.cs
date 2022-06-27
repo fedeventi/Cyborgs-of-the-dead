@@ -109,7 +109,7 @@ public class ExplosiveZombie : BaseEnemy
         chase.AddTransition("Patrol", patrol);
         chase.AddTransition("Range", range);
         //El FSM empieza con el patrol.
-        fsm = new FSM<string>(patrol);
+        fsm = new FSM<string>(idle);
 
     }
     public void DistanceAttack()
