@@ -39,7 +39,7 @@ public class ExplosionForce : MonoBehaviour
                 var rb = item.gameObject.GetComponent<Rigidbody>();
 
                 rb.AddExplosionForce(500000, transform.position + transform.forward * 10, 60);
-                Debug.Log("empujo");
+                
 
             }
             Destroy(obj.gameObject);

@@ -109,7 +109,7 @@ public class MeleeWeapon : Weapon
         if (other.transform.gameObject.tag == "GlassFragments")
         {
             var _myParticle = Instantiate(particle, myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
-            Debug.Break();
+            
             var obj = other.GetComponent<BreakGlass>();
             if (obj == null) return;
             obj.ReplaceGlass();
