@@ -73,6 +73,7 @@ public class PlayerView : MonoBehaviour
             {
                 animator.SetBool("walking", false);
                 animator.SetBool("idle", true);
+                animator.SetBool("running", false);
             }
         }
     }
@@ -137,7 +138,7 @@ public class PlayerView : MonoBehaviour
     {
         if(model.Gas>0) hasPickGas = true;
         else hasPickGas = false;
-
+        if(gas)
         gas.gameObject.SetActive(hasPickGas);
         if(gas && hasPickGas)
             gas.fillAmount = model.Gas/100;

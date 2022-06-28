@@ -272,7 +272,11 @@ public class PlayerModel : MonoBehaviour
 
 
     }
-
+    public void LookTowards(Vector3 position)
+    {
+        position.y=transform.position.y;
+        transform.forward = Vector3.Slerp(transform.forward, position - transform.position, Time.deltaTime * 1.5f);
+    }
 
 
     public void TakeDamage(int damage)

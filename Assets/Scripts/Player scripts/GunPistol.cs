@@ -186,7 +186,12 @@ public class GunPistol : Weapon
     //Funcion de disparo, produce la animacion de este
     public override void ShootNoAmmo()
     {
-        if (!model.isShooting && !model.isReloading)
+        if (currentAmmo == 0)
+        {
+            NoAmmo();
+            
+        }
+        else if (!model.isShooting && !model.isReloading)
         {
             model.isShooting = true;
             model.animationShooting = true;
@@ -201,10 +206,6 @@ public class GunPistol : Weapon
         }
 
 
-        if (currentAmmo == 0)
-        {
-            NoAmmo();
-        }
     }
     //funcion disparo con raycast + efectos. //se llama en el playerModel, en cierto momento de la animacion
     public override void Shoot()

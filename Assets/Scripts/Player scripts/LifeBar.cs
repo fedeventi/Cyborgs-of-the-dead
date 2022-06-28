@@ -22,13 +22,15 @@ public class LifeBar : MonoBehaviour
         player = FindObjectOfType<PlayerModel>();
 
         myImage.fillAmount = 0;
+        if(myImageSlow != null)
         myImageSlow.fillAmount = 0;
     }
 
     private void Update()
     {
         myImage.fillAmount = player.life / maxLife;
-        myImageSlow.fillAmount = player.lifeSlow / maxLife;
+        if (myImageSlow != null)
+            myImageSlow.fillAmount = player.lifeSlow / maxLife;
 
         if(player.lifeSlow != player.life)
         {
