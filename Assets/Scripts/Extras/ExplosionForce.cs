@@ -32,13 +32,14 @@ public class ExplosionForce : MonoBehaviour
             if (obj == null) return;
             obj.ReplaceGlass();
             //sonido de los vidrios rompiendose 
-            audioSource.PlayOneShot(audioSource.clip);
+            if(audioSource != null)
+                audioSource.PlayOneShot(audioSource.clip);
             foreach (var item in obj.glasses)
             {
                 var rb = item.gameObject.GetComponent<Rigidbody>();
 
                 rb.AddExplosionForce(500000, transform.position + transform.forward * 10, 60);
-
+                Debug.Log("empujo");
 
             }
             Destroy(obj.gameObject);

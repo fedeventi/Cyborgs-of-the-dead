@@ -10,15 +10,20 @@ public class PlayerController : MonoBehaviour
     PlayerModel model;
     PlayerView view;
     Rigidbody body;
+    Guide guide;
+    bool canControlPlayer=true;
     private void Start()
     {
         model = GetComponent<PlayerModel>();
         view = GetComponent<PlayerView>();
         body=GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
+        guide=GetComponentInChildren<Guide>();
     }
     public void FixedUpdate()
     {
+       
+        if (!canControlPlayer) return;
         if(!model.isRunning)
         {
             model.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -51,22 +56,26 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //Movimiento del jugador
+        if (guide)
+            canControlPlayer = !guide.Show;
 
-        if(Input.GetAxisRaw("Horizontal")==0 || Input.GetAxisRaw("Vertical")==0)
+        if (Input.GetAxisRaw("Horizontal")==0 && Input.GetAxisRaw("Vertical")==0)
         {
             model.isMoving = false;
+            model.isRunning = false;
         }
 
-        if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        if (canControlPlayer)
+            model.RotationCamera();
+        else
         {
-           // view.Step();
+            view.MovementAnimation(0, 0);
+            model.LookTowards(guide.location);
         }
 
 
        
-
-        //Movimiento de la camara 
-        model.RotationCamera();
+        
 
         //Stunned 
         if(model.isStunned)

@@ -99,7 +99,7 @@ public class MeleeWeapon : Weapon
                 //Destroy(bloodEffect, 0.5f);
             }
         }
-        else
+        if(other.gameObject.layer == 8)
         {
             var _myParticle=Instantiate(particle, myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
             _myParticle.transform.localScale = Vector3.one*10;
@@ -108,6 +108,8 @@ public class MeleeWeapon : Weapon
 
         if (other.transform.gameObject.tag == "GlassFragments")
         {
+            var _myParticle = Instantiate(particle, myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
+            Debug.Break();
             var obj = other.GetComponent<BreakGlass>();
             if (obj == null) return;
             obj.ReplaceGlass();

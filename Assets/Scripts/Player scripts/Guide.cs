@@ -11,33 +11,56 @@ public class Guide : MonoBehaviour
     bool _updateAlways=true;
     float minPathUpdateTime=0f;
     float mask=0;
+    float opacity;
     Material _material;
     bool _show;
+    Vector3 point;
+    bool _shaderMovement;
     void Start()
     {
         _line.alignment = LineAlignment.TransformZ;
         _material =_line.material;
         _material.SetFloat("_Mask", mask);
-    }
+        opacity = 1;
+        _material.SetFloat("_opacity", opacity);
 
+    }
+    public bool Show => _show;
+    public Vector3 location => point;
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             StartCoroutine(UpdatePath());
+            opacity = 1;
             _show =true;
+            _shaderMovement = true;
         }
-        if(_show)
+        if(_shaderMovement)
             mask += Time.deltaTime*3;
+        if(!_show)
+            Deactivate();
         if(Input.GetKeyUp(KeyCode.Tab))
+        {
+            _show = false;
+        }
+        _material.SetFloat("_Mask", mask);
+        _material.SetFloat("_opacity", opacity);
+    }
+    void Deactivate()
+    {
+        if (opacity > 0)
+        {
+            opacity -= Time.deltaTime;
+        }
+        else
         {
             StopAllCoroutines();
             _line.positionCount = 0;
-            _show = false;
-            mask =0;
+            _shaderMovement = false;
+            mask = 0;
         }
-        _material.SetFloat("_Mask", mask);
     }
     public IEnumerator UpdatePath()
     {
@@ -62,6 +85,10 @@ public class Guide : MonoBehaviour
                 oldPosition = transform.position;
             }
         }
+    } 
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(point, 20);
     }
     void OnPathFound(Vector3[] positions, bool succesfullPath)
     {
@@ -82,7 +109,7 @@ public class Guide : MonoBehaviour
         }
         _line.positionCount= allPositions.Count;
         _line.SetPositions(allPositions.ToArray());
-        
+        point = positions[0];
         
     }
 }
