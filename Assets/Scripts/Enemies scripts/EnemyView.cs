@@ -126,7 +126,8 @@ public class EnemyView : MonoBehaviour
     }
     public void AttackSound()
     {
-        audioSource.PlayOneShot(myClips[3]);
+        if(!audioSource.isPlaying)
+            audioSource.PlayOneShot(myClips[3]);
     }
     public void OnDrawGizmos()
     {

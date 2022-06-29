@@ -70,6 +70,7 @@ public class Truck : MonoBehaviour
             else
             {
                 _animator.SetFloat("Movement", 0);
+                audioSource.Stop();
             }
 
             if(playerModel!=null)

@@ -44,7 +44,9 @@ public class AttackState<T> : State<T>
     }
     public void Attack()
     {
-        
+
+        enemyView.AttackSound();
+
         _attackCadence += Time.deltaTime;
         if (_attackCadence > 1.5f)
         {

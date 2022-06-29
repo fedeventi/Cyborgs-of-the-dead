@@ -6,7 +6,7 @@ public class BreakGlass : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<GameObject> glasses = new List<GameObject>();
-
+    
 
     // Update is called once per frame
     void Update()

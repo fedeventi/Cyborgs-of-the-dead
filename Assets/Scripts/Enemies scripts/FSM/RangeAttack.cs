@@ -15,6 +15,8 @@ public class RangeAttack<T> : State<T>
     }
     public override void Execute()
     {
+        enemyView.AttackSound();
+
         var target = _baseEnemy.player.transform.position;
         target.y = _baseEnemy.transform.position.y;
         Vector3 dir = target - _baseEnemy.transform.position;

@@ -301,7 +301,7 @@ public class BaseEnemy : MonoBehaviour , IPooleable<BaseEnemy>
     public virtual IEnumerator Death()
     {
 
-        
+        enemyView.DeathSound();
         meleeAttack.gameObject.SetActive(false);
         enemyView.SetAnimator(false);
         RoulleteWheel<bool> rw = new RoulleteWheel<bool>();

@@ -54,9 +54,9 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _ToxicityValue: 0
+    - _ToxicityValue: 1
     - _UseUIAlphaClip: 0
-    - _hitValue: 0
+    - _hitValue: -0.07775227
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 0, g: 0.5804846, b: 1, a: 0}
