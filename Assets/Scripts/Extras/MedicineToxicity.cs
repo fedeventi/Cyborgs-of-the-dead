@@ -13,6 +13,7 @@ public class MedicineToxicity : MonoBehaviour
     public ParticleSystem ps;
     AudioSource audioSource;
     public GameObject healingEffect;
+    public Vector3 interactionPosition;
     private void Start()
     {
         player = FindObjectOfType<PlayerModel>();
@@ -58,8 +59,13 @@ public class MedicineToxicity : MonoBehaviour
                 if (ps != null)
                     ps.Stop();
                 audioSource.Stop();
+                
+                
+                
 
+                
             }
+            player.GetComponent<PlayerView>().InteractionImage(transform.position + interactionPosition, pressed ? false : true);
 
         }
 
@@ -88,6 +94,7 @@ public class MedicineToxicity : MonoBehaviour
             if (ps != null)
                 ps.Stop();
             audioSource.Stop();
+            player.GetComponent<PlayerView>().InteractionImage(transform.position + interactionPosition, false);
         }
     }
 
@@ -99,6 +106,10 @@ public class MedicineToxicity : MonoBehaviour
             player.toxicity -= 3;
             timer = 0;
         }
+    }
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position + interactionPosition, 10);
     }
 
     //se llama en la animacion

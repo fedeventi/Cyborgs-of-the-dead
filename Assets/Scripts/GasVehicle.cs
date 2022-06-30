@@ -10,7 +10,7 @@ public class GasVehicle : MonoBehaviour
     public float required = 100;
     bool pressed;
     Action<float, bool> _view;
-
+    public Vector3 interactionPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +79,20 @@ public class GasVehicle : MonoBehaviour
             
         }
     }
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position + interactionPosition, 10);
+    }
+    public void OnTriggerStay(Collider other)
+    {
+        
+        if (model != null)
+        {
+            model.GetComponent<PlayerView>().InteractionImage(transform.position + interactionPosition, pressed ? false : true);
+
+        }
+
+    }
     public void OnTriggerExit(Collider other)
     {
         if (model != null)
@@ -87,6 +101,7 @@ public class GasVehicle : MonoBehaviour
             _view(amount, false);
             model.interaction -= Interaction;
             _view -= model.GetComponent<PlayerView>().SetInteractionTimer;
+            model.GetComponent<PlayerView>().InteractionImage(transform.position + interactionPosition,  false);
         }
     }
 }

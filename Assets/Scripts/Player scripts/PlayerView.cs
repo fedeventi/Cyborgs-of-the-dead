@@ -38,6 +38,8 @@ public class PlayerView : MonoBehaviour
     public Image mytoxicityEffect ;
     bool hasPickGas;
     public Image gas;
+    public Image interactionImg;
+    public bool displayInteractionImg;
     //
     public AnimatorOverrideController deathController;
     bool changeHitSound = false;
@@ -56,6 +58,7 @@ public class PlayerView : MonoBehaviour
         //screen de daño en el casco
         DamageImages();
         GasLevel();
+        
     }
 
     //Movimiento
@@ -76,6 +79,20 @@ public class PlayerView : MonoBehaviour
                 animator.SetBool("running", false);
             }
         }
+    }
+   
+    public void InteractionImage(Vector3 position,bool activate=true)
+    {
+        if (!activate)
+        {
+            if (interactionImg)
+                interactionImg.gameObject.SetActive(activate);
+            return;
+        }
+        var dot = Vector3.Dot(Camera.main.transform.forward.normalized, (position - Camera.main.transform.position).normalized);
+        
+        if(interactionImg)
+            interactionImg.gameObject.SetActive(dot>.95f);
     }
     public void SetInteractionTimer(float value01,bool enabled)
     {

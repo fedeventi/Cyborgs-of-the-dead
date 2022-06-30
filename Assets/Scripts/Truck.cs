@@ -7,17 +7,17 @@ public class Truck : MonoBehaviour
 {
     PlayerModel playerModel;
     float timePressed;
-    public float timeToMove=3;
+    public float timeToMove = 3;
     bool pressed;
     public bool finished;
     public float speed = 10;
     Vector3 startPosition;
     Animator _animator;
     Action<float, bool> _view;
-    public float movementThreshold=600;
+    public float movementThreshold = 600;
     AudioSource audioSource;
     public List<AudioClip> clips = new List<AudioClip>();
-
+    public Vector3 interactionPosition;
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -30,10 +30,11 @@ public class Truck : MonoBehaviour
         if (pressed)
         {
             Debug.Log("presionado");
-            audioSource.PlayOneShot(clips[0]);
-            
+            if (audioSource != null)
+                audioSource.PlayOneShot(clips[0]);
+
         }
-            
+
     }
     // Update is called once per frame
     void Update()
@@ -56,15 +57,15 @@ public class Truck : MonoBehaviour
             else
             {
                 timePressed = 0;
-                if(_view!=null)
-                        _view(0, false);
+                if (_view != null)
+                    _view(0, false);
             }
         }
         else
         {
             if (Vector3.Distance(transform.position, startPosition) < 600)
             {
-                    transform.position+=transform.right*-1*speed*Time.deltaTime;
+                transform.position += transform.right * -1 * speed * Time.deltaTime;
                 _animator.SetFloat("Movement", -1);
             }
             else
@@ -73,10 +74,14 @@ public class Truck : MonoBehaviour
                 audioSource.Stop();
             }
 
-            if(playerModel!=null)
+            if (playerModel != null)
                 playerModel.interaction -= Interaction;
         }
-                    
+
+    }
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position+interactionPosition, 10);
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -90,6 +95,15 @@ public class Truck : MonoBehaviour
             }
         }
     }
+    public void OnTriggerStay(Collider other)
+    {
+        playerModel = other.GetComponent<PlayerModel>();
+        if (playerModel != null)
+        {
+            playerModel.GetComponent<PlayerView>().InteractionImage(transform.position+interactionPosition,pressed?false:true);
+            
+        }
+    }
     public void OnTriggerExit(Collider other)
     {
         if (playerModel != null)
@@ -97,6 +111,7 @@ public class Truck : MonoBehaviour
             pressed = false;
             playerModel.interaction -= Interaction;
             _view -= playerModel.GetComponent<PlayerView>().SetInteractionTimer;
+            playerModel.GetComponent<PlayerView>().InteractionImage(transform.position,false);
         }
     }
 

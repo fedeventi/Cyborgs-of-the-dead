@@ -22,8 +22,8 @@ public class LifeBar : MonoBehaviour
         player = FindObjectOfType<PlayerModel>();
 
         myImage.fillAmount = 0;
-        if(myImageSlow != null)
-        myImageSlow.fillAmount = 0;
+        if (myImageSlow != null)
+            myImageSlow.fillAmount = 1;
     }
 
     private void Update()
@@ -32,10 +32,17 @@ public class LifeBar : MonoBehaviour
         if (myImageSlow != null)
             myImageSlow.fillAmount = player.lifeSlow / maxLife;
 
-        if(player.lifeSlow != player.life)
+        if (player.lifeSlow != player.life)
         {
+            t += 0.1f * Time.deltaTime;
+
             player.lifeSlow = Mathf.Lerp(player.lifeSlow, player.life, t);
-            t += 1.0f * Time.deltaTime;
         }
+        else
+            t = 0;
+    }
+    IEnumerator lazyBar()
+    {
+        yield return new WaitForSeconds(t);
     }
 }

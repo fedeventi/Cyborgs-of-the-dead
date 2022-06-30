@@ -58,7 +58,7 @@ Material:
     - _DistanceOffset: 0.64
     - _DownScale: 0.4480137
     - _DownSpeed: 0.13
-    - _Float0: -63.2
+    - _Float0: 3.5615492
     - _Float1: 102.7
     - _Float2: 4
     - _Float3: 4
@@ -84,7 +84,7 @@ Material:
     - _SidewaysSpeed: 0.3
     - _Speed: 0.2
     - _Speed1: 4.019897
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
     - _Color: {r: 0, g: 3.8952875, b: 3.9999995, a: 0}
     - _Color0: {r: 0, g: 3.8952875, b: 3.9999995, a: 0}
