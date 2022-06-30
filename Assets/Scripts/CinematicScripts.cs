@@ -13,6 +13,16 @@ public class CinematicScripts : MonoBehaviour
         audioSource.PlayOneShot(audioClips[0], 0.1f);
     }
 
+    public void ShieldButtonSound()
+    {
+        audioSource.PlayOneShot(audioClips[1], 0.1f);
+    }
+
+    public void ShieldSound()
+    {
+        audioSource.PlayOneShot(audioClips[2], 0.1f);
+    }
+
     public void GoLevel()
     {
         SceneManager.LoadScene("Level");
