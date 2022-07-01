@@ -35,7 +35,11 @@ public class TutorialInfo : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 myImage.enabled = false;
-                Destroy(this.gameObject);
+                if(Input.GetKey(KeyCode.LeftShift) && myImage != false)
+                {
+                    Destroy(this.gameObject);
+                }
+               
             }
         }
 
@@ -44,7 +48,10 @@ public class TutorialInfo : MonoBehaviour
             if (Input.GetKey(KeyCode.Tab))
             {
                 myImage.enabled = false;
-                Destroy(this.gameObject);
+                if (Input.GetKey(KeyCode.Tab) && myImage != false)
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
 
@@ -53,7 +60,10 @@ public class TutorialInfo : MonoBehaviour
             if (Input.GetMouseButton(1))
             {
                 myImage.enabled = false;
-                Destroy(this.gameObject);
+                if (Input.GetMouseButton(1) && myImage != false)
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
