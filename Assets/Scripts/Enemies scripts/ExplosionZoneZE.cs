@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ExplosionZoneZE : MonoBehaviour
+using JoostenProductions;
+public class ExplosionZoneZE : OverridableMonoBehaviour
 {
     [Header("Transform")]
     public Transform transformZone;
@@ -12,7 +12,7 @@ public class ExplosionZoneZE : MonoBehaviour
     [Header("Bool")]
     public bool hasCollision = false;
 
-    private void Update()
+    public override void UpdateMe()
     {
         //Sigue la posicion actual del enemigo.
         if (myEnemy.life > 0)

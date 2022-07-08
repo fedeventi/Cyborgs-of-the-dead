@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Guide : MonoBehaviour
+using JoostenProductions;
+public class Guide : OverridableMonoBehaviour
 {
     float movementTolerance=1;
     public Transform destination;
@@ -28,7 +28,7 @@ public class Guide : MonoBehaviour
     public bool Show => _show;
     public Vector3 location => point;
     // Update is called once per frame
-    void Update()
+    public override void UpdateMe()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {

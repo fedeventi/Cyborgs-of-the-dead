@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 using System.Linq;
+using JoostenProductions;
 
-public class BaseEnemy : MonoBehaviour , IPooleable<BaseEnemy>
+public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
 {
     //Variables
     public float life;
@@ -86,6 +87,7 @@ public class BaseEnemy : MonoBehaviour , IPooleable<BaseEnemy>
     }
     public virtual void Awake()
     {
+        
         //Componentes
         player = FindObjectOfType<PlayerModel>();
         deathAction += player.CriticalKill;
@@ -109,8 +111,8 @@ public class BaseEnemy : MonoBehaviour , IPooleable<BaseEnemy>
         //roulette
         roulette = new Roulette();
     }
-   
-    public virtual void Update()
+    
+    public override  void UpdateMe()
     {
 
         if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)

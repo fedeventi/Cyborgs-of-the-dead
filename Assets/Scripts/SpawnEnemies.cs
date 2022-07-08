@@ -14,7 +14,7 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy>
     public float RangeToSpawn;
     public int amount=1;
     public float timeToSpawn=0.3f;
-    
+    Transform player;
 
    
 
@@ -23,6 +23,7 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy>
 
     private void Start()
     {
+        player=FindObjectOfType<PlayerModel>().transform;
         StartCoroutine(Spawn());
     }
 
@@ -37,7 +38,8 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy>
         while (true)
         {
             yield return new WaitForSeconds(timeToSpawn);
-            enemyPool.GetObj();
+            if(Vector3.Distance(player.position, transform.position)< 2500)
+                enemyPool.GetObj();
         }
     }
   

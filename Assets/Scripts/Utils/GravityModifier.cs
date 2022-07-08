@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class GravityModifier : MonoBehaviour
+using JoostenProductions;
+public class GravityModifier : OverridableMonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody rb;
@@ -14,7 +14,7 @@ public class GravityModifier : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    public override void FixedUpdateMe()
     {
         rb.AddForce(Physics.gravity * rb.mass * gravity);
     }

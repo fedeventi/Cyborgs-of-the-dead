@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class DistanceAttackZE : MonoBehaviour
+using JoostenProductions;
+public class DistanceAttackZE : OverridableMonoBehaviour
 {
     public GameObject collision;
     Rigidbody rb;
@@ -18,7 +18,7 @@ public class DistanceAttackZE : MonoBehaviour
        
 
     }
-    void Update()
+    public override void UpdateMe()
     {
         destinyPosition.y=transform.position.y;
         var distance=Vector3.Distance(destinyPosition,transform.position);

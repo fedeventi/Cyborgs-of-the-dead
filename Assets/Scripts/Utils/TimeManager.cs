@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class TimeManager : MonoBehaviour
+using JoostenProductions;
+public class TimeManager : OverridableMonoBehaviour
 {
     public float slowdownFactor=0.05f;
     public float slowdownLenght=2;
@@ -15,7 +15,7 @@ public class TimeManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void UpdateMe()
     {
         if(Time.timeScale < 1)
         {

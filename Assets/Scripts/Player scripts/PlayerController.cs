@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerController : MonoBehaviour
+using JoostenProductions;
+public class PlayerController : OverridableMonoBehaviour
 {
     //ejecuta las funciones del model 
 
@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         guide=GetComponentInChildren<Guide>();
     }
-    public void FixedUpdate()
+    public override void FixedUpdateMe()
+    
     {
        
         if (!canControlPlayer) return;
@@ -52,8 +53,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    
-    private void Update()
+
+    public override void UpdateMe()
     {
         //Movimiento del jugador
         if (guide)
@@ -65,13 +66,7 @@ public class PlayerController : MonoBehaviour
             model.isRunning = false;
         }
 
-        if (canControlPlayer)
-            model.RotationCamera();
-        else
-        {
-            view.MovementAnimation(0, 0);
-            model.LookTowards(guide.location);
-        }
+       
 
 
        
@@ -81,6 +76,16 @@ public class PlayerController : MonoBehaviour
         if(model.isStunned)
         {
             StartCoroutine(model.Stunned());
+        }
+    }
+    public override void LateUpdateMe()
+    {
+        if (canControlPlayer)
+            model.RotationCamera();
+        else
+        {
+            view.MovementAnimation(0, 0);
+            model.LookTowards(guide.location);
         }
     }
 }

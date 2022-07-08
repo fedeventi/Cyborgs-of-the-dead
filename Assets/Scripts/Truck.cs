@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using JoostenProductions;
 
-public class Truck : MonoBehaviour
+public class Truck : OverridableMonoBehaviour
 {
     PlayerModel playerModel;
     float timePressed;
@@ -37,7 +38,7 @@ public class Truck : MonoBehaviour
 
     }
     // Update is called once per frame
-    void Update()
+    public override void UpdateMe()
     {
         if (!finished)
         {
