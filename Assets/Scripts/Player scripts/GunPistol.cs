@@ -85,7 +85,7 @@ public class GunPistol : Weapon
     }
 
 
-    void Update()
+    public override void UpdateMe()
     {
         //Actualiza el texto de la munición.
         if (ammoText != null)
