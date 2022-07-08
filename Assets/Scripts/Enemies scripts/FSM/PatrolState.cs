@@ -17,6 +17,7 @@ public class PatrolState<T> : State<T>
     float randomRange = 500;
     int _currentWaypoint;
     float _distanceTreshold=30;
+    Vector3 _lastMovedPosition;
     List<Vector3> _waypoints=new List<Vector3>();
     public PatrolState(BaseEnemy enemy, EnemyView view)
     {
@@ -39,10 +40,10 @@ public class PatrolState<T> : State<T>
 
         _destination = baseEnemy.transform.position+UnityEngine.Random.insideUnitSphere * randomRange;
         _destination.y = 0;
-
-        Debug.Log("entro al estado de patrol");
         baseEnemy.StartCoroutine(UpdatePath());
         _currentWaypoint = 0;
+
+
 
     }
     void OnPathFound(Vector3[] waypoints, bool onPathSuccesful)
@@ -61,7 +62,7 @@ public class PatrolState<T> : State<T>
         PathRequestManager.RequestPath(new PathRequest(baseEnemy.transform.position,_destination , OnPathFound));
         float sqrMoveThreshold = pathUpdateMoveThreshold * pathUpdateMoveThreshold;
         Vector3 targetPosOld = _destination;
-
+        _lastMovedPosition = baseEnemy.transform.position;
         //while (_updateAlways)
         //{
         //    yield return new WaitForSeconds(minPathUpdateTime);
@@ -77,7 +78,32 @@ public class PatrolState<T> : State<T>
     public override void Execute()
     {
         baseEnemy.waypointsEnemy = _waypoints.ToArray();
+
+        var distance = (baseEnemy.transform.position - _lastMovedPosition).magnitude;
+        if (distance > _distanceTreshold)
+        {
+            _lastMovedPosition = baseEnemy.transform.position;
+            _timerToIdle = 0;
+        }
+        else if (distance < _distanceTreshold && distance>0)
+        {
+            _timerToIdle += Time.deltaTime;
+        }
+        else
+        {
+            _timerToIdle = 0;
+        }
+        if (_timerToIdle > 1.3f)
+        {
+            Debug.Log("Me estoy trabando");
+            _timerToIdle = 0;
+            _destination = baseEnemy.transform.position + UnityEngine.Random.insideUnitSphere * randomRange;
+            _destination.y = 0;
+            baseEnemy.StartCoroutine(UpdatePath());
+            _currentWaypoint = 0;
+        }
         
+
         if(!baseEnemy.isDamage)
         {
             Patrol();
