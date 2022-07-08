@@ -60,7 +60,8 @@ public class WeaponHolder : MonoBehaviour
     //función para activar o desactivar el gameobject de las armas
     void ActivateOrDeactivateGameObject()
     {
-        weaponsCollected[(int)actualWeapon].gameObject.SetActive(true);
+        if(weaponsCollected.Count>(int)actualWeapon)
+            weaponsCollected[(int)actualWeapon].gameObject.SetActive(true);
         weaponImg.sprite = weaponsImagesUI[(int)actualWeapon];
         animator.runtimeAnimatorController = myClips[(int)actualWeapon];
 

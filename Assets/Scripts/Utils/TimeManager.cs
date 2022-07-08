@@ -15,7 +15,7 @@ public class TimeManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void UpdateMe()
+    public void Update()
     {
         if(Time.timeScale < 1)
         {
