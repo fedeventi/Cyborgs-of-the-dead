@@ -31,7 +31,7 @@ public class MeleeWeapon : Weapon
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    public void Update()
     {
         //Actualiza el texto de la munición.
         if (ammoText != null)

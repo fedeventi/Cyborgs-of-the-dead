@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using JoostenProductions;
-public class GasVehicle : OverridableMonoBehaviour
+
+public class GasVehicle : MonoBehaviour
 {
     PlayerModel model;
     public float amount;
@@ -30,7 +30,7 @@ public class GasVehicle : OverridableMonoBehaviour
 
     }
     // Update is called once per frame
-    public override void UpdateMe()
+    public void Update()
     {
         if (!model) return;
         if (amount < required)

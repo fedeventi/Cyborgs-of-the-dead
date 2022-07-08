@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 using System.Linq;
-using JoostenProductions;
 
-public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
+
+public class BaseEnemy : MonoBehaviour, IPooleable<BaseEnemy>
 {
     //Variables
     public float life;
@@ -112,7 +112,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
         roulette = new Roulette();
     }
     
-    public override  void UpdateMe()
+    public void Update()
     {
 
         if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)

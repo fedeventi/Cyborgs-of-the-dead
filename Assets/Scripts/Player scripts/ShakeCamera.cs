@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JoostenProductions;
-public class ShakeCamera : OverridableMonoBehaviour
+public class ShakeCamera : MonoBehaviour
 {
     public float value;
     private Vector3 _lastPosition;
@@ -12,7 +12,7 @@ public class ShakeCamera : OverridableMonoBehaviour
     [Tooltip("Maximum translation that the gameobject can receive when applying the shake effect.")]
     public Vector3 MaximumTranslationShake = Vector3.one * .75f;
 
-    public override void UpdateMe()
+    public  void Update()
     {
         float shake = value;
 

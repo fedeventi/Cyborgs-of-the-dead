@@ -86,7 +86,7 @@ public class Shotgun : Weapon
     }
 
 
-    public override void UpdateMe()
+    public void Update()
     {
         //Actualiza el texto de la munición.
         if(ammoText != null ) 

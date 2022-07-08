@@ -25,10 +25,10 @@ public class HeavyEnemy : BaseEnemy
     {
         base.Awake();
     }
-    public override void UpdateMe()
+    public void Update()
     {
         
-        base.UpdateMe();
+        base.Update();
         //StunAttack();
 
         if (LookingPlayer() && !_checkedCharge && !InRangeToAttack())

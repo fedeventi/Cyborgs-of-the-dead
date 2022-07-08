@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using JoostenProductions;
-public class WeaponHolder : OverridableMonoBehaviour
+public class WeaponHolder : MonoBehaviour
 {
     public Animator animator;
     public List<Weapon> weaponsCollected= new List<Weapon>();
@@ -33,7 +33,7 @@ public class WeaponHolder : OverridableMonoBehaviour
         model = FindObjectOfType<PlayerModel>();
     }
 
-    public override void UpdateMe()
+    public  void Update()
     {
 
 

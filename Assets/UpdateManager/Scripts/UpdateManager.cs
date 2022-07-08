@@ -1,5 +1,5 @@
 ﻿using System;
-
+using UnityEngine;
 /// <summary>
 /// Made by Feiko Joosten
 /// 
@@ -14,30 +14,36 @@
 /// </summary>
 
 namespace JoostenProductions {
-    public class UpdateManager : SingletonBehaviour<UpdateManager> {
+    public class UpdateManager : MonoBehaviour {
         // If someone needs this on scene switch, it'll be recreated. Will have to add proper cleanup support in case this is set to true
-        protected override bool DoNotDestroyOnLoad { get { return false; } }
-
+        //protected override bool DoNotDestroyOnLoad { get { return false; } }
+        public static UpdateManager Instance;
         private static event Action OnUpdateEvent;
         private static event Action OnFixedUpdateEvent;
         private static event Action OnLateUpdateEvent;
 
         private static readonly Type overridableMonoBehaviourType = typeof(OverridableMonoBehaviour);
-
+        public void Awake()
+        {
+            //if(Instance == null)
+            Instance = this;
+            //else
+            //    Destroy(this);
+        }
         public static void SubscribeToUpdate(Action callback) {
-            if(Instance == null) return;
+            if (Instance == null) return;
 
             OnUpdateEvent += callback;
         }
 
         public static void SubscribeToFixedUpdate(Action callback) {
-            if(Instance == null) return;
+            if (Instance == null) return;
 
             OnFixedUpdateEvent += callback;
         }
 
         public static void SubscribeToLateUpdate(Action callback) {
-            if(Instance == null) return;
+            if (Instance == null) return;
 
             OnLateUpdateEvent += callback;
         }
@@ -57,7 +63,7 @@ namespace JoostenProductions {
         public static void AddItem(OverridableMonoBehaviour behaviour) {
             if(behaviour == null) throw new NullReferenceException("The behaviour you've tried to add is null!");
 
-            if(isShuttingDown) return;
+            //if(isShuttingDown) return;
 
             AddItemToArray(behaviour);
         }
@@ -65,7 +71,7 @@ namespace JoostenProductions {
         public static void RemoveSpecificItem(OverridableMonoBehaviour behaviour) {
             if(behaviour == null) throw new NullReferenceException("The behaviour you've tried to remove is null!");
 
-            if(isShuttingDown) return;
+            //if(isShuttingDown) return;
 
             if(Instance != null) RemoveSpecificItemFromArray(behaviour);
         }
@@ -73,7 +79,7 @@ namespace JoostenProductions {
         public static void RemoveSpecificItemAndDestroyComponent(OverridableMonoBehaviour behaviour) {
             if(behaviour == null) throw new NullReferenceException("The behaviour you've tried to remove is null!");
 
-            if(isShuttingDown) return;
+            //if(isShuttingDown) return;
 
             if(Instance != null) RemoveSpecificItemFromArray(behaviour);
 
@@ -83,7 +89,7 @@ namespace JoostenProductions {
         public static void RemoveSpecificItemAndDestroyGameObject(OverridableMonoBehaviour behaviour) {
             if(behaviour == null) throw new NullReferenceException("The behaviour you've tried to remove is null!");
 
-            if(isShuttingDown) return;
+            //if(isShuttingDown) return;
 
             if(Instance != null) RemoveSpecificItemFromArray(behaviour);
 
@@ -110,7 +116,12 @@ namespace JoostenProductions {
         }
 
         private void Update() {
-            if(OnUpdateEvent != null) OnUpdateEvent.Invoke();
+            if (OnUpdateEvent != null)
+            {
+                OnUpdateEvent.Invoke();
+                
+            }
+            
         }
 
         private void FixedUpdate() {
