@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
-public class GasVehicle : MonoBehaviour
+using JoostenProductions;
+public class GasVehicle : OverridableMonoBehaviour
 {
     PlayerModel model;
     public float amount;
@@ -12,9 +12,9 @@ public class GasVehicle : MonoBehaviour
     Action<float, bool> _view;
     public Vector3 interactionPosition;
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class GasVehicle : MonoBehaviour
 
     }
     // Update is called once per frame
-    public void Update()
+    public override void UpdateMe()
     {
         if (!model) return;
         if (amount < required)

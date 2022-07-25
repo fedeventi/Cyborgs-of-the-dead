@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JoostenProductions;
-public class Guide : MonoBehaviour
+public class Guide : OverridableMonoBehaviour
 {
     float movementTolerance=1;
     public Transform destination;
@@ -16,8 +16,8 @@ public class Guide : MonoBehaviour
     bool _show;
     Vector3 point;
     bool _shaderMovement;
-    void Start()
-    {
+    public override void Start()
+    {    base.Start();
         _line.alignment = LineAlignment.TransformZ;
         _material =_line.material;
         _material.SetFloat("_Mask", mask);
@@ -28,7 +28,7 @@ public class Guide : MonoBehaviour
     public bool Show => _show;
     public Vector3 location => point;
     // Update is called once per frame
-    public void Update()
+    public override void UpdateMe()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -36,6 +36,7 @@ public class Guide : MonoBehaviour
             opacity = 1;
             _show =true;
             _shaderMovement = true;
+            StopAllCoroutines();
         }
         if(_shaderMovement)
             mask += Time.deltaTime*3;
@@ -50,13 +51,13 @@ public class Guide : MonoBehaviour
     }
     void Deactivate()
     {
+        StopAllCoroutines();
         if (opacity > 0)
         {
             opacity -= Time.deltaTime;
         }
         else
         {
-            StopAllCoroutines();
             _line.positionCount = 0;
             _shaderMovement = false;
             mask = 0;

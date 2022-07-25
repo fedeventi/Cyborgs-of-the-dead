@@ -8,6 +8,21 @@ public class CinematicScripts : MonoBehaviour
     public List<AudioClip> audioClips = new List<AudioClip>();
     public  AudioSource audioSource;
 
+    public void Start()
+    {
+        
+    }
+    IEnumerator LoadYourAsyncScene()
+    {
+      
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Level");
+
+        
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
     public void StepSound()
     {
         audioSource.PlayOneShot(audioClips[0], 0.1f);
@@ -25,6 +40,7 @@ public class CinematicScripts : MonoBehaviour
 
     public void GoLevel()
     {
-        SceneManager.LoadScene("Level");
+       //SceneManager.LoadScene("Level");
+       StartCoroutine(LoadYourAsyncScene());
     }
 }

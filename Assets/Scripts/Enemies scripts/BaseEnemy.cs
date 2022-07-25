@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 using System.Linq;
+using JoostenProductions;
 
-
-public class BaseEnemy : MonoBehaviour, IPooleable<BaseEnemy>
+public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
 {
     //Variables
     public float life;
@@ -111,8 +111,11 @@ public class BaseEnemy : MonoBehaviour, IPooleable<BaseEnemy>
         //roulette
         roulette = new Roulette();
     }
-    
-    public void Update()
+    public override void Start()
+    {
+        base.Start();
+    }
+    public override void UpdateMe()
     {
 
         if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)
@@ -130,6 +133,7 @@ public class BaseEnemy : MonoBehaviour, IPooleable<BaseEnemy>
         else if(life<=0 && !isDead)
         {
             StartCoroutine(Death());
+            
         }
     }
     //calcula si la distancia es la adecuada para atacar
@@ -325,10 +329,32 @@ public class BaseEnemy : MonoBehaviour, IPooleable<BaseEnemy>
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
         myCollider.enabled = false;
-        StartCoroutine(RecycleCR());
+        StartCoroutine(Dissolve());
         yield break;
     }
-
+    IEnumerator Dissolve()
+    {
+        yield return new WaitForSeconds(3);
+        foreach (var item in ragdollColliders)
+        {
+            item.enabled = false;
+            item.GetComponent<Rigidbody>().isKinematic = true;
+        }
+        yield return new WaitForSeconds(1);
+        enemyView.InstantiatePoolBlood();
+        float seconds = 0;
+        while (seconds<5)
+        {
+            Debug.Log("subiendo")    ;
+            transform.position -= transform.up*10* Time.deltaTime;
+            seconds += Time.deltaTime;
+            yield return null;
+        }
+        if(Recycle!=null)
+            StartCoroutine(RecycleCR());
+        else
+            UpdateManager.RemoveSpecificItemAndDestroyGameObject(this);
+    }
     IEnumerator RecycleCR()
     {
         yield return new WaitForSeconds(3);

@@ -26,8 +26,9 @@ public class MeleeWeapon : Weapon
     public List<AudioClip> clips = new List<AudioClip>();
     AudioSource audioSource;
 
-    private void Start()
+    public void Start()
     {
+        
         audioSource = GetComponent<AudioSource>();
     }
 

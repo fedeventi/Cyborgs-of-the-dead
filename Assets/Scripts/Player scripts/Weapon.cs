@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JoostenProductions;
-public class Weapon : OverridableMonoBehaviour
+public class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
     public Animator animator;
@@ -14,16 +14,13 @@ public class Weapon : OverridableMonoBehaviour
     public int maxAmmo;
     public int currentAmmo;
     public int currentMaxAmmo;
-    void Start()
-    {
-        
-    }
+   
 
     // Update is called once per frame
-    void Update()
-    {
+    //public override void UpdateMe()
+    //{
         
-    }
+    //}
     public virtual void Shoot()
     {
 

@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: de22197595793814cb0b09c22032ddf5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GenericClouds2:
+        m_Texture: {fileID: 2800000, guid: 09450ea7e597106468ca5c0fc7a26463, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 884f2aa570c7ebe4db5db154e40f5c54, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -67,6 +71,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 65397535e4eaf6c47a162bb2bfd966af, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ToonRamp:
         m_Texture: {fileID: 2800000, guid: 094fc33023f4dc24db90ddeee93b0044, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -81,6 +89,9 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Float1: 1
+    - _Float3: 0
+    - _Float4: 10
     - _GlossMapScale: 0
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -103,6 +114,8 @@ Material:
     m_Colors:
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color0: {r: 0.2264151, g: 0.01448152, b: 0.001067998, a: 0}
+    - _Color1: {r: 0.3037051, g: 0.3207547, b: 0.2345141, a: 0}
     - _EmissionColor: {r: 2, g: 2, b: 2, a: 1}
     - _EmissiveColor: {r: 1, g: 0.92539847, b: 0, a: 0}
     - _RimTint: {r: 1, g: 0, b: 0, a: 0}

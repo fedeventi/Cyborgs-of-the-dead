@@ -20,10 +20,10 @@ public class ExplosiveZombie : BaseEnemy
         base.Awake();
     }
 
-    public void Update()
+    public override void UpdateMe()
     {
 
-        base.Update();
+        base.UpdateMe();
 
 
             if (LookingPlayer())

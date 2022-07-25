@@ -1559,6 +1559,8 @@ MonoBehaviour:
   animator: {fileID: 6073526912573224912}
   head: {fileID: 0}
   headExplosion: {fileID: 0}
+  bloodPool: {fileID: 19862378, guid: d0b26f2ad6bee9b4cb19678c4f62f11c, type: 3}
+  hips: {fileID: 6518224179752171593}
   myClips:
   - {fileID: 8300000, guid: bdd5566aaea824e42b97144905ae7604, type: 3}
   - {fileID: 8300000, guid: 8d7b04951f386a24fa9e5dfe461acd8b, type: 3}
@@ -1577,6 +1579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0bedfeb17e4e524c939e76feb0bbdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   life: 100
   dist: 0
   speed: 20

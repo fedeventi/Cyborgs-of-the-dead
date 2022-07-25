@@ -12,6 +12,8 @@ public class EnemyView : MonoBehaviour
     AudioSource audioSource;
     public GameObject head;
     public GameObject headExplosion;
+    public ParticleSystem bloodPool;
+    public Transform hips;
     [Header("Sonidos")]
     public List<AudioClip> myClips = new List<AudioClip>();
     GameObject _lastHeadExplosion;
@@ -31,6 +33,15 @@ public class EnemyView : MonoBehaviour
         animator.SetBool("idle", false);
         animator.SetBool("chasing", false);
         animator.SetBool("distanceAttack", false);
+    }
+    public void InstantiatePoolBlood()
+    {
+        if (bloodPool)
+        {
+            var pool = Instantiate(bloodPool,new Vector3(hips.position.x,transform.position.y+4,hips.position.z) , Quaternion.identity);
+            pool.transform.localScale= Vector3.one*50;
+
+        }
     }
 
     public void ChasingAnimation()

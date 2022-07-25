@@ -66,8 +66,9 @@ public class Shotgun : Weapon
 
     
 
-    void Start()
+    public  void Start()
     {
+        
         model = FindObjectOfType<PlayerModel>();
 
         //Municion al principio del juego.
@@ -86,7 +87,7 @@ public class Shotgun : Weapon
     }
 
 
-    public void Update()
+    public  void Update()
     {
         //Actualiza el texto de la munición.
         if(ammoText != null ) 

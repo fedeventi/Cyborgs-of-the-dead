@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JoostenProductions;
-public class PlayerController : MonoBehaviour
+public class PlayerController : OverridableMonoBehaviour
 {
     //ejecuta las funciones del model 
 
@@ -12,15 +12,16 @@ public class PlayerController : MonoBehaviour
     Rigidbody body;
     Guide guide;
     bool canControlPlayer=true;
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         model = GetComponent<PlayerModel>();
         view = GetComponent<PlayerView>();
         body=GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         guide=GetComponentInChildren<Guide>();
     }
-    public void FixedUpdate()
+    public override void FixedUpdateMe()
     
     {
        
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void Update()
+    public override void UpdateMe()
     {
         //Movimiento del jugador
         if (guide)

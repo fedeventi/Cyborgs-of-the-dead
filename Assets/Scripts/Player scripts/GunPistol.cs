@@ -65,7 +65,7 @@ public class GunPistol : Weapon
 
     
 
-    void Start()
+    public  void Start()
     {
         model = FindObjectOfType<PlayerModel>();
 
@@ -196,7 +196,7 @@ public class GunPistol : Weapon
             model.isShooting = true;
             model.animationShooting = true;
             StartCoroutine(BoolShoot());
-            
+
             ShootSound();
 
             animator.SetTrigger("attack");

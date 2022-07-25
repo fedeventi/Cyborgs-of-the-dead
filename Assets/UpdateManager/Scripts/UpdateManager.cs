@@ -116,6 +116,7 @@ namespace JoostenProductions {
         }
 
         private void Update() {
+            
             if (OnUpdateEvent != null)
             {
                 OnUpdateEvent.Invoke();

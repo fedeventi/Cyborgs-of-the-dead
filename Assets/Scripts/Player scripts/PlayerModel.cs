@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.SceneManagement;
+using JoostenProductions;
 
-public class PlayerModel : MonoBehaviour
+public class PlayerModel : OverridableMonoBehaviour
 {
     //Variables
     //Componentes:
@@ -61,8 +62,9 @@ public class PlayerModel : MonoBehaviour
     
     public Action<bool> interaction;
     public bool IsDead => isDead;
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         //Game Master. Posicion al iniciar el juego.
         gameMaster = FindObjectOfType<GameMaster>();
        
@@ -91,7 +93,7 @@ public class PlayerModel : MonoBehaviour
     {
        
     }
-    private void Update()
+    public override void UpdateMe()
     {
         
         //Recargar los niveles al morir. Inicia en la ultima posición guardada, en relación a los checkpoints.

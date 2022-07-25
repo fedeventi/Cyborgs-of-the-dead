@@ -106,7 +106,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.5700263, y: 0.0000010727017, z: -0.00000020861626}
+  m_ConnectedAnchor: {x: -1.5700247, y: -0.00000004323374, z: -0.000000029802322}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &586792666230036886
 GameObject:
@@ -259,7 +261,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.7022216, y: -0.00000072061084, z: 0.6842913}
+  m_ConnectedAnchor: {x: -0.7022212, y: -0.000000084226485, z: 0.68430436}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -305,6 +307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &677524588961857678
 GameObject:
@@ -525,7 +529,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.6480048, y: 0.16364242, z: 0.007142664}
+  m_ConnectedAnchor: {x: -1.6480055, y: 0.16363455, z: 0.0071450965}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -571,6 +575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &1018463619475567294
 GameObject:
@@ -935,7 +941,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.3849342, y: 0.08614516, z: 0.000015377998}
+  m_ConnectedAnchor: {x: -1.3849361, y: 0.086146116, z: -0.00000011175871}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -981,6 +987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &1785954084134017990
 GameObject:
@@ -1763,6 +1771,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf449892f247e043a0ddf6313389575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   life: 100
   dist: 0
   speed: 25
@@ -1823,6 +1833,8 @@ MonoBehaviour:
   head: {fileID: 751134138556097018}
   headExplosion: {fileID: 7104768906479164596, guid: 9a8b7a039a4341a4b8a052e0a1a650ae,
     type: 3}
+  bloodPool: {fileID: 19893824, guid: c6de9c3e430816d40aedcaaf84000975, type: 3}
+  hips: {fileID: 3623950094028550455}
   myClips:
   - {fileID: 8300000, guid: a326442829b365a4fb381352725024dd, type: 3}
   - {fileID: 8300000, guid: 8e7371b657d367d4b8d4bce3331b9b09, type: 3}
@@ -1925,7 +1937,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.99931526, y: 0.000003196299, z: -0.00000311434}
+  m_ConnectedAnchor: {x: -0.9993008, y: 0.00000035762787, z: -0.0000011250366}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1971,6 +1983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &4787424973206296282
 GameObject:
@@ -2111,6 +2125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &5113339271773690545
 GameObject:
@@ -2375,7 +2391,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.7022209, y: -0.0000008556526, z: -0.6842957}
+  m_ConnectedAnchor: {x: -0.70222193, y: 0.000000077765435, z: -0.68430436}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2421,6 +2437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &5809896547948607496
 GameObject:
@@ -2722,7 +2740,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.5700251, y: -0.000008020201, z: -0.000006854534}
+  m_ConnectedAnchor: {x: -1.5700244, y: 0.000000055792043, z: 0.000000059604645}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2768,6 +2786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &8641779767511086571
 GameObject:
@@ -2845,7 +2865,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000010728836, y: 0.0000021940543, z: -0.37341538}
+  m_ConnectedAnchor: {x: 0.00000011920929, y: 0.0000000035841516, z: -0.3734214}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2891,6 +2911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &8648694801444929805
 GameObject:
@@ -2968,7 +2990,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000013113022, y: 0.0000021272826, z: 0.37341222}
+  m_ConnectedAnchor: {x: 0.00000035762787, y: -0.000000003584148, z: 0.37342146}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3014,6 +3036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &8803314812507570978
 GameObject:
@@ -3091,7 +3115,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.99931526, y: -0.0000057816505, z: 0.0000041946814}
+  m_ConnectedAnchor: {x: -0.9993012, y: -0.00000014901161, z: 0.0000009089718}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -3137,4 +3161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20

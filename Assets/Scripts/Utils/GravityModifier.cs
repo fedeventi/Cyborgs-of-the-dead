@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JoostenProductions;
-public class GravityModifier : MonoBehaviour
+public class GravityModifier : OverridableMonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody rb;
     [Range(0,100)]
     public float gravity;
-    void Start()
+    public override void Start()
     {
+        //base.Start();
         rb = GetComponent<Rigidbody>();
     }
 

@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &320814230971911977
 GameObject:
@@ -245,6 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &494276661494031488
 GameObject:
@@ -451,6 +455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &1049192153504685493
 GameObject:
@@ -574,6 +580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &1338619543859574719
 GameObject:
@@ -967,6 +975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &3678077584629046500
 GameObject:
@@ -1236,6 +1246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &4220497162409376828
 GameObject:
@@ -1958,6 +1970,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf449892f247e043a0ddf6313389575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   life: 100
   dist: 0
   speed: 25
@@ -2015,6 +2029,8 @@ MonoBehaviour:
   head: {fileID: 5048578960174730072}
   headExplosion: {fileID: 7104768906479164596, guid: 9a8b7a039a4341a4b8a052e0a1a650ae,
     type: 3}
+  bloodPool: {fileID: 19893824, guid: c6de9c3e430816d40aedcaaf84000975, type: 3}
+  hips: {fileID: 4955076444787191183}
   myClips:
   - {fileID: 8300000, guid: bdd5566aaea824e42b97144905ae7604, type: 3}
   - {fileID: 8300000, guid: 8e7371b657d367d4b8d4bce3331b9b09, type: 3}
@@ -2163,6 +2179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &5862125334214955145
 GameObject:
@@ -2620,6 +2638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &7180372408995402335
 GameObject:
@@ -3265,6 +3285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &8758302476235431700
 GameObject:
@@ -3503,6 +3525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &9066108583815818625
 GameObject:
@@ -3686,6 +3710,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addOnEnable: 1
+  removeOnDisable: 1
   gravity: 20
 --- !u!1 &9218342506327481398
 GameObject:

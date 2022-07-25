@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JoostenProductions;
-public class TimeManager : MonoBehaviour
+public class TimeManager : OverridableMonoBehaviour
 {
     public float slowdownFactor=0.05f;
     public float slowdownLenght=2;
@@ -10,12 +10,12 @@ public class TimeManager : MonoBehaviour
     float fixedDeltaTime;
     bool _isSlowmo;
     // Start is called before the first frame update
-    void Start()
-    {
+    public override void Start()
+    {base.Start();
     }
 
     // Update is called once per frame
-    public void Update()
+    public override void UpdateMe()
     {
         if(Time.timeScale < 1)
         {

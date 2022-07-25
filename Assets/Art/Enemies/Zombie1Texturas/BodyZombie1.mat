@@ -51,6 +51,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 3a54c20418beabe49b6b3418e8b016cd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GenericClouds2:
+        m_Texture: {fileID: 2800000, guid: 09450ea7e597106468ca5c0fc7a26463, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 2037c97f7c178394f8d9389d9328ffde, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -79,6 +83,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 363da44f7bc5bd94289b82212f6f2072, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 09450ea7e597106468ca5c0fc7a26463, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ToonRamp:
         m_Texture: {fileID: 2800000, guid: 094fc33023f4dc24db90ddeee93b0044, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -94,6 +102,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissionAmount: 3.56
+    - _Float1: 0.36266804
+    - _Float3: 0.10771902
+    - _Float4: 10
     - _GlossMapScale: 0
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -118,6 +129,8 @@ Material:
     m_Colors:
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color0: {r: 0.2264151, g: 0.014481517, b: 0.0010679982, a: 0}
+    - _Color1: {r: 0.30370507, g: 0.3207547, b: 0.23451406, a: 0}
     - _EmissionColor: {r: 5.992157, g: 5.992157, b: 5.992157, a: 1}
     - _EmissiveColor: {r: 1, g: 0.8441375, b: 0, a: 0}
     - _RimTint: {r: 1, g: 0.559062, b: 0, a: 0}

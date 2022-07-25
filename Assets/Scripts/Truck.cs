@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using JoostenProductions;
 
-public class Truck : MonoBehaviour
+public class Truck : OverridableMonoBehaviour
 {
     PlayerModel playerModel;
     float timePressed;
@@ -19,8 +19,8 @@ public class Truck : MonoBehaviour
     AudioSource audioSource;
     public List<AudioClip> clips = new List<AudioClip>();
     public Vector3 interactionPosition;
-    void Start()
-    {
+    public override void Start()
+    {   base.Start();
         _animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         startPosition = transform.position;
@@ -38,7 +38,7 @@ public class Truck : MonoBehaviour
 
     }
     // Update is called once per frame
-    public  void Update()
+    public override void UpdateMe()
     {
         if (!finished)
         {
