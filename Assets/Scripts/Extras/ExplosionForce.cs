@@ -34,15 +34,16 @@ public class ExplosionForce : MonoBehaviour
             //sonido de los vidrios rompiendose 
             if(audioSource != null)
                 audioSource.PlayOneShot(audioSource.clip);
+         
             foreach (var item in obj.glasses)
             {
                 var rb = item.gameObject.GetComponent<Rigidbody>();
 
                 rb.AddExplosionForce(500000, transform.position + transform.forward * 10, 60);
-                
+         
 
             }
-            Destroy(obj.gameObject);
+         
         }
         
     }

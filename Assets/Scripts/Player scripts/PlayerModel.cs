@@ -6,7 +6,7 @@ using System;
 using UnityEngine.SceneManagement;
 using JoostenProductions;
 
-public class PlayerModel : OverridableMonoBehaviour
+public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 {
     //Variables
     //Componentes:
@@ -15,7 +15,7 @@ public class PlayerModel : OverridableMonoBehaviour
     public GameObject body;
     [Header("Camara")]
     public Camera myCamera;
-
+    public GameObject sickEffect;
     //Movimiento:
     [Header("Movimiento")]
     public bool isRunning = false;
@@ -35,8 +35,7 @@ public class PlayerModel : OverridableMonoBehaviour
     [Header("Stunned")]
     public bool isStunned = false;
 
-    //Game Master
-    GameMaster gameMaster;
+
     //Scene
     Scene actualScene;
 
@@ -59,15 +58,15 @@ public class PlayerModel : OverridableMonoBehaviour
     public bool hasPickUpShotgun = false;
     public float Gas;
     public TimeManager timeManager;
-    
     public Action<bool> interaction;
-    public bool IsDead => isDead;
+    CheckpointDataPlayer _checkpointData;
+    public bool IsDead { get { return isDead; }set { isDead = false; } }
     public override void Start()
     {
         base.Start();
         //Game Master. Posicion al iniciar el juego.
-        gameMaster = FindObjectOfType<GameMaster>();
-       
+
+        
         //Escena actual.
         actualScene = SceneManager.GetActiveScene();
 
@@ -79,7 +78,7 @@ public class PlayerModel : OverridableMonoBehaviour
         weaponHolder = FindObjectOfType<WeaponHolder>();
 
         //Variables
-        life = 100;
+        //life = 100;
         lifeSlow = 100;
 
         //
@@ -120,6 +119,9 @@ public class PlayerModel : OverridableMonoBehaviour
     {
         if(toxicity>25)
             StartCoroutine(view.ToxicitySound());
+        if(sickEffect!=null)
+            sickEffect.GetComponent<InfiniteMovement>().blend = toxicity > 50 ? toxicity / 100 : 0;
+
 
         if (toxicity > 50 && toxicity < 80)
         {
@@ -131,10 +133,9 @@ public class PlayerModel : OverridableMonoBehaviour
             {
                 toxicityImprovementsRandom = true;
 
-                var r = UnityEngine.Random.Range(0, 100);
+                
 
-                if (r <= 50)
-                {
+              
                     
                    
                     increaseDamage = true;
@@ -146,15 +147,8 @@ public class PlayerModel : OverridableMonoBehaviour
                     {
                         weaponHolder.weaponsCollected[1].GetComponent<GunPistol>().damage *= 2;
                     }
-                }
-                if (r > 50)
-                {
-                    
-
-                    speed = normalSpeed * 2f;
-                    runSpeed = speed * 2f;
-                }
-                view.ChangeSprite(increaseDamage ? 1 : 2);
+               
+                view.ChangeSprite(increaseDamage ? 1 : 0);
             }
 
 
@@ -257,6 +251,7 @@ public class PlayerModel : OverridableMonoBehaviour
     {
         var hCamera = 120 * Input.GetAxis("Mouse X") * Time.deltaTime;
         var vCamera = Mathf.Clamp(Input.GetAxis("Mouse Y") * Time.deltaTime * 120,-20,20);
+
         transform.Rotate(0, hCamera, 0);
         myCamera.transform.Rotate(-vCamera, 0, 0);
         if (myCamera.transform.localRotation.x > 0.7f)
@@ -271,7 +266,24 @@ public class PlayerModel : OverridableMonoBehaviour
             auxRotation.x = -0.7f;
             myCamera.transform.localRotation = auxRotation;
         }
+        else
+            if (sickEffect != null)
+            sickEffect.transform.RotateAround(myCamera.transform.position, myCamera.transform.right, -vCamera);
 
+        if (sickEffect != null)
+        {
+            
+            var _rotation = Quaternion.LookRotation((sickEffect.GetComponent<InfiniteMovement>().GetDir() 
+                                            - myCamera.transform.position), myCamera.transform.up);
+            var _vrotation = _rotation.eulerAngles;
+            _vrotation.z = 0;
+
+            _rotation=Quaternion.Euler(_vrotation);
+
+            myCamera.transform.rotation = _rotation;
+
+        }
+            
 
     }
     public void LookTowards(Vector3 position)
@@ -365,4 +377,45 @@ public class PlayerModel : OverridableMonoBehaviour
         //}
     }
 
+    public void Save()
+    {
+        _checkpointData = new CheckpointDataPlayer().SetPositionAndRotation(transform.position,transform.rotation);
+    }
+
+    public void Restore()
+    {
+        if (_checkpointData != null)
+            _checkpointData.RestoreData(this);
+         
+        
+    }
+}
+public class CheckpointDataPlayer
+{
+    Vector3 _position;
+    Quaternion _rotation;
+    float _life=100;
+    float _toxicity=0;
+    
+    public CheckpointDataPlayer SetPositionAndRotation(Vector3 position,Quaternion rotation)
+    {
+        _position = position;
+        _rotation = rotation;
+        return this;
+    }
+    public CheckpointDataPlayer SetLifeAndToxicity(float life, float toxicity)
+    {
+        _life = life;
+        _toxicity = toxicity;
+        return this;
+    }
+    public void RestoreData(PlayerModel player)
+    {
+        player.transform.position = _position;
+        player.transform.rotation = _rotation;
+        player.life = _life;
+        player.toxicity = _toxicity;
+        player.IsDead = false;
+        player.myCamera.transform.rotation = _rotation;
+    }
 }

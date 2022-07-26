@@ -111,13 +111,7 @@ public class MeleeWeapon : Weapon
         {
             var _myParticle = Instantiate(particle, myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
             
-            var obj = other.GetComponent<BreakGlass>();
-            if (obj == null) return;
-            obj.ReplaceGlass();
-            //sonido de los vidrios rompiendose 
-            if(audioSource!=null)
-                audioSource.PlayOneShot(clips[2]);
-            Destroy(obj.gameObject);
+
         }
     }
     void OnDrawGizmos()
