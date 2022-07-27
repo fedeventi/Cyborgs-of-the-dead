@@ -6,9 +6,11 @@ public class Checkpoint : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<GameObject> objects = new List<GameObject>();
+    Collider collider;
     void Start()
     {
-        Save();
+        
+        collider=GetComponent<Collider>();
     }
     void Update()
     {
@@ -32,6 +34,24 @@ public class Checkpoint : MonoBehaviour
             if (chk != null)
                 chk.Restore();
         }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 10)
+        {
+            CheckpointManager.instance.currentCheckpoint=GetCheckpointIndex();
+            CheckpointManager.instance.Save();
+            collider.enabled = false;
+        }
+    }
+    int GetCheckpointIndex()
+    {
+        for (int i = 0; i < CheckpointManager.instance.checkpoints.Count; i++)
+        {
+            if (CheckpointManager.instance.checkpoints[i] == this)
+                return i;
+        }
+        return 0;
     }
     // Update is called once per frame
 }

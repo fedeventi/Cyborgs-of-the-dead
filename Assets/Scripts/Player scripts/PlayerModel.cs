@@ -94,10 +94,11 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     }
     public override void UpdateMe()
     {
-        
+        if(Input.GetKeyDown(KeyCode.F12))
+            CheckpointManager.instance.Restore();
         //Recargar los niveles al morir. Inicia en la ultima posición guardada, en relación a los checkpoints.
-      
-        if(!IsDead)
+
+        if (!IsDead)
             view.LowLife(life);
         //Muerte 
         if (life <= 0)
@@ -388,7 +389,8 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
     public void Save()
     {
-        _checkpointData = new CheckpointDataPlayer().SetPositionAndRotation(transform.position,transform.rotation).SetSickEffect(sickEffect.transform.position);
+        _checkpointData = new CheckpointDataPlayer().SetPositionAndRotation(CheckpointManager.instance.checkpoints[CheckpointManager.instance.currentCheckpoint].transform.position,
+                          CheckpointManager.instance.checkpoints[CheckpointManager.instance.currentCheckpoint].transform.rotation);
     }
 
     public void Restore()
@@ -431,7 +433,7 @@ public class CheckpointDataPlayer
         player.toxicity = _toxicity;
         player.IsDead = false;
         player.myCamera.transform.rotation = _rotation;
-        player.sickEffect.transform.position = _sickEffectPosition;
+        player.sickEffect.transform.position = player.myCamera.transform.position+player.myCamera.transform.forward*100;
         
     }
 }
