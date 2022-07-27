@@ -20,9 +20,9 @@ public class SceneWeapons : MonoBehaviour
         {
             audioSource.Play();
             var poket = other.GetComponentInChildren<WeaponHolder>();
-            poket.weaponsCollected.Add(poket.allWeapons[(int)WeaponType]);
+            poket.weaponsCollected[(int)WeaponType] =poket.allWeapons[(int)WeaponType];
             poket.actualWeapon = WeaponType;
-            Destroy(gameObject, 0.2f);
+            gameObject.SetActive(false);
         }
         
     }

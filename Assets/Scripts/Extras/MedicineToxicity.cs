@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MedicineToxicity : MonoBehaviour
+public class MedicineToxicity : MonoBehaviour , ICheckpoint
 {
     PlayerModel player;
 
@@ -71,13 +71,15 @@ public class MedicineToxicity : MonoBehaviour
 
         if(collision.gameObject.tag =="Player" && this.gameObject.tag == "MedicineObject")
         {
-            if(ps!=null)
+            if (ps != null)
+            {
+                ps.transform.position = transform.position + Vector3.up * 10;
                 ps.Play();
+            }
             player.toxicity = 0;
             audioSource.Play();
-            Destroy(gameObject, 0.5f);
-            if (ps != null)
-                Destroy(ps, 2);
+            gameObject.SetActive(false);
+           
         }
     }
 
@@ -117,5 +119,15 @@ public class MedicineToxicity : MonoBehaviour
     {
         if (ps != null)
             ps.Play();
+    }
+
+    public void Save()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Restore()
+    {
+        gameObject.SetActive(true);
     }
 }

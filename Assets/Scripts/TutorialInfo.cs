@@ -5,26 +5,36 @@ using UnityEngine.UI;
 
 public class TutorialInfo : MonoBehaviour
 {
-    public Image myImage;
+    public Image[] images;
     public int myZone;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag=="Player")
-        {
-            myImage.enabled = true;
-        }
+        
 
     }
 
     private void Update()
     {
-        if(myZone==0)
+
+        
+            foreach (var item in images)
+            {
+                item.enabled = false;
+            }
+
+            if(myZone<images.Length)
+                images[myZone].enabled = true;
+            
+
+
+        if (myZone==0)
         {
             if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
             {
-                myImage.enabled = false;
-                Destroy(this.gameObject);
+                myZone = 1;
+               
+
             }
                 
                 
@@ -32,13 +42,10 @@ public class TutorialInfo : MonoBehaviour
 
         if(myZone==1)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0))
             {
-                myImage.enabled = false;
-                if(Input.GetKey(KeyCode.LeftShift) && myImage != false)
-                {
-                    Destroy(this.gameObject);
-                }
+                myZone = 2;
+                
                
             }
         }
@@ -47,23 +54,17 @@ public class TutorialInfo : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Tab))
             {
-                myImage.enabled = false;
-                if (Input.GetKey(KeyCode.Tab) && myImage != false)
-                {
-                    Destroy(this.gameObject);
-                }
+                myZone = 3;
+               
             }
         }
 
         if (myZone == 3)
         {
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButtonDown(0))
             {
-                myImage.enabled = false;
-                if (Input.GetMouseButton(1) && myImage != false)
-                {
-                    Destroy(this.gameObject);
-                }
+                myZone = 4;
+                
             }
         }
     }

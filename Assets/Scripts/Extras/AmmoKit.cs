@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoKit : MonoBehaviour
+public class AmmoKit : MonoBehaviour , ICheckpoint
 {
     PlayerModel player;
 
@@ -23,12 +23,13 @@ public class AmmoKit : MonoBehaviour
 
             if(ps != null)
             {
+                ps.transform.position = transform.position;
                 ps.Play();
             }
 
-            if (player.weaponHolder.weaponsCollected.Count > 1)
+            if (player.weaponHolder.weaponsCollected.Length > 1)
             {
-                for (int i = 1; i < player.weaponHolder.weaponsCollected.Count; i++)
+                for (int i = 1; i < player.weaponHolder.weaponsCollected.Length; i++)
                 {
                     player.weaponHolder.weaponsCollected[i].GetComponent<Weapon>().currentMaxAmmo += ammoByWeapon[i];
 
@@ -36,11 +37,18 @@ public class AmmoKit : MonoBehaviour
                 
             }
            
-            Destroy(gameObject, 0.2f);
-            if (ps != null)
-            {
-                Destroy(ps, 2);
-            }
+            gameObject.SetActive(false);
+            
         }
+    }
+
+    public void Save()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Restore()
+    {
+        gameObject.SetActive(true);
     }
 }

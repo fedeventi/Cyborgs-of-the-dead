@@ -7,7 +7,7 @@ using JoostenProductions;
 public class WeaponHolder : MonoBehaviour
 {
     public Animator animator;
-    public List<Weapon> weaponsCollected= new List<Weapon>();
+    public Weapon[] weaponsCollected = new Weapon[3];
     public Weapon[] allWeapons;
     public WeaponType actualWeapon = 0;
     public Image weaponImg;
@@ -48,7 +48,8 @@ public class WeaponHolder : MonoBehaviour
         if (!model.isShooting && !model.isReloading)
         {
             ChangingWeapon();
-            ActivateOrDeactivateGameObject();
+            if(weaponsCollected[(int)actualWeapon]!=null)
+                ActivateOrDeactivateGameObject();
         }
 
 
@@ -60,17 +61,18 @@ public class WeaponHolder : MonoBehaviour
     //función para activar o desactivar el gameobject de las armas
     void ActivateOrDeactivateGameObject()
     {
-        if(weaponsCollected.Count>(int)actualWeapon)
+        
+        if(weaponsCollected.Length>(int)actualWeapon)
             weaponsCollected[(int)actualWeapon].gameObject.SetActive(true);
         weaponImg.sprite = weaponsImagesUI[(int)actualWeapon];
         animator.runtimeAnimatorController = myClips[(int)actualWeapon];
 
-        for (int i = 0; i < weaponsCollected.Count; i++)
+        for (int i = 0; i < weaponsCollected.Length; i++)
         {
             if (i != (int)actualWeapon)
             {
-                
-                weaponsCollected[i].gameObject.SetActive(false);
+                if(weaponsCollected[i]!=null)
+                    weaponsCollected[i].gameObject.SetActive(false);
                 
             }
         }
@@ -78,21 +80,30 @@ public class WeaponHolder : MonoBehaviour
     //funcion para cambiar las armas con la ruedita 
     void ChangingWeapon()
     {
-        if (weaponsCollected.Count < 1) return;
+        if (weaponsCollected.Length < 1) return;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            if((int)actualWeapon<weaponsCollected.Count-1)
+            if ((int)actualWeapon < weaponsCollected.Length - 1)
+            {
                 actualWeapon += 1;
+                if (weaponsCollected[(int)actualWeapon] == null)
+                    actualWeapon += 1;
+            }
             else
                 actualWeapon = 0;
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             if (actualWeapon > 0)
+            {
                 actualWeapon -= 1;
+                if (weaponsCollected[(int)actualWeapon] == null)
+                    actualWeapon -= 1;
+
+            }
             else
-                actualWeapon = (WeaponType)weaponsCollected.Count -1;
+                actualWeapon = (WeaponType)weaponsCollected.Length -1;
         }
         
     }

@@ -83,7 +83,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
         //
         toxicityText.enabled = false;
-        StartCoroutine(Death());
+        
         //
         normalSpeed = speed;
         runSpeed = speed * 2;
@@ -356,7 +356,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     {
 
         
-        yield return new WaitForSeconds(5f);
+        
         isDead = true;
         view.DeathFeedback();
         speed = 0;

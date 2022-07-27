@@ -256,7 +256,7 @@ public class Shotgun : Weapon
 
                 }
                 //el hit es la explosion del enemigo explosivo
-                
+                SpawnLineRenderer(hit.point);
 
 
             }
@@ -264,7 +264,7 @@ public class Shotgun : Weapon
         
         myCamera.GetComponent<ShakeCamera>().ActivateShake(shake);
         Recoil();
-        SpawnLineRenderer(hit.point);
+        
     }
 
     //funcion para los fragmentos de vidrios de las barricadas
