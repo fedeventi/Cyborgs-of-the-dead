@@ -83,7 +83,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
         //
         toxicityText.enabled = false;
-
+        StartCoroutine(Death());
         //
         normalSpeed = speed;
         runSpeed = speed * 2;
@@ -217,6 +217,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     //Movimiento del jugador.
     public void Move(float axisHorizontal, float axisVertical)
     {
+        if (isDead) return;
         Vector3 movement = (transform.right * axisHorizontal + transform.forward * axisVertical).normalized;
         _directionDebug = movement;
         rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
@@ -230,6 +231,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     }
     public void Run(float axisHorizontal, float axisVertical)
     {
+        if (isDead) return;
         Vector3 movement = (transform.right * axisHorizontal + transform.forward * axisVertical).normalized;
         if(movement.magnitude<=0) isRunning = false;
         _directionDebug = movement;
@@ -249,6 +251,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     //Movimiento de la camara
     public void RotationCamera()
     {
+        if (isDead) return;
         var hCamera = 120 * Input.GetAxis("Mouse X") * Time.deltaTime;
         var vCamera = Mathf.Clamp(Input.GetAxis("Mouse Y") * Time.deltaTime * 120,-20,20);
 
@@ -270,24 +273,25 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
             if (sickEffect != null)
             sickEffect.transform.RotateAround(myCamera.transform.position, myCamera.transform.right, -vCamera);
 
-        if (sickEffect != null)
+        if (sickEffect != null && !isDead)
         {
-            
-            var _rotation = Quaternion.LookRotation((sickEffect.GetComponent<InfiniteMovement>().GetDir() 
+
+            var _rotation = Quaternion.LookRotation((sickEffect.GetComponent<InfiniteMovement>().GetDir()
                                             - myCamera.transform.position), myCamera.transform.up);
             var _vrotation = _rotation.eulerAngles;
             _vrotation.z = 0;
 
-            _rotation=Quaternion.Euler(_vrotation);
+            _rotation = Quaternion.Euler(_vrotation);
 
             myCamera.transform.rotation = _rotation;
 
         }
-            
+
 
     }
     public void LookTowards(Vector3 position)
     {
+        if (isDead) return;
         position.y=transform.position.y;
         transform.forward = Vector3.Slerp(transform.forward, position - transform.position, Time.deltaTime * 1.5f);
     }
@@ -350,13 +354,18 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     //Muerte
     IEnumerator Death()
     {
+
+        
+        yield return new WaitForSeconds(5f);
         isDead = true;
         view.DeathFeedback();
         speed = 0;
         runSpeed = 0;
         //audioSource.PlayOneShot(myClips[0]);
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        yield return new WaitForSeconds(1.5f);
+        view.blink.DoBlink();
+        yield return new WaitForSeconds(1f);
+        CheckpointManager.instance.Restore();
     }
 
     //llamo a la funcion de disparo, para llamarla en la animacion 
@@ -379,15 +388,15 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
     public void Save()
     {
-        _checkpointData = new CheckpointDataPlayer().SetPositionAndRotation(transform.position,transform.rotation);
+        _checkpointData = new CheckpointDataPlayer().SetPositionAndRotation(transform.position,transform.rotation).SetSickEffect(sickEffect.transform.position);
     }
 
     public void Restore()
     {
         if (_checkpointData != null)
             _checkpointData.RestoreData(this);
-         
-        
+        view.animator.SetBool("Death", false);
+        view.blink.DoUnBlink();
     }
 }
 public class CheckpointDataPlayer
@@ -396,11 +405,16 @@ public class CheckpointDataPlayer
     Quaternion _rotation;
     float _life=100;
     float _toxicity=0;
-    
+    Vector3 _sickEffectPosition;
     public CheckpointDataPlayer SetPositionAndRotation(Vector3 position,Quaternion rotation)
     {
         _position = position;
         _rotation = rotation;
+        return this;
+    }
+    public CheckpointDataPlayer SetSickEffect(Vector3 position)
+    {
+        _sickEffectPosition = position;
         return this;
     }
     public CheckpointDataPlayer SetLifeAndToxicity(float life, float toxicity)
@@ -417,5 +431,7 @@ public class CheckpointDataPlayer
         player.toxicity = _toxicity;
         player.IsDead = false;
         player.myCamera.transform.rotation = _rotation;
+        player.sickEffect.transform.position = _sickEffectPosition;
+        
     }
 }

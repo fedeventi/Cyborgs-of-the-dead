@@ -43,7 +43,7 @@ public class PlayerView : MonoBehaviour
     //
     public AnimatorOverrideController deathController;
     bool changeHitSound = false;
-
+    public Blink blink;
     public Slider interaction;
     private void Start()
     {
@@ -51,6 +51,8 @@ public class PlayerView : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         model = GetComponent<PlayerModel>();
         ResetCasco();
+        if(blink != null)
+            blink.DoUnBlink();
     }
 
     private void Update()

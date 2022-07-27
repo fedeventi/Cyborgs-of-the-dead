@@ -25,4 +25,12 @@ public class CheckpointManager : MonoBehaviour
     {
         
     }
+    public void Save()
+    {
+        checkpoints[currentCheckpoint].Save();
+    }
+    public void Restore()
+    {
+        checkpoints[currentCheckpoint].Restore();
+    }
 }

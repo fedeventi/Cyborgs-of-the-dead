@@ -12,8 +12,7 @@ public class Checkpoint : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-            Restore();
+       
     }
 
     public void Save()

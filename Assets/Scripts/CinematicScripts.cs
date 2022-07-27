@@ -7,10 +7,18 @@ public class CinematicScripts : MonoBehaviour
 {
     public List<AudioClip> audioClips = new List<AudioClip>();
     public  AudioSource audioSource;
-
+    public Blink blink;
     public void Start()
     {
         
+    }
+    public void Blink()
+    {
+        blink.DoBlink();
+    }
+    public void UnBlink()
+    {
+        blink.DoUnBlink();
     }
     IEnumerator LoadYourAsyncScene()
     {

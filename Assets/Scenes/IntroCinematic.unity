@@ -15294,7 +15294,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17999,8 +17999,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a2f07a30f312c4e8acee56355f2b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
   animator: {fileID: 0}
   collisionMask:
     serializedVersion: 2
@@ -21558,6 +21556,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9d1ebc5c154e21049ae60e97a5ed786c, type: 3}
   - {fileID: 8300000, guid: 0213200349ea6ac479980c9f31fbf1a8, type: 3}
   audioSource: {fileID: 1304794987}
+  blink: {fileID: 1911799217}
 --- !u!54 &1304794985
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25175,7 +25174,7 @@ RectTransform:
   m_Father: {fileID: 1911799215}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.49813733}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -32383,6 +32382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911799215}
   - component: {fileID: 1911799216}
+  - component: {fileID: 1911799217}
   m_Layer: 10
   m_Name: blink
   m_TagString: Untagged
@@ -32430,6 +32430,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1911799217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911799214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b44dbb1591be2d41bc5b68f2ddf2406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1912468923
 GameObject:
   m_ObjectHideFlags: 0
