@@ -21,6 +21,7 @@ public class SceneWeapons : MonoBehaviour
             audioSource.Play();
             var poket = other.GetComponentInChildren<WeaponHolder>();
             poket.weaponsCollected[(int)WeaponType] =poket.allWeapons[(int)WeaponType];
+            Debug.Log("agarro arma");
             poket.actualWeapon = WeaponType;
             gameObject.SetActive(false);
         }
