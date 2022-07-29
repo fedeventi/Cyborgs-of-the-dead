@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using JoostenProductions;
 
-public class Truck : OverridableMonoBehaviour
+public class Truck : OverridableMonoBehaviour ,ICheckpoint
 {
     PlayerModel playerModel;
     float timePressed;
@@ -119,5 +119,17 @@ public class Truck : OverridableMonoBehaviour
     public void MovingSound()
     {
         audioSource.PlayOneShot(clips[1]);
+    }
+
+    public void Save()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Restore()
+    {
+        finished = false;
+        transform.position = startPosition;
+        _animator.SetFloat("Movement", 0);
     }
 }

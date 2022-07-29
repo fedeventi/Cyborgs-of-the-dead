@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using JoostenProductions;
 
-public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
+public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheckpoint
 {
     //Variables
     public float life;
@@ -78,7 +78,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
     float timerRoulette = 0;
     [Header("RAGDOLL")]
     public List<Collider> ragdollColliders = new List<Collider>();
-    
+    protected EnemySaveData _saveData;
     public BaseEnemy SetRecycleAction(Action<BaseEnemy> action)
     {
         Recycle += action;
@@ -280,9 +280,11 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
 
         patrol.AddTransition("Idle", idle); //Va de patrol a idle
         patrol.AddTransition("Chase", chase); //Va de patrol a chase
+        patrol.AddTransition("Idle", idle); //Va de patrol a chase
 
         attack.AddTransition("Chase", chase); //Va de attack a chase
         attack.AddTransition("Patrol", patrol);
+        attack.AddTransition("Idle", idle);
         chase.AddTransition("Attack", attack); //Va de chase a attack
         chase.AddTransition("Idle", idle); //Va de chase a idle
         chase.AddTransition("Patrol", patrol);
@@ -334,14 +336,14 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
     }
     IEnumerator Dissolve()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
+        enemyView.CreatePoolBlood();
+        yield return new WaitForSeconds(5);
         foreach (var item in ragdollColliders)
         {
             item.enabled = false;
             item.GetComponent<Rigidbody>().isKinematic = true;
         }
-        yield return new WaitForSeconds(1);
-        enemyView.InstantiatePoolBlood();
         float seconds = 0;
         while (seconds<5)
         {
@@ -353,7 +355,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
         if(Recycle!=null)
             StartCoroutine(RecycleCR());
         else
-            UpdateManager.RemoveSpecificItemAndDestroyGameObject(this);
+            gameObject.SetActive(false);
     }
     IEnumerator RecycleCR()
     {
@@ -361,28 +363,36 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
         if (Recycle != null)
         {
             transform.position = _initialPosition;
-            fsm.GetState();
-            life = _initialLife;
-            speed = _initialSpeed;
-            
-            enemyView.SetAnimator(true);
-            Destroy(enemyView.lastHeadExplosion);
-            enemyView.head.SetActive(true);
-            meleeAttack.gameObject.SetActive(true);
-            isDead = false;
-            foreach (var item in ragdollColliders)
-            {
-                if (item.tag == "headshot") continue;
-                item.enabled = false;
-                item.GetComponent<Rigidbody>().isKinematic = true;
-            }
-            rb.isKinematic = false;
-            myCollider.enabled = true;
-            Recycle(this);
+            //fsm.GetState();
+            Reset();
+            if(Recycle != null)
+                Recycle.Invoke(this);
             
         }
     }
-
+    public void Reset()
+    {
+        
+        life = _initialLife;
+        speed = _initialSpeed;
+        enemyView.DestroyPoolBlood();
+        
+        enemyView.SetAnimator(true);
+        Destroy(enemyView.lastHeadExplosion);
+        if(enemyView.head)
+            enemyView.head.SetActive(true);
+        meleeAttack.gameObject.SetActive(true);
+        isDead = false;
+        foreach (var item in ragdollColliders)
+        {
+            if (item.tag == "headshot") continue;
+            item.enabled = false;
+            item.GetComponent<Rigidbody>().isKinematic = true;
+        }
+        rb.isKinematic = false;
+        myCollider.enabled = true;
+        Transition("Idle");
+    }
 
     //Colisiones 
 
@@ -446,5 +456,39 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>
     public static void TurnOff(BaseEnemy obj)
     {
         obj.TurnOff();
+    }
+
+    public void Save()
+    {
+        _saveData = new EnemySaveData(this);
+    }
+
+    public void Restore()
+    {
+        StopAllCoroutines();
+        gameObject.SetActive(true);
+        Reset();
+        _saveData.Restore(this);
+    }
+}
+public class EnemySaveData
+{
+    Vector3 _position;
+    Quaternion _rotation;
+    float life;
+    public EnemySaveData (BaseEnemy enemy)
+    {
+        _position = enemy.transform.position;
+        _rotation = enemy.transform.rotation;
+        life = enemy.life;
+
+        
+    }
+    public void Restore(BaseEnemy enemy)
+    {
+        enemy.transform.position = _position;
+        enemy.transform.rotation = _rotation;
+        enemy.life = life;
+
     }
 }

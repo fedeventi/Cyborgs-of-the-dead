@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneWeapons : MonoBehaviour
+public class SceneWeapons : MonoBehaviour ,ICheckpoint
 {
     public WeaponType WeaponType;
     AudioSource audioSource;
@@ -26,5 +26,15 @@ public class SceneWeapons : MonoBehaviour
             gameObject.SetActive(false);
         }
         
+    }
+
+    public void Save()
+    {
+        
+    }
+
+    public void Restore()
+    {
+        gameObject.SetActive(true);
     }
 }

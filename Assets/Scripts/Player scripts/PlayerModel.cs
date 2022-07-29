@@ -60,6 +60,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     public TimeManager timeManager;
     public Action<bool> interaction;
     CheckpointDataPlayer _checkpointData;
+    bool _isCameraControlled;
     public bool IsDead { get { return isDead; }set { isDead = false; } }
     public override void Start()
     {
@@ -101,7 +102,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         if (!IsDead)
             view.LowLife(life);
         //Muerte 
-        if (life <= 0)
+        if (life <= 0 && !IsDead)
         {
             life = 0;
             StartCoroutine(Death());
@@ -274,7 +275,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
             if (sickEffect != null)
             sickEffect.transform.RotateAround(myCamera.transform.position, myCamera.transform.right, -vCamera);
 
-        if (sickEffect != null && !isDead)
+        if (sickEffect != null && !isDead && !_isCameraControlled)
         {
 
             var _rotation = Quaternion.LookRotation((sickEffect.GetComponent<InfiniteMovement>().GetDir()
@@ -301,6 +302,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     public void TakeDamage(int damage)
     {
         if (_hasBeenHit) return;
+        
         life -= damage;
         view.DamageFeedback();
         myCamera.GetComponent<ShakeCamera>().ActivateShake(.5f);
@@ -308,6 +310,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         StartCoroutine(Invulnerability());
         StartCoroutine(HitKnockback(3.5f));
         StartCoroutine(view.hitFeedback());
+        
         //audioSource.PlayOneShot(myClips[1]);
 
     }
@@ -315,6 +318,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     //Para mover la camara cuando es golpeado
     IEnumerator HitKnockback(float force)
     {
+        _isCameraControlled = true;
         float currentForce = 0;
         float movement = 1;
         while (currentForce < force)
@@ -332,6 +336,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
             myCamera.transform.Rotate(movement, 0, 0);
             yield return new WaitForSeconds(0.01f);
         }
+        _isCameraControlled = false;
     }
     //invulnerabilidad para cuando te golpean
     IEnumerator Invulnerability()
@@ -390,7 +395,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     public void Save()
     {
         _checkpointData = new CheckpointDataPlayer().SetPositionAndRotation(CheckpointManager.instance.checkpoints[CheckpointManager.instance.currentCheckpoint].transform.position,
-                          CheckpointManager.instance.checkpoints[CheckpointManager.instance.currentCheckpoint].transform.rotation);
+                          CheckpointManager.instance.checkpoints[CheckpointManager.instance.currentCheckpoint].transform.rotation).SetGas(Gas);
     }
 
     public void Restore()
@@ -408,6 +413,8 @@ public class CheckpointDataPlayer
     float _life=100;
     float _toxicity=0;
     Vector3 _sickEffectPosition;
+    float gas=0;
+    
     public CheckpointDataPlayer SetPositionAndRotation(Vector3 position,Quaternion rotation)
     {
         _position = position;
@@ -425,6 +432,11 @@ public class CheckpointDataPlayer
         _toxicity = toxicity;
         return this;
     }
+    public CheckpointDataPlayer SetGas(float Gas)
+    {
+        gas= Gas;
+        return this;
+    }
     public void RestoreData(PlayerModel player)
     {
         player.transform.position = _position;
@@ -434,6 +446,6 @@ public class CheckpointDataPlayer
         player.IsDead = false;
         player.myCamera.transform.rotation = _rotation;
         player.sickEffect.transform.position = player.myCamera.transform.position+player.myCamera.transform.forward*100;
-        
+        player.Gas = gas;
     }
 }

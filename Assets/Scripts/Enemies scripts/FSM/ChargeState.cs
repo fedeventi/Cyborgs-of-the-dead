@@ -53,7 +53,7 @@ public class ChargeState<T> : State<T>
     public override void Sleep()
     {
         base.Sleep();
-        
+        _source.enemyView.animator.SetBool("charging", false);
         _source.StopCoroutine(StartCharge());
         _source.charging=false;
     }

@@ -24,6 +24,7 @@ public class EnemyView : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        bloodPool.transform.parent = null;
     }
 
     //Funciones de animaciones
@@ -34,16 +35,22 @@ public class EnemyView : MonoBehaviour
         animator.SetBool("chasing", false);
         animator.SetBool("distanceAttack", false);
     }
-    public void InstantiatePoolBlood()
+    public void CreatePoolBlood()
     {
         if (bloodPool)
         {
-            var pool = Instantiate(bloodPool,new Vector3(hips.position.x,transform.position.y+4,hips.position.z) , Quaternion.identity);
-            pool.transform.localScale= Vector3.one*50;
+            bloodPool.Stop();
+            bloodPool.transform.position= new Vector3(hips.position.x,transform.position.y+4,hips.position.z) ;
+            bloodPool.Play();
+            
 
         }
     }
-
+    public void DestroyPoolBlood()
+    {
+        if(bloodPool)
+            bloodPool.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+    }
     public void ChasingAnimation()
     {
         animator.SetBool("chasing", true);

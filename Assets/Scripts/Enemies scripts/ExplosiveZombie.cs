@@ -101,8 +101,10 @@ public class ExplosiveZombie : BaseEnemy
         patrol.AddTransition("Chase", chase); //Va de patrol a chase
 
         attack.AddTransition("Chase", chase); //Va de attack a chase
+        attack.AddTransition("Idle", idle); //Va de patrol a idle
 
         range.AddTransition("Chase", chase);
+        range.AddTransition("Idle", idle); //Va de patrol a idle
 
         chase.AddTransition("Attack", attack); //Va de chase a attack
         chase.AddTransition("Idle", idle); //Va de chase a idle

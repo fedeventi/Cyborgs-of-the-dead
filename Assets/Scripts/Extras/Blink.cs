@@ -17,6 +17,7 @@ public class Blink : MonoBehaviour
     }
     public void DoBlink()
     {
+        Debug.Log("Pestañeo");
         GetComponent<Animator>().SetTrigger("blink");
     }
     public void DoUnBlink()

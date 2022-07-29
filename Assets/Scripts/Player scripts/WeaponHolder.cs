@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using JoostenProductions;
-public class WeaponHolder : MonoBehaviour
+public class WeaponHolder : MonoBehaviour ,ICheckpoint
 {
     public Animator animator;
-    public Weapon[] weaponsCollected = new Weapon[3];
+    public List<Weapon> weaponsCollected = new List<Weapon>();
     public Weapon[] allWeapons;
     public WeaponType actualWeapon = 0;
     public Image weaponImg;
@@ -15,12 +15,12 @@ public class WeaponHolder : MonoBehaviour
     
     // 
     public Sprite[] weaponsImagesUI;
-
     //
     GameManager gameManager;
     PlayerView view;
     PlayerModel model;
 
+    WeaponSaveData _checkpointData;
     //
     //bool hasPickUpPistol = false;
     //bool hasPickUpShotgun = false;
@@ -41,7 +41,8 @@ public class WeaponHolder : MonoBehaviour
         {
             foreach (var item in weaponsCollected)
             {
-                item.gameObject.SetActive(false);
+                if(item!=null)
+                    item.gameObject.SetActive(false);
             }
             return;
         }
@@ -59,15 +60,15 @@ public class WeaponHolder : MonoBehaviour
     }
 
     //función para activar o desactivar el gameobject de las armas
-    void ActivateOrDeactivateGameObject()
+    public void ActivateOrDeactivateGameObject()
     {
         
-        if(weaponsCollected.Length>(int)actualWeapon)
+        if(weaponsCollected.Count>(int)actualWeapon)
             weaponsCollected[(int)actualWeapon].gameObject.SetActive(true);
         weaponImg.sprite = weaponsImagesUI[(int)actualWeapon];
         animator.runtimeAnimatorController = myClips[(int)actualWeapon];
 
-        for (int i = 0; i < weaponsCollected.Length; i++)
+        for (int i = 0; i < weaponsCollected.Count; i++)
         {
             if (i != (int)actualWeapon)
             {
@@ -80,11 +81,11 @@ public class WeaponHolder : MonoBehaviour
     //funcion para cambiar las armas con la ruedita 
     void ChangingWeapon()
     {
-        if (weaponsCollected.Length < 1) return;
+        if (weaponsCollected.Count < 1) return;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            if ((int)actualWeapon < weaponsCollected.Length - 1)
+            if ((int)actualWeapon < weaponsCollected.Count - 1)
             {
                 actualWeapon += 1;
                 if (weaponsCollected[(int)actualWeapon] == null)
@@ -103,7 +104,7 @@ public class WeaponHolder : MonoBehaviour
 
             }
             else
-                actualWeapon = (WeaponType)weaponsCollected.Length -1;
+                actualWeapon = (WeaponType)weaponsCollected.Count -1;
         }
         
     }
@@ -118,6 +119,17 @@ public class WeaponHolder : MonoBehaviour
         }
 
     }
+
+    public void Save()
+    {
+        _checkpointData = new WeaponSaveData(this).SetWeapons(weaponsCollected.ToArray());
+        Debug.Log("Save");
+    }
+
+    public void Restore()
+    {
+        _checkpointData.Restore(this);
+    }
 }
     public enum WeaponType
     {
@@ -125,3 +137,37 @@ public class WeaponHolder : MonoBehaviour
         Pistol,
         Shotgun
     }
+public class WeaponSaveData
+{
+    Weapon[] weapons= new Weapon[3];
+    WeaponType currentWeapon;
+    int pistolBullets;
+    int shotgunBullets;
+    public WeaponSaveData(WeaponHolder holder)
+    {
+ 
+        currentWeapon = holder.actualWeapon;
+        //pistolBullets = holder.weaponsCollected[1] != null ? holder.weaponsCollected[1].currentAmmo : 0;
+        //shotgunBullets = holder.weaponsCollected[1] != null ? holder.weaponsCollected[2].currentAmmo : 0;
+    }
+    public WeaponSaveData SetWeapons(Weapon[] weaponsCollected)
+    {
+        weapons = weaponsCollected;
+        return this;
+    }
+    public void Restore(WeaponHolder holder)
+    {
+        Debug.Log("Load");
+        holder.actualWeapon = currentWeapon;
+        holder.ActivateOrDeactivateGameObject();
+        holder.weaponsCollected = new List<Weapon>(weapons);
+        
+        //if (holder.weaponsCollected[1] != null)
+        //    holder.weaponsCollected[1].currentAmmo = pistolBullets;
+
+        //if(holder.weaponsCollected[2] != null)
+        //    holder.weaponsCollected[2].currentAmmo = shotgunBullets;
+        
+    }
+}
+

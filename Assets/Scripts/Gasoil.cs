@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gasoil : MonoBehaviour
+public class Gasoil : MonoBehaviour , ICheckpoint
 {
     // Start is called before the first frame update
     public int amount;
     PlayerModel playerModel;
+    
     void Start()
     {
         
@@ -26,12 +27,22 @@ public class Gasoil : MonoBehaviour
              
             if(playerModel)
                 playerModel.Gas += amount;
-            Destroy(gameObject);
             
+            gameObject.SetActive(false);
             
                 
             
         }
     }
-    
+
+    public void Save()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Restore()
+    {
+        
+        gameObject.SetActive(true);
+    }
 }

@@ -27,9 +27,9 @@ public class AmmoKit : MonoBehaviour , ICheckpoint
                 ps.Play();
             }
 
-            if (player.weaponHolder.weaponsCollected.Length > 1)
+            if (player.weaponHolder.weaponsCollected.Count > 1)
             {
-                for (int i = 1; i < player.weaponHolder.weaponsCollected.Length; i++)
+                for (int i = 1; i < player.weaponHolder.weaponsCollected.Count; i++)
                 {
                     if(player.weaponHolder.weaponsCollected[i] != null)
                         player.weaponHolder.weaponsCollected[i].GetComponent<Weapon>().currentMaxAmmo += ammoByWeapon[i];
