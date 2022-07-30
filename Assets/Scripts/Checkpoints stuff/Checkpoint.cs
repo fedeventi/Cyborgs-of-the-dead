@@ -7,6 +7,13 @@ public class Checkpoint : MonoBehaviour
     // Start is called before the first frame update
     public List<GameObject> objects = new List<GameObject>();
     Collider collider;
+    public string checkpointInstructions;
+    public Transform checkpointObjetive;
+    public Vector3 objetiveOffset;
+    public Vector3 objetivePosition=>checkpointObjetive.position+objetiveOffset;
+    [Header("Debug")]
+    public int size=40;
+    public Mesh mesh;
     void Start()
     {
         
@@ -52,6 +59,13 @@ public class Checkpoint : MonoBehaviour
                 return i;
         }
         return 0;
+    }
+    public void OnDrawGizmosSelected()
+    {
+
+        Gizmos.color = Color.green;
+        if(mesh != null)
+            Gizmos.DrawMesh(mesh, objetivePosition,checkpointObjetive.rotation, Vector3.one* size);
     }
     // Update is called once per frame
 }

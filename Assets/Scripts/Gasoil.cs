@@ -24,10 +24,11 @@ public class Gasoil : MonoBehaviour , ICheckpoint
         if(other.GetComponent<PlayerModel>())
         {
              playerModel = other.GetComponent<PlayerModel>();
+           
              
             if(playerModel)
                 playerModel.Gas += amount;
-            
+            Debug.Log("consegui nafta");
             gameObject.SetActive(false);
             
                 
@@ -44,5 +45,6 @@ public class Gasoil : MonoBehaviour , ICheckpoint
     {
         
         gameObject.SetActive(true);
+        
     }
 }

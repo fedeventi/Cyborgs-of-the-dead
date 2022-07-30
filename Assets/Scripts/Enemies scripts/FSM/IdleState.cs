@@ -21,8 +21,11 @@ public class IdleState<T> : State<T>
     }
     public override void Execute()
     {
-        if(Vector3.Distance(baseEnemy.transform.position,baseEnemy.player.transform.position)<5000)
-            Wait(2.5f);
+        if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) < 5000)
+        {
+            if(baseEnemy.gameObject.activeSelf)
+                Wait(2.5f);
+        }
         enemyView.IdleAnimation();
     }
     public override void Sleep()

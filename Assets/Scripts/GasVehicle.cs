@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using JoostenProductions;
-public class GasVehicle : OverridableMonoBehaviour
+public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
 {
     PlayerModel model;
     public float amount;
@@ -12,6 +12,7 @@ public class GasVehicle : OverridableMonoBehaviour
     Action<float, bool> _view;
     public Vector3 interactionPosition;
     // Start is called before the first frame update
+    public float _gasSaved;
     public override void Start()
     {
         base.Start();
@@ -103,5 +104,15 @@ public class GasVehicle : OverridableMonoBehaviour
             _view -= model.GetComponent<PlayerView>().SetInteractionTimer;
             model.GetComponent<PlayerView>().InteractionImage(transform.position + interactionPosition,  false);
         }
+    }
+
+    public void Save()
+    {
+        _gasSaved = amount;
+    }
+
+    public void Restore()
+    {
+        amount = _gasSaved;
     }
 }

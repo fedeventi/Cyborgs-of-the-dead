@@ -13,6 +13,7 @@ public class BreakGlass : MonoBehaviour , ICheckpoint
     void Start()
     {
         _collider = GetComponent<Collider>();
+        
     }
     void Update()
     {
@@ -29,7 +30,7 @@ public class BreakGlass : MonoBehaviour , ICheckpoint
         }
         _collider.gameObject.SetActive(false);
     }
-
+   
     public void Save()
     {
         checkpointData=new glassCheckpointData(glasses);

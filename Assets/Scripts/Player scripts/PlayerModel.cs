@@ -396,6 +396,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     {
         _checkpointData = new CheckpointDataPlayer().SetPositionAndRotation(CheckpointManager.instance.checkpoints[CheckpointManager.instance.currentCheckpoint].transform.position,
                           CheckpointManager.instance.checkpoints[CheckpointManager.instance.currentCheckpoint].transform.rotation).SetGas(Gas);
+        Debug.Log("guardo con " + Gas + " de gas");
     }
 
     public void Restore()
@@ -413,7 +414,7 @@ public class CheckpointDataPlayer
     float _life=100;
     float _toxicity=0;
     Vector3 _sickEffectPosition;
-    float gas=0;
+    float gas;
     
     public CheckpointDataPlayer SetPositionAndRotation(Vector3 position,Quaternion rotation)
     {

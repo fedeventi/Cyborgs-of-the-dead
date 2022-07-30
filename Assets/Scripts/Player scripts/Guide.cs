@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using JoostenProductions;
-public class Guide : OverridableMonoBehaviour
+public class Guide : OverridableMonoBehaviour 
 {
     float movementTolerance=1;
     public Transform destination;
@@ -86,10 +86,17 @@ public class Guide : OverridableMonoBehaviour
                 oldPosition = transform.position;
             }
         }
-    } 
+    }
+    List<Vector3> _debugPoints=new List<Vector3>();
     void OnDrawGizmos()
     {
         Gizmos.DrawSphere(point, 20);
+        Gizmos.color = Color.yellow;
+        if(_debugPoints.Count>0)
+        for (int i = 0; i < _debugPoints.Count; i++)
+        {
+            Gizmos.DrawSphere(_debugPoints[i], 10);
+        }
     }
     void OnPathFound(Vector3[] positions, bool succesfullPath)
     {
@@ -102,6 +109,7 @@ public class Guide : OverridableMonoBehaviour
         List<Vector3> allPositions = new List<Vector3>();
         allPositions.Add(transform.position);
         allPositions.AddRange(positions);
+        _debugPoints = allPositions;
         for (int i = 0; i < allPositions.Count; i++)
         {
             var aux = allPositions[i];
@@ -113,4 +121,10 @@ public class Guide : OverridableMonoBehaviour
         point = positions[0];
         
     }
+    public void SetDestination(Vector3 myDestination)
+    {
+        if (myDestination == null) return;
+        destination.position=myDestination;
+    }
+   
 }

@@ -357,9 +357,8 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         else
             gameObject.SetActive(false);
     }
-    IEnumerator RecycleCR()
+    public IEnumerator RecycleCR()
     {
-        yield return new WaitForSeconds(3);
         if (Recycle != null)
         {
             transform.position = _initialPosition;
@@ -369,6 +368,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
                 Recycle.Invoke(this);
             
         }
+        yield return null;
     }
     public void Reset()
     {
@@ -376,7 +376,6 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         life = _initialLife;
         speed = _initialSpeed;
         enemyView.DestroyPoolBlood();
-        
         enemyView.SetAnimator(true);
         Destroy(enemyView.lastHeadExplosion);
         if(enemyView.head)
@@ -436,15 +435,20 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
             
         }
     }
-
+    protected override void OnDisable()
+    {
+        
+        base.OnDisable();
+    }
     public void TurnOn()
     {
         gameObject.SetActive(true);
-        Transition("Idle");
+        
     }
 
     public void TurnOff()
     {
+        
         gameObject.SetActive(false);
     }
 
@@ -466,7 +470,6 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     public void Restore()
     {
         StopAllCoroutines();
-        gameObject.SetActive(true);
         Reset();
         _saveData.Restore(this);
     }
@@ -476,12 +479,13 @@ public class EnemySaveData
     Vector3 _position;
     Quaternion _rotation;
     float life;
+    bool _activeSelf;
     public EnemySaveData (BaseEnemy enemy)
     {
         _position = enemy.transform.position;
         _rotation = enemy.transform.rotation;
         life = enemy.life;
-
+        _activeSelf = enemy.gameObject.activeSelf;
         
     }
     public void Restore(BaseEnemy enemy)
@@ -489,6 +493,6 @@ public class EnemySaveData
         enemy.transform.position = _position;
         enemy.transform.rotation = _rotation;
         enemy.life = life;
-
+        enemy.gameObject.SetActive(_activeSelf);
     }
 }

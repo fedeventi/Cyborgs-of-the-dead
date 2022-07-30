@@ -6,7 +6,7 @@ using System.Linq;
 using TMPro;
 
 
-public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy>
+public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy> , ICheckpoint
 {
     ObjPool<BaseEnemy> enemyPool;
     public BaseEnemy zombie;
@@ -15,7 +15,8 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy>
     public int amount=1;
     public float timeToSpawn=0.3f;
     Transform player;
-
+    List<BaseEnemy> _spawnedEnemies= new List<BaseEnemy>();
+    
    
 
 
@@ -38,8 +39,12 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy>
         while (true)
         {
             yield return new WaitForSeconds(timeToSpawn);
-            if(Vector3.Distance(player.position, transform.position)< 2500)
-                enemyPool.GetObj();
+            if (Vector3.Distance(player.position, transform.position) < 2500)
+            {
+               var enemy= enemyPool.GetObj();
+                if (enemy != null) _spawnedEnemies.Add(enemy);
+                
+            }
         }
     }
   
@@ -54,13 +59,35 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy>
         randomPosition.y = 0;
        return Instantiate(zombie, transform.position+randomPosition, transform.rotation).SetRecycleAction(Recycle);
     }
+
+    public void Save()
+    {
+       
+        
+    }
   
+   
+    public void Restore()
+    {
+        foreach (BaseEnemy item in _spawnedEnemies)
+        {
+            if (item.gameObject.activeSelf)
+            {
+                item.StopAllCoroutines();
+                item.StartCoroutine(item.RecycleCR());
+                
+                
+
+            }
+        }
+    }
+
     //void OnDrawGizmos()
     //{
     //    UnityEditor.Handles.color = Color.yellow;
     //    UnityEditor.Handles.DrawWireDisc(transform.position, transform.up,RangeToSpawn );
-        
-            
+
+
     //}
-    
+
 }
