@@ -43,9 +43,9 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     public event Action deathAction;
     public event Action<BaseEnemy> Recycle;
     //Recycle Variables
-    Vector3 _initialPosition;
-    float _initialSpeed;
-    float _initialLife;
+    protected Vector3 _initialPosition;
+    protected float _initialSpeed;
+    protected float _initialLife;
     //bool 
     [Header("BOOLS")]
     public bool hasTouchBullet=false;
@@ -370,7 +370,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         }
         yield return null;
     }
-    public void Reset()
+    public virtual void Reset()
     {
         
         life = _initialLife;
@@ -472,6 +472,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         StopAllCoroutines();
         Reset();
         _saveData.Restore(this);
+        
     }
 }
 public class EnemySaveData

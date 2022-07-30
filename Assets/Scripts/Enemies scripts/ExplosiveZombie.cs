@@ -70,11 +70,22 @@ public class ExplosiveZombie : BaseEnemy
         isDead = true;
         rb.isKinematic = true;
         rb.velocity = Vector3.zero;
-        rb.constraints = RigidbodyConstraints.FreezeAll;
         myCollider.enabled = false;
         enemyView.DeathAnimation();
 
         yield break;
+    }
+    public override void Reset()
+    {
+        life = _initialLife;
+        speed = _initialSpeed;
+        enemyView.DestroyPoolBlood();
+        enemyView.animator.SetBool("death", false);
+        meleeAttack.gameObject.SetActive(true);
+        isDead = false;
+        rb.isKinematic = false;
+        myCollider.enabled = true;
+        Transition("Idle");
     }
     IEnumerator Shoot()
     {

@@ -124,6 +124,7 @@ public class Guide : OverridableMonoBehaviour
     public void SetDestination(Vector3 myDestination)
     {
         if (myDestination == null) return;
+        myDestination.y = destination.position.y;
         destination.position=myDestination;
     }
    

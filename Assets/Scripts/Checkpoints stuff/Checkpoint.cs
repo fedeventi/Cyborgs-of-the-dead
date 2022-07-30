@@ -10,10 +10,10 @@ public class Checkpoint : MonoBehaviour
     public string checkpointInstructions;
     public Transform checkpointObjetive;
     public Vector3 objetiveOffset;
-    public Vector3 objetivePosition=>checkpointObjetive.position+objetiveOffset;
+    public Vector3 objetivePosition=>checkpointObjetive!=null?checkpointObjetive.position+objetiveOffset: Vector3.zero;
     [Header("Debug")]
     public int size=40;
-    public Mesh mesh;
+    
     void Start()
     {
         
@@ -64,8 +64,9 @@ public class Checkpoint : MonoBehaviour
     {
 
         Gizmos.color = Color.green;
-        if(mesh != null)
-            Gizmos.DrawMesh(mesh, objetivePosition,checkpointObjetive.rotation, Vector3.one* size);
+        
+        Gizmos.DrawCube(objetivePosition, new Vector3(size,1,size));
+        
     }
     // Update is called once per frame
 }

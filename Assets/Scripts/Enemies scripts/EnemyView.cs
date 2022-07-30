@@ -18,7 +18,7 @@ public class EnemyView : MonoBehaviour
     public List<AudioClip> myClips = new List<AudioClip>();
     GameObject _lastHeadExplosion;
     public GameObject lastHeadExplosion { get => _lastHeadExplosion; }
-    public Grid grid;
+    
 
     private void Start()
     {
@@ -40,7 +40,7 @@ public class EnemyView : MonoBehaviour
         if (bloodPool)
         {
             bloodPool.Stop();
-            bloodPool.transform.position= new Vector3(hips.position.x,transform.position.y+4,hips.position.z) ;
+            bloodPool.transform.position= new Vector3(hips.position.x,transform.position.y+10,hips.position.z) ;
             bloodPool.Play();
             
 

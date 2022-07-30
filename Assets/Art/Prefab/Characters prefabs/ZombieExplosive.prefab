@@ -1396,6 +1396,7 @@ Transform:
   - {fileID: 6518224179752171593}
   - {fileID: 9168035150803495365}
   - {fileID: 3277406804825025394}
+  - {fileID: 1266237460053348873}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1566,7 +1567,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8d7b04951f386a24fa9e5dfe461acd8b, type: 3}
   - {fileID: 8300000, guid: e63af9ce02d715744b63f4f830bf59b8, type: 3}
   - {fileID: 8300000, guid: 267bcbe8bf89758418a304a5b6927c5b, type: 3}
-  grid: {fileID: 0}
 --- !u!114 &6073526912573224914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2583,3 +2583,82 @@ Transform:
   m_Father: {fileID: 4634340375927470957}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.000001483559, y: 0.0000037957864, z: -5.7826123}
+--- !u!1001 &1266237460053223269
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7066949722818561534}
+    m_Modifications:
+    - target: {fileID: 168956, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_Name
+      value: GreenBloodPoolGrowing
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19836996, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae17d4a182a7e02448b4e420f9da16ea, type: 3}
+--- !u!4 &1266237460053348873 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 406892, guid: ae17d4a182a7e02448b4e420f9da16ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1266237460053223269}
+  m_PrefabAsset: {fileID: 0}

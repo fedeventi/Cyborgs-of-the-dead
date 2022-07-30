@@ -16,7 +16,7 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy> , ICheckpoi
     public float timeToSpawn=0.3f;
     Transform player;
     List<BaseEnemy> _spawnedEnemies= new List<BaseEnemy>();
-    
+    int myCheckpointIndex;
    
 
 
@@ -25,6 +25,15 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy> , ICheckpoi
     private void Start()
     {
         player=FindObjectOfType<PlayerModel>().transform;
+        for (int i = 0; i < CheckpointManager.instance.checkpoints.Count; i++)
+        {
+            if (CheckpointManager.instance.checkpoints[i].objects.Contains(gameObject))
+            {
+                
+                myCheckpointIndex = i;
+                
+            }
+        }
         StartCoroutine(Spawn());
     }
 
@@ -34,17 +43,31 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy> , ICheckpoi
         
         
     }
+    void Update()
+    {
+        if (CheckpointManager.instance.currentCheckpoint > myCheckpointIndex)
+        {
+            StopAllCoroutines();
+            Destroy(gameObject);
+        }
+    }
     IEnumerator Spawn()
     {
         while (true)
         {
             yield return new WaitForSeconds(timeToSpawn);
+            
+            
             if (Vector3.Distance(player.position, transform.position) < 2500)
             {
                var enemy= enemyPool.GetObj();
                 if (enemy != null) _spawnedEnemies.Add(enemy);
-                
+               
+            
             }
+           
+
+            
         }
     }
   
