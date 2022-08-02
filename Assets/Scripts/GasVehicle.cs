@@ -68,7 +68,7 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
             Debug.Log("cargo escena");
             SceneManager.LoadScene("end level cinematic");
         }
-
+        if(Input.GetKeyDown(KeyCode.F9)) SceneManager.LoadScene("end level cinematic");
     }
     public void OnTriggerEnter(Collider other)
     {
