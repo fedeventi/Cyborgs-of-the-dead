@@ -17,6 +17,7 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
     public override void Start()
     {
         base.Start();
+        model = FindObjectOfType<PlayerModel>();
     }
 
     // Update is called once per frame
@@ -64,6 +65,7 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
                 _view(amount, false);
                 model.interaction -= Interaction;
             }
+            Debug.Log("cargo escena");
             SceneManager.LoadScene("end level cinematic");
         }
 

@@ -45,7 +45,7 @@ public class AmmoKit : MonoBehaviour , ICheckpoint
 
     public void Save()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public void Restore()

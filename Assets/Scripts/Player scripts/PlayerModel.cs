@@ -190,6 +190,9 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
             increaseDamage = false;
             toxicityImprovementsRandom = false;
             view.toxicityScreen.enabled = false;
+            if (sickEffect != null)
+                sickEffect.GetComponent<InfiniteMovement>().Reset();
+
         }
 
         //
