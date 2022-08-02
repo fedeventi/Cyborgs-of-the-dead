@@ -62,6 +62,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     CheckpointDataPlayer _checkpointData;
     bool _isCameraControlled;
     public bool IsDead { get { return isDead; }set { isDead = false; } }
+    bool debugInvincible;
     public override void Start()
     {
         base.Start();
@@ -95,7 +96,10 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     }
     public override void UpdateMe()
     {
-        if(Input.GetKeyDown(KeyCode.F12))
+        if (Input.GetKeyDown(KeyCode.F4))
+            debugInvincible = !debugInvincible;
+
+       if (Input.GetKeyDown(KeyCode.F12))
             CheckpointManager.instance.Restore();
         //Recargar los niveles al morir. Inicia en la ultima posición guardada, en relación a los checkpoints.
 
@@ -119,6 +123,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     //Toxicity 
     void Toxicity()
     {
+        if (debugInvincible) return;
         if(toxicity>25)
             StartCoroutine(view.ToxicitySound());
         if(sickEffect!=null)
@@ -304,6 +309,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
     public void TakeDamage(int damage)
     {
+        if (debugInvincible) return;
         if (_hasBeenHit) return;
         
         life -= damage;
