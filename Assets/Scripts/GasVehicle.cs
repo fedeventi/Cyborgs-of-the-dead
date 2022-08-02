@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 using JoostenProductions;
 public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
@@ -63,7 +64,7 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
                 _view(amount, false);
                 model.interaction -= Interaction;
             }
-            Debug.Log("Ganaste");
+            SceneManager.LoadScene("end level cinematic");
         }
 
     }

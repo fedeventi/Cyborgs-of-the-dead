@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level.unity
     guid: 1560652ca2837df478eaab29876aa949
+  - enabled: 1
+    path: Assets/Scenes/end level cinematic.unity
+    guid: 606d5bb2b33c6184583b748a79b0775d
   m_configObjects: {}
