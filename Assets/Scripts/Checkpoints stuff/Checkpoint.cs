@@ -28,18 +28,25 @@ public class Checkpoint : MonoBehaviour
     {
         for (int i = 0; i < objects.Count; i++)
         {
-            var chk = objects[i].GetComponent<ICheckpoint>();
-            if(chk != null)
-                chk.Save();
+            if (objects[i] != null)
+            {
+                var chk = objects[i].GetComponent<ICheckpoint>();
+                if (chk != null)
+                    chk.Save();
+            }
         }
     }
     public void Restore()
     {
         for (int i = 0; i < objects.Count; i++)
         {
-            var chk = objects[i].GetComponent<ICheckpoint>();
-            if (chk != null)
-                chk.Restore();
+            if(objects[i]!= null)
+            {
+
+                var chk = objects[i].GetComponent<ICheckpoint>();
+                if (chk != null)
+                    chk.Restore();
+            }
         }
     }
     void OnTriggerEnter(Collider other)
