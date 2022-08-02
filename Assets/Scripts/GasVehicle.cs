@@ -36,6 +36,10 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
     public override void UpdateMe()
     {
         if (!model) return;
+        if(model.IsDead)
+        {
+            model.interaction -= Interaction;
+        }
         if (amount < required)
         {
             if (pressed)

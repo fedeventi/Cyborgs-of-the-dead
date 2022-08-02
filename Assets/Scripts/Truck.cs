@@ -21,6 +21,7 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
     public Vector3 interactionPosition;
     public override void Start()
     {   base.Start();
+        playerModel = FindObjectOfType<PlayerModel>();
         _animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         startPosition = transform.position;
@@ -42,6 +43,10 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
     {
         if (!finished)
         {
+            if (playerModel.IsDead)
+            {
+                playerModel.interaction -= Interaction;
+            }
             if (pressed)
             {
                 if (timePressed < timeToMove)
