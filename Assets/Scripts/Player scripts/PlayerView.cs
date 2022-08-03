@@ -144,12 +144,12 @@ public class PlayerView : MonoBehaviour
     public IEnumerator ToxicitySound()
     {
         if (cough) yield break;
+        cough = true;
+        yield return new WaitForSeconds(Random.Range(15, 20));
         if (!audioSource.isPlaying)
         {
-            cough = true;
             audioSource.PlayOneShot(audioClips[5], 3f);
         }
-        yield return new WaitForSeconds(Random.Range(15, 20));
         cough = false;
 
     }
