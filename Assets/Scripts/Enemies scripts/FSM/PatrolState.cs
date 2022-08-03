@@ -95,7 +95,7 @@ public class PatrolState<T> : State<T>
         }
         if (_timerToIdle > 1.3f)
         {
-            Debug.Log("Me estoy trabando");
+
             _timerToIdle = 0;
             _destination = baseEnemy.transform.position + UnityEngine.Random.insideUnitSphere * randomRange;
             _destination.y = 0;

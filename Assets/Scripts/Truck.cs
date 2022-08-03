@@ -31,7 +31,7 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
         pressed = pressing;
         if (pressed)
         {
-            Debug.Log("presionado");
+
             if (audioSource != null)
                 audioSource.PlayOneShot(clips[0]);
 
@@ -46,6 +46,7 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
             if (playerModel.IsDead)
             {
                 playerModel.interaction -= Interaction;
+                playerModel.GetComponent<PlayerView>().InteractionImage(transform.position, false);
             }
             if (pressed)
             {
@@ -91,7 +92,7 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
     }
     public void OnTriggerEnter(Collider other)
     {
-        playerModel=other.GetComponent<PlayerModel>();
+        
         if (playerModel != null)
         {
             if (!finished)
@@ -103,7 +104,7 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
     }
     public void OnTriggerStay(Collider other)
     {
-        playerModel = other.GetComponent<PlayerModel>();
+        
         if (playerModel != null)
         {
             playerModel.GetComponent<PlayerView>().InteractionImage(transform.position+interactionPosition,pressed?false:true);
@@ -128,7 +129,7 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
 
     public void Save()
     {
-        throw new NotImplementedException();
+
     }
 
     public void Restore()

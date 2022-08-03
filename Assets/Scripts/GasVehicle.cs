@@ -23,7 +23,8 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
     // Update is called once per frame
     void Interaction(bool pressing)
     {
-        if (model.Gas < 0) return;
+        if(model)
+            if (model.Gas < 0) return;
         pressed = pressing;
         if (pressed)
         {
@@ -39,6 +40,7 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
         if(model.IsDead)
         {
             model.interaction -= Interaction;
+            model.GetComponent<PlayerView>().InteractionImage(transform.position + interactionPosition, false);
         }
         if (amount < required)
         {
@@ -82,7 +84,8 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
            if(amount < required)
             {
                 model.interaction += Interaction;
-                _view += model.GetComponent<PlayerView>().SetInteractionTimer;
+                 _view += model.GetComponent<PlayerView>().SetInteractionTimer;
+                
             }
             
         }
@@ -107,9 +110,9 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
         {
             pressed = false;
             _view(amount, false);
-            model.interaction -= Interaction;
             _view -= model.GetComponent<PlayerView>().SetInteractionTimer;
-            model.GetComponent<PlayerView>().InteractionImage(transform.position + interactionPosition,  false);
+            model.GetComponent<PlayerView>().InteractionImage(transform.position,  false);
+            model.interaction -= Interaction;
         }
     }
 

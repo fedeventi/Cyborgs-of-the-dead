@@ -7,12 +7,14 @@ public class BreakGlass : MonoBehaviour , ICheckpoint
     // Start is called before the first frame update
     Collider _collider;
     public List<GameObject> glasses = new List<GameObject>();
+    AudioSource _audioSource;
     glassCheckpointData checkpointData;
 
     // Update is called once per frame
     void Start()
     {
         _collider = GetComponent<Collider>();
+        _audioSource = GetComponent<AudioSource>();
         
     }
     void Update()
@@ -21,14 +23,18 @@ public class BreakGlass : MonoBehaviour , ICheckpoint
     }
     public void ReplaceGlass()
     {
+        if (_audioSource != null)
+        {
+            _audioSource.Play();
 
+        }
         
-
         foreach (var item in glasses)
         {
             item.gameObject.SetActive(true);
         }
-        _collider.gameObject.SetActive(false);
+        _collider.GetComponent<Renderer>().enabled = false;
+        _collider.GetComponent<Collider>().enabled = false;
     }
    
     public void Save()
@@ -40,7 +46,8 @@ public class BreakGlass : MonoBehaviour , ICheckpoint
     {
         if (checkpointData != null)
             checkpointData.RestoreData(this);
-        _collider.gameObject.SetActive(true);
+        _collider.GetComponent<Renderer>().enabled = true;
+        _collider.GetComponent<Collider>().enabled = true;
     }
 }
 public class glassCheckpointData

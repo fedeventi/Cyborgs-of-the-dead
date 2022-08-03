@@ -123,7 +123,7 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
     public void Save()
     {
         _checkpointData = new WeaponSaveData(this).SetWeapons(weaponsCollected.ToArray());
-        Debug.Log("Save");
+
     }
 
     public void Restore()

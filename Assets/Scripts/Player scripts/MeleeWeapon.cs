@@ -63,7 +63,6 @@ public class MeleeWeapon : Weapon
         
         isAttacking = true;
         shootString = combo?"attack":"secondAttack";
-        if (!combo) Debug.Log("secondAttack");
         animator.SetTrigger(shootString);
         animator.SetBool("idle", false);
         animator.SetBool("walking", false);

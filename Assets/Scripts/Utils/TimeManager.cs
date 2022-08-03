@@ -9,9 +9,13 @@ public class TimeManager : OverridableMonoBehaviour
     public GameObject shockWave;
     float fixedDeltaTime;
     bool _isSlowmo;
+    AudioSource _audioSource;
     // Start is called before the first frame update
     public override void Start()
-    {base.Start();
+    {   base.Start();
+        _audioSource = GetComponent<AudioSource>();
+        
+       
     }
 
     // Update is called once per frame
@@ -48,6 +52,7 @@ public class TimeManager : OverridableMonoBehaviour
     public void CreateShockwave(Vector3 position,Quaternion rotation)
     {
         if (_isSlowmo) return;
+        _audioSource.Play();
         Instantiate(shockWave, position, rotation);
         SlowMo();
     }

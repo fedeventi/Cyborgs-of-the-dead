@@ -146,7 +146,7 @@ public class GunPistol : Weapon
     //Recargar.
     IEnumerator Reload()
     {
-        Debug.Log("reload");
+        
         if(!model.isShooting)
         {
             model.isReloading = true;

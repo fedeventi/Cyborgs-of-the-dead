@@ -386,7 +386,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     //llamo a la funcion de disparo, para llamarla en la animacion 
     public void ShootFromGun()
     {
-        Debug.Log("disparo");
+
         weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<Weapon>().Shoot();
     }
     
@@ -405,7 +405,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     {
         _checkpointData = new CheckpointDataPlayer().SetPositionAndRotation(CheckpointManager.instance.checkpoints[CheckpointManager.instance.currentCheckpoint].transform.position,
                           CheckpointManager.instance.checkpoints[CheckpointManager.instance.currentCheckpoint].transform.rotation).SetGas(Gas);
-        Debug.Log("guardo con " + Gas + " de gas");
+
     }
 
     public void Restore()
