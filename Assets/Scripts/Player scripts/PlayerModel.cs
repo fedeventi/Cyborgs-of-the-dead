@@ -100,7 +100,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
             debugInvincible = !debugInvincible;
 
        if (Input.GetKeyDown(KeyCode.F12))
-            CheckpointManager.instance.Restore();
+            StartCoroutine(Death());
         //Recargar los niveles al morir. Inicia en la ultima posición guardada, en relación a los checkpoints.
 
         if (!IsDead)

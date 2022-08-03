@@ -59,7 +59,10 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
             else
             {
                 if (_view != null)
-                    _view(amount, false);
+                {
+                    _view(0, false);
+                    
+                }
             }
         }
 
@@ -110,9 +113,9 @@ public class GasVehicle : OverridableMonoBehaviour , ICheckpoint
         {
             pressed = false;
             _view(amount, false);
-            _view -= model.GetComponent<PlayerView>().SetInteractionTimer;
             model.GetComponent<PlayerView>().InteractionImage(transform.position,  false);
             model.interaction -= Interaction;
+            _view -= model.GetComponent<PlayerView>().SetInteractionTimer;
         }
     }
 

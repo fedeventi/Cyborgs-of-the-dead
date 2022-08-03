@@ -43,15 +43,15 @@ public class PlayerController : OverridableMonoBehaviour
         }
         view.RunningAnimation(model.isRunning);
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-             model.Interact(true);
+        
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
             
-        }
-        else if (Input.GetKeyUp(KeyCode.E))
-        {
-            model.Interact(false);
-        }
+        //}
+        //else if (Input.GetKeyUp(KeyCode.E))
+        //{
+        //    model.Interact(false);
+        //}
 
     }
 
@@ -66,15 +66,16 @@ public class PlayerController : OverridableMonoBehaviour
             model.isMoving = false;
             model.isRunning = false;
         }
-
-       
-
-
-       
         
+        model.Interact(Input.GetKey(KeyCode.E)&& !model.IsDead);
+
+
+
+
+
 
         //Stunned 
-        if(model.isStunned)
+        if (model.isStunned)
         {
             StartCoroutine(model.Stunned());
         }
