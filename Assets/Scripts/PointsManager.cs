@@ -81,6 +81,10 @@ public class PointsManager : MonoBehaviour
             show = true;
             StartCoroutine(WaitToFinish());
         }
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void AddDeath()

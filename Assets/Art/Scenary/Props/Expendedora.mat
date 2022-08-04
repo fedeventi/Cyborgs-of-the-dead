@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
-        m_Texture: {fileID: 2800000, guid: 094fc33023f4dc24db90ddeee93b0044, type: 3}
+        m_Texture: {fileID: 2800000, guid: 288565d71a145a94584ef56dcb6830e6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
