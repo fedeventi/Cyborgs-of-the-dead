@@ -19,7 +19,11 @@ public class ExplosiveZombie : BaseEnemy
     {
         base.Awake();
     }
-
+    public override void Start()
+    {
+        base.Start();
+        
+    }
     public override void UpdateMe()
     {
 
@@ -62,7 +66,7 @@ public class ExplosiveZombie : BaseEnemy
 
         
         speed = 0;
-        
+        PointsManager.instance.AddKill((int)enemyType);
         
         var particle = Instantiate(Explosion, transform.position+transform.up*(headHight/2), transform.rotation);
         

@@ -25,6 +25,11 @@ public class HeavyEnemy : BaseEnemy
     {
         base.Awake();
     }
+    public override void Start()
+    {
+        base.Start();
+        
+    }
     public override void UpdateMe()
     {
         

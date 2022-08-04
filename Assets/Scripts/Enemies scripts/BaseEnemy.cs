@@ -8,6 +8,7 @@ using JoostenProductions;
 
 public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheckpoint
 {
+    public EnemyType enemyType;
     //Variables
     public float life;
     public float dist;
@@ -79,6 +80,8 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     [Header("RAGDOLL")]
     public List<Collider> ragdollColliders = new List<Collider>();
     protected EnemySaveData _saveData;
+    
+    
     public BaseEnemy SetRecycleAction(Action<BaseEnemy> action)
     {
         Recycle += action;
@@ -114,6 +117,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     public override void Start()
     {
         base.Start();
+        
     }
     public override void UpdateMe()
     {
@@ -213,6 +217,9 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     }
     
     
+    
+       
+    
     public virtual void OnDrawGizmos()
     {
         if(player!=null)
@@ -254,7 +261,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     //Funcion que llama el script de GunPistol
     public void TakeDamage(float damage,bool headshot=false)
     {
-        
+        PointsManager.instance.AddCombo((int)damage);
         //StartCoroutine(DamageVelocity());
         life -= damage;
         if (headshot)
@@ -310,6 +317,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     {
 
         enemyView.DeathSound();
+        PointsManager.instance.AddKill((int)enemyType);
         meleeAttack.gameObject.SetActive(false);
         enemyView.SetAnimator(false);
         RoulleteWheel<bool> rw = new RoulleteWheel<bool>();
@@ -474,6 +482,12 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         _saveData.Restore(this);
         
     }
+}
+public enum EnemyType
+{
+    normal,
+    explosive,
+    heavy
 }
 public class EnemySaveData
 {

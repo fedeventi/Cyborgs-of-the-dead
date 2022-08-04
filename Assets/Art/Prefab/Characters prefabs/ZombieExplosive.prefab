@@ -1581,6 +1581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   addOnEnable: 1
   removeOnDisable: 1
+  enemyType: 1
   life: 100
   dist: 0
   speed: 20
