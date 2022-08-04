@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Recargador
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+  m_Shader: {fileID: 4800000, guid: 43fa820114c986e4f943e475fd6c3cfc, type: 3}
+  m_ShaderKeywords: _EMISSION _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: 6204cfa27e8964744835b7fce7bf1e70, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 9e1d4ac7ed8e35e43828f390309c3b3d, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -39,12 +43,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: 2186e8aecfdeae14db1a41afae864fee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Emissive:
+        m_Texture: {fileID: 2800000, guid: 2186e8aecfdeae14db1a41afae864fee, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 6204cfa27e8964744835b7fce7bf1e70, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: cbd7df56ab2ffc74ba15fab9f92e93a2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_Map:
+        m_Texture: {fileID: 2800000, guid: 9e1d4ac7ed8e35e43828f390309c3b3d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -55,7 +67,16 @@ Material:
         m_Texture: {fileID: 2800000, guid: f2f75243867ea7347a50a5d7567bb5a8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ToonRamp:
+        m_Texture: {fileID: 2800000, guid: 288565d71a145a94584ef56dcb6830e6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _ASEOutlineWidth: 0.02
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -63,15 +84,26 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Max: 2
     - _Metallic: 0
+    - _Min: 1
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _RimOffset: 1
+    - _RimPower: 0.94
     - _SmoothnessTextureChannel: 0
+    - _SpecIntensity: 0.5
+    - _SpecPower: 0.29
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - __dirty: 0
     m_Colors:
+    - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissiveColor: {r: 1, g: 1, b: 1, a: 0}
+    - _RimTint: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
+    - _Tint: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}

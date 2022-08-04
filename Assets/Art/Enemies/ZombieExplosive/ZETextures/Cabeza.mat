@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 311d07abdff016645928f403750f3a2b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4ad5c62d73dba54429d7855315260969, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 058ec13812c1d6c4493e8679bd03e77a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
-        m_Texture: {fileID: 2800000, guid: 480f73a3e532b3d48881f0f67e30a0b0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 424a1113d77a0c4478956e66b1025b99, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
-        m_Texture: {fileID: 2800000, guid: 094fc33023f4dc24db90ddeee93b0044, type: 3}
+        m_Texture: {fileID: 2800000, guid: 288565d71a145a94584ef56dcb6830e6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -90,10 +90,10 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _RimOffset: 0.5
-    - _RimPower: 0.448
+    - _RimOffset: 0.51
+    - _RimPower: 0.875
     - _SmoothnessTextureChannel: 0
-    - _SpecIntensity: 0.403
+    - _SpecIntensity: 0.334
     - _SpecPower: 0.25
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -104,6 +104,6 @@ Material:
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissiveColor: {r: 1, g: 1, b: 1, a: 0}
     - _RimTint: {r: 1, g: 1, b: 1, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
