@@ -88,6 +88,7 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
             if ((int)actualWeapon < weaponsCollected.Count - 1)
             {
                 actualWeapon += 1;
+                animator.SetTrigger("PickUp");
                 if (weaponsCollected[(int)actualWeapon] == null)
                     actualWeapon += 1;
             }
@@ -99,6 +100,7 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
             if (actualWeapon > 0)
             {
                 actualWeapon -= 1;
+                animator.SetTrigger("PickUp");
                 if (weaponsCollected[(int)actualWeapon] == null)
                     actualWeapon -= 1;
 
