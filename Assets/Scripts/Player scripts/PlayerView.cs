@@ -255,6 +255,11 @@ public class PlayerView : MonoBehaviour
     {
         audioSource.PlayOneShot(audioClips[4], 0.1f);
     }
+
+    public void PickUpGunSound()
+    {
+        audioSource.PlayOneShot(audioClips[6], 0.1f);
+    }
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, 5000);
