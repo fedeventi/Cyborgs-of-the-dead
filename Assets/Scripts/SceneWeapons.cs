@@ -22,6 +22,7 @@ public class SceneWeapons : MonoBehaviour ,ICheckpoint
             var poket = other.GetComponentInChildren<WeaponHolder>();
             poket.weaponsCollected[(int)WeaponType] =poket.allWeapons[(int)WeaponType];
             poket.actualWeapon = WeaponType;
+            other.gameObject.GetComponent<Animator>().SetTrigger("PickUp");
             gameObject.SetActive(false);
         }
         
