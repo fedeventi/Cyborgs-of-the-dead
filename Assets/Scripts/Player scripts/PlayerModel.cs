@@ -208,6 +208,8 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
             increaseDamage = false;
             toxicityText.enabled = false;
             view.ChangeSprite( 0);
+            if (sickEffect != null)
+                sickEffect.GetComponent<InfiniteMovement>().Reset();
         }
 
         //sacar la screen toxicity
@@ -285,21 +287,14 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
         if (sickEffect != null && !isDead && !_isCameraControlled)
         {
-            //var dir = sickEffect.GetComponent<InfiniteMovement>().GetDir();
-            //dir.y = transform.position.y;
+           
             var _rotation = Quaternion.LookRotation((sickEffect.GetComponent<InfiniteMovement>().GetDir()
                                             - myCamera.transform.position), myCamera.transform.up);
-            //var bodyRotation = Quaternion.LookRotation(dir - transform.position, transform.up);
-            //var bodyEuler = bodyRotation.eulerAngles;
-            //bodyEuler.z = 0;
-            //bodyRotation = Quaternion.Euler(bodyEuler);
             var _vrotation = _rotation.eulerAngles;
             _vrotation.z = 0;
-
             _rotation = Quaternion.Euler(_vrotation);
-
             myCamera.transform.rotation = _rotation;
-            //transform.rotation = bodyRotation;
+           
         }
 
 
