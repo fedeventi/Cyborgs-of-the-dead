@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ChaseState<T> : State<T>
 {
@@ -18,18 +16,18 @@ public class ChaseState<T> : State<T>
         if (!_baseEnemy.isDamage)
         {
             FollowPlayer();
-            
+
         }
     }
 
     public void FollowPlayer()
     {
-        _speed = _baseEnemy.speed*5;
+        _speed = _baseEnemy.speed * 5;
         enemyView.ChasingAnimation();
         var target = _baseEnemy.player.transform.position;
         target.y = _baseEnemy.transform.position.y;
 
-        
+
         Vector3 dir = target - _baseEnemy.transform.position;
 
         if (_baseEnemy.targetDetection.MyClosestObstacle())
@@ -46,20 +44,25 @@ public class ChaseState<T> : State<T>
 
         }
         var rot = Quaternion.LookRotation(dir);
-        _baseEnemy.transform.rotation = Quaternion.Slerp(_baseEnemy.transform.rotation, rot, Time.deltaTime*3).normalized;
-        _baseEnemy.transform.position += _baseEnemy.transform.forward * _speed*Time.deltaTime;
+        _baseEnemy.transform.rotation = Quaternion.Slerp(_baseEnemy.transform.rotation, rot, Time.deltaTime * 3).normalized;
+        _baseEnemy.transform.position += _baseEnemy.transform.forward * _speed * Time.deltaTime;
 
     }
     public void CheckDistanceWithTarget()
     {
         var distance = Vector3.Distance(_baseEnemy.player.transform.position, _baseEnemy.transform.position);
-       // if (distance > _baseEnemy.viewDistance) _baseEnemy.Transition("Patrol");
+        // if (distance > _baseEnemy.viewDistance) _baseEnemy.Transition("Patrol");
 
         if (_baseEnemy.InRangeToAttack())
         {
-            _baseEnemy.Transition("Attack");
+            //float rnd = Random.RandomRange(0, 100);
+            //if(rnd>40)
+            //_baseEnemy.Transition("Attack");
+            //else
+                _baseEnemy.Transition("Bite");
+
         }
     }
-    
+
 
 }

@@ -27,6 +27,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     [Header("Enemy melee attack")]
     public EnemyMeleeAttack meleeAttack;
     public float headHight=100;
+    public bool isBitting;
     //
     BaseEnemy baseEnemy;
     //
@@ -56,8 +57,8 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     public bool isDamage = false;
     public bool isInPatrol = false;
     public bool waitOnWP = false;
-    
 
+    
     //FSM
     public QuestionNode isSeeingPlayer;
 
@@ -278,21 +279,24 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         //FSM
         var idle = new IdleState<string>(baseEnemy, enemyView);
         var patrol = new PatrolState<string>(baseEnemy, enemyView,true);
-
+        var bite = new BiteState<string>(baseEnemy);
         var attack = new AttackState<string>(baseEnemy, enemyView);
         var chase = new ChaseState<string>(baseEnemy, enemyView);
 
         idle.AddTransition("Patrol", patrol); //Va de idle a patrol
         idle.AddTransition("Chase", chase); //Va de idle a chase
-
         patrol.AddTransition("Idle", idle); //Va de patrol a idle
         patrol.AddTransition("Chase", chase); //Va de patrol a chase
         patrol.AddTransition("Idle", idle); //Va de patrol a chase
+        bite.AddTransition("Chase",chase);
+        bite.AddTransition("Idle",idle);
+        
 
         attack.AddTransition("Chase", chase); //Va de attack a chase
         attack.AddTransition("Patrol", patrol);
         attack.AddTransition("Idle", idle);
         chase.AddTransition("Attack", attack); //Va de chase a attack
+        chase.AddTransition("Bite", bite); //Va de chase a bite
         chase.AddTransition("Idle", idle); //Va de chase a idle
         chase.AddTransition("Patrol", patrol);
         //El FSM empieza con el patrol.

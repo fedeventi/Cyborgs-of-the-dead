@@ -390,8 +390,24 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
         weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<Weapon>().Shoot();
     }
+
+    public bool beingBitted;
     
-   
+    public void ReleaseBitting()
+    {
+        
+        canControlPlayer = false;
+    }
+
+    public bool canControlPlayer
+    {
+        get { return GetComponent<PlayerController>().canControlPlayer; }
+        set
+        {
+            GetComponent<PlayerController>().canControlPlayer = value;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         //if(collision.gameObject.tag == "GlassFragments")

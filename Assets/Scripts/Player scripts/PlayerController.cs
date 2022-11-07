@@ -11,7 +11,7 @@ public class PlayerController : OverridableMonoBehaviour
     PlayerView view;
     Rigidbody body;
     Guide guide;
-    bool canControlPlayer=true;
+    public bool canControlPlayer=true;
     public override void Start()
     {
         base.Start();
@@ -58,8 +58,8 @@ public class PlayerController : OverridableMonoBehaviour
     public override void UpdateMe()
     {
         //Movimiento del jugador
-        if (guide)
-            canControlPlayer = !guide.Show;
+        //if (guide)
+        //    canControlPlayer = !guide.Show;
 
         if (Input.GetAxisRaw("Horizontal")==0 && Input.GetAxisRaw("Vertical")==0)
         {
