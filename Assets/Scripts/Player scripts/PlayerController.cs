@@ -5,7 +5,7 @@ using JoostenProductions;
 public class PlayerController : OverridableMonoBehaviour
 {
     //ejecuta las funciones del model 
-
+    //Cambiar objetivo a mirar por codigo
     //Componentes: 
     PlayerModel model;
     PlayerView view;
@@ -82,6 +82,7 @@ public class PlayerController : OverridableMonoBehaviour
     }
     public  void LateUpdate()
     {
+        
         if (canControlPlayer)
             model.RotationCamera();
         else

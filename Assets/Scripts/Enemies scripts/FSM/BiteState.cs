@@ -21,7 +21,7 @@ public class BiteState<T> : State<T>
     {
         base.Execute();
         _zombie.player.ReleaseBitting();
-        _zombie.player.LookTowards(_zombie.transform.position);
+        //_zombie.player.LookTowards(_zombie.transform.position);
     }
     public override void Sleep()
     {

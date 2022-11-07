@@ -122,6 +122,8 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     }
     public override void UpdateMe()
     {
+  
+
 
         if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)
         {
@@ -216,13 +218,15 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
 
         
     }
-    
-    
-    
-       
-    
+
+
+
+
+
     public virtual void OnDrawGizmos()
     {
+        if(player!=null)
+            Gizmos.DrawSphere(player.transform.position+(transform.position-player.transform.position), 10);
         if(player!=null)
         if(LookingPlayer())
             Gizmos.color= Color.green;

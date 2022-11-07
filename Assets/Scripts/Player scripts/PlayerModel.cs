@@ -90,10 +90,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         normalSpeed = speed;
         runSpeed = speed * 2;
     }
-    void FixedUpdate()
-    {
-       
-    }
+    
     public override void UpdateMe()
     {
         if (Input.GetKeyDown(KeyCode.F4))
@@ -303,7 +300,8 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     {
         if (isDead) return;
         position.y=transform.position.y;
-        transform.forward = Vector3.Slerp(transform.forward, position - transform.position, Time.deltaTime * 1.5f);
+        transform.forward = Vector3.Lerp(transform.forward, position - transform.position, Time.deltaTime * 1.5f);
+        
     }
 
 
