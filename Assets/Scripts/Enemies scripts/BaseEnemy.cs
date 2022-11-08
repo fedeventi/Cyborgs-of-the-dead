@@ -120,10 +120,13 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         base.Start();
         
     }
+    public override void LateUpdateMe()
+    {
+        base.LateUpdateMe();
+        
+    }
     public override void UpdateMe()
     {
-  
-
 
         if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)
         {
@@ -133,6 +136,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         if (life>0)
         {           
             fsm.OnUpdate();
+            
 
         }
 

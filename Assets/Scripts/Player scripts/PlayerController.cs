@@ -82,13 +82,14 @@ public class PlayerController : OverridableMonoBehaviour
     }
     public  void LateUpdate()
     {
-        
         if (canControlPlayer)
             model.RotationCamera();
         else
         {
             view.MovementAnimation(0, 0);
-            model.LookTowards(guide.location);
+            //model.LookTowards(guide.location);
         }
     }
+    
+    
 }

@@ -235,6 +235,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     public void OnDrawGizmos()
     {
         Gizmos.color= Color.yellow;
+        
         //Gizmos.DrawRay(transform.position, _directionDebug * (isRunning?runSpeed:speed)*.2f);
        //Gizmos.DrawRay(transform.position, _directionDebug * 40f);
     }
@@ -299,8 +300,9 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     public void LookTowards(Vector3 position)
     {
         if (isDead) return;
-        position.y=transform.position.y;
-        transform.forward = Vector3.Lerp(transform.forward, position - transform.position, Time.deltaTime * 1.5f);
+        var destinyPosition = position - transform.position;
+        destinyPosition.y = transform.forward.y;
+        transform.forward = Vector3.Lerp(transform.forward, destinyPosition, Time.deltaTime * 1.5f);
         
     }
 

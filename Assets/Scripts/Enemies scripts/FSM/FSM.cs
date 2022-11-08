@@ -18,6 +18,15 @@ public class FSM<T>
     {
         currentState.Execute();
     }
+        public void OnFixedUpdate()
+    {
+        currentState.FixedExecute();
+    }
+    public void OnLateUpdate()
+    {
+        currentState.LateExecute();
+    }
+    
     public void Transition(T input)
     {
         //Obtenes el estado al cual transicionar

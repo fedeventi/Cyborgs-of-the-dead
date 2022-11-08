@@ -8,6 +8,8 @@ public class State<T>
     {
 
     }
+    public virtual void FixedExecute() { }
+    public virtual void LateExecute() { }
     public virtual void Execute()
     {
 
