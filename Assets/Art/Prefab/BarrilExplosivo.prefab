@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3366854469874531410}
   - component: {fileID: 5059054224444546404}
   - component: {fileID: 7760574755136744308}
+  - component: {fileID: 1854698466971837703}
   m_Layer: 0
   m_Name: BarrilExplosivo
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1854698466971837703
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4486108394414808243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 21.120316, y: 22.014193, z: 27.293295}
+  m_Center: {x: 0, y: -0.0000004768373, z: 13.646647}

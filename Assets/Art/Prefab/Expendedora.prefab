@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6662542740947766064}
   - component: {fileID: 3433634913706594208}
   - component: {fileID: 2900730646568277107}
+  - component: {fileID: 3264187003893200341}
   m_Layer: 0
   m_Name: Expendedora
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3264187003893200341
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896838672169129729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 40.799995, y: 83.5321, z: 30.2408}
+  m_Center: {x: -92.6608, y: 41.76605, z: -36.1141}

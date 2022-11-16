@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4972802659856203939}
   - component: {fileID: 4232584761027936902}
   - component: {fileID: 5497972645304797158}
+  - component: {fileID: 4206221205895041541}
   m_Layer: 0
   m_Name: Bidon
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4206221205895041541
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923110956196238347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 29.510593, y: 57.508835, z: 13.040424}
+  m_Center: {x: -3.493859, y: -19.95551, z: 1.3240948}

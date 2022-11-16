@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 5131693902946427843}
   - component: {fileID: 192896301521923561}
   - component: {fileID: 4363552944849240306}
+  - component: {fileID: 2961379040777822865}
   m_Layer: 0
   m_Name: Valla gigante
   m_TagString: Untagged
@@ -159,3 +160,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &2961379040777822865
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4767744598394464435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 125.30039, y: 27.2, z: 76.48253}
+  m_Center: {x: -52.650223, y: -3.5999978, z: 38.241158}

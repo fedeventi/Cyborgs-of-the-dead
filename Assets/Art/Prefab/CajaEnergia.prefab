@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7041946693781107315}
   - component: {fileID: 1327056267593643747}
   - component: {fileID: 1553013172070853936}
+  - component: {fileID: 2392110738856582472}
   m_Layer: 0
   m_Name: CajaEnergia
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &2392110738856582472
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096937631696744002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 63.36873, y: 38.621746, z: 29.586073}
+  m_Center: {x: -1.7803926, y: -2.0871396, z: 14.37766}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8105358938143980475}
   - component: {fileID: 1233488904466601239}
   - component: {fileID: 8667150665004899856}
+  - component: {fileID: 4436302549954798962}
   m_Layer: 0
   m_Name: CartelCalle
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4436302549954798962
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4107446023089743578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.646978, y: 190.1627, z: 21.99381}
+  m_Center: {x: 12.668568, y: 95.12525, z: 42.726315}

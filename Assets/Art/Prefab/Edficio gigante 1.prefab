@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2904701835145982168}
   - component: {fileID: 5273060339687677556}
   - component: {fileID: 2338617752199009651}
+  - component: {fileID: 7197798038048671255}
   m_Layer: 0
   m_Name: Edficio gigante 1
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7197798038048671255
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003945737520950713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 61.196888, y: 45.00002, z: 291.84482}
+  m_Center: {x: 0.598444, y: 0, z: 90.77775}

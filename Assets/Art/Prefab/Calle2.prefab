@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 7004984508474002858}
   - component: {fileID: 2088110784941145621}
   - component: {fileID: 595868607401938627}
+  - component: {fileID: 6715066482112192568}
+  - component: {fileID: 5881577906553830568}
+  - component: {fileID: 6721288110132637209}
   m_Layer: 0
   m_Name: Calle2
   m_TagString: Untagged
@@ -79,3 +82,42 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6715066482112192568
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043878851408458401}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 584.536, y: 813.3991, z: 23.158447}
+  m_Center: {x: 594.9046, y: -0.0001220703, z: 11.579224}
+--- !u!65 &5881577906553830568
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043878851408458401}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 573.16425, y: 813.3991, z: 23.158447}
+  m_Center: {x: -1204.6693, y: -0.00012207031, z: 11.579224}
+--- !u!65 &6721288110132637209
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043878851408458401}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2378.424, y: 813.3991, z: 19.911255}
+  m_Center: {x: -302.03943, y: -0.00012207031, z: 2.1246948}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5694319522415987782}
   - component: {fileID: 4285224903864900199}
   - component: {fileID: 8993802890074547161}
+  - component: {fileID: 4197968582942990895}
   m_Layer: 0
   m_Name: Edificio 4
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4197968582942990895
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7434207129342622214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 215.34781, y: 146.96768, z: 408.322}
+  m_Center: {x: 1.367761, y: 18.50978, z: 204.16092}

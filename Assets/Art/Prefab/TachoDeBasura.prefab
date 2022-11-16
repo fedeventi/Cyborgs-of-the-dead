@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8061210581660528972}
   - component: {fileID: 1567366971468932346}
   - component: {fileID: 4303712017224161252}
+  - component: {fileID: 5144338615352676157}
   m_Layer: 0
   m_Name: TachoDeBasura
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &5144338615352676157
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6832329175215404088}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.067101, y: 33.7239, z: 16.2669}
+  m_Center: {x: -48.05515, y: 16.68275, z: -28.02385}

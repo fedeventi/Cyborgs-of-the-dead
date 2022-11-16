@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4977556204870669867}
   - component: {fileID: 4227767590032643086}
   - component: {fileID: 5502727693624824174}
+  - component: {fileID: 7046434817321092864}
   m_Layer: 0
   m_Name: Luz4
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7046434817321092864
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927365305953043075}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.897541, y: 63.360317, z: 4.811883}
+  m_Center: {x: 6.8773456, y: 0.00000081984354, z: -0.00000046221552}

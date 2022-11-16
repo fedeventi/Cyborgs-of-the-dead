@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 1649169828701682437}
   - component: {fileID: 4417675342381753628}
   - component: {fileID: 1289601611928479625}
+  - component: {fileID: 3935411790395272112}
+  - component: {fileID: 2194758919803688817}
+  - component: {fileID: 21818230636759393}
   m_Layer: 0
   m_Name: Edificio 7
   m_TagString: Untagged
@@ -79,3 +82,42 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3935411790395272112
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4653260507380649729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 284.36612, y: 241.79485, z: 408.70056}
+  m_Center: {x: -5.434571, y: 2.684409, z: 204.35027}
+--- !u!65 &2194758919803688817
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4653260507380649729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 202.72127, y: 119.54243, z: 408.70056}
+  m_Center: {x: -256.24457, y: -37.107315, z: 204.35027}
+--- !u!65 &21818230636759393
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4653260507380649729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 144.84438, y: 123.4037, z: 408.70056}
+  m_Center: {x: -3.0331173, y: -440.966, z: 204.35027}

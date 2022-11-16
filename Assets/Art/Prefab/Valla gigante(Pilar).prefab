@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9159910999696870899}
   - component: {fileID: 4216693912023827417}
   - component: {fileID: 335393547023920834}
+  - component: {fileID: 322941076025767195}
   m_Layer: 0
   m_Name: Valla gigante(Pilar)
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &322941076025767195
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792034296184309379}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20.000002, y: 20.485466, z: 76.48253}
+  m_Center: {x: 0.0000023632517, y: -0.2427399, z: 38.241158}
