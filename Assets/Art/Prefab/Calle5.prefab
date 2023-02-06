@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5511232417359478417}
   - component: {fileID: 1688096362244053985}
   - component: {fileID: 3761986620385357016}
+  - component: {fileID: 92654692940148155}
   m_Layer: 0
   m_Name: Calle5
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9115810969855539705}
   m_LocalRotation: {x: 0.0000003766279, y: 0.7071068, z: 0.7071068, w: -0.0000003766279}
-  m_LocalPosition: {x: -487.83, y: 149, z: 509.05}
+  m_LocalPosition: {x: -487.83, y: 4255, z: -1935.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,3 +136,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2362.5854, y: 2378.4243, z: 11.47533}
   m_Center: {x: 297.99377, y: 671.4238, z: 5.737201}
+--- !u!205 &92654692940148155
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9115810969855539705}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 297.9939, y: 671.42395, z: 13.108747}
+  m_Size: 2378.425
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.10007253
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6681132215676581465}
+  m_Enabled: 1

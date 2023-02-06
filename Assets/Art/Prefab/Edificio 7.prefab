@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3935411790395272112}
   - component: {fileID: 2194758919803688817}
   - component: {fileID: 21818230636759393}
+  - component: {fileID: 7956776224158734217}
   m_Layer: 0
   m_Name: Edificio 7
   m_TagString: Untagged
@@ -28,9 +29,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4653260507380649729}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -502, y: -157, z: -436.9376}
-  m_LocalScale: {x: 1.1935, y: 1.1935, z: 1.1935}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 3549, y: 4283.5923, z: -4863.9375}
+  m_LocalScale: {x: 1.1935, y: 1.1935003, z: 1.1935003}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -121,3 +122,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 144.84438, y: 123.4037, z: 408.70056}
   m_Center: {x: -3.0331173, y: -440.966, z: 204.35027}
+--- !u!205 &7956776224158734217
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4653260507380649729}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -95.0437, y: -189.54321, z: 204.35034}
+  m_Size: 626.24976
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.07124598
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1289601611928479625}
+  m_Enabled: 1

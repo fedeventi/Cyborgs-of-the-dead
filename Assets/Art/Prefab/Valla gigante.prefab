@@ -1,84 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2513965316664641830
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3926034576858853980}
-  - component: {fileID: 9023325443262975533}
-  - component: {fileID: 7714312129735712721}
-  m_Layer: 0
-  m_Name: Plane002
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3926034576858853980
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2513965316664641830}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -58.612793, y: 2.9704552, z: 41.935062}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5131693902946427843}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &9023325443262975533
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2513965316664641830}
-  m_Mesh: {fileID: 2783131832183395012, guid: 34a143661f9e3e24ca33ec21078aaa64, type: 3}
---- !u!23 &7714312129735712721
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2513965316664641830}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 8dca0b28ffddb124dbac4a837abb2826, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!1 &4767744598394464435
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +12,7 @@ GameObject:
   - component: {fileID: 192896301521923561}
   - component: {fileID: 4363552944849240306}
   - component: {fileID: 2961379040777822865}
+  - component: {fileID: 2943847114111506701}
   m_Layer: 0
   m_Name: Valla gigante
   m_TagString: Untagged
@@ -108,8 +30,7 @@ Transform:
   m_LocalRotation: {x: -0.50504404, y: -0.49490452, z: -0.49490452, w: 0.50504404}
   m_LocalPosition: {x: 3388, y: 4255, z: -3116}
   m_LocalScale: {x: 3.2290182, y: 3.2290182, z: 3.2290182}
-  m_Children:
-  - {fileID: 3926034576858853980}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: -88.838005}
@@ -171,5 +92,24 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 125.30039, y: 27.2, z: 76.48253}
-  m_Center: {x: -52.650223, y: -3.5999978, z: 38.241158}
+  m_Size: {x: 22.389982, y: 27.2, z: 76.48253}
+  m_Center: {x: -1.1950256, y: -3.5999978, z: 38.241158}
+--- !u!205 &2943847114111506701
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4767744598394464435}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.0000038146973, y: -3.5999928, z: 38.24115}
+  m_Size: 76.48251
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.051131714
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4363552944849240306}
+  m_Enabled: 1

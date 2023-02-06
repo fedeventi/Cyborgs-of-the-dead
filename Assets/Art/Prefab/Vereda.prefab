@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8414775739890590942}
   - component: {fileID: 7609200294565493700}
   - component: {fileID: 4605964110937448201}
+  - component: {fileID: 3712129746588484946}
   m_Layer: 0
   m_Name: Vereda
   m_TagString: Untagged
@@ -26,8 +27,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6799065464140204643}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2711.4, y: 175.22, z: 396.78}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 2711.4, y: 4281.2, z: -5237.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -93,3 +94,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1174.7168, y: 811.03925, z: 1.1953517}
   m_Center: {x: 223.81854, y: 0, z: -0.59767586}
+--- !u!205 &3712129746588484946
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6799065464140204643}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 223.81854, y: 0, z: -0.597676}
+  m_Size: 1174.7168
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.08086876
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7609200294565493700}
+  m_Enabled: 1

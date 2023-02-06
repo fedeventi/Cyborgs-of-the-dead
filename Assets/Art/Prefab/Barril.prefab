@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 947834876513719737}
   - component: {fileID: 2351200408223703977}
   - component: {fileID: 7914730333235256358}
+  - component: {fileID: 1551575982146351688}
   m_Layer: 0
   m_Name: Barril
   m_TagString: Untagged
@@ -27,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8454353949608727662}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 6575.7, y: -616.2, z: -1854.6}
-  m_LocalScale: {x: 3.3328922, y: 3.3328922, z: 3.3328922}
+  m_LocalPosition: {x: 1956, y: 4279.1, z: -4633}
+  m_LocalScale: {x: 2.3203573, y: 2.3203573, z: 2.3203573}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,3 +94,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 22.581867, y: 21.73783, z: 39.10295}
   m_Center: {x: 0.44408253, y: 0.41793686, z: 19.95911}
+--- !u!205 &1551575982146351688
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8454353949608727662}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.33408546, y: 0.0031423569, z: 19.959114}
+  m_Size: 39.10296
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.015171606
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2351200408223703977}
+  m_Enabled: 1
