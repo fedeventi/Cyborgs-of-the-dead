@@ -27,6 +27,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     [Header("Enemy melee attack")]
     public EnemyMeleeAttack meleeAttack;
     public float headHight=100;
+    public Waves wv;
     //
     BaseEnemy baseEnemy;
     //
@@ -103,7 +104,8 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         baseEnemy = GetComponent <BaseEnemy>();
         weaponHolder = FindObjectOfType<WeaponHolder>();
         _targetDetection = GetComponent<TargetDetection>();
-        
+        wv = FindObjectOfType<Waves>();
+
         //Fsm
         SetStateMachine();
 
@@ -261,6 +263,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     //Funcion que llama el script de GunPistol
     public void TakeDamage(float damage,bool headshot=false)
     {
+        if(PointsManager.instance)
         PointsManager.instance.AddCombo((int)damage);
         //StartCoroutine(DamageVelocity());
         life -= damage;
@@ -317,7 +320,8 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     {
 
         enemyView.DeathSound();
-        PointsManager.instance.AddKill((int)enemyType);
+        if(PointsManager.instance)
+            PointsManager.instance.AddKill((int)enemyType);
         meleeAttack.gameObject.SetActive(false);
         enemyView.SetAnimator(false);
         RoulleteWheel<bool> rw = new RoulleteWheel<bool>();
@@ -329,6 +333,8 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         };
         if (rw.ProbabilityCalculator(probabilities))
                 deathAction();
+
+        wv.enemyAmount -= 1;
 
         isDead = true;
         foreach (var item in ragdollColliders)

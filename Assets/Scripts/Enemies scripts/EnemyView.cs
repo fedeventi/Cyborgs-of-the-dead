@@ -18,7 +18,7 @@ public class EnemyView : MonoBehaviour
     public List<AudioClip> myClips = new List<AudioClip>();
     GameObject _lastHeadExplosion;
     public GameObject lastHeadExplosion { get => _lastHeadExplosion; }
-    
+
 
     private void Start()
     {

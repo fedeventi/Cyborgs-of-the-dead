@@ -7,17 +7,16 @@ public class Waves : MonoBehaviour
     public GameObject[] enemyPrefabs; // Arreglo con los prefabs de los enemigos
     public Transform[] spawnPoints; // Arreglo con los puntos de aparición de los enemigos
     public float timeBetweenWaves = 5f; // Tiempo entre cada oleada
-    public int numberOfEnemiesPerWave = 5; // Cantidad de enemigos por oleada
     public float enemyIncreaseFactor = 1.1f; // Factor de aumento de dificultad de los enemigos
     public int enemyAmount;
-    public int maxEnemyAmount = 5;
+    public int maxEnemyAmount;
     public bool isInWave = false;
     private int currentWave = 0;
     private bool isSpawning = false;
 
     private void Start()
     {
-        isInWave = true;
+        isInWave = false;
     }
 
     private IEnumerator SpawnWave()
@@ -27,7 +26,7 @@ public class Waves : MonoBehaviour
         isSpawning = true;
         currentWave++;
 
-        for (int i = 0; i < numberOfEnemiesPerWave; i++)
+        for (int i = 0; i < maxEnemyAmount; i++)
         {
             int randomIndex = Random.Range(0, enemyPrefabs.Length);
             int randomSpawnPoint = Random.Range(0, spawnPoints.Length);
@@ -40,24 +39,17 @@ public class Waves : MonoBehaviour
         }
 
         isSpawning = false;
-
-        // Aumentar la dificultad para la siguiente oleada
-        numberOfEnemiesPerWave = Mathf.RoundToInt(numberOfEnemiesPerWave * enemyIncreaseFactor);
-
+        isInWave = false;
+        maxEnemyAmount += 3;
     }
 
     private void Update()
     {
-        if(enemyAmount <= maxEnemyAmount & isInWave == true)
+        if(Input.GetKeyDown(KeyCode.K))
         {
             StartCoroutine(SpawnWave());
-            isInWave = false;
-        }
+            isInWave = true;
 
-        // Comprobar si se han destruido todos los enemigos y no está ocurriendo una oleada actualmente
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && !isSpawning)
-        {
-            // Finalizar el juego o realizar alguna acción adicional
         }
     }
 }

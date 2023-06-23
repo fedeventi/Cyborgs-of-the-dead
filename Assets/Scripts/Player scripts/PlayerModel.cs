@@ -265,20 +265,20 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     {
         if (isDead) return;
         var hCamera = 120 * Input.GetAxis("Mouse X") * Time.deltaTime;
-        var vCamera = Mathf.Clamp(Input.GetAxis("Mouse Y") * Time.deltaTime * 120,-20,20);
+        var vCamera = Mathf.Clamp(Input.GetAxis("Mouse Y") * Time.deltaTime * 120,-40,40);
 
         transform.Rotate(0, hCamera, 0);
         myCamera.transform.Rotate(-vCamera, 0, 0);
-        if (myCamera.transform.localRotation.x > 0.7f)
+        if (myCamera.transform.localRotation.x > 0.4f)
         {
             var auxRotation = myCamera.transform.localRotation;
-            auxRotation.x = 0.7f;
+            auxRotation.x = 0.4f;
             myCamera.transform.localRotation = auxRotation;
         }
-        else if (myCamera.transform.localRotation.x < -0.7f)
+        else if (myCamera.transform.localRotation.x < -0.4f)
         {
             var auxRotation = myCamera.transform.localRotation;
-            auxRotation.x = -0.7f;
+            auxRotation.x = -0.4f;
             myCamera.transform.localRotation = auxRotation;
         }
         else
