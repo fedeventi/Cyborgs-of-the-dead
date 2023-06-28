@@ -4,55 +4,57 @@ using UnityEngine;
 using JoostenProductions;
 public class TimeManager : OverridableMonoBehaviour
 {
-    public float slowdownFactor=0.05f;
-    public float slowdownLenght=2;
+    public float slowdownFactor = 0.05f;
+    public float slowdownLenght = 2;
     public GameObject shockWave;
     float fixedDeltaTime;
     bool _isSlowmo;
     AudioSource _audioSource;
     // Start is called before the first frame update
     public override void Start()
-    {   base.Start();
+    {
+        base.Start();
         _audioSource = GetComponent<AudioSource>();
-        
-       
+
+
     }
 
     // Update is called once per frame
     public override void UpdateMe()
     {
-        if(Time.timeScale < 1)
+        if (Time.timeScale < 1)
         {
             Time.timeScale += (1 / slowdownLenght) * Time.unscaledDeltaTime;
         }
-        else if(Time.timeScale > 1)
+        else if (Time.timeScale > 1)
         {
             if (_isSlowmo)
             {
-                Time.timeScale= 1;
+                Time.timeScale = 1;
                 Time.fixedDeltaTime = fixedDeltaTime;
                 _isSlowmo = false;
             }
-            
+
         }
-        
-        
+
+
 
     }
 
     public void SlowMo()
     {
-        
+
         _isSlowmo = true;
         fixedDeltaTime = Time.fixedDeltaTime;
         Time.timeScale = slowdownFactor;
-        Time.fixedDeltaTime = Time.timeScale *slowdownFactor;
+        Time.fixedDeltaTime = Time.timeScale * slowdownFactor;
 
     }
-    public void CreateShockwave(Vector3 position,Quaternion rotation)
+    public void CreateShockwave(Vector3 position, Quaternion rotation)
     {
         if (_isSlowmo) return;
-        _audioSource.Play();
+        if (_audioSource != null)
+            _audioSource.Play();
         Instantiate(shockWave, position, rotation);
         SlowMo();
     }

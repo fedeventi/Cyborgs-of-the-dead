@@ -216,7 +216,7 @@ TextureImporter:
       213: 1342988893342217784
     second: Blood 5_70
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -233,9 +233,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -244,12 +247,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -267,10 +270,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -286,6 +294,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1800,9 +1820,80 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Blood 5_28: -3617795127965396139
+      Blood 5_18: 5807363683390072857
+      Blood 5_20: 7920922516687006380
+      Blood 5_27: 417372692615514783
+      Blood 5_23: -5025268357115678411
+      Blood 5_33: 7297623380555227833
+      Blood 5_47: 5804932446135265698
+      Blood 5_46: 3929726574759561729
+      Blood 5_54: -523611374073680295
+      Blood 5_37: -3608525380983614014
+      Blood 5_49: -5499834489816636164
+      Blood 5_53: -4602732033802916997
+      Blood 5_19: 649964794030304133
+      Blood 5_56: 6793124154937147945
+      Blood 5_60: 5495327922296744397
+      Blood 5_64: 3176031119939335086
+      Blood 5_38: 6311491782211729259
+      Blood 5_59: -8298231873820639948
+      Blood 5_0: 4463352507516390868
+      Blood 5_40: 3180168788389881076
+      Blood 5_15: 7184142063721832857
+      Blood 5_55: 5436821225712366805
+      Blood 5_62: -9025204607766173085
+      Blood 5_2: 4222385614955513576
+      Blood 5_8: 5983821375072620933
+      Blood 5_1: 906248957083925557
+      Blood 5_39: -1670649060736274488
+      Blood 5_17: 8455635105934832143
+      Blood 5_61: -5136683980060371140
+      Blood 5_29: -1347916118454300117
+      Blood 5_63: 7479002457730495694
+      Blood 5_31: -4661224325695057422
+      Blood 5_65: 8446900248373582266
+      Blood 5_36: 621330056413750073
+      Blood 5_43: 2433661766635742700
+      Blood 5_50: 3637694682734771106
+      Blood 5_24: 442517858138193635
+      Blood 5_57: -5478807619024659613
+      Blood 5_44: -2276197222857643006
+      Blood 5_45: -6868844020262818202
+      Blood 5_42: -4583875433380690866
+      Blood 5_3: -3330273042654859645
+      Blood 5_7: 4495098385732160787
+      Blood 5_25: -5705933444951594109
+      Blood 5_21: -6450214541008701363
+      Blood 5_41: 9014529762008953859
+      Blood 5_51: 7508201376975428791
+      Blood 5_13: -6448425065686526692
+      Blood 5_22: -5098552907565740907
+      Blood 5_48: -1712894119930500331
+      Blood 5_16: 3647642774284547705
+      Blood 5_69: -7333358072591776403
+      Blood 5_52: 7809145165471389005
+      Blood 5_32: 1863788601825114223
+      Blood 5_5: 8131358638325115449
+      Blood 5_12: 6576401834079593011
+      Blood 5_11: -9137027154097820509
+      Blood 5_26: 4063767983065565210
+      Blood 5_4: -3700968549307300651
+      Blood 5_67: 281723570026805555
+      Blood 5_58: 4080835201914332416
+      Blood 5_14: 4344089460496243684
+      Blood 5_9: 5678222628502594258
+      Blood 5_66: -2727677848434618937
+      Blood 5_6: 7232464316971042832
+      Blood 5_70: 1342988893342217784
+      Blood 5_68: -9150814216163375269
+      Blood 5_30: -6597011910194916597
+      Blood 5_34: -4686593389664750676
+      Blood 5_35: -3579906883763250278
+      Blood 5_10: 1927538408578763413
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

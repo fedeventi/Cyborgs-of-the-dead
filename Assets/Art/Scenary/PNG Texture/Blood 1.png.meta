@@ -84,7 +84,7 @@ TextureImporter:
       213: -8003556965821278991
     second: Blood 1_26
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -101,9 +101,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -112,12 +115,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -135,10 +138,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -154,6 +162,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -744,9 +764,36 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Blood 1_16: -881732542163647560
+      Blood 1_9: -5264887569595188954
+      Blood 1_6: -1646523356579150170
+      Blood 1_25: 7080883824378562187
+      Blood 1_3: -6148588845693942335
+      Blood 1_13: -8606741140973708643
+      Blood 1_20: 1407818431435889045
+      Blood 1_26: -8003556965821278991
+      Blood 1_4: 1723390798069487330
+      Blood 1_12: -3843988218052097215
+      Blood 1_18: 4527545542849389553
+      Blood 1_21: 4278900934617392996
+      Blood 1_10: 3710903162320652975
+      Blood 1_22: 678828232812407145
+      Blood 1_11: -7000616350736876437
+      Blood 1_5: -5093938157929271093
+      Blood 1_23: -3303394336712822692
+      Blood 1_1: 1801664901479043175
+      Blood 1_15: -7624698650066951590
+      Blood 1_2: -4336080950957224660
+      Blood 1_14: -5529585936090217324
+      Blood 1_8: 6845934712719855528
+      Blood 1_17: -5951464138026264085
+      Blood 1_0: -2800501543247184307
+      Blood 1_24: -4799869555370312245
+      Blood 1_19: 5294359241182779772
+      Blood 1_7: -4550061787986878831
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
