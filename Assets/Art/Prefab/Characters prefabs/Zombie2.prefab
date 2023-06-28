@@ -1590,7 +1590,7 @@ GameObject:
   - component: {fileID: 587877199264430733}
   m_Layer: 9
   m_Name: Zombie2
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1782,11 +1782,15 @@ MonoBehaviour:
   viewDistance: 473.9
   angleVision: 127
   attackDistance: 97.6
+  enemigosAlrededor: 0
+  rangoDetectarEnemigos: 500
   player: {fileID: 0}
   enemyView: {fileID: 0}
   rb: {fileID: 0}
   meleeAttack: {fileID: 3905062891356135423}
   headHight: 100
+  wv: {fileID: 0}
+  enemigosDetectados: []
   bloodSpray: {fileID: 1962516439210982, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
   hasTouchBullet: 0
   isInIdle: 0

@@ -18,6 +18,8 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     [Range(0,360)]
     public int angleVision=90;
     public float attackDistance=30;
+    public int enemigosAlrededor = 0;
+    public float rangoDetectarEnemigos = 5000;
     //Componentes 
     [Header("Player")]
     public PlayerModel player;
@@ -28,6 +30,10 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     public EnemyMeleeAttack meleeAttack;
     public float headHight=100;
     public Waves wv;
+    public List<BaseEnemy> enemigosDetectados = new List<BaseEnemy>();
+    public bool tankBuff = false;
+    public bool buffController = false;
+    public bool buffControllerLessLife = false;
     //
     BaseEnemy baseEnemy;
     //
@@ -109,10 +115,6 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         //Fsm
         SetStateMachine();
 
-
-        
-        
-
         //roulette
         roulette = new Roulette();
     }
@@ -123,10 +125,30 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     }
     public override void UpdateMe()
     {
+        if(this.gameObject.tag == "ZombieTank")
+        {
+            DetectarEnemigos();
+            ActualizarListaEnemigos();
+        }
+
+        if(this.gameObject.tag == "Zombie")
+        {
+            if(tankBuff == true && buffController == false)
+            {
+                life += 75;
+                buffController = true;
+                buffControllerLessLife = false;
+            }
+            if(tankBuff == false && buffControllerLessLife == false )
+            {
+                life -= 75;
+                buffControllerLessLife = true;
+            }
+        }
+
 
         if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)
         {
-            
             return;
         }
         if (life>0)
@@ -142,6 +164,48 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
             
         }
     }
+
+    //Esto es para que el Zombie Tank detecte a los enemigos que estan cerca
+    public void DetectarEnemigos()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, rangoDetectarEnemigos);
+
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Zombie") && collider.gameObject != gameObject)
+            {
+                BaseEnemy enemigo = collider.GetComponent<BaseEnemy>();
+
+                if (!enemigosDetectados.Contains(enemigo))
+                {
+                    enemigosDetectados.Add(enemigo);
+                }
+            }
+        }
+    }
+    public void ActualizarListaEnemigos()
+    {
+        for (int i = enemigosDetectados.Count - 1; i >= 0; i--)
+        {
+            BaseEnemy enemigo = enemigosDetectados[i];
+
+            if (enemigo == null || Vector3.Distance(transform.position, enemigo.transform.position) > rangoDetectarEnemigos)
+            {
+                enemigosDetectados.RemoveAt(i);
+                Debug.Log("Me aleje");
+                enemigo.tankBuff = false;
+                enemigo.buffController = false;
+            }
+
+            if(enemigosDetectados.Count >= 5)
+            {
+                Debug.Log("Ok");
+                enemigo.tankBuff = true;
+            }
+        }
+        
+    }
+
     //calcula si la distancia es la adecuada para atacar
     public bool InRangeToAttack()
     {
@@ -214,14 +278,9 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
             else
                 return true;
         }
-
-        
     }
-    
-    
-    
-       
-    
+
+
     public virtual void OnDrawGizmos()
     {
         if(player!=null)
@@ -417,6 +476,11 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
             hasListenGunShoot = true;
             if(!LookingPlayer()) StartCoroutine(SeeEnemy());
         }
+
+        if (other.gameObject.tag == "Zombie")
+        {
+            enemigosAlrededor++;
+        }
     }
 
     protected virtual void OnTriggerStay(Collider other)
@@ -428,6 +492,10 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         if (other.gameObject.tag == "GunSoundArea")
         {
             hasListenGunShoot = false;
+        }
+        if (other.gameObject.tag == "Zombie")
+        {
+            enemigosAlrededor--;
         }
     }
 
