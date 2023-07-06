@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Piernas
-  m_Shader: {fileID: 4800000, guid: 43fa820114c986e4f943e475fd6c3cfc, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION _NORMALMAP
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 7452117bb69ba974aad8574cba3247c3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: bf8b2c981f21904488fc3cf9bee51432, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -85,7 +85,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Max: 2
-    - _Metallic: 0
+    - _Metallic: 1
     - _Min: 1
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -107,3 +107,4 @@ Material:
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
     - _RimTint: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0}
     - _Tint: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
+  m_BuildTextureStacks: []
