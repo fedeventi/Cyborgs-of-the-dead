@@ -95,7 +95,7 @@ public class ExplosiveZombie : BaseEnemy
     {
         canShoot=false;
         Transition("Range");
-        yield return new WaitForSeconds(Random.Range(7,15));
+        yield return new WaitForSeconds(Random.Range(3,7));
         
         canShoot = true;
     }
