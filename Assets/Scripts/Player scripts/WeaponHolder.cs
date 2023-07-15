@@ -137,11 +137,12 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
     {
         Hammer,
         Pistol,
-        Shotgun
+        Shotgun,
+        Bazooca
     }
 public class WeaponSaveData
 {
-    Weapon[] weapons= new Weapon[3];
+    Weapon[] weapons= new Weapon[4];
     WeaponType currentWeapon;
     int pistolBullets;
     int shotgunBullets;

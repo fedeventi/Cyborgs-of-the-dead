@@ -22,6 +22,8 @@ TagManager:
   - headshot
   - ZombieTank
   - Zombie
+  - BazookaScene
+  - BazookaPlayer
   layers:
   - Default
   - TransparentFX
