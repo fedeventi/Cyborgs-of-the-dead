@@ -17,6 +17,8 @@ public class Bazooka : Weapon
 
 
     //Ammo
+    public GameObject missile;
+    public Transform misSpawner;
 
     //
     int countBullets = 0;
@@ -208,6 +210,7 @@ public class Bazooka : Weapon
     //funcion disparo con raycast + efectos. //se llama en el playerModel, en cierto momento de la animacion
     public override void Shoot()
     {
+        Instantiate(missile, misSpawner.transform.position, misSpawner.transform.rotation);
 
         muzzleFlashObject.SetActive(true);
         StartCoroutine(MuzzleFlash());
@@ -215,59 +218,57 @@ public class Bazooka : Weapon
         currentAmmo--;
         countBullets++;
 
+
+
         //if (Physics.Raycast(myCamera.transform.position, myCamera.transform.forward, out hit, 10000))
-        for (int i = 0; i < 5; i++)
-        {
-            x[i] = Random.Range(-angle, angle);
-            y[i] = Random.Range(-angle / 2, angle / 2);
-            if (Physics.Raycast(myCamera.transform.position, (Quaternion.AngleAxis(x[i], myCamera.transform.up)
-                                                           * Quaternion.AngleAxis(y[i], myCamera.transform.right)
-                                                           * myCamera.transform.forward * 20), out hit, 1000, collisionMask))
+        /*  for (int i = 0; i < 5; i++)
+          {
+              x[i] = Random.Range(-angle, angle);
+              y[i] = Random.Range(-angle / 2, angle / 2);
+              if (Physics.Raycast(myCamera.transform.position, (Quaternion.AngleAxis(x[i], myCamera.transform.up)
+                                                             * Quaternion.AngleAxis(y[i], myCamera.transform.right)
+                                                             * myCamera.transform.forward * 20), out hit, 1000, collisionMask))
 
-            {
-                var target = hit.transform.GetComponent<BaseEnemy>();
-                bool headshot = hit.transform.gameObject.tag == "headshot";
-                var _damage = headshot ? damage * 3 : damage;
-
-
-                if (headshot)
-                {
-                    target = hit.transform.GetComponentInParent<BaseEnemy>();
-                }
-                if (target)
-                {
-                    target.TakeDamage(_damage, headshot);
-                    var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
-                    Destroy(bloodEffect, 0.5f);
-                }
-
-                //Layer del escanario. Si colisiona con algun objeto, genera el bullet hole
-                if (hit.transform.gameObject.layer == 8 || hit.transform.gameObject.layer == 11)
-                {
-                    var impactEffect = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
-
-                    if (hit.transform.gameObject.tag != "GlassFragments")
-                    {
-                        var decal = Instantiate(bulletDecal, hit.point, Quaternion.LookRotation(hit.normal));
-
-                    }
+              {
+                  var target = hit.transform.GetComponent<BaseEnemy>();
+                  bool headshot = hit.transform.gameObject.tag == "headshot";
+                  var _damage = headshot ? damage * 3 : damage;
 
 
-                }
-                //el hit es la explosion del enemigo explosivo
-                SpawnLineRenderer(hit.point);
+                  if (headshot)
+                  {
+                      target = hit.transform.GetComponentInParent<BaseEnemy>();
+                  }
+                  if (target)
+                  {
+                      target.TakeDamage(_damage, headshot);
+                      var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
+                      Destroy(bloodEffect, 0.5f);
+                  }
 
-                
-            }
-        }
+                  //Layer del escanario. Si colisiona con algun objeto, genera el bullet hole
+                  if (hit.transform.gameObject.layer == 8 || hit.transform.gameObject.layer == 11)
+                  {
+                      var impactEffect = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
+
+                      if (hit.transform.gameObject.tag != "GlassFragments")
+                      {
+                          var decal = Instantiate(bulletDecal, hit.point, Quaternion.LookRotation(hit.normal));
+
+                      }
+
+
+                  }
+                  //el hit es la explosion del enemigo explosivo
+                  SpawnLineRenderer(hit.point);
+
+
+              }
+          }*/
 
         myCamera.GetComponent<ShakeCamera>().ActivateShake(shake);
         Recoil();
 
-        if(this.gameObject.tag == "BazookaPlayer")
-        {
-
-        }
     }
 
     //funcion para los fragmentos de vidrios de las barricadas
