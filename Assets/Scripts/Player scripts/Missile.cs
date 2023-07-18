@@ -30,15 +30,23 @@ public class Missile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = transform.forward * _speed;
+        if(_target != null)
+        {
+            _rb.velocity = transform.forward * _speed;
 
-        var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, _target.transform.position));
+            var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, _target.transform.position));
 
-        PredictMovement(leadTimePercentage);
+            PredictMovement(leadTimePercentage);
 
-        AddDeviation(leadTimePercentage);
+            AddDeviation(leadTimePercentage);
 
-        RotateRocket();
+            RotateRocket();
+        }
+        else
+        {
+            transform.position += transform.rotation * Vector3.forward * _speed * Time.deltaTime;
+        }
+
     }
 
     private void PredictMovement(float leadTimePercentage)
