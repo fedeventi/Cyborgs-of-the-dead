@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using JoostenProductions;
 
-public class Truck : OverridableMonoBehaviour ,ICheckpoint
+public class Truck : OverridableMonoBehaviour, ICheckpoint
 {
     PlayerModel playerModel;
     float timePressed;
@@ -20,7 +20,8 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
     public List<AudioClip> clips = new List<AudioClip>();
     public Vector3 interactionPosition;
     public override void Start()
-    {   base.Start();
+    {
+        base.Start();
         playerModel = FindObjectOfType<PlayerModel>();
         _animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
@@ -41,6 +42,7 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
     // Update is called once per frame
     public override void UpdateMe()
     {
+        if (!playerModel) return;
         if (!finished)
         {
             if (playerModel.IsDead)
@@ -88,11 +90,11 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
     }
     public void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position+interactionPosition, 10);
+        Gizmos.DrawSphere(transform.position + interactionPosition, 10);
     }
     public void OnTriggerEnter(Collider other)
     {
-        
+
         if (playerModel != null)
         {
             if (!finished)
@@ -104,11 +106,11 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
     }
     public void OnTriggerStay(Collider other)
     {
-        
+
         if (playerModel != null)
         {
-            playerModel.GetComponent<PlayerView>().InteractionImage(transform.position+interactionPosition,pressed?false:true);
-            
+            playerModel.GetComponent<PlayerView>().InteractionImage(transform.position + interactionPosition, pressed ? false : true);
+
         }
     }
     public void OnTriggerExit(Collider other)
@@ -118,7 +120,7 @@ public class Truck : OverridableMonoBehaviour ,ICheckpoint
             pressed = false;
             playerModel.interaction -= Interaction;
             _view -= playerModel.GetComponent<PlayerView>().SetInteractionTimer;
-            playerModel.GetComponent<PlayerView>().InteractionImage(transform.position,false);
+            playerModel.GetComponent<PlayerView>().InteractionImage(transform.position, false);
         }
     }
 

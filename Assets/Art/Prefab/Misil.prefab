@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 37.888145, y: 30.01381, z: -1.4357587}
   m_LocalScale: {x: 0.6571907, y: 0.7358722, z: 0.7358715}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8880781626863858002}
   m_Father: {fileID: 0}
@@ -55,6 +56,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -101,6 +103,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _explosionPrefab: {fileID: 0}
   _speed: 500
+  _verticalFloat: 50
   _rotateSpeed: 250
   _maxDistancePredict: 100
   _minDistancePredict: 5
@@ -109,8 +112,9 @@ MonoBehaviour:
   _deviatedPrediction: {x: 0, y: 0, z: 0}
   _deviationAmount: 300
   _deviationSpeed: 250
+  _timeToFollow: 1
   _triggerForce: 15
-  _explosionRadius: 1500
+  _explosionRadius: 30
   _explosionForce: 5000
   _particles: {fileID: 130346, guid: 07bf9ced87963e24299c2c2a22bfeeb6, type: 3}
 --- !u!54 &5215025644034434463
@@ -147,6 +151,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 8880781626446117067}
     m_Modifications:
     - target: {fileID: 147564, guid: ed28e53c93fc7d2449d7c68bb8409223, type: 3}
@@ -222,6 +227,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: ed28e53c93fc7d2449d7c68bb8409223, type: 3}
 --- !u!4 &8880781626863858002 stripped
 Transform:
