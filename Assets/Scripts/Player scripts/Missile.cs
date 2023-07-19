@@ -23,6 +23,12 @@ public class Missile : MonoBehaviour
     [SerializeField] public float _deviationAmount = 50;
     [SerializeField] public float _deviationSpeed = 2;
 
+    [Header("EXPLOSION")]
+    [SerializeField] private float _triggerForce = 0.5f;
+    [SerializeField] private float _explosionRadius = 5;
+    [SerializeField] private float _explosionForce = 500;
+    [SerializeField] public GameObject _particles;
+
     public void Start()
     {
         _target = FindObjectOfType<BaseEnemy>();
@@ -75,10 +81,22 @@ public class Missile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //if (_explosionPrefab) Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-        //if (collision.transform.TryGetComponent<IExplode>(out var ex)) ex.Explode();
+        if (collision.relativeVelocity.magnitude >= _triggerForce)
+        {
+            var surroundingObjects = Physics.OverlapSphere(transform.position, _explosionRadius);
 
-        Destroy(gameObject);
+            foreach (var obj in surroundingObjects)
+            {
+                var rb = obj.GetComponent<Rigidbody>();
+                if (rb == null) continue;
+
+                rb.AddExplosionForce(_explosionForce, transform.position, _explosionRadius, 1000);
+            }
+
+            Instantiate(_particles, transform.position, Quaternion.identity);
+
+            Destroy(gameObject);
+        }
     }
 
 }

@@ -508,6 +508,16 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
             
             rb.velocity = Vector3.zero;
         }
+
+        if (collision.gameObject.layer == 13)
+        {
+            life -= 200;
+            enemyView.CreatePoolBlood();
+            if(life <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 
     protected virtual void OnCollisionExit(Collision collision)

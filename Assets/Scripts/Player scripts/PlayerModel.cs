@@ -400,6 +400,11 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
         //    collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         //}
+
+        if(collision.gameObject.layer == 13)
+        {
+            life -= 25;
+        }
     }
 
     public void Save()
