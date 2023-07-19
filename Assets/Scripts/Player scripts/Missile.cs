@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Missile : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Missile : MonoBehaviour
 
     [Header("MOVEMENT")]
     [SerializeField] public float _speed = 15;
+    [SerializeField] float _verticalFloat = 50;
     [SerializeField] public float _rotateSpeed = 95;
 
     [Header("PREDICTION")]
@@ -22,36 +24,43 @@ public class Missile : MonoBehaviour
     [Header("DEVIATION")]
     [SerializeField] public float _deviationAmount = 50;
     [SerializeField] public float _deviationSpeed = 2;
+    [SerializeField] float _timeToFollow = 1;
 
     [Header("EXPLOSION")]
     [SerializeField] private float _triggerForce = 0.5f;
     [SerializeField] private float _explosionRadius = 5;
     [SerializeField] private float _explosionForce = 500;
     [SerializeField] public GameObject _particles;
-
+    float _time = 0;
     public void Start()
     {
-        _target = FindObjectOfType<BaseEnemy>();
+        _target = FindObjectsOfType<BaseEnemy>().
+                  OrderBy(x => Vector3.Angle(transform.forward, x.transform.position - transform.position)).
+                  FirstOrDefault(); //busca el que este mas cerca de donde estabas apuntando con el misil
+        Debug.Log(Vector3.Dot(transform.forward, _target.transform.position - transform.position));
     }
 
     private void FixedUpdate()
     {
-        if(_target != null)
-        {
-            _rb.velocity = transform.forward * _speed;
+        _time += Time.deltaTime;
+        transform.forward = Vector3.Slerp(transform.forward, Vector3.up, _time * 0.6f);
+        _rb.velocity = transform.forward * _speed;
+        if (_time > _timeToFollow)
+            if (_target != null)
+            {
+                transform.forward = Vector3.Slerp(transform.forward, _target.transform.position - transform.position, _time * 0.6f);
+                _rb.velocity = transform.forward * _speed;
 
-            var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, _target.transform.position));
+                var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, _target.transform.position));
 
-            PredictMovement(leadTimePercentage);
+                PredictMovement(leadTimePercentage);
 
-            AddDeviation(leadTimePercentage);
+                AddDeviation(leadTimePercentage);
 
-            RotateRocket();
-        }
-        else
-        {
-            transform.position += transform.rotation * Vector3.forward * _speed * Time.deltaTime;
-        }
+                RotateRocket();
+            }
+
+
 
     }
 
@@ -78,19 +87,22 @@ public class Missile : MonoBehaviour
         var rotation = Quaternion.LookRotation(heading);
         _rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, _rotateSpeed * Time.deltaTime));
     }
-
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, _explosionRadius);
+    }
+    int _enemyLayer = 512; //la mascara de capa de enemigos es la 9, si lo queres pasar a int, tenes que hacer 2**9, lo que da 512
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude >= _triggerForce)
         {
-            var surroundingObjects = Physics.OverlapSphere(transform.position, _explosionRadius);
+            var surroundingObjects = Physics.OverlapSphere(transform.position, _explosionRadius, _enemyLayer);
 
             foreach (var obj in surroundingObjects)
             {
-                var rb = obj.GetComponent<Rigidbody>();
-                if (rb == null) continue;
-
-                rb.AddExplosionForce(_explosionForce, transform.position, _explosionRadius, 1000);
+                var enemy = obj.GetComponent<BaseEnemy>();
+                if (enemy == null || enemy.rb == null) continue;
+                enemy.TakeDamage(200);
             }
 
             Instantiate(_particles, transform.position, Quaternion.identity);

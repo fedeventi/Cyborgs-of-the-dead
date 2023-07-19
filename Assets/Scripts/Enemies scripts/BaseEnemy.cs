@@ -6,18 +6,18 @@ using System;
 using System.Linq;
 using JoostenProductions;
 
-public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheckpoint
+public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheckpoint
 {
     public EnemyType enemyType;
     //Variables
     public float life;
     public float dist;
-    public float speed=1;
+    public float speed = 1;
     public float stoppingDistanceChase;
-    public float viewDistance=200;
-    [Range(0,360)]
-    public int angleVision=90;
-    public float attackDistance=30;
+    public float viewDistance = 200;
+    [Range(0, 360)]
+    public int angleVision = 90;
+    public float attackDistance = 30;
     public int enemigosAlrededor = 0;
     public float rangoDetectarEnemigos = 5000;
     //Componentes 
@@ -28,7 +28,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     protected CapsuleCollider myCollider;
     [Header("Enemy melee attack")]
     public EnemyMeleeAttack meleeAttack;
-    public float headHight=100;
+    public float headHight = 100;
     public Waves wv;
     public List<BaseEnemy> enemigosDetectados = new List<BaseEnemy>();
     public bool tankBuff = false;
@@ -56,14 +56,14 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     protected float _initialLife;
     //bool 
     [Header("BOOLS")]
-    public bool hasTouchBullet=false;
+    public bool hasTouchBullet = false;
     public bool isInIdle = false; //Bool para saber cuando este en idle y cuando no
     public bool hasListenGunShoot = false;
     public bool isDead = false;
     public bool isDamage = false;
     public bool isInPatrol = false;
     public bool waitOnWP = false;
-    
+
 
     //FSM
     public QuestionNode isSeeingPlayer;
@@ -87,81 +87,86 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     [Header("RAGDOLL")]
     public List<Collider> ragdollColliders = new List<Collider>();
     protected EnemySaveData _saveData;
-    
-    
+
+
     public BaseEnemy SetRecycleAction(Action<BaseEnemy> action)
     {
         Recycle += action;
-        
+
         return this;
     }
     public virtual void Awake()
     {
-        
+
         //Componentes
-        player = FindObjectOfType<PlayerModel>();
-        deathAction += player.CriticalKill;
         _initialPosition = transform.position;
         _initialSpeed = speed;
         _initialLife = life;
         enemyView = GetComponent<EnemyView>();
         rb = GetComponent<Rigidbody>();
         myCollider = GetComponent<CapsuleCollider>();
-        baseEnemy = GetComponent <BaseEnemy>();
-        weaponHolder = FindObjectOfType<WeaponHolder>();
+        baseEnemy = GetComponent<BaseEnemy>();
         _targetDetection = GetComponent<TargetDetection>();
         wv = FindObjectOfType<Waves>();
 
-        //Fsm
-        SetStateMachine();
 
+
+        player = FindObjectOfType<PlayerModel>();
+        deathAction += player.CriticalKill;
+        weaponHolder = FindObjectOfType<WeaponHolder>();
+
+
+        //Fsm
+
+        SetStateMachine();
         //roulette
         roulette = new Roulette();
     }
     public override void Start()
     {
         base.Start();
-        
+
     }
     public override void UpdateMe()
     {
-        if(this.gameObject.tag == "ZombieTank")
+
+        if (this.gameObject.tag == "ZombieTank")
         {
             DetectarEnemigos();
             ActualizarListaEnemigos();
         }
 
-        if(this.gameObject.tag == "Zombie")
+        if (this.gameObject.tag == "Zombie")
         {
-            if(tankBuff == true && buffController == false)
+            if (tankBuff == true && buffController == false)
             {
                 life += 75;
                 buffController = true;
                 buffControllerLessLife = false;
             }
-            if(tankBuff == false && buffControllerLessLife == false )
+            if (tankBuff == false && buffControllerLessLife == false)
             {
                 life -= 75;
                 buffControllerLessLife = true;
             }
         }
 
-
-        if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)
+        if (player)
+            if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)
+            {
+                return;
+            }
+        if (life > 0)
         {
-            return;
-        }
-        if (life>0)
-        {           
             fsm.OnUpdate();
 
         }
 
         //EJECUTA LA MUERTE 
-        else if(life<=0 && !isDead)
+        else if (life <= 0 && !isDead)
         {
             StartCoroutine(Death());
-            
+
         }
     }
 
@@ -197,20 +202,20 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
                 enemigo.buffController = false;
             }
 
-            if(enemigosDetectados.Count >= 5)
+            if (enemigosDetectados.Count >= 5)
             {
                 Debug.Log("Ok");
                 enemigo.tankBuff = true;
             }
         }
-        
+
     }
 
     //calcula si la distancia es la adecuada para atacar
     public bool InRangeToAttack()
     {
         var distance = Vector3.Distance(transform.position, player.transform.position);
-        if(distance <= attackDistance)
+        if (distance <= attackDistance)
         {
             return true;
         }
@@ -222,11 +227,11 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     public void CloseEnemies()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, 500, enemiesMask);
-        
+
         foreach (var c in colliders)
         {
             var enemy = c.gameObject.GetComponent<BaseEnemy>();
-            if(enemy != null)
+            if (enemy != null)
                 enemy.SeeEnemy();
         }
     }
@@ -235,30 +240,31 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     {
         Transition("Idle");
         var distance = Vector3.Distance(player.transform.position, transform.position);
-        if(viewDistance<distance)
+        if (viewDistance < distance)
             viewDistance = distance;
-        
+
         var target = player.transform.position;
         target.y = transform.position.y;
 
         Vector3 dir = target - transform.position;
 
         var rot = Quaternion.LookRotation(dir);
-        var angle=Vector3.Angle(transform.forward, dir);
-        while (angle>30)
+        var angle = Vector3.Angle(transform.forward, dir);
+        while (angle > 30)
         {
             yield return new WaitForSeconds(0.05f);
             transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 3).normalized;
             angle = Vector3.Angle(transform.forward, dir);
         }
         yield break;
-        
+
     }
-   
+
 
     //Esta funcion solamente es un bool para saber si ve o no al jugador
     public bool LookingPlayer()
     {
+        if (!player) return false;
         Vector3 difference = (player.transform.position - transform.position);
         //A--->B
         //B-A
@@ -271,7 +277,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         }
         else
         {
-            if (Physics.Raycast(transform.position+transform.up*headHight, difference.normalized, distance, maskObstacles)) //Si choca contra la pared (el rango de visión, devuelve falso)
+            if (Physics.Raycast(transform.position + transform.up * headHight, difference.normalized, distance, maskObstacles)) //Si choca contra la pared (el rango de visión, devuelve falso)
             {
                 return false;
             }
@@ -283,13 +289,13 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
 
     public virtual void OnDrawGizmos()
     {
-        if(player!=null)
-        if(LookingPlayer())
-            Gizmos.color= Color.green;
-        else
-            Gizmos.color = Color.blue;
+        if (player != null)
+            if (LookingPlayer())
+                Gizmos.color = Color.green;
+            else
+                Gizmos.color = Color.blue;
 
-        for (int i = -angleVision/2; i < angleVision/2; i+=5)
+        for (int i = -angleVision / 2; i < angleVision / 2; i += 5)
         {
             Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(i, transform.up) * transform.forward * viewDistance);
         }
@@ -299,16 +305,16 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
 
         }
         Gizmos.color = Color.red;
-        for (int i = -angleVision/2; i < angleVision/2; i += 5)
+        for (int i = -angleVision / 2; i < angleVision / 2; i += 5)
         {
             Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(i, transform.up) * transform.forward * attackDistance);
         }
-        for (int i = -angleVision/2; i < angleVision/2; i += 10)
+        for (int i = -angleVision / 2; i < angleVision / 2; i += 10)
         {
             Gizmos.DrawRay(transform.position + transform.up * headHight, Quaternion.AngleAxis(i, transform.up) * transform.forward * 10);
-            
+
         }
-        
+
 
     }
     //Con esto Transiciono a cualquier estado
@@ -316,22 +322,23 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     {
         fsm.Transition(actionName);
     }
-   
+
 
     //Daño que recibe
     //Funcion que llama el script de GunPistol
-    public void TakeDamage(float damage,bool headshot=false)
+    public void TakeDamage(float damage, bool headshot = false)
     {
-        if(PointsManager.instance)
-        PointsManager.instance.AddCombo((int)damage);
+        if (PointsManager.instance)
+            PointsManager.instance.AddCombo((int)damage);
         //StartCoroutine(DamageVelocity());
         life -= damage;
         if (headshot)
             if (life <= 0)
                 enemyView.DestroyHead();
         enemyView.DamageSound();
-        if (!LookingPlayer())
-            StartCoroutine(SeeEnemy());
+        if (player)
+            if (!LookingPlayer())
+                StartCoroutine(SeeEnemy());
 
     }
     //Creo la state Machine
@@ -339,7 +346,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
     {
         //FSM
         var idle = new IdleState<string>(baseEnemy, enemyView);
-        var patrol = new PatrolState<string>(baseEnemy, enemyView,true);
+        var patrol = new PatrolState<string>(baseEnemy, enemyView, true);
 
         var attack = new AttackState<string>(baseEnemy, enemyView);
         var chase = new ChaseState<string>(baseEnemy, enemyView);
@@ -360,7 +367,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         //El FSM empieza con el patrol.
         fsm = new FSM<string>(idle);
     }
-    
+
     //corrutina para delay en la velocidad cuando recibe daño.
     IEnumerator DamageVelocity()
     {
@@ -371,15 +378,15 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         speed = _speedAux;
         isDamage = false;
 
-       
+
     }
-    
+
     //corrutina de la muerte
     public virtual IEnumerator Death()
     {
 
         enemyView.DeathSound();
-        if(PointsManager.instance)
+        if (PointsManager.instance)
             PointsManager.instance.AddKill((int)enemyType);
         meleeAttack.gameObject.SetActive(false);
         enemyView.SetAnimator(false);
@@ -391,22 +398,28 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
             new Tuple<int,bool>(lostHead?200:10, true),
         };
         if (rw.ProbabilityCalculator(probabilities))
-                deathAction();
+            deathAction();
 
         wv.enemyAmount -= 1;
-
         isDead = true;
-        foreach (var item in ragdollColliders)
-        {
-            item.enabled = true;
-            item.GetComponent<Rigidbody>().isKinematic = false;
-        }
-        rb.isKinematic = true;
-        rb.velocity = Vector3.zero;
-        myCollider.enabled = false;
+        ActiveRagdoll(true);
         StartCoroutine(Dissolve());
         yield break;
     }
+    public void ActiveRagdoll(bool activate)
+    {
+
+        enemyView.SetAnimator(!activate);
+        rb.isKinematic = activate;
+        myCollider.enabled = !activate;
+        foreach (var item in ragdollColliders)
+        {
+            if (item.tag == "headshot") continue;
+            item.enabled = activate;
+            item.GetComponent<Rigidbody>().isKinematic = !activate;
+        }
+    }
+
     IEnumerator Dissolve()
     {
         yield return new WaitForSeconds(1);
@@ -418,14 +431,14 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
             item.GetComponent<Rigidbody>().isKinematic = true;
         }
         float seconds = 0;
-        while (seconds<5)
+        while (seconds < 5)
         {
-            Debug.Log("subiendo")    ;
-            transform.position -= transform.up*10* Time.deltaTime;
+            Debug.Log("subiendo");
+            transform.position -= transform.up * 10 * Time.deltaTime;
             seconds += Time.deltaTime;
             yield return null;
         }
-        if(Recycle!=null)
+        if (Recycle != null)
             StartCoroutine(RecycleCR());
         else
             gameObject.SetActive(false);
@@ -437,32 +450,25 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
             transform.position = _initialPosition;
             //fsm.GetState();
             Reset();
-            if(Recycle != null)
+            if (Recycle != null)
                 Recycle.Invoke(this);
-            
+
         }
         yield return null;
     }
     public virtual void Reset()
     {
-        
+
         life = _initialLife;
         speed = _initialSpeed;
         enemyView.DestroyPoolBlood();
         enemyView.SetAnimator(true);
         Destroy(enemyView.lastHeadExplosion);
-        if(enemyView.head)
+        if (enemyView.head)
             enemyView.head.SetActive(true);
         meleeAttack.gameObject.SetActive(true);
         isDead = false;
-        foreach (var item in ragdollColliders)
-        {
-            if (item.tag == "headshot") continue;
-            item.enabled = false;
-            item.GetComponent<Rigidbody>().isKinematic = true;
-        }
-        rb.isKinematic = false;
-        myCollider.enabled = true;
+        ActiveRagdoll(false);
         Transition("Idle");
     }
 
@@ -474,7 +480,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         if (other.gameObject.tag == "GunSoundArea")
         {
             hasListenGunShoot = true;
-            if(!LookingPlayer()) StartCoroutine(SeeEnemy());
+            if (!LookingPlayer()) StartCoroutine(SeeEnemy());
         }
 
         if (other.gameObject.tag == "Zombie")
@@ -485,7 +491,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
 
     protected virtual void OnTriggerStay(Collider other)
     {
-        
+
     }
     protected virtual void OnTriggerExit(Collider other)
     {
@@ -504,43 +510,43 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         //para evitar que al colisionar con el jugador, el enemigo se mueva.
         if (collision.gameObject.tag == "Player")
         {
-            
-            
+
+
             rb.velocity = Vector3.zero;
         }
 
-        if (collision.gameObject.layer == 13)
-        {
-            life -= 200;
-            enemyView.CreatePoolBlood();
-            if(life <= 0)
-            {
-                Destroy(this.gameObject);
-            }
-        }
+        // if (collision.gameObject.layer == 13)
+        // {
+        //     life -= 200;
+        //     enemyView.CreatePoolBlood();
+        //     if(life <= 0)
+        //     {
+        //         Destroy(this.gameObject);
+        //     }
+        // }
     }
 
     protected virtual void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-            
+
         }
     }
     protected override void OnDisable()
     {
-        
+
         base.OnDisable();
     }
     public void TurnOn()
     {
         gameObject.SetActive(true);
-        
+
     }
 
     public void TurnOff()
     {
-        
+
         gameObject.SetActive(false);
     }
 
@@ -564,7 +570,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy> ,ICheck
         StopAllCoroutines();
         Reset();
         _saveData.Restore(this);
-        
+
     }
 }
 public enum EnemyType
@@ -579,13 +585,13 @@ public class EnemySaveData
     Quaternion _rotation;
     float life;
     bool _activeSelf;
-    public EnemySaveData (BaseEnemy enemy)
+    public EnemySaveData(BaseEnemy enemy)
     {
         _position = enemy.transform.position;
         _rotation = enemy.transform.rotation;
         life = enemy.life;
         _activeSelf = enemy.gameObject.activeSelf;
-        
+
     }
     public void Restore(BaseEnemy enemy)
     {
