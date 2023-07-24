@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6558403681980648854}
   - component: {fileID: 592408128324759919}
   - component: {fileID: 972660760274177020}
+  - component: {fileID: 6410304103959220432}
   m_Layer: 0
   m_Name: AutoRoto2UV
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -109.598, y: 40.67299, z: -62.833008}
 --- !u!33 &6558403681980648854
 MeshFilter:
@@ -103,3 +104,16 @@ LODGroup:
     renderers:
     - renderer: {fileID: 592408128324759919}
   m_Enabled: 1
+--- !u!65 &6410304103959220432
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154185949006775731}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.683869, y: 8.807034, z: 2.2267315}
+  m_Center: {x: -2.8869903, y: 0.1705628, z: 0.1147367}
