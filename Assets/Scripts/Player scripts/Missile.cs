@@ -7,7 +7,7 @@ public class Missile : MonoBehaviour
 {
     [Header("REFERENCES")]
     [SerializeField] public Rigidbody _rb;
-    [SerializeField] public BaseEnemy _target;
+    [SerializeField] public Transform _target;
     [SerializeField] public GameObject _explosionPrefab;
 
     [Header("MOVEMENT")]
@@ -34,7 +34,8 @@ public class Missile : MonoBehaviour
     float _time = 0;
     public void Start()
     {
-        _target = FindObjectsOfType<BaseEnemy>().
+        
+        _target = FindObjectsOfType<Transform>().Where(x=>x.GetComponent<Explosive>() || x.GetComponent<BaseEnemy>()).
                   OrderBy(x => Vector3.Angle(transform.forward, x.transform.position - transform.position)).
                   FirstOrDefault(); //busca el que este mas cerca de donde estabas apuntando con el misil
         Debug.Log(Vector3.Dot(transform.forward, _target.transform.position - transform.position));
@@ -45,15 +46,17 @@ public class Missile : MonoBehaviour
         _time += Time.deltaTime;
         transform.forward = Vector3.Slerp(transform.forward, Vector3.up, _time * 0.6f);
         _rb.velocity = transform.forward * _speed;
+        
         if (_time > _timeToFollow)
             if (_target != null)
             {
+                GetComponent<Collider>().enabled = true;
                 transform.forward = Vector3.Slerp(transform.forward, _target.transform.position - transform.position, _time * 0.6f);
                 _rb.velocity = transform.forward * _speed;
 
                 var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, _target.transform.position));
 
-                PredictMovement(leadTimePercentage);
+                
 
                 AddDeviation(leadTimePercentage);
 
@@ -64,13 +67,7 @@ public class Missile : MonoBehaviour
 
     }
 
-    private void PredictMovement(float leadTimePercentage)
-    {
-        var predictionTime = Mathf.Lerp(0, _maxTimePrediction, leadTimePercentage);
-
-        _standardPrediction = _target.rb.position + _target.rb.velocity * predictionTime;
-    }
-
+   
     private void AddDeviation(float leadTimePercentage)
     {
         var deviation = new Vector3(Mathf.Cos(Time.time * _deviationSpeed), 0, 0);
@@ -91,7 +88,7 @@ public class Missile : MonoBehaviour
     {
         Gizmos.DrawWireSphere(transform.position, _explosionRadius);
     }
-    int _enemyLayer = 512; //la mascara de capa de enemigos es la 9, si lo queres pasar a int, tenes que hacer 2**9, lo que da 512
+    public LayerMask _enemyLayer; //la mascara de capa de enemigos es la 9, si lo queres pasar a int, tenes que hacer 2**9, lo que da 512
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude >= _triggerForce)
@@ -100,8 +97,15 @@ public class Missile : MonoBehaviour
 
             foreach (var obj in surroundingObjects)
             {
+                if (obj.GetComponent<Explosive>())
+                     obj.GetComponent<Explosive>().Explosion();
                 var enemy = obj.GetComponent<BaseEnemy>();
+                    
                 if (enemy == null || enemy.rb == null) continue;
+
+                
+                
+                enemy.GetComponentInChildren<LiftProportion>().Lift();
                 enemy.TakeDamage(200);
             }
 

@@ -931,6 +931,7 @@ GameObject:
   - component: {fileID: 3509370831299864947}
   - component: {fileID: 3509370831299864944}
   - component: {fileID: 5648451732706196202}
+  - component: {fileID: 6698320787888564703}
   m_Layer: 0
   m_Name: CATRigHub001
   m_TagString: Untagged
@@ -1000,6 +1001,18 @@ MonoBehaviour:
   addOnEnable: 1
   removeOnDisable: 1
   gravity: 20
+--- !u!114 &6698320787888564703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3509370831299864945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c1efba49a525c43a09b2164db692de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3678077584629046500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,6 +2082,7 @@ MonoBehaviour:
   - {fileID: 4096506620422030253}
   - {fileID: 5471323610141324308}
   - {fileID: 8852519991572316112}
+  ragdoll: 0
 --- !u!114 &5404061249010721325
 MonoBehaviour:
   m_ObjectHideFlags: 0

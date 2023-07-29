@@ -56,6 +56,7 @@ public class ChargeState<T> : State<T>
         _source.enemyView.animator.SetBool("charging", false);
         _source.StopCoroutine(StartCharge());
         _source.charging=false;
+        _source.rb.velocity = Vector3.zero;
     }
     IEnumerator ChangeStopCharging()
     {

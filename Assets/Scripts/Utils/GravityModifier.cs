@@ -6,7 +6,7 @@ public class GravityModifier : OverridableMonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody rb;
-    [Range(0, 1000)]
+    [Range(0, 100)]
     public float gravity;
     public override void Start()
     {
@@ -17,6 +17,6 @@ public class GravityModifier : OverridableMonoBehaviour
     // Update is called once per frame
     public void FixedUpdate()
     {
-        rb.AddForce(Physics.gravity * rb.mass * gravity);
+        rb.AddForce(Physics.gravity * gravity);
     }
 }

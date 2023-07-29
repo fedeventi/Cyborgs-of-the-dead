@@ -249,11 +249,16 @@ public class GunPistol : Weapon
 
 
             }
+            if (hit.transform.gameObject.layer == 14)
+            {
+                hit.transform.gameObject.GetComponent<Explosive>().Explosion();
+            }
             //el hit es la explosion del enemigo explosivo
 
             SpawnLineRenderer(hit.point);
 
         }
+        
 
         myCamera.GetComponent<ShakeCamera>().ActivateShake(shake);
         Recoil();

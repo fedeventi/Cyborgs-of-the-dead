@@ -105,6 +105,10 @@ public class MeleeWeapon : Weapon
             _myParticle.transform.localScale = Vector3.one*10;
 
         }
+        if (other.gameObject.layer == 14)
+        {
+            other.gameObject.GetComponent<Explosive>().Explosion();
+        }
 
         if (other.transform.gameObject.tag == "GlassFragments")
         {

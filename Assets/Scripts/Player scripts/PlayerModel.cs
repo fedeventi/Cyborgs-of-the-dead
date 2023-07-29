@@ -373,7 +373,8 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         
         
         isDead = true;
-        PointsManager.instance.AddDeath();
+        if(PointsManager.instance)
+            PointsManager.instance.AddDeath();
         view.DeathFeedback();
         speed = 0;
         runSpeed = 0;

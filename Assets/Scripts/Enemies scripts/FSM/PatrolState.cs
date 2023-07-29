@@ -245,6 +245,7 @@ public class PatrolState<T> : State<T>
             baseEnemy.StopCoroutine(changeSpeed());
         else
             _speed = baseEnemy.speed * 3f;
+        
     }
 
 }

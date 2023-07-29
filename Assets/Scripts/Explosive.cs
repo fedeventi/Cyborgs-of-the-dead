@@ -11,22 +11,23 @@ public class Explosive : MonoBehaviour
     [SerializeField] public GameObject _particles;
     [SerializeField] public LayerMask _enemyLayer;
 
+    public void Explosion()
+    {
+        var surroundingObjects = Physics.OverlapSphere(transform.position, _explosionRadius, _enemyLayer);
+
+        foreach (var obj in surroundingObjects)
+        {
+            var enemy = obj.GetComponent<BaseEnemy>();
+            if (enemy == null || enemy.rb == null) continue;
+            enemy.TakeDamage(200);
+        }
+
+        Instantiate(_particles, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.relativeVelocity.magnitude >= _triggerForce)
-        {
-            var surroundingObjects = Physics.OverlapSphere(transform.position, _explosionRadius, _enemyLayer);
-
-            foreach (var obj in surroundingObjects)
-            {
-                var enemy = obj.GetComponent<BaseEnemy>();
-                if (enemy == null || enemy.rb == null) continue;
-                enemy.TakeDamage(200);
-            }
-
-            Instantiate(_particles, transform.position, Quaternion.identity);
-
-            Destroy(gameObject);
-        }
+       
     }
 }

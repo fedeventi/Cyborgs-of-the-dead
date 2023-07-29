@@ -60,6 +60,9 @@ public class ChaseState<T> : State<T>
             _baseEnemy.Transition("Attack");
         }
     }
-    
 
+    public override void Sleep()
+    {
+        base.Sleep();
+    }
 }

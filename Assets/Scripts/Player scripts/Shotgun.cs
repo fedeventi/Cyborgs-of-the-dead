@@ -258,7 +258,10 @@ public class Shotgun : Weapon
                 //el hit es la explosion del enemigo explosivo
                 SpawnLineRenderer(hit.point);
 
-
+                if (hit.transform.gameObject.layer == 14)
+                {
+                    hit.transform.gameObject.GetComponent<Explosive>().Explosion();
+                }
             }
         }
         

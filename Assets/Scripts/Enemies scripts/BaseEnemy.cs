@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using JoostenProductions;
 
-public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheckpoint
+public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheckpoint 
 {
     public EnemyType enemyType;
     //Variables
@@ -34,6 +34,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
     public bool tankBuff = false;
     public bool buffController = false;
     public bool buffControllerLessLife = false;
+    
     //
     BaseEnemy baseEnemy;
     //
@@ -86,9 +87,10 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
     float timerRoulette = 0;
     [Header("RAGDOLL")]
     public List<Collider> ragdollColliders = new List<Collider>();
+    public bool ragdoll;
     protected EnemySaveData _saveData;
 
-
+    
     public BaseEnemy SetRecycleAction(Action<BaseEnemy> action)
     {
         Recycle += action;
@@ -125,11 +127,12 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
     public override void Start()
     {
         base.Start();
-
+        
     }
     public override void UpdateMe()
     {
-
+        
+        if (ragdoll) return;
         if (this.gameObject.tag == "ZombieTank")
         {
             DetectarEnemigos();
@@ -402,13 +405,14 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
 
         wv.enemyAmount -= 1;
         isDead = true;
-        ActiveRagdoll(true);
+        if(!ragdoll)
+            ActiveRagdoll(true);
         StartCoroutine(Dissolve());
         yield break;
     }
     public void ActiveRagdoll(bool activate)
     {
-
+        ragdoll = activate;
         enemyView.SetAnimator(!activate);
         rb.isKinematic = activate;
         myCollider.enabled = !activate;
@@ -417,6 +421,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
             if (item.tag == "headshot") continue;
             item.enabled = activate;
             item.GetComponent<Rigidbody>().isKinematic = !activate;
+            
         }
     }
 
@@ -512,7 +517,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
         {
 
 
-            rb.velocity = Vector3.zero;
+            
         }
 
         // if (collision.gameObject.layer == 13)
@@ -571,6 +576,11 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
         Reset();
         _saveData.Restore(this);
 
+    }
+
+    public void OnShoot(params object[] variables )
+    {
+        TakeDamage((float)variables[0],(bool)variables[1]);
     }
 }
 public enum EnemyType
