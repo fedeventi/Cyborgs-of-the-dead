@@ -240,7 +240,20 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         if (isDead) return;
         Vector3 movement = (transform.right * axisHorizontal + transform.forward * axisVertical).normalized;
         _directionDebug = movement;
-        rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
+        //rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
+
+        
+    }
+
+    public void MovementTest()
+    {
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
+        Vector3 moveFor = v * transform.forward * speed;
+        Vector3 moveSide = h * transform.right * speed;
+
+        rb.AddForce(moveFor + moveSide * 50 * Time.deltaTime, ForceMode.Impulse);
     }
     Vector3 _directionDebug;
     public void OnDrawGizmos()
@@ -260,8 +273,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         {
             _speed = normalSpeed;
         }
-        rb.MovePosition(transform.position + movement * _speed * Time.deltaTime);
-
+        //rb.MovePosition(transform.position + movement * _speed * Time.deltaTime);
     }
     public void Interact(bool pressed)
     {

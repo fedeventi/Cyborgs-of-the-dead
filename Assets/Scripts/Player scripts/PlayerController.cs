@@ -28,9 +28,10 @@ public class PlayerController : OverridableMonoBehaviour
         if (!canControlPlayer) return;
         if(!model.isRunning)
         {
-            model.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            //model.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             view.MovementAnimation(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             model.isMoving = true;
+            model.MovementTest();
         }
         if (Input.GetKey(KeyCode.LeftShift) && model.estamina >= 1)
         {
@@ -44,6 +45,7 @@ public class PlayerController : OverridableMonoBehaviour
             model.isRunning = false;
         }
         view.RunningAnimation(model.isRunning);
+
 
         
         //if (Input.GetKeyDown(KeyCode.E))

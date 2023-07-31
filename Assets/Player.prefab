@@ -43333,6 +43333,7 @@ MonoBehaviour:
   hasPickUpShotgun: 0
   Gas: 0
   timeManager: {fileID: 0}
+  estamina: 0
 --- !u!114 &1246545097308875493
 MonoBehaviour:
   m_ObjectHideFlags: 0
