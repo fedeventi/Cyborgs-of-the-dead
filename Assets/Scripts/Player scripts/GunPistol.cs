@@ -15,9 +15,9 @@ public class GunPistol : Weapon
 
     [Header("UI")]
     public Text ammoText;
-    
 
-    
+
+
     //
     int countBullets = 0;
     //flotante dependiendo del arma, para terminar la animacion de recarga
@@ -52,7 +52,7 @@ public class GunPistol : Weapon
     public float timerToShootAgain;
 
     //
-    
+
 
     //Recoil
     [Header("RECOIL")]
@@ -63,9 +63,9 @@ public class GunPistol : Weapon
     //
     bool explosionForce = false;
 
-    
 
-    public  void Start()
+
+    public void Start()
     {
         model = FindObjectOfType<PlayerModel>();
 
@@ -85,7 +85,7 @@ public class GunPistol : Weapon
     }
 
 
-    public  void Update()
+    public void Update()
     {
         //Actualiza el texto de la munición.
         if (ammoText != null)
@@ -94,20 +94,20 @@ public class GunPistol : Weapon
 
         }
         //Shoot
-        if (Input.GetMouseButtonDown(0) && currentAmmo>0)
+        if (Input.GetMouseButtonDown(0) && currentAmmo > 0)
         {
             ShootNoAmmo();
         }
-        else if(Input.GetMouseButtonDown(0) && currentAmmo <= 0)
+        else if (Input.GetMouseButtonDown(0) && currentAmmo <= 0)
         {
             NoAmmo();
         }
 
 
         //Recargar
-        if (currentAmmo == 0 || Input.GetKey(KeyCode.R) && currentAmmo<maxClip)
+        if (currentAmmo == 0 || Input.GetKey(KeyCode.R) && currentAmmo < maxClip)
         {
-            if(currentMaxAmmo>0)
+            if (currentMaxAmmo > 0)
             {
                 StartCoroutine(Reload());
             }
@@ -121,13 +121,13 @@ public class GunPistol : Weapon
         //Aim();
 
         //contador de balas, para recargar
-        if(currentAmmo==maxClip)
+        if (currentAmmo == maxClip)
         {
             countBullets = 0;
         }
 
         //damage 
-        if (!model.increaseDamage && !onZoneMoreDamageShotgun) 
+        if (!model.increaseDamage && !onZoneMoreDamageShotgun)
         {
             damage = startDamage;
         }
@@ -138,7 +138,7 @@ public class GunPistol : Weapon
     {
         if (Input.GetMouseButton(1))
         {
-             Debug.Log("aiming");
+            Debug.Log("aiming");
         }
         //Animacion
     }
@@ -146,8 +146,8 @@ public class GunPistol : Weapon
     //Recargar.
     IEnumerator Reload()
     {
-        
-        if(!model.isShooting)
+
+        if (!model.isShooting)
         {
             model.isReloading = true;
 
@@ -189,7 +189,7 @@ public class GunPistol : Weapon
         if (currentAmmo == 0)
         {
             NoAmmo();
-            
+
         }
         else if (!model.isShooting && !model.isReloading)
         {
@@ -221,26 +221,26 @@ public class GunPistol : Weapon
             //Si el hit es BaseEnemy, ejecuto el daño de este enemigo.
             var target = hit.transform.GetComponent<BaseEnemy>();
             bool headshot = hit.transform.gameObject.tag == "headshot";
-            var _damage = headshot?damage*3:damage;
-            
+            var _damage = headshot ? damage * 3 : damage;
+
             if (headshot)
             {
-               Debug.Log("headshot");
+                Debug.Log("headshot");
                 target = hit.transform.GetComponentInParent<BaseEnemy>();
             }
             if (target)
             {
 
-                target.TakeDamage(_damage,headshot);
+                target.TakeDamage(_damage, headshot);
                 var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(bloodEffect, 0.5f);
             }
 
             //Layer del escanario. Si colisiona con algun objeto, genera el bullet hole
-            if (hit.transform.gameObject.layer == 8 || hit.transform.gameObject.layer==11)
+            if (hit.transform.gameObject.layer == 8 || hit.transform.gameObject.layer == 11)
             {
                 var impactEffect = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
-                
+
                 if (hit.transform.gameObject.tag != "GlassFragments")
                 {
                     var decal = Instantiate(bulletDecal, hit.point, Quaternion.LookRotation(hit.normal));
@@ -258,15 +258,15 @@ public class GunPistol : Weapon
             SpawnLineRenderer(hit.point);
 
         }
-        
+
 
         myCamera.GetComponent<ShakeCamera>().ActivateShake(shake);
         Recoil();
-        
+
     }
 
     //funcion para los fragmentos de vidrios de las barricadas
-    
+
 
     //corrutina para parar el movimiento de la explosion
     IEnumerator StopExplosion()
@@ -316,7 +316,7 @@ public class GunPistol : Weapon
         yield break;
     }
 
-    
+
 
     //line renderer para disparo
     void SpawnLineRenderer(Vector3 hitPoint)

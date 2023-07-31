@@ -15,14 +15,14 @@ public class Shotgun : Weapon
 
     [Header("UI")]
     public Text ammoText;
-    
+
 
     //Ammo
-    
+
     //
     int countBullets = 0;
     //flotante dependiendo del arma, para terminar la animacion de recarga
-    public float ReloadTime=1;
+    public float ReloadTime = 1;
 
     //Shoot
     [Header("Shoot Shake")]
@@ -53,7 +53,7 @@ public class Shotgun : Weapon
     public float timerToShootAgain;
 
     //
-    
+
 
     //Recoil
     [Header("RECOIL")]
@@ -64,11 +64,11 @@ public class Shotgun : Weapon
     //
     bool explosionForce = false;
 
-    
 
-    public  void Start()
+
+    public void Start()
     {
-        
+
         model = FindObjectOfType<PlayerModel>();
 
         //Municion al principio del juego.
@@ -87,47 +87,47 @@ public class Shotgun : Weapon
     }
 
 
-    public  void Update()
+    public void Update()
     {
         //Actualiza el texto de la munición.
-        if(ammoText != null ) 
-        { 
+        if (ammoText != null)
+        {
             ammoText.text = $"{currentAmmo}/{currentMaxAmmo}";
-            
+
         }
         //Shoot
-        if (Input.GetMouseButtonDown(0) && currentAmmo>0)
+        if (Input.GetMouseButtonDown(0) && currentAmmo > 0)
         {
             ShootNoAmmo();
         }
-        else if(Input.GetMouseButtonDown(0) && currentAmmo <= 0)
+        else if (Input.GetMouseButtonDown(0) && currentAmmo <= 0)
         {
             NoAmmo();
         }
 
 
         //Recargar
-        if (currentAmmo == 0 || Input.GetKeyDown(KeyCode.R) && currentAmmo<maxClip)
+        if (currentAmmo == 0 || Input.GetKeyDown(KeyCode.R) && currentAmmo < maxClip)
         {
-            if(currentMaxAmmo>0)
+            if (currentMaxAmmo > 0)
             {
-                
-                    StartCoroutine(Reload());
+
+                StartCoroutine(Reload());
             }
         }
-       
+
 
         //AIM
         //Aim();
 
         //contador de balas, para recargar
-        if(currentAmmo==maxClip)
+        if (currentAmmo == maxClip)
         {
             countBullets = 0;
         }
 
         //damage 
-        if (!model.increaseDamage && !onZoneMoreDamageShotgun) 
+        if (!model.increaseDamage && !onZoneMoreDamageShotgun)
         {
             damage = startDamage;
         }
@@ -138,7 +138,7 @@ public class Shotgun : Weapon
     {
         if (Input.GetMouseButton(1))
         {
-             Debug.Log("aiming");
+            Debug.Log("aiming");
         }
         //Animacion
     }
@@ -146,7 +146,7 @@ public class Shotgun : Weapon
     //Recargar.
     IEnumerator Reload()
     {
-        if(!model.isShooting && !model.isReloading)
+        if (!model.isShooting && !model.isReloading)
         {
             model.isReloading = true;
 
@@ -160,8 +160,8 @@ public class Shotgun : Weapon
             animator.SetBool("walking", false);
             animator.SetBool("running", false);
             yield return new WaitForSeconds(ReloadTime);
-           
-            
+
+
 
             nextReloadSound = 0;
 
@@ -191,7 +191,7 @@ public class Shotgun : Weapon
             model.isShooting = true;
             model.animationShooting = true;
             StartCoroutine(BoolShoot());
-            
+
             ShootSound();
 
             animator.SetTrigger("attack");
@@ -221,14 +221,14 @@ public class Shotgun : Weapon
         {
             x[i] = Random.Range(-angle, angle);
             y[i] = Random.Range(-angle / 2, angle / 2);
-            if (Physics.Raycast( myCamera.transform.position, (Quaternion.AngleAxis(x[i], myCamera.transform.up) 
-                                                           * Quaternion.AngleAxis(y[i], myCamera.transform.right) 
-                                                           * myCamera.transform.forward * 20),out hit, 1000, collisionMask))
+            if (Physics.Raycast(myCamera.transform.position, (Quaternion.AngleAxis(x[i], myCamera.transform.up)
+                                                           * Quaternion.AngleAxis(y[i], myCamera.transform.right)
+                                                           * myCamera.transform.forward * 20), out hit, 1000, collisionMask))
 
             {
                 var target = hit.transform.GetComponent<BaseEnemy>();
                 bool headshot = hit.transform.gameObject.tag == "headshot";
-                var _damage = headshot ? damage*3 : damage ;
+                var _damage = headshot ? damage * 3 : damage;
 
 
                 if (headshot)
@@ -237,7 +237,7 @@ public class Shotgun : Weapon
                 }
                 if (target)
                 {
-                    target.TakeDamage(_damage,headshot);
+                    target.TakeDamage(_damage, headshot);
                     var bloodEffect = Instantiate(target.bloodSpray, hit.point, Quaternion.LookRotation(hit.normal));
                     Destroy(bloodEffect, 0.5f);
                 }
@@ -246,7 +246,7 @@ public class Shotgun : Weapon
                 if (hit.transform.gameObject.layer == 8 || hit.transform.gameObject.layer == 11)
                 {
                     var impactEffect = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
-                    
+
                     if (hit.transform.gameObject.tag != "GlassFragments")
                     {
                         var decal = Instantiate(bulletDecal, hit.point, Quaternion.LookRotation(hit.normal));
@@ -264,14 +264,14 @@ public class Shotgun : Weapon
                 }
             }
         }
-        
+
         myCamera.GetComponent<ShakeCamera>().ActivateShake(shake);
         Recoil();
-        
+
     }
 
     //funcion para los fragmentos de vidrios de las barricadas
-    
+
 
     //corrutina para parar el movimiento de la explosion
     IEnumerator StopExplosion()
@@ -321,7 +321,7 @@ public class Shotgun : Weapon
         yield break;
     }
 
-    
+
 
     //line renderer para disparo
     void SpawnLineRenderer(Vector3 hitPoint)
@@ -338,11 +338,11 @@ public class Shotgun : Weapon
     [Header("Angle")]
     [Range(0, 30)]
     public float angle;
-    public bool _debug=false;
-   
+    public bool _debug = false;
+
     void OnDrawGizmos()
     {
-        
+
         DebugGizmo();
     }
     float[] x = new float[5]
@@ -365,9 +365,9 @@ public class Shotgun : Weapon
     {
         for (int i = 0; i < 5; i++)
         {
-            if(!_debug)
+            if (!_debug)
             {
-                y[i]=  Random.Range(-angle, angle);
+                y[i] = Random.Range(-angle, angle);
                 x[i] = Random.Range(-angle, angle);
             }
 
@@ -378,10 +378,10 @@ public class Shotgun : Weapon
         }
         _debug = true;
     }
-        //SONIDOS EN ANIMACIONES.
+    //SONIDOS EN ANIMACIONES.
 
-        //Sonido de recarga.
-        public void ReloadSound()
+    //Sonido de recarga.
+    public void ReloadSound()
     {
         audioSource.PlayOneShot(myClips[1]);
     }

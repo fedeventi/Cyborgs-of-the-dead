@@ -90,7 +90,7 @@ public class Bazooka : Weapon
 
     public void Update()
     {
-        //Actualiza el texto de la munición.
+        //Actualiza el texto de la municiï¿½n.
         if (ammoText != null)
         {
             ammoText.text = $"{currentAmmo}/{currentMaxAmmo}";
