@@ -63,6 +63,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     bool _isCameraControlled;
     public bool IsDead { get { return isDead; }set { isDead = false; } }
     bool debugInvincible;
+    public float estamina;
     public override void Start()
     {
         base.Start();
@@ -89,6 +90,8 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         //
         normalSpeed = speed;
         runSpeed = speed * 2;
+
+        estamina = 100f;
     }
     void FixedUpdate()
     {
@@ -117,7 +120,12 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         Toxicity();
 
         //
-        
+
+        if(estamina > 100)
+        {
+            estamina = 100;
+        }
+        Debug.Log(estamina);
     }
 
     //Toxicity 

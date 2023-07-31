@@ -32,13 +32,15 @@ public class PlayerController : OverridableMonoBehaviour
             view.MovementAnimation(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             model.isMoving = true;
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && model.estamina >= 1)
         {
+            model.estamina--;
             model.isRunning = true;
             model.Run(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            model.estamina++;
             model.isRunning = false;
         }
         view.RunningAnimation(model.isRunning);

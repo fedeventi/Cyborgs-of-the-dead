@@ -21,6 +21,8 @@ public class PlayerView : MonoBehaviour
     
     public float nextStepSound = 0f;
     public float delayStepSound = 1f;
+
+
     AudioSource audioSource;
     //Casco
     public Image casco;
