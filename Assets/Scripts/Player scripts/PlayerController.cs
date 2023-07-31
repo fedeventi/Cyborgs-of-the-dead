@@ -11,46 +11,49 @@ public class PlayerController : OverridableMonoBehaviour
     PlayerView view;
     Rigidbody body;
     Guide guide;
-    bool canControlPlayer=true;
+    bool canControlPlayer = true;
     public override void Start()
     {
         base.Start();
         model = GetComponent<PlayerModel>();
         view = GetComponent<PlayerView>();
-        body=GetComponent<Rigidbody>();
+        body = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
-        guide=GetComponentInChildren<Guide>();
+        guide = GetComponentInChildren<Guide>();
     }
     public override void FixedUpdateMe()
-    
+
     {
-       
+
         if (!canControlPlayer) return;
-        if(!model.isRunning)
+        if (!model.isRunning)
         {
-            //model.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            model.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             view.MovementAnimation(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             model.isMoving = true;
-            model.MovementTest();
+
         }
-        if (Input.GetKey(KeyCode.LeftShift) && model.estamina >= 1)
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            model.estamina--;
+            if (model.estamina <= 10)
+            {
+                model.isRunning = false;
+                return;
+            }
             model.isRunning = true;
             model.Run(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            model.estamina++;
             model.isRunning = false;
         }
         view.RunningAnimation(model.isRunning);
 
 
-        
+
         //if (Input.GetKeyDown(KeyCode.E))
         //{
-            
+
         //}
         //else if (Input.GetKeyUp(KeyCode.E))
         //{
@@ -65,13 +68,13 @@ public class PlayerController : OverridableMonoBehaviour
         if (guide)
             canControlPlayer = !guide.Show;
 
-        if (Input.GetAxisRaw("Horizontal")==0 && Input.GetAxisRaw("Vertical")==0)
+        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
         {
             model.isMoving = false;
             model.isRunning = false;
         }
-        
-        model.Interact(Input.GetKey(KeyCode.E)&& !model.IsDead);
+
+        model.Interact(Input.GetKey(KeyCode.E) && !model.IsDead);
 
 
 
@@ -84,7 +87,7 @@ public class PlayerController : OverridableMonoBehaviour
             StartCoroutine(model.Stunned());
         }
     }
-    public  void LateUpdate()
+    public void LateUpdate()
     {
         if (canControlPlayer)
             model.RotationCamera();

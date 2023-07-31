@@ -21,9 +21,9 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     public bool isRunning = false;
     public bool isMoving = false;
     public float speed;
-    public float normalSpeed;
-    public float runSpeed;
-
+    float _normalSpeed;
+    float _runSpeed;
+    public float normalSpeed => _normalSpeed;
     //Vida y muerte
     [Header("Vida")]
     public float life;
@@ -61,15 +61,18 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     public Action<bool> interaction;
     CheckpointDataPlayer _checkpointData;
     bool _isCameraControlled;
-    public bool IsDead { get { return isDead; }set { isDead = false; } }
+    public bool IsDead { get { return isDead; } set { isDead = false; } }
     bool debugInvincible;
     public float estamina;
+    float _stamRcvTime;
+    float _stamRcvTimeThrhd = 4;
+    public bool _stamRcvng => _stamRcvTime < _stamRcvTimeThrhd;
     public override void Start()
     {
         base.Start();
         //Game Master. Posicion al iniciar el juego.
 
-        
+
         //Escena actual.
         actualScene = SceneManager.GetActiveScene();
 
@@ -86,23 +89,23 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
         //
         toxicityText.enabled = false;
-        
-        //
-        normalSpeed = speed;
-        runSpeed = speed * 2;
 
-        estamina = 100f;
+        //
+        _normalSpeed = speed;
+        _runSpeed = speed * 2;
+        estamina = 100;
+
     }
     void FixedUpdate()
     {
-       
+
     }
     public override void UpdateMe()
     {
         if (Input.GetKeyDown(KeyCode.F4))
             debugInvincible = !debugInvincible;
 
-       if (Input.GetKeyDown(KeyCode.F12))
+        if (Input.GetKeyDown(KeyCode.F12))
             StartCoroutine(Death());
         //Recargar los niveles al morir. Inicia en la ultima posición guardada, en relación a los checkpoints.
 
@@ -114,27 +117,31 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
             life = 0;
             StartCoroutine(Death());
         }
-        
+
         //random para las toxinas
         //TOXICITY
         Toxicity();
 
+
+
+        estamina += !isRunning && estamina < 100 && _stamRcvTime >= _stamRcvTimeThrhd ? Time.deltaTime * 8 : 0;
+
+        _stamRcvTime = isRunning ? 0 : _stamRcvTime;
+        _stamRcvTime += _stamRcvTime < _stamRcvTimeThrhd ? Time.deltaTime * 10 : 0;
+
+        Debug.Log(estamina);
         //
 
-        if(estamina > 100)
-        {
-            estamina = 100;
-        }
-        Debug.Log(estamina);
+
     }
 
     //Toxicity 
     void Toxicity()
     {
         if (debugInvincible) return;
-        if(toxicity>25)
+        if (toxicity > 25)
             StartCoroutine(view.ToxicitySound());
-        if(sickEffect!=null)
+        if (sickEffect != null)
             sickEffect.GetComponent<InfiniteMovement>().blend = toxicity > 50 ? toxicity / 100 : 0;
 
 
@@ -148,32 +155,32 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
             {
                 toxicityImprovementsRandom = true;
 
-                
 
-              
-                    
-                   
-                    increaseDamage = true;
-                    if (hasPickUpPistol)
-                    {
-                        weaponHolder.weaponsCollected[0].GetComponent<GunPistol>().damage *= 2;
-                    }
-                    if (hasPickUpShotgun)
-                    {
-                        weaponHolder.weaponsCollected[1].GetComponent<GunPistol>().damage *= 2;
-                    }
-               
+
+
+
+
+                increaseDamage = true;
+                if (hasPickUpPistol)
+                {
+                    weaponHolder.weaponsCollected[0].GetComponent<GunPistol>().damage *= 2;
+                }
+                if (hasPickUpShotgun)
+                {
+                    weaponHolder.weaponsCollected[1].GetComponent<GunPistol>().damage *= 2;
+                }
+
                 view.ChangeSprite(increaseDamage ? 1 : 0);
             }
 
 
         }
-                
-        if (toxicity > 80 )
+
+        if (toxicity > 80)
         {
             //se tiene que curar el jugador por que esta al borde de empezar a perder vida
             toxicityText.text = $" Toxicity bar has reach max level ";
-            
+
 
         }
         //resta vida mientras tiene toxinas en el cuerpo
@@ -189,17 +196,17 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
             }
         }
-        else 
+        else
             view.Toxic(false);
-        
+
         if (toxicity <= 0)
         {
             timerLifeToxic = 0;
             toxicity = 0;
             toxicityText.enabled = false;
             //vuelve los valores a la normalidad
-            speed = normalSpeed;
-            runSpeed = normalSpeed * 2;
+            speed = _normalSpeed;
+            _runSpeed = _normalSpeed * 2;
             increaseDamage = false;
             toxicityImprovementsRandom = false;
             view.toxicityScreen.enabled = false;
@@ -211,11 +218,11 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         //
         if (toxicity < 50)
         {
-            speed = normalSpeed;
-            runSpeed = normalSpeed * 2;
+            speed = _normalSpeed;
+            _runSpeed = _normalSpeed * 2;
             increaseDamage = false;
             toxicityText.enabled = false;
-            view.ChangeSprite( 0);
+            view.ChangeSprite(0);
             if (sickEffect != null)
                 sickEffect.GetComponent<InfiniteMovement>().Reset();
         }
@@ -230,7 +237,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
     public void CriticalKill()
     {
-        
+
         timeManager.CreateShockwave(myCamera.transform.position + myCamera.transform.forward * 50, transform.rotation);
     }
 
@@ -240,52 +247,46 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         if (isDead) return;
         Vector3 movement = (transform.right * axisHorizontal + transform.forward * axisVertical).normalized;
         _directionDebug = movement;
-        //rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
+        rb.AddForce(movement * speed, ForceMode.VelocityChange);
 
-        
+
     }
 
-    public void MovementTest()
-    {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveFor = v * transform.forward * speed;
-        Vector3 moveSide = h * transform.right * speed;
-
-        rb.AddForce(moveFor + moveSide * 50 * Time.deltaTime, ForceMode.Impulse);
-    }
     Vector3 _directionDebug;
     public void OnDrawGizmos()
     {
-        Gizmos.color= Color.yellow;
+        Gizmos.color = Color.yellow;
         //Gizmos.DrawRay(transform.position, _directionDebug * (isRunning?runSpeed:speed)*.2f);
-       //Gizmos.DrawRay(transform.position, _directionDebug * 40f);
+        //Gizmos.DrawRay(transform.position, _directionDebug * 40f);
     }
     public void Run(float axisHorizontal, float axisVertical)
     {
         if (isDead) return;
         Vector3 movement = (transform.right * axisHorizontal + transform.forward * axisVertical).normalized;
-        if(movement.magnitude<=0) isRunning = false;
+        if (movement.magnitude <= 0) isRunning = false;
         _directionDebug = movement;
-        var _speed = runSpeed;
+        var _speed = _runSpeed;
         if (Physics.Raycast(transform.position, movement, 40, (int)Mathf.Pow(8 * 2, 2)))
         {
-            _speed = normalSpeed;
+            _speed = _normalSpeed;
         }
-        //rb.MovePosition(transform.position + movement * _speed * Time.deltaTime);
+
+        estamina -= estamina > 0 ? Time.deltaTime * 15 : 0;
+
+        rb.AddForce(movement * _speed, ForceMode.VelocityChange);
     }
     public void Interact(bool pressed)
     {
-        if(interaction!=null)
-                    interaction(pressed);
+        if (interaction != null)
+            interaction(pressed);
     }
     //Movimiento de la camara
     public void RotationCamera()
     {
         if (isDead) return;
         var hCamera = 120 * Input.GetAxis("Mouse X") * Time.deltaTime;
-        var vCamera = Mathf.Clamp(Input.GetAxis("Mouse Y") * Time.deltaTime * 120,-40,40);
+        var vCamera = Mathf.Clamp(Input.GetAxis("Mouse Y") * Time.deltaTime * 120, -40, 40);
 
         transform.Rotate(0, hCamera, 0);
         myCamera.transform.Rotate(-vCamera, 0, 0);
@@ -307,14 +308,14 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
         if (sickEffect != null && !isDead && !_isCameraControlled)
         {
-           
+
             var _rotation = Quaternion.LookRotation((sickEffect.GetComponent<InfiniteMovement>().GetDir()
                                             - myCamera.transform.position), myCamera.transform.up);
             var _vrotation = _rotation.eulerAngles;
             _vrotation.z = 0;
             _rotation = Quaternion.Euler(_vrotation);
             myCamera.transform.rotation = _rotation;
-           
+
         }
 
 
@@ -322,7 +323,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     public void LookTowards(Vector3 position)
     {
         if (isDead) return;
-        position.y=transform.position.y;
+        position.y = transform.position.y;
         transform.forward = Vector3.Slerp(transform.forward, position - transform.position, Time.deltaTime * 1.5f);
     }
 
@@ -331,7 +332,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     {
         if (debugInvincible) return;
         if (_hasBeenHit) return;
-        
+
         life -= damage;
         view.DamageFeedback();
         myCamera.GetComponent<ShakeCamera>().ActivateShake(.5f);
@@ -339,7 +340,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         StartCoroutine(Invulnerability());
         StartCoroutine(HitKnockback(3.5f));
         StartCoroutine(view.hitFeedback());
-        
+
         //audioSource.PlayOneShot(myClips[1]);
 
     }
@@ -378,26 +379,26 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     public IEnumerator Stunned()
     {
         speed = 0;
-        runSpeed = 0;
+        _runSpeed = 0;
         StartCoroutine(view.StunScreen());
         yield return new WaitForSeconds(2f);
         isStunned = false;
-        speed = normalSpeed;
-        runSpeed = normalSpeed * 2;
+        speed = _normalSpeed;
+        _runSpeed = _normalSpeed * 2;
         yield break;
     }
     //Muerte
     IEnumerator Death()
     {
 
-        
-        
+
+
         isDead = true;
-        if(PointsManager.instance)
+        if (PointsManager.instance)
             PointsManager.instance.AddDeath();
         view.DeathFeedback();
         speed = 0;
-        runSpeed = 0;
+        _runSpeed = 0;
         //audioSource.PlayOneShot(myClips[0]);
         yield return new WaitForSeconds(1.5f);
         view.blink.DoBlink();
@@ -411,8 +412,8 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
         weaponHolder.weaponsCollected[(int)weaponHolder.actualWeapon].GetComponent<Weapon>().Shoot();
     }
-    
-   
+
+
     private void OnCollisionEnter(Collision collision)
     {
         //if(collision.gameObject.tag == "GlassFragments")
@@ -422,7 +423,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         //    collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         //}
 
-        if(collision.gameObject.layer == 13)
+        if (collision.gameObject.layer == 13)
         {
             life -= 25;
         }
@@ -447,12 +448,12 @@ public class CheckpointDataPlayer
 {
     Vector3 _position;
     Quaternion _rotation;
-    float _life=100;
-    float _toxicity=0;
+    float _life = 100;
+    float _toxicity = 0;
     Vector3 _sickEffectPosition;
     float gas;
-    
-    public CheckpointDataPlayer SetPositionAndRotation(Vector3 position,Quaternion rotation)
+
+    public CheckpointDataPlayer SetPositionAndRotation(Vector3 position, Quaternion rotation)
     {
         _position = position;
         _rotation = rotation;
@@ -471,7 +472,7 @@ public class CheckpointDataPlayer
     }
     public CheckpointDataPlayer SetGas(float Gas)
     {
-        gas= Gas;
+        gas = Gas;
         return this;
     }
     public void RestoreData(PlayerModel player)
@@ -482,7 +483,7 @@ public class CheckpointDataPlayer
         player.toxicity = _toxicity;
         player.IsDead = false;
         player.myCamera.transform.rotation = _rotation;
-        player.sickEffect.transform.position = player.myCamera.transform.position+player.myCamera.transform.forward*100;
+        player.sickEffect.transform.position = player.myCamera.transform.position + player.myCamera.transform.forward * 100;
         player.Gas = gas;
     }
 }
