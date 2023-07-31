@@ -84,7 +84,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         rb = GetComponent<Rigidbody>();
 
         //
-        weaponHolder = FindFirstObjectByType<WeaponHolder>();
+        weaponHolder = FindObjectOfType<WeaponHolder>();
 
         //Variables
         //life = 100;
