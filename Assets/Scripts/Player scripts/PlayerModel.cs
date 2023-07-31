@@ -63,10 +63,10 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     bool _isCameraControlled;
     public bool IsDead { get { return isDead; } set { isDead = false; } }
     bool debugInvincible;
-    public float estamina;
+    public float stamina;
     float _stamRcvTime;
     float _stamRcvTimeThrhd = 4;
-    public bool _stamRcvng => _stamRcvTime < _stamRcvTimeThrhd;
+    public bool _stamRcvng => stamina < 100;
     public override void Start()
     {
         base.Start();
@@ -81,7 +81,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         rb = GetComponent<Rigidbody>();
 
         //
-        weaponHolder = FindObjectOfType<WeaponHolder>();
+        weaponHolder = FindFirstObjectByType<WeaponHolder>();
 
         //Variables
         //life = 100;
@@ -93,7 +93,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         //
         _normalSpeed = speed;
         _runSpeed = speed * 2;
-        estamina = 100;
+        stamina = 100;
 
     }
     void FixedUpdate()
@@ -124,12 +124,12 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
 
 
-        estamina += !isRunning && estamina < 100 && _stamRcvTime >= _stamRcvTimeThrhd ? Time.deltaTime * 8 : 0;
+        stamina += !isRunning && stamina < 100 && _stamRcvTime >= _stamRcvTimeThrhd ? Time.deltaTime * 8 : 0;
 
         _stamRcvTime = isRunning ? 0 : _stamRcvTime;
         _stamRcvTime += _stamRcvTime < _stamRcvTimeThrhd ? Time.deltaTime * 10 : 0;
 
-        Debug.Log(estamina);
+        Debug.Log(stamina);
         //
 
 
@@ -272,7 +272,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
             _speed = _normalSpeed;
         }
 
-        estamina -= estamina > 0 ? Time.deltaTime * 15 : 0;
+        stamina -= stamina > 0 ? Time.deltaTime * 15 : 0;
 
         rb.AddForce(movement * _speed, ForceMode.VelocityChange);
     }
