@@ -35,7 +35,7 @@ public class PlayerController : OverridableMonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetAxisRaw("Vertical") > 0)
         {
-            if (model.stamina <= 10)
+            if (model.exhausted)
             {
                 model.isRunning = false;
                 return;
@@ -43,7 +43,7 @@ public class PlayerController : OverridableMonoBehaviour
             model.isRunning = true;
             model.Run(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetAxisRaw("Vertical") <= 0)
+        else
         {
             model.isRunning = false;
         }

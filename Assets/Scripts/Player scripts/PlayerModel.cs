@@ -66,6 +66,9 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     public float stamina;
     float _stamRcvTime;
     float _stamRcvTimeThrhd = 4;
+    public bool exhausted;
+    float _exhtdTime;
+    float _exhtdThrhd = .4f;
     public bool _stamRcvng => stamina < 100;
     public override void Start()
     {
@@ -125,7 +128,17 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
 
         stamina += !isRunning && stamina < 100 && _stamRcvTime >= _stamRcvTimeThrhd ? Time.deltaTime * 8 : 0;
+        if (stamina <= 0.5f)
+            exhausted = true;
 
+        if (stamina >= 100 && exhausted)
+            if (_exhtdTime < _exhtdThrhd)
+                _exhtdTime += Time.deltaTime;
+            else
+            {
+                _exhtdTime = 0;
+                exhausted = false;
+            }
         _stamRcvTime = isRunning ? 0 : _stamRcvTime;
         _stamRcvTime += _stamRcvTime < _stamRcvTimeThrhd ? Time.deltaTime * 10 : 0;
 
