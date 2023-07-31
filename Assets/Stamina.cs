@@ -21,6 +21,7 @@ public class Stamina : MonoBehaviour
     }
     void Start()
     {
+        if (!player || !staminaBar) return;
         player = FindFirstObjectByType<PlayerModel>();
         staminaBar.color = new Color(1, 1, 1, 0);
 
@@ -32,8 +33,8 @@ public class Stamina : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!player || !staminaBar) return;
         _breath += Time.deltaTime;
-        if (!player) return;
         LerpColor(player.stamina);
         MakeVisible(staminaBar, player.isRunning || player._stamRcvng);
         BarFillAmount();
