@@ -70,6 +70,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     float _exhtdTime;
     float _exhtdThrhd = .4f;
     public bool _stamRcvng => stamina < 100;
+    public Waves wave;
     public override void Start()
     {
         base.Start();
@@ -98,6 +99,8 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         _runSpeed = speed * 2;
         stamina = 100;
 
+
+        wave = FindObjectOfType<Waves>();
     }
     void FixedUpdate()
     {
@@ -456,6 +459,27 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         view.animator.SetBool("Death", false);
         view.blink.DoUnBlink();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 16)
+        {
+            StartCoroutine(wave.SpawnWave());
+            wave.isInWave = true;
+        }
+
+        if (other.gameObject.layer == 17)
+        {
+            StartCoroutine(wave.SpawnWave2());
+            wave.isInWave = true;
+        }
+
+        if (other.gameObject.layer == 18)
+        {
+            StartCoroutine(wave.SpawnWave3());
+            wave.isInWave = true;
+        }
+    }
 }
 public class CheckpointDataPlayer
 {
@@ -500,3 +524,5 @@ public class CheckpointDataPlayer
         player.Gas = gas;
     }
 }
+
+

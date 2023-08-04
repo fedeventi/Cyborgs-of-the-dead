@@ -26,7 +26,7 @@ public class Waves : MonoBehaviour
     {
         if(enemyAmount > 1)
         {
-            for(int i = 0;i <= walls.Length ; i++)
+            for(int i = 0;i <= walls.Length; i++)
             {
                 walls[i].SetActive(true);
             }
@@ -40,7 +40,7 @@ public class Waves : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnWave()
+    public IEnumerator SpawnWave()
     {
         yield return new WaitForSeconds(timeBetweenWaves);
 
@@ -64,7 +64,7 @@ public class Waves : MonoBehaviour
         maxEnemyAmount += 3;
     }
 
-    private IEnumerator SpawnWave2()
+    public IEnumerator SpawnWave2()
     {
         yield return new WaitForSeconds(timeBetweenWaves);
 
@@ -88,7 +88,7 @@ public class Waves : MonoBehaviour
         maxEnemyAmount += 3;
     }
 
-    private IEnumerator SpawnWave3()
+    public IEnumerator SpawnWave3()
     {
         yield return new WaitForSeconds(timeBetweenWaves);
 
@@ -110,25 +110,5 @@ public class Waves : MonoBehaviour
         isSpawning = false;
         isInWave = false;
         maxEnemyAmount += 3;
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 16)
-        {
-            StartCoroutine(SpawnWave());
-            isInWave = true;
-        }
-
-        if (other.gameObject.layer == 17)
-        {
-            StartCoroutine(SpawnWave2());
-            isInWave = true;
-        }
-
-        if (other.gameObject.layer == 18)
-        {
-            StartCoroutine(SpawnWave3());
-            isInWave = true;
-        }
     }
 }

@@ -12,6 +12,7 @@ public class PlayerController : OverridableMonoBehaviour
     Rigidbody body;
     Guide guide;
     bool canControlPlayer = true;
+
     public override void Start()
     {
         base.Start();
@@ -20,6 +21,7 @@ public class PlayerController : OverridableMonoBehaviour
         body = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         guide = GetComponentInChildren<Guide>();
+
     }
     public override void FixedUpdateMe()
 
