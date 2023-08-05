@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using JoostenProductions;
-public class WeaponHolder : MonoBehaviour ,ICheckpoint
+public class WeaponHolder : MonoBehaviour, ICheckpoint
 {
     public Animator animator;
     public List<Weapon> weaponsCollected = new List<Weapon>();
     public Weapon[] allWeapons;
     public WeaponType actualWeapon = 0;
     public Image weaponImg;
-    public AnimatorOverrideController[] myClips=new AnimatorOverrideController[3];
-    
+    public AnimatorOverrideController[] myClips = new AnimatorOverrideController[3];
+
     // 
     public Sprite[] weaponsImagesUI;
     //
@@ -24,7 +24,7 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
     //
     //bool hasPickUpPistol = false;
     //bool hasPickUpShotgun = false;
-   
+
     private void Start()
     {
         myClips[0] = new AnimatorOverrideController(animator.runtimeAnimatorController);
@@ -33,7 +33,7 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
         model = FindObjectOfType<PlayerModel>();
     }
 
-    public  void Update()
+    public void Update()
     {
 
 
@@ -41,7 +41,7 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
         {
             foreach (var item in weaponsCollected)
             {
-                if(item!=null)
+                if (item != null)
                     item.gameObject.SetActive(false);
             }
             return;
@@ -49,21 +49,22 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
         if (!model.isShooting && !model.isReloading)
         {
             ChangingWeapon();
-            if(weaponsCollected[(int)actualWeapon]!=null)
-                ActivateOrDeactivateGameObject();
+            if (actualWeapon >= 0 && (int)actualWeapon < weaponsCollected.Count)
+                if (weaponsCollected[(int)actualWeapon] != null)
+                    ActivateOrDeactivateGameObject();
         }
 
 
-        
 
-       ChangeAnimator();
+
+        ChangeAnimator();
     }
 
     //función para activar o desactivar el gameobject de las armas
     public void ActivateOrDeactivateGameObject()
     {
-        
-        if(weaponsCollected.Count>(int)actualWeapon)
+
+        if (weaponsCollected.Count > (int)actualWeapon)
             weaponsCollected[(int)actualWeapon].gameObject.SetActive(true);
         weaponImg.sprite = weaponsImagesUI[(int)actualWeapon];
         animator.runtimeAnimatorController = myClips[(int)actualWeapon];
@@ -72,9 +73,9 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
         {
             if (i != (int)actualWeapon)
             {
-                if(weaponsCollected[i]!=null)
+                if (weaponsCollected[i] != null)
                     weaponsCollected[i].gameObject.SetActive(false);
-                
+
             }
         }
     }
@@ -86,9 +87,9 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             animator.SetTrigger("PickUp");
-            if ((int)actualWeapon < weaponsCollected.Count - 1)
+            actualWeapon += 1;
+            if ((int)actualWeapon < weaponsCollected.Count)
             {
-                actualWeapon += 1;
                 if (weaponsCollected[(int)actualWeapon] == null)
                     actualWeapon += 1;
             }
@@ -98,17 +99,17 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
         else if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             animator.SetTrigger("PickUp");
+            actualWeapon -= 1;
             if (actualWeapon > 0)
             {
-                actualWeapon -= 1;
                 if (weaponsCollected[(int)actualWeapon] == null)
                     actualWeapon -= 1;
 
             }
             else
-                actualWeapon = (WeaponType)weaponsCollected.Count -1;
+                actualWeapon = (WeaponType)weaponsCollected.Count - 1;
         }
-        
+
     }
     void ChangeAnimator()
     {
@@ -116,8 +117,8 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
         view.animator.SetBool(actualWeapon.ToString(), true);
         foreach (WeaponType enumValue in Enum.GetValues(typeof(WeaponType)))
         {
-            if(enumValue!=actualWeapon)
-            view.animator.SetBool(enumValue.ToString(), false);
+            if (enumValue != actualWeapon)
+                view.animator.SetBool(enumValue.ToString(), false);
         }
 
     }
@@ -133,22 +134,22 @@ public class WeaponHolder : MonoBehaviour ,ICheckpoint
         _checkpointData.Restore(this);
     }
 }
-    public enum WeaponType
-    {
-        Hammer,
-        Pistol,
-        Shotgun,
-        Bazooca
-    }
+public enum WeaponType
+{
+    Hammer,
+    Pistol,
+    Shotgun,
+    Bazooca
+}
 public class WeaponSaveData
 {
-    Weapon[] weapons= new Weapon[4];
+    Weapon[] weapons = new Weapon[4];
     WeaponType currentWeapon;
     int pistolBullets;
     int shotgunBullets;
     public WeaponSaveData(WeaponHolder holder)
     {
- 
+
         currentWeapon = holder.actualWeapon;
         //pistolBullets = holder.weaponsCollected[1] != null ? holder.weaponsCollected[1].currentAmmo : 0;
         //shotgunBullets = holder.weaponsCollected[1] != null ? holder.weaponsCollected[2].currentAmmo : 0;
@@ -164,13 +165,13 @@ public class WeaponSaveData
         holder.actualWeapon = currentWeapon;
         holder.ActivateOrDeactivateGameObject();
         holder.weaponsCollected = new List<Weapon>(weapons);
-        
+
         //if (holder.weaponsCollected[1] != null)
         //    holder.weaponsCollected[1].currentAmmo = pistolBullets;
 
         //if(holder.weaponsCollected[2] != null)
         //    holder.weaponsCollected[2].currentAmmo = shotgunBullets;
-        
+
     }
 }
 
