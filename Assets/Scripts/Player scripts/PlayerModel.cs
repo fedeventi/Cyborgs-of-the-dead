@@ -71,6 +71,9 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
     float _exhtdThrhd = .4f;
     public bool _stamRcvng => stamina < 100;
     public Waves wave;
+
+    public Collider[] collidersToInteract; // Asegúrate de asignar los colliders en el inspector de Unity
+    private bool[] colliderUsedStates;
     public override void Start()
     {
         base.Start();
@@ -99,6 +102,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         _runSpeed = speed * 2;
         stamina = 100;
 
+        colliderUsedStates = new bool[collidersToInteract.Length];
 
         wave = FindObjectOfType<Waves>();
     }
@@ -478,6 +482,26 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         {
             StartCoroutine(wave.SpawnWave3());
             wave.isInWave = true;
+        }
+
+        for (int i = 0; i < collidersToInteract.Length; i++)
+        {
+            if (other == collidersToInteract[i] && !colliderUsedStates[i])
+            {
+                // Realiza la lógica de interacción aquí, por ejemplo:
+                Debug.Log("Interactuando con Collider " + (i + 1));
+
+                // Marcar el collider como usado y desactivarlo para futuras interacciones
+                colliderUsedStates[i] = true;
+                collidersToInteract[i].enabled = false;
+
+                // Si deseas volver a habilitar el collider en algún momento, puedes hacerlo en un método separado.
+                // Por ejemplo, si el jugador toca otro collider:
+                // collidersToInteract[i].enabled = true;
+
+                // Salir del bucle para evitar interacciones con otros colliders
+                break;
+            }
         }
     }
 }

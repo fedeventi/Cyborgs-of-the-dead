@@ -6,6 +6,8 @@ public class Waves : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;// Arreglo con los prefabs de los enemigos
     public GameObject[] walls;
+    public GameObject[] coleccionables;
+    public Transform[] spawnCol;
     public Transform[] spawnPoints;
     public Transform[] spawnPoints2;
     public Transform[] spawnPoints3; // Arreglo con los puntos de aparición de los enemigos
@@ -20,24 +22,41 @@ public class Waves : MonoBehaviour
     private void Start()
     {
         isInWave = false;
+        maxEnemyAmount = 10;
     }
 
     private void Update()
     {
         if(enemyAmount > 1)
         {
-            for(int i = 0;i <= walls.Length; i++)
+            foreach(GameObject wall in walls)
             {
-                walls[i].SetActive(true);
+                wall.SetActive(true);
             }
         }
         else
         {
-            for (int i = 0; i <= walls.Length; i++)
+            foreach (GameObject wall in walls)
             {
-                walls[i].SetActive(false);
+                wall.SetActive(false);
             }
         }
+    }
+
+    public IEnumerator SpawnColect()
+    {
+
+        yield return new WaitForSeconds(timeBetweenWaves);
+
+        for (int i = 0; i < spawnCol.Length; i++)
+        {
+            int randomIndex = Random.Range(0, coleccionables.Length);
+            int randomSpawnPoint = Random.Range(0, spawnCol.Length);
+
+            Instantiate(coleccionables[randomIndex], spawnCol[randomSpawnPoint].position, Quaternion.identity);
+        }
+
+
     }
 
     public IEnumerator SpawnWave()
@@ -61,7 +80,7 @@ public class Waves : MonoBehaviour
 
         isSpawning = false;
         isInWave = false;
-        maxEnemyAmount += 3;
+        maxEnemyAmount += 3;  
     }
 
     public IEnumerator SpawnWave2()
