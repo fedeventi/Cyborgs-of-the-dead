@@ -21,8 +21,8 @@ public class Stamina : MonoBehaviour
     }
     void Start()
     {
-        if (!player || !staminaBar) return;
         player = FindObjectOfType<PlayerModel>();
+        if (!player || !staminaBar) return;
         staminaBar.color = new Color(1, 1, 1, 0);
 
 
