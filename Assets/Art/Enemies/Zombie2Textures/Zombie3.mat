@@ -8,16 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Zombie3
-  m_Shader: {fileID: 4800000, guid: 43fa820114c986e4f943e475fd6c3cfc, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
+  m_ValidKeywords:
   - _EMISSION
-  - _METALLICGLOSSMAP
   - _NORMALMAP
-  - _PARALLAXMAP
-  m_LightmapFlags: 2
+  m_InvalidKeywords: []
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -32,7 +30,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: ba73813769bd1654cbc4fd552f0116a1, type: 3}
+        m_Texture: {fileID: 2800000, guid: a230a7d673bc7ba4b904a3a4c6eff5d9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -48,7 +46,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: b5afa69cbbfda4c468dd9506f81728d5, type: 3}
+        m_Texture: {fileID: 2800000, guid: fd821c1da5769f54a8c595fe399f85f9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionTex:
@@ -60,7 +58,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ba99c118b860cf149b25e193eed67462, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1fbfd3f80df4a5f4a9d81a710ef77971, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic:
@@ -84,11 +82,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: 85e1a1833677cc84faf8734662d2d1dd, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
-        m_Texture: {fileID: 2800000, guid: 288565d71a145a94584ef56dcb6830e6, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -104,11 +106,11 @@ Material:
     - _DstBlend: 0
     - _EmissionAmount: 3.56
     - _GlossMapScale: 0
-    - _Glossiness: 0.5
+    - _Glossiness: 0.574
     - _GlossyReflections: 1
     - _HeightMask: 0
     - _Max: 2
-    - _Metallic: 0
+    - _Metallic: 1
     - _Min: 1
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -127,8 +129,9 @@ Material:
     m_Colors:
     - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 1.4142135, g: 1.4142135, b: 1.4142135, a: 1}
     - _EmissiveColor: {r: 0.57758063, g: 0.57758063, b: 0.57758063, a: 0}
     - _RimTint: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _Tint: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
   m_BuildTextureStacks: []
