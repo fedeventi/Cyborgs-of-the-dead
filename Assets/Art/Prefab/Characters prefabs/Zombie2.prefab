@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 9170762289567338142}
   - component: {fileID: 7170071391829044229}
   - component: {fileID: 8493688293441387326}
-  - component: {fileID: 2376667131033548496}
   m_Layer: 0
   m_Name: CATRigRLeg2
   m_TagString: Untagged
@@ -163,21 +162,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2376667131033548496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 360503980710284874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
-  gravity: 20
 --- !u!1 &586792666230036886
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +205,6 @@ GameObject:
   - component: {fileID: 8875526150799415541}
   - component: {fileID: 7575721556999318793}
   - component: {fileID: 4365398246749692649}
-  - component: {fileID: 1194271638635470858}
   m_Layer: 0
   m_Name: CATRigLArm1
   m_TagString: Untagged
@@ -341,21 +324,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1194271638635470858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 664087423182095824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
-  gravity: 20
 --- !u!1 &677524588961857678
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +486,6 @@ GameObject:
   - component: {fileID: 3082950490959861043}
   - component: {fileID: 1121814080842388456}
   - component: {fileID: 2279799714514079433}
-  - component: {fileID: 6554567387777239964}
   m_Layer: 9
   m_Name: CATRigHub003
   m_TagString: headshot
@@ -635,21 +602,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &6554567387777239964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 888146643068953447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
-  gravity: 20
 --- !u!1 &1018463619475567294
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,7 +910,6 @@ GameObject:
   - component: {fileID: 6266716940646181493}
   - component: {fileID: 4536888121105196943}
   - component: {fileID: 6767461889780602066}
-  - component: {fileID: 4099354165284342904}
   m_Layer: 0
   m_Name: CATRigSpine3
   m_TagString: Untagged
@@ -1076,21 +1027,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4099354165284342904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622763991916588832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
-  gravity: 20
 --- !u!1 &1785954084134017990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,7 +1962,6 @@ GameObject:
   - component: {fileID: 2156021619098796264}
   - component: {fileID: 379453169559174082}
   - component: {fileID: 6415424166459449541}
-  - component: {fileID: 4610137207806538254}
   m_Layer: 0
   m_Name: CATRigRArm2
   m_TagString: Untagged
@@ -2146,21 +2081,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4610137207806538254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4424548558511597739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
-  gravity: 20
 --- !u!1 &4787424973206296282
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,7 +2245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   addOnEnable: 1
   removeOnDisable: 1
-  gravity: 20
+  gravity: 25
 --- !u!114 &5408231407891053675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2543,7 +2463,6 @@ GameObject:
   - component: {fileID: 8181661065870816184}
   - component: {fileID: 1521340280672501735}
   - component: {fileID: 6883916790179807436}
-  - component: {fileID: 3046087866883782960}
   m_Layer: 0
   m_Name: CATRigRArm1
   m_TagString: Untagged
@@ -2663,21 +2582,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3046087866883782960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5643181565428637456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
-  gravity: 20
 --- !u!1 &5809896547948607496
 GameObject:
   m_ObjectHideFlags: 0
@@ -2928,7 +2832,6 @@ GameObject:
   - component: {fileID: 4375071404461339519}
   - component: {fileID: 487485797774778442}
   - component: {fileID: 772811068611233083}
-  - component: {fileID: 1400091965324491537}
   m_Layer: 0
   m_Name: CATRigLLeg2
   m_TagString: Untagged
@@ -3048,21 +2951,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1400091965324491537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8285196676211807121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
-  gravity: 20
 --- !u!1 &8641779767511086571
 GameObject:
   m_ObjectHideFlags: 0
@@ -3075,7 +2963,6 @@ GameObject:
   - component: {fileID: 3250786086821016057}
   - component: {fileID: 3606385040961871335}
   - component: {fileID: 1940043086647439347}
-  - component: {fileID: 1560537980468771591}
   m_Layer: 0
   m_Name: CATRigRLeg1
   m_TagString: Untagged
@@ -3195,21 +3082,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1560537980468771591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8641779767511086571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
-  gravity: 20
 --- !u!1 &8648694801444929805
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,7 +3094,6 @@ GameObject:
   - component: {fileID: 8976621282496463741}
   - component: {fileID: 9027609144214320966}
   - component: {fileID: 82130844221939376}
-  - component: {fileID: 3484712998571592234}
   m_Layer: 0
   m_Name: CATRigLLeg1
   m_TagString: Untagged
@@ -3342,21 +3213,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3484712998571592234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648694801444929805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
-  gravity: 20
 --- !u!1 &8803314812507570978
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,7 +3225,6 @@ GameObject:
   - component: {fileID: 481231235421174992}
   - component: {fileID: 3501818295178628797}
   - component: {fileID: 1112923218493980020}
-  - component: {fileID: 5115234478733907783}
   m_Layer: 0
   m_Name: CATRigLArm2
   m_TagString: Untagged
@@ -3489,21 +3344,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &5115234478733907783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8803314812507570978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad801e92b50de5442beb7c05ab078003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addOnEnable: 1
-  removeOnDisable: 1
-  gravity: 20
 --- !u!1001 &8860607174248529083
 PrefabInstance:
   m_ObjectHideFlags: 0
