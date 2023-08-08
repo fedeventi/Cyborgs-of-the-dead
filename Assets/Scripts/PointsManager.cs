@@ -10,9 +10,9 @@ public class PointsManager : MonoBehaviour
 {
     int Deaths; //tus muertes   
     int points; //puntos acumulados 
-    int[] kills = new int[3]; // muertes de zombies de cada tipo 
+    int[] kills = new int[4]; // muertes de zombies de cada tipo 
     int totalKills; //total de muertes de zombies 
-    int[] pointsPerEnemyType = new int[3] { 50, 120, 200 }; //puntos que da cada tipo de enemigo 
+    int[] pointsPerEnemyType = new int[4] { 50, 120, 200, 250 }; //puntos que da cada tipo de enemigo 
     float finalCombo;
     float combo; //acumulacion de combo para subir el bonificador
     float time;
