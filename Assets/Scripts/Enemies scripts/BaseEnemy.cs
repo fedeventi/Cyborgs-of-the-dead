@@ -441,7 +441,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
         while (seconds < 5)
         {
             Debug.Log("subiendo");
-            transform.position -= transform.up * 10 * Time.deltaTime;
+            transform.position -= transform.up * 60 * Time.deltaTime;
             seconds += Time.deltaTime;
             yield return null;
         }
