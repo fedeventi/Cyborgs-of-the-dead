@@ -133,21 +133,28 @@ public class EnemyView : MonoBehaviour
     //Funciones de sonidos 
     public void DamageSound()
     {
-
-        audioSource.PlayOneShot(myClips[0]);
+        if (myClips.Count > 0)
+            if (myClips[0])
+                audioSource.PlayOneShot(myClips[0]);
     }
     public void DeathSound()
     {
-        audioSource.PlayOneShot(myClips[1]);
+        if (myClips.Count > 0)
+            if (myClips[1])
+                audioSource.PlayOneShot(myClips[1]);
     }
     public void Step()
     {
-        audioSource.PlayOneShot(myClips[2]);
+        if (myClips.Count > 0)
+            if (myClips[2])
+                audioSource.PlayOneShot(myClips[2]);
     }
     public void AttackSound()
     {
-        if (!audioSource.isPlaying)
-            audioSource.PlayOneShot(myClips[3]);
+        if (myClips.Count > 0)
+            if (myClips[3])
+                if (!audioSource.isPlaying)
+                    audioSource.PlayOneShot(myClips[3]);
     }
     public void OnDrawGizmos()
     {
