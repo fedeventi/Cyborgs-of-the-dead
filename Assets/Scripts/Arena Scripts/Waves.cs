@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Waves : MonoBehaviour
 {
-    public GameObject[] enemyPrefabs;// Arreglo con los prefabs de los enemigos
+    public List<GameObject> enemyPrefabs = new List<GameObject>();// Arreglo con los prefabs de los enemigos
     public GameObject[] walls;
     public GameObject[] coleccionables;
+    public GameObject zombieBrazo;
+    public GameObject zombieDist;
+    public GameObject zombieTank;
     public Transform[] spawnCol;
     public Transform[] spawnPoints;
     public Transform[] spawnPoints2;
@@ -41,6 +44,11 @@ public class Waves : MonoBehaviour
                 wall.SetActive(false);
             }
         }
+
+        if(currentWave >= 5)
+        {
+            enemyPrefabs.Add(zombieBrazo);
+        }
     }
 
     public IEnumerator SpawnColect()
@@ -63,12 +71,14 @@ public class Waves : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBetweenWaves);
 
+        StartCoroutine(SpawnColect());
+
         isSpawning = true;
         currentWave++;
 
         for (int i = 0; i < maxEnemyAmount; i++)
         {
-            int randomIndex = Random.Range(0, enemyPrefabs.Length);
+            int randomIndex = Random.Range(0, enemyPrefabs.Count);
             int randomSpawnPoint = Random.Range(0, spawnPoints.Length);
 
             Instantiate(enemyPrefabs[randomIndex], spawnPoints[randomSpawnPoint].position, Quaternion.identity);
@@ -92,7 +102,7 @@ public class Waves : MonoBehaviour
 
         for (int i = 0; i < maxEnemyAmount; i++)
         {
-            int randomIndex = Random.Range(0, enemyPrefabs.Length);
+            int randomIndex = Random.Range(0, enemyPrefabs.Count);
             int randomSpawnPoint = Random.Range(0, spawnPoints2.Length);
 
             Instantiate(enemyPrefabs[randomIndex], spawnPoints2[randomSpawnPoint].position, Quaternion.identity);
@@ -116,7 +126,7 @@ public class Waves : MonoBehaviour
 
         for (int i = 0; i < maxEnemyAmount; i++)
         {
-            int randomIndex = Random.Range(0, enemyPrefabs.Length);
+            int randomIndex = Random.Range(0, enemyPrefabs.Count);
             int randomSpawnPoint = Random.Range(0, spawnPoints3.Length);
 
             Instantiate(enemyPrefabs[randomIndex], spawnPoints3[randomSpawnPoint].position, Quaternion.identity);

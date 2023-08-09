@@ -2099,8 +2099,8 @@ MonoBehaviour:
   dist: 0
   speed: 25
   stoppingDistanceChase: 145
-  viewDistance: 677.2
-  angleVision: 83
+  viewDistance: 500000
+  angleVision: 78
   attackDistance: 101.23
   enemigosAlrededor: 0
   rangoDetectarEnemigos: 500
