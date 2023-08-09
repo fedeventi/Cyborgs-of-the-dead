@@ -38,28 +38,24 @@ public class PointsManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-        if (!slider)
+        if (!canvas) canvas = GameObject.Find("Canvas");
+        if (!slider || !multiplier || !multiplierShadow)
         {
             slider = Instantiate(sldrPfb).GetComponent<Slider>();
             slider.transform.SetParent(canvas.transform);
             slider.GetComponent<RectTransform>().offsetMax = Vector2.zero;
             slider.GetComponent<RectTransform>().offsetMin = Vector2.zero;
-        }
-
-        if (!multiplier)
-        {
             multiplier = Instantiate(cmbPfb).GetComponent<Text>();
             multiplier.transform.SetParent(canvas.transform);
             multiplier.GetComponent<RectTransform>().offsetMax = Vector2.zero;
             multiplier.GetComponent<RectTransform>().offsetMin = Vector2.zero;
-        }
-        if (!multiplierShadow)
-        {
             multiplierShadow = Instantiate(cmbShdwPfb).GetComponent<Text>();
             multiplierShadow.transform.SetParent(canvas.transform);
             multiplierShadow.GetComponent<RectTransform>().offsetMax = Vector2.zero;
             multiplierShadow.GetComponent<RectTransform>().offsetMin = Vector2.zero;
         }
+
+
     }
 
     // Update is called once per frame
