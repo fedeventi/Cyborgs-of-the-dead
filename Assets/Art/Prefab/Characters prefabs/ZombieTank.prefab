@@ -1438,7 +1438,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7949153
   m_Height: 3.324341
@@ -1496,7 +1496,7 @@ MonoBehaviour:
   enemigosAlrededor: 0
   rangoDetectarEnemigos: 500
   player: {fileID: 0}
-  enemyView: {fileID: 0}
+  enemyView: {fileID: 1646925377154911086}
   rb: {fileID: 4675956775415427186}
   meleeAttack: {fileID: 4174704626801531354}
   headHight: 100
