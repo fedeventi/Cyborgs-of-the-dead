@@ -34,8 +34,8 @@ public class Missile : MonoBehaviour
     float _time = 0;
     public void Start()
     {
-        
-        _target = FindObjectsOfType<Transform>().Where(x=>x.GetComponent<Explosive>() || x.GetComponent<BaseEnemy>()).
+
+        _target = FindObjectsOfType<Transform>().Where(x => x.GetComponent<Explosive>() || x.GetComponent<BaseEnemy>()).
                   OrderBy(x => Vector3.Angle(transform.forward, x.transform.position - transform.position)).
                   FirstOrDefault(); //busca el que este mas cerca de donde estabas apuntando con el misil
         Debug.Log(Vector3.Dot(transform.forward, _target.transform.position - transform.position));
@@ -46,7 +46,7 @@ public class Missile : MonoBehaviour
         _time += Time.deltaTime;
         transform.forward = Vector3.Slerp(transform.forward, Vector3.up, _time * 0.6f);
         _rb.velocity = transform.forward * _speed;
-        
+
         if (_time > _timeToFollow)
             if (_target != null)
             {
@@ -56,7 +56,7 @@ public class Missile : MonoBehaviour
 
                 var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, _target.transform.position));
 
-                
+
 
                 AddDeviation(leadTimePercentage);
 
@@ -67,7 +67,7 @@ public class Missile : MonoBehaviour
 
     }
 
-   
+
     private void AddDeviation(float leadTimePercentage)
     {
         var deviation = new Vector3(Mathf.Cos(Time.time * _deviationSpeed), 0, 0);
@@ -98,14 +98,15 @@ public class Missile : MonoBehaviour
             foreach (var obj in surroundingObjects)
             {
                 if (obj.GetComponent<Explosive>())
-                     obj.GetComponent<Explosive>().Explosion();
+                    obj.GetComponent<Explosive>().Explosion();
                 var enemy = obj.GetComponent<BaseEnemy>();
-                    
+
                 if (enemy == null || enemy.rb == null) continue;
 
-                
-                
-                enemy.GetComponentInChildren<LiftProportion>().Lift();
+
+                var liftComponent = enemy.GetComponentInChildren<LiftProportion>();
+                if (liftComponent)
+                    liftComponent.Lift();
                 enemy.TakeDamage(200);
             }
 
