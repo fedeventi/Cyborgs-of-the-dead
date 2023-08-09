@@ -167,11 +167,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
         }
 
         //EJECUTA LA MUERTE 
-        else if (life <= 0 && !isDead)
-        {
-            StartCoroutine(Death());
 
-        }
     }
 
     //Esto es para que el Zombie Tank detecte a los enemigos que estan cerca
@@ -336,9 +332,14 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
             PointsManager.instance.AddCombo((int)damage);
         //StartCoroutine(DamageVelocity());
         life -= damage;
-        if (headshot)
-            if (life <= 0)
+        if (life <= 0 && !isDead)
+        {
+            if (headshot)
                 enemyView.DestroyHead();
+            isDead = true;
+            StartCoroutine(Death());
+        }
+
         enemyView.DamageSound();
         if (player)
             if (!LookingPlayer())
@@ -389,6 +390,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
     public virtual IEnumerator Death()
     {
 
+
         enemyView.DeathSound();
         if (PointsManager.instance)
             PointsManager.instance.AddKill((int)enemyType);
@@ -405,7 +407,6 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
             deathAction();
 
         wv.enemyAmount -= 1;
-        isDead = true;
         if (!ragdoll)
             ActiveRagdoll(true);
         StartCoroutine(Dissolve());
