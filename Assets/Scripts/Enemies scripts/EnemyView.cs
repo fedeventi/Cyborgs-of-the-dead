@@ -24,7 +24,8 @@ public class EnemyView : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        bloodPool.transform.parent = null;
+        if (bloodPool)
+            bloodPool.transform.parent = null;
     }
 
     //Funciones de animaciones
@@ -40,15 +41,15 @@ public class EnemyView : MonoBehaviour
         if (bloodPool)
         {
             bloodPool.Stop();
-            bloodPool.transform.position= new Vector3(hips.position.x,transform.position.y+10,hips.position.z) ;
+            bloodPool.transform.position = new Vector3(hips.position.x, transform.position.y + 10, hips.position.z);
             bloodPool.Play();
-            
+
 
         }
     }
     public void DestroyPoolBlood()
     {
-        if(bloodPool)
+        if (bloodPool)
             bloodPool.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
     public void ChasingAnimation()
@@ -56,7 +57,7 @@ public class EnemyView : MonoBehaviour
         animator.SetBool("chasing", true);
         animator.SetBool("walking", false);
         animator.SetBool("idle", false);
-       
+
         animator.SetBool("distanceAttack", false);
     }
 
@@ -103,7 +104,7 @@ public class EnemyView : MonoBehaviour
     {
         animator.SetBool("walking", false);
         animator.SetBool("Preparation", true);
-       
+
         animator.SetBool("chasing", false);
         animator.SetBool("charging", false);
         animator.SetBool("death", false);
@@ -121,7 +122,7 @@ public class EnemyView : MonoBehaviour
     {
 
         if (!head.activeSelf) return;
-        _lastHeadExplosion= Instantiate(headExplosion,head.transform.position,head.transform.rotation,head.GetComponent<SkinnedMeshRenderer>().rootBone);
+        _lastHeadExplosion = Instantiate(headExplosion, head.transform.position, head.transform.rotation, head.GetComponent<SkinnedMeshRenderer>().rootBone);
         head.SetActive(false);
     }
     public void Stunned()
@@ -132,6 +133,7 @@ public class EnemyView : MonoBehaviour
     //Funciones de sonidos 
     public void DamageSound()
     {
+
         audioSource.PlayOneShot(myClips[0]);
     }
     public void DeathSound()
@@ -144,11 +146,11 @@ public class EnemyView : MonoBehaviour
     }
     public void AttackSound()
     {
-        if(!audioSource.isPlaying)
+        if (!audioSource.isPlaying)
             audioSource.PlayOneShot(myClips[3]);
     }
     public void OnDrawGizmos()
     {
-        
+
     }
 }
