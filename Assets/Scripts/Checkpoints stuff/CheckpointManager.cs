@@ -13,26 +13,27 @@ public class CheckpointManager : MonoBehaviour
     Guide _guide;
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
             instance = this;
-        
-            
+
+
     }
     void Start()
     {
-        _guide=FindObjectOfType<Guide>();
+        _guide = FindObjectOfType<Guide>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void Save()
     {
         checkpoints[currentCheckpoint].Save();
         StopAllCoroutines();
         StartCoroutine(WriteCR(checkpoints[currentCheckpoint].checkpointInstructions));
+        if (!_guide) return;
         _guide.SetDestination(checkpoints[currentCheckpoint].objetivePosition);
     }
     public void Restore()
@@ -40,6 +41,7 @@ public class CheckpointManager : MonoBehaviour
         checkpoints[currentCheckpoint].Restore();
         StopAllCoroutines();
         StartCoroutine(WriteCR(checkpoints[currentCheckpoint].checkpointInstructions));
+        if (!_guide) return;
         _guide.SetDestination(checkpoints[currentCheckpoint].objetivePosition);
     }
     public IEnumerator WriteCR(string text)
