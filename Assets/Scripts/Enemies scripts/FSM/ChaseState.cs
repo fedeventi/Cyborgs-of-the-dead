@@ -7,7 +7,7 @@ public class ChaseState<T> : State<T>
     BaseEnemy _baseEnemy;
     EnemyView enemyView;
     float _speed;
-    float rotationTime = 0;
+    float _rotationTime = 0;
     public ChaseState(BaseEnemy enemy, EnemyView view)
     {
         _baseEnemy = enemy;
@@ -48,8 +48,9 @@ public class ChaseState<T> : State<T>
 
 
         }
+        _rotationTime += Time.deltaTime;
         var rot = Quaternion.LookRotation(dir.normalized);
-        _baseEnemy.transform.rotation = Quaternion.Slerp(_baseEnemy.transform.rotation, rot, Time.deltaTime);
+        _baseEnemy.transform.rotation = Quaternion.Slerp(_baseEnemy.transform.rotation, rot, _rotationTime);
         _baseEnemy.rb.velocity += _baseEnemy.transform.forward * _speed * Time.deltaTime;
 
     }
