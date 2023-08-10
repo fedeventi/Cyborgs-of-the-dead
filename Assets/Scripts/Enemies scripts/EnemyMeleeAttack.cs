@@ -11,13 +11,14 @@ public class EnemyMeleeAttack : MonoBehaviour
     [Header("Bool")]
     public bool hasHit = false;
 
-   
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag=="Player")
+        if (other.gameObject.tag == "Player")
         {
             Debug.Log("golpe");
             other.gameObject.GetComponent<PlayerModel>().TakeDamage(damage);
+            other.gameObject.GetComponent<PlayerModel>().toxicity += 2;
             hasHit = true;
             StartCoroutine(BoolHit());
         }
