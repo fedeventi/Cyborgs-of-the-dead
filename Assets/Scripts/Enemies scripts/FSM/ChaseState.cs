@@ -38,8 +38,8 @@ public class ChaseState<T> : State<T>
         if (_baseEnemy.targetDetection.MyClosestObstacle())
         {
 
-
             dir = _baseEnemy.targetDetection.MyClosestPointToTarget(target) - _baseEnemy.transform.position;
+            _rotationTime = 0;
 
         }
         else
