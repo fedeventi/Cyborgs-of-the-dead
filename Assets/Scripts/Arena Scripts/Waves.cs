@@ -30,9 +30,9 @@ public class Waves : MonoBehaviour
 
     private void Update()
     {
-        if(enemyAmount > 1)
+        if (enemyAmount > 1)
         {
-            foreach(GameObject wall in walls)
+            foreach (GameObject wall in walls)
             {
                 wall.SetActive(true);
             }
@@ -45,7 +45,7 @@ public class Waves : MonoBehaviour
             }
         }
 
-        if(currentWave >= 5)
+        if (currentWave >= 5)
         {
             enemyPrefabs.Add(zombieBrazo);
         }
@@ -70,7 +70,7 @@ public class Waves : MonoBehaviour
             int randomIndex = Random.Range(0, coleccionables.Length);
             int randomSpawnPoint = Random.Range(0, spawnCol.Length);
 
-            Instantiate(coleccionables[randomIndex], spawnCol[randomSpawnPoint].position, Quaternion.identity);
+            Instantiate(coleccionables[randomIndex], spawnCol[randomSpawnPoint].position, spawnCol[randomSpawnPoint].rotation);
         }
     }
 
@@ -97,7 +97,7 @@ public class Waves : MonoBehaviour
 
         isSpawning = false;
         isInWave = false;
-        maxEnemyAmount += 3;  
+        maxEnemyAmount += 3;
     }
 
     public IEnumerator SpawnWave2()
