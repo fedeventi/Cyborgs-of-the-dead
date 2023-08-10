@@ -155,11 +155,11 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
             }
         }
 
-        if (player)
-            if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)
-            {
-                return;
-            }
+        // if (player)
+        //     if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) > 2500)
+        //     {
+        //         return;
+        //     }
         if (life > 0)
         {
             fsm.OnUpdate();
@@ -265,6 +265,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
     public bool LookingPlayer()
     {
         if (!player) return false;
+        else return true; //para que lo vea siempre, si se quiere que haya que calcular si realmente lo esta viendo o no, hay que desactivar esta linea
         Vector3 difference = (player.transform.position - transform.position);
         //A--->B
         //B-A
