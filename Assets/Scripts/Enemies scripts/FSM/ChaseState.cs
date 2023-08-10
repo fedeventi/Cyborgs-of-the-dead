@@ -39,7 +39,7 @@ public class ChaseState<T> : State<T>
         {
 
             dir = _baseEnemy.targetDetection.MyClosestPointToTarget(target) - _baseEnemy.transform.position;
-            _rotationTime = 0;
+            // _rotationTime = 0;
 
         }
         else
@@ -52,6 +52,10 @@ public class ChaseState<T> : State<T>
         var rot = Quaternion.LookRotation(dir.normalized);
         _baseEnemy.transform.rotation = Quaternion.Slerp(_baseEnemy.transform.rotation, rot, _rotationTime);
         _baseEnemy.rb.velocity += _baseEnemy.transform.forward * _speed * Time.deltaTime;
+
+    }
+    public void GoToPlayer()
+    {
 
     }
     public void CheckDistanceWithTarget()
