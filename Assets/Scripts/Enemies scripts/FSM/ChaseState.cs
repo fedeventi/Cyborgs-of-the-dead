@@ -109,7 +109,7 @@ public class SearchState<T> : State<T>
     public override void Execute()
     {
 
-        // GoToPlayer();
+        GoToPlayer();
         _baseEnemy.targetDetection.DidMyPositionChange(0.7f);
     }
     public void GoToPlayer()
