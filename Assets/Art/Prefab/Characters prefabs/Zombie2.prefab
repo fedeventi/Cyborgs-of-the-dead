@@ -1857,7 +1857,7 @@ MonoBehaviour:
   enemyType: 0
   life: 100
   dist: 0
-  speed: 25
+  speed: 250
   stoppingDistanceChase: 100.16
   viewDistance: 500000
   angleVision: 360
@@ -1950,6 +1950,7 @@ MonoBehaviour:
   verticalOffset: 15
   _obstacleAvoidance: 92
   obstacleDetection: 100
+  _timeFromLastChange: 0
 --- !u!1 &4424548558511597739
 GameObject:
   m_ObjectHideFlags: 0
