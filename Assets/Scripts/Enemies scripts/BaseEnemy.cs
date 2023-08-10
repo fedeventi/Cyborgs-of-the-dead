@@ -296,10 +296,10 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
             else
                 Gizmos.color = Color.blue;
 
-        for (int i = -angleVision / 2; i < angleVision / 2; i += 5)
-        {
-            Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(i, transform.up) * transform.forward * viewDistance);
-        }
+        // for (int i = -angleVision / 2; i < angleVision / 2; i += 5)
+        // {
+        //     Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(i, transform.up) * transform.forward * viewDistance);
+        // }
         foreach (Vector3 pos in waypointsEnemy)
         {
             Gizmos.DrawSphere(pos, 10);
@@ -449,7 +449,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
         if (Recycle != null)
             StartCoroutine(RecycleCR());
         //else
-           // gameObject.SetActive(false);
+        // gameObject.SetActive(false);
     }
     public IEnumerator RecycleCR()
     {
