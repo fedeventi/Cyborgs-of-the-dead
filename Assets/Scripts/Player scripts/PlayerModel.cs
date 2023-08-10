@@ -149,7 +149,7 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         _stamRcvTime = isRunning ? 0 : _stamRcvTime;
         _stamRcvTime += _stamRcvTime < _stamRcvTimeThrhd ? Time.deltaTime * 10 : 0;
 
-        Debug.Log(stamina);
+
         //
 
 

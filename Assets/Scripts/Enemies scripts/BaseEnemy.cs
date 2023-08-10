@@ -265,7 +265,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
     public bool LookingPlayer()
     {
         if (!player) return false;
-        else return true; //para que lo vea siempre, si se quiere que haya que calcular si realmente lo esta viendo o no, hay que desactivar esta linea
+        // else return true; //para que lo vea siempre, si se quiere que haya que calcular si realmente lo esta viendo o no, hay que desactivar esta linea
         Vector3 difference = (player.transform.position - transform.position);
         //A--->B
         //B-A
@@ -305,6 +305,7 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
             Gizmos.DrawSphere(pos, 10);
 
         }
+
         Gizmos.color = Color.red;
         for (int i = -angleVision / 2; i < angleVision / 2; i += 5)
         {
@@ -356,20 +357,24 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
 
         var attack = new AttackState<string>(baseEnemy, enemyView);
         var chase = new ChaseState<string>(baseEnemy, enemyView);
-
+        var search = new SearchState<string>(this, enemyView);
         idle.AddTransition("Patrol", patrol); //Va de idle a patrol
         idle.AddTransition("Chase", chase); //Va de idle a chase
+        idle.AddTransition("Search", search); //Va de idle a search
 
         patrol.AddTransition("Idle", idle); //Va de patrol a idle
         patrol.AddTransition("Chase", chase); //Va de patrol a chase
-        patrol.AddTransition("Idle", idle); //Va de patrol a chase
+        patrol.AddTransition("Search", search); //Va de patrol a search
 
         attack.AddTransition("Chase", chase); //Va de attack a chase
-        attack.AddTransition("Patrol", patrol);
         attack.AddTransition("Idle", idle);
+
+        search.AddTransition("Chase", chase);
+
         chase.AddTransition("Attack", attack); //Va de chase a attack
         chase.AddTransition("Idle", idle); //Va de chase a idle
-        chase.AddTransition("Patrol", patrol);
+        chase.AddTransition("Search", search);
+
         //El FSM empieza con el patrol.
         fsm = new FSM<string>(idle);
     }

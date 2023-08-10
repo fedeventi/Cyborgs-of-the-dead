@@ -7,11 +7,11 @@ public class ExplosiveZombie : BaseEnemy
     [Header("Distance attack")]
     public DistanceAttackZE prefabAttack;
     public Transform posForDAttack;
-    
+
     [Header("Particle system")]
     public GameObject Explosion;
     public Transform psPosition;
-    public bool canShoot=true;
+    public bool canShoot = true;
     public bool hasSeenPlayer;
     public GameObject vomit;
 
@@ -22,7 +22,7 @@ public class ExplosiveZombie : BaseEnemy
     public override void Start()
     {
         base.Start();
-        
+
     }
     public override void UpdateMe()
     {
@@ -30,13 +30,13 @@ public class ExplosiveZombie : BaseEnemy
         base.UpdateMe();
 
 
-            if (LookingPlayer())
+        if (LookingPlayer())
+        {
+            if (!hasSeenPlayer)
             {
-                if (!hasSeenPlayer)
-                {
-                    CloseEnemies();
-                    hasSeenPlayer = true;
-                }
+                CloseEnemies();
+                hasSeenPlayer = true;
+            }
 
             if (!InRangeToAttack())
             {
@@ -51,25 +51,25 @@ public class ExplosiveZombie : BaseEnemy
 
         }
 
-            
 
 
-            
 
-           
-        
 
-      
+
+
+
+
+
     }
     public override IEnumerator Death()
     {
 
-        
+
         speed = 0;
         PointsManager.instance.AddKill((int)enemyType);
-        
-        var particle = Instantiate(Explosion, transform.position+transform.up*(headHight/2), transform.rotation);
-        
+
+        var particle = Instantiate(Explosion, transform.position + transform.up * (headHight / 2), transform.rotation);
+
         meleeAttack.gameObject.SetActive(false);
         isDead = true;
         rb.isKinematic = true;
@@ -93,10 +93,10 @@ public class ExplosiveZombie : BaseEnemy
     }
     IEnumerator Shoot()
     {
-        canShoot=false;
+        canShoot = false;
         Transition("Range");
-        yield return new WaitForSeconds(Random.Range(3,7));
-        
+        yield return new WaitForSeconds(Random.Range(3, 7));
+
         canShoot = true;
     }
     public override void SetStateMachine()
@@ -107,23 +107,27 @@ public class ExplosiveZombie : BaseEnemy
         var attack = new AttackState<string>(this, enemyView);
         var chase = new ChaseState<string>(this, enemyView);
         var range = new RangeAttack<string>(this, enemyView);
+        var search = new SearchState<string>(this, enemyView);
 
         //Transiciones
         idle.AddTransition("Patrol", patrol); //Va de idle a patrol
         idle.AddTransition("Chase", chase); //Va de idle a chase
+        idle.AddTransition("Search", search); //Va de idle a search
 
         patrol.AddTransition("Idle", idle); //Va de patrol a idle
         patrol.AddTransition("Chase", chase); //Va de patrol a chase
+        patrol.AddTransition("Search", search); //Va de patrol a search
 
         attack.AddTransition("Chase", chase); //Va de attack a chase
         attack.AddTransition("Idle", idle); //Va de patrol a idle
-
+        search.AddTransition("Chase", chase);
         range.AddTransition("Chase", chase);
+        range.AddTransition("Search", search);
         range.AddTransition("Idle", idle); //Va de patrol a idle
 
         chase.AddTransition("Attack", attack); //Va de chase a attack
         chase.AddTransition("Idle", idle); //Va de chase a idle
-        chase.AddTransition("Patrol", patrol);
+        chase.AddTransition("Search", search);
         chase.AddTransition("Range", range);
         //El FSM empieza con el patrol.
         fsm = new FSM<string>(idle);
@@ -138,7 +142,7 @@ public class ExplosiveZombie : BaseEnemy
     public void SpawnAttack()
     {
         Instantiate(vomit, posForDAttack.position, transform.rotation);
-        DistanceAttackZE temp = Instantiate(prefabAttack, posForDAttack.transform.position+ transform.forward*10, posForDAttack.transform.rotation);
+        DistanceAttackZE temp = Instantiate(prefabAttack, posForDAttack.transform.position + transform.forward * 10, posForDAttack.transform.rotation);
         temp.destinyPosition = player.transform.position;
         Transition("Chase");
     }

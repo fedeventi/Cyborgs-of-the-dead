@@ -16,10 +16,10 @@ public class HeavyEnemy : BaseEnemy
     float timerFollowAgain = 0;
     bool hasTouchPlayer = false;
     bool _charging;
-    public bool charging { get=>_charging; set=>_charging=value; }
+    public bool charging { get => _charging; set => _charging = value; }
     bool _checkedCharge;
     bool _hasChargedPlayer;
-    public void ChargedPlayer()=>_hasChargedPlayer=false; 
+    public void ChargedPlayer() => _hasChargedPlayer = false;
 
     public override void Awake()
     {
@@ -28,11 +28,11 @@ public class HeavyEnemy : BaseEnemy
     public override void Start()
     {
         base.Start();
-        
+
     }
     public override void UpdateMe()
     {
-        
+
         base.UpdateMe();
         //StunAttack();
 
@@ -41,7 +41,7 @@ public class HeavyEnemy : BaseEnemy
             StartCoroutine(checkCharge());
             _checkedCharge = true;
         }
-        
+
     }
     IEnumerator checkCharge()
     {
@@ -68,24 +68,27 @@ public class HeavyEnemy : BaseEnemy
         var attack = new AttackState<string>(this, enemyView);
         var chase = new ChaseState<string>(this, enemyView);
         var charge = new ChargeState<string>(this);
-        
+        var search = new SearchState<string>(this, enemyView);
+
         //Transiciones
         idle.AddTransition("Patrol", patrol); //Va de idle a patrol
         idle.AddTransition("Chase", chase); //Va de idle a chase
+        idle.AddTransition("Search", search); //Va de idle a search
 
         patrol.AddTransition("Idle", idle); //Va de patrol a idle
         patrol.AddTransition("Chase", chase); //Va de patrol a chase
-        
+        patrol.AddTransition("Search", search); //Va de patrol a search
 
         attack.AddTransition("Chase", chase); //Va de attack a chase
-        attack.AddTransition("Idle", idle); 
-        
+        attack.AddTransition("Idle", idle);
+        search.AddTransition("Chase", chase);
         charge.AddTransition("Chase", chase);
-        charge.AddTransition("Idle", idle); 
-        
+        charge.AddTransition("Idle", idle);
+        charge.AddTransition("Search", search);
+
         chase.AddTransition("Attack", attack); //Va de chase a attack
         chase.AddTransition("Idle", idle); //Va de chase a idle
-        chase.AddTransition("Patrol", patrol);
+        chase.AddTransition("Search", search);
         chase.AddTransition("Charge", charge);
         //El FSM empieza con el patrol.
         fsm = new FSM<string>(idle);
@@ -121,7 +124,7 @@ public class HeavyEnemy : BaseEnemy
     }
     IEnumerator Stunned()
     {
-        
+
         enemyView.Stunned();
         _stunned = true;
         yield return new WaitForSeconds(2);
@@ -133,22 +136,22 @@ public class HeavyEnemy : BaseEnemy
     {
         base.OnCollisionEnter(collision);
 
-        
-            if(collision.gameObject.GetComponent<PlayerModel>() && charging)
-            {
-                if (_hasChargedPlayer) return;
-                collision.rigidbody.AddForce( transform.up*20000,
-                                              ForceMode.Impulse);
-                collision.gameObject.GetComponent<PlayerModel>().TakeDamage(30);
-                _hasChargedPlayer = true;
-            }
+
+        if (collision.gameObject.GetComponent<PlayerModel>() && charging)
+        {
+            if (_hasChargedPlayer) return;
+            collision.rigidbody.AddForce(transform.up * 20000,
+                                          ForceMode.Impulse);
+            collision.gameObject.GetComponent<PlayerModel>().TakeDamage(30);
+            _hasChargedPlayer = true;
+        }
         if (collision.gameObject.layer == 8 && charging)
             StartCoroutine(Stunned());
     }
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
-        
+
     }
 
 }
