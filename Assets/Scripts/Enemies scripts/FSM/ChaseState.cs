@@ -119,8 +119,8 @@ public class SearchState<T> : State<T>
         enemyView.ChasingAnimation();
 
         waypoints = _path.corners;
-        if (_currentWaypoint < waypoints.Length - 1)
-            if (Vector3.Distance(_baseEnemy.transform.position, waypoints[_currentWaypoint]) >= 100)
+        if (_currentWaypoint < waypoints.Length)
+            if (Vector3.Distance(_baseEnemy.transform.position, waypoints[_currentWaypoint]) >= 50)
             {
                 _rotationTime += Time.deltaTime;
                 Vector3 dir;
@@ -131,7 +131,7 @@ public class SearchState<T> : State<T>
 
                 _baseEnemy.transform.forward = Vector3.Lerp(_baseEnemy.transform.forward, dir, Time.deltaTime);
                 _baseEnemy.rb.velocity += _baseEnemy.transform.forward * _speed * Time.deltaTime;
-
+                Debug.Log("moviendome");
             }
             else
             {
@@ -143,13 +143,13 @@ public class SearchState<T> : State<T>
 
             }
         Debug.Log($"waypoint:{_currentWaypoint}:{waypoints.Length}");
-        // if (_baseEnemy.LookingPlayer()) _baseEnemy.Transition("Chase");
+        if (_baseEnemy.LookingPlayer()) _baseEnemy.Transition("Chase");
     }
     public void RecalculatePath()
     {
         _currentWaypoint = 0;
         _agent.CalculatePath(_baseEnemy.player.transform.position, _path);
-
+        Debug.Log("recalculando");
     }
     bool playerHasMove => Vector3.Distance(_baseEnemy.player.transform.position, waypoints[waypoints.Length - 1]) > 100;
 
