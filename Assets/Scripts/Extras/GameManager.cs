@@ -43,12 +43,15 @@ public class GameManager : MonoBehaviour
     //MENU
     public void Credits()
     {
-        menuAnimator.SetBool("Credits", true);
+        //menuAnimator.SetBool("Credits", true);
+        menuAnimator.SetTrigger("CreditsTrigger");
     }
 
     public void BackToMenu()
     {
-        menuAnimator.SetBool("Credits", false);
+        //menuAnimator.SetBool("Credits", false);
+
+        menuAnimator.SetTrigger("CreditsBack");
     }
 
     public void GoToPlay()

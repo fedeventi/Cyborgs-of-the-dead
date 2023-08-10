@@ -32,7 +32,7 @@ public class MenuEnemy : MonoBehaviour
     {
         if (currentWaypoint < waypointsEnemy.Length && !waitOnWP)
         {
-            navMesh.speed = 1;
+            navMesh.speed = 2.5f;
             navMesh.stoppingDistance = 1;
 
             enemyView.WalkingAnimation();
@@ -48,7 +48,7 @@ public class MenuEnemy : MonoBehaviour
 
             //rota mirando al target
             var rot = Quaternion.LookRotation(target - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 3).normalized;
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 30).normalized;
         }
 
         var distanceWP = Vector3.Distance(waypointsEnemy[currentWaypoint].position, transform.position);
