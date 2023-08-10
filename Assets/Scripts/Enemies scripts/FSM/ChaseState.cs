@@ -61,8 +61,8 @@ public class ChaseState<T> : State<T>
 
         }
         _rotationTime += Time.deltaTime;
-        _baseEnemy.transform.forward = Vector3.Lerp(_baseEnemy.transform.forward, dir, _rotationTime);
-        _baseEnemy.rb.velocity += _baseEnemy.transform.forward * _speed * Time.deltaTime;
+        Vector3 rotationDir = Vector3.RotateTowards(_baseEnemy.transform.forward, dir, Time.deltaTime * 20, 0);
+        _baseEnemy.transform.rotation = Quaternion.LookRotation(rotationDir);
         if (!_baseEnemy.LookingPlayer()) _baseEnemy.Transition("Search");
     }
 
@@ -124,12 +124,14 @@ public class SearchState<T> : State<T>
             {
                 _rotationTime += Time.deltaTime;
                 Vector3 dir;
-                if (_baseEnemy.targetDetection.MyClosestObstacle())
-                    dir = _baseEnemy.targetDetection.MyClosestPointToTarget(waypoints[_currentWaypoint]) - _baseEnemy.transform.position;
-                else
-                    dir = waypoints[_currentWaypoint] - _baseEnemy.transform.position;
-
-                _baseEnemy.transform.forward = Vector3.Lerp(_baseEnemy.transform.forward, dir, Time.deltaTime);
+                // if (_baseEnemy.targetDetection.MyClosestObstacle())
+                //     dir = _baseEnemy.targetDetection.MyClosestPointToTarget(waypoints[_currentWaypoint]) - _baseEnemy.transform.position;
+                // else
+                dir = waypoints[_currentWaypoint] - _baseEnemy.transform.position;
+                dir.y = _baseEnemy.transform.forward.y;
+                var speedrot = 15 * Time.deltaTime;
+                // Vector3 rotationDir = Vector3.RotateTowards(_baseEnemy.transform.forward, dir, speedrot, 0);
+                // _baseEnemy.transform.rotation = Quaternion.LookRotation(rotationDir);
                 _baseEnemy.rb.velocity += _baseEnemy.transform.forward * _speed * Time.deltaTime;
 
             }
