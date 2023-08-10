@@ -54,9 +54,24 @@ public class GameManager : MonoBehaviour
         menuAnimator.SetTrigger("CreditsBack");
     }
 
+    public void Settings()
+    {
+
+    }
+
     public void GoToPlay()
     {
-        SceneManager.LoadScene("IntroCinematic");
+        //SceneManager.LoadScene("IntroCinematic");
+    }
+
+    public void GoTutorial()
+    {
+        SceneManager.LoadScene("SubteTuto");
+    }
+
+    public void GoArenaMode()
+    {
+        SceneManager.LoadScene("NewLevel");
     }
 
     public void QuitGame()

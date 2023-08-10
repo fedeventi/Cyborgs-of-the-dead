@@ -62,10 +62,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 486323395788930316}
-    m_Position: {x: 180, y: 360, z: 0}
+    m_Position: {x: 160, y: 430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7129405888881518136}
-    m_Position: {x: -180, y: 360, z: 0}
+    m_Position: {x: -230, y: 410, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7847486385800001017}
     m_Position: {x: -280, y: 290, z: 0}
@@ -90,12 +90,6 @@ AnimatorController:
   m_Name: Canvas
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Credits
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: CreditsTrigger
     m_Type: 9
     m_DefaultFloat: 0
@@ -103,6 +97,18 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: CreditsBack
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: SettingsActive
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: SettingsBack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -164,7 +170,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.04927814
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 0
