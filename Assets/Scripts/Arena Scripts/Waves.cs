@@ -49,11 +49,20 @@ public class Waves : MonoBehaviour
         {
             enemyPrefabs.Add(zombieBrazo);
         }
+
+        if (currentWave >= 8)
+        {
+            enemyPrefabs.Add(zombieDist);
+        }
+
+        if (currentWave >= 11)
+        {
+            enemyPrefabs.Add(zombieTank);
+        }
     }
 
     public IEnumerator SpawnColect()
     {
-
         yield return new WaitForSeconds(timeBetweenWaves);
 
         for (int i = 0; i < spawnCol.Length; i++)
@@ -63,8 +72,6 @@ public class Waves : MonoBehaviour
 
             Instantiate(coleccionables[randomIndex], spawnCol[randomSpawnPoint].position, Quaternion.identity);
         }
-
-
     }
 
     public IEnumerator SpawnWave()
