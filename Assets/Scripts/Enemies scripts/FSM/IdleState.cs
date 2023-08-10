@@ -16,16 +16,16 @@ public class IdleState<T> : State<T>
     public override void Awake()
     {
         baseEnemy.isInIdle = true;
-        
-        
+
+
     }
     public override void Execute()
     {
-        if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) < 5000)
-        {
-            if(baseEnemy.gameObject.activeSelf)
-                Wait(2.5f);
-        }
+        // if (Vector3.Distance(baseEnemy.transform.position, baseEnemy.player.transform.position) < 5000)
+        // {
+        if (baseEnemy.gameObject.activeSelf)
+            Wait(2.5f);
+        // }
         enemyView.IdleAnimation();
     }
     public override void Sleep()
@@ -45,5 +45,5 @@ public class IdleState<T> : State<T>
         }
         timer += Time.deltaTime;
     }
-   
+
 }
