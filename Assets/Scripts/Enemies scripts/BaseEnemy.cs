@@ -448,8 +448,8 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
         }
         if (Recycle != null)
             StartCoroutine(RecycleCR());
-        else
-            gameObject.SetActive(false);
+        //else
+           // gameObject.SetActive(false);
     }
     public IEnumerator RecycleCR()
     {
