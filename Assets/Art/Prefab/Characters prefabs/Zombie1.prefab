@@ -2181,7 +2181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walls:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 18688
   amount: 9
   debugBool: 1
   verticalOffset: 15
