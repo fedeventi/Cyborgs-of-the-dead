@@ -2102,7 +2102,7 @@ MonoBehaviour:
   stoppingDistanceChase: 190
   viewDistance: 500000
   angleVision: 78
-  attackDistance: 101.23
+  attackDistance: 190
   enemigosAlrededor: 0
   rangoDetectarEnemigos: 500
   player: {fileID: 0}

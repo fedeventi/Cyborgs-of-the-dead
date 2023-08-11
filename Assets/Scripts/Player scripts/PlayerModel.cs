@@ -467,6 +467,11 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         {
             life -= 25;
         }
+
+        if (collision.gameObject.layer == 19)
+        {
+            SceneManager.LoadScene("Menu"); 
+        }
     }
 
     public void Save()

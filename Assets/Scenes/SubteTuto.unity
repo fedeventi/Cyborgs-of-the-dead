@@ -2901,7 +2901,7 @@ GameObject:
   m_Component:
   - component: {fileID: 962940334}
   - component: {fileID: 962940335}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8675,7 +8675,7 @@ GameObject:
   - component: {fileID: 1584408991024334625}
   - component: {fileID: 7288192191894153492}
   - component: {fileID: 7288192191894153493}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: StraightStair002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
