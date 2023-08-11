@@ -37,21 +37,11 @@ public class AmmoKit : MonoBehaviour , ICheckpoint
                 }
                 
             }
-
-            StartCoroutine(Timer());
            
-        }
-            
-    }
-
-    IEnumerator Timer()
-    {
-        yield return new WaitForSeconds(1f);
             gameObject.SetActive(false);
-
-        yield break;
+            
+        }
     }
-
 
     public void Save()
     {

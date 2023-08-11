@@ -25,20 +25,11 @@ public class LifeKit : MonoBehaviour , ICheckpoint
 
                 other.gameObject.GetComponent<PlayerModel>().life = 100;
                 //Destroy(ps, 2);
-                
+                gameObject.SetActive(false);
 
             }
         }
     }
-
-    IEnumerator Timer()
-    {
-        yield return new WaitForSeconds(1f);
-        gameObject.SetActive(false);
-
-        yield break;
-    }
-
 
     public void Save()
     {
