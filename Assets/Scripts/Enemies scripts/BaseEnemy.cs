@@ -17,7 +17,7 @@ public class BaseEnemy : OverridableMonoBehaviour
     public float viewDistance = 200;
     [Range(0, 360)]
     public int angleVision = 90;
-    public float attackDistance = 30;
+    public float attackDistance = 200;
     public int enemigosAlrededor = 0;
     public float rangoDetectarEnemigos = 5000;
     //Componentes 
