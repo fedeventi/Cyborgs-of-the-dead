@@ -65,8 +65,8 @@ public class Waves : MonoBehaviour
             enemyPrefabs.Add(zombieTank);
         }
 
-        enemyAccText.text = enemyAmount.toString();
-        waveText.text = currentWave.toString();
+        enemyAccText.text = enemyAmount.ToString();
+        waveText.text = currentWave.ToString();
     }
 
     public IEnumerator SpawnColect()
