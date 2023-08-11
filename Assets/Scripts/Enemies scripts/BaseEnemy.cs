@@ -288,7 +288,8 @@ public class BaseEnemy : OverridableMonoBehaviour
         }
     }
 
-
+    public Vector3[] _waypoints;
+    public int _currentWaypoint;
     public virtual void OnDrawGizmos()
     {
         if (player != null)
@@ -296,7 +297,13 @@ public class BaseEnemy : OverridableMonoBehaviour
                 Gizmos.color = Color.green;
             else
                 Gizmos.color = Color.blue;
-
+        if (_waypoints != null)
+        {
+            Gizmos.color = Color.yellow;
+            for (int i = 0; i < _waypoints.Length; i++)
+                if (i >= _currentWaypoint)
+                    Gizmos.DrawSphere(_waypoints[i], 20);
+        }
         // for (int i = -angleVision / 2; i < angleVision / 2; i += 5)
         // {
         //     Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(i, transform.up) * transform.forward * viewDistance);
