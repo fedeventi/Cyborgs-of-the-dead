@@ -7,7 +7,7 @@ public class ChaseState<T> : State<T>
     BaseEnemy _baseEnemy;
     EnemyView enemyView;
     float _speed;
-    float _rotationTime = 0.6f;
+    float _rotationTime = 2f;
     NavMeshAgent _agent;
     public ChaseState(BaseEnemy enemy, EnemyView view)
     {
@@ -27,7 +27,7 @@ public class ChaseState<T> : State<T>
         {
 
             FollowPlayer();
-            _baseEnemy.targetDetection.DidMyPositionChange(0.7f);
+            // _baseEnemy.targetDetection.DidMyPositionChange(0.7f);
         }
 
     }
@@ -39,7 +39,7 @@ public class ChaseState<T> : State<T>
 
     public void FollowPlayer()
     {
-        _speed = _baseEnemy.speed * 5;
+        _speed = _baseEnemy.speed * 3.5f;
         enemyView.ChasingAnimation();
         var target = _baseEnemy.player.transform.position;
         target.y = _baseEnemy.transform.position.y;
@@ -47,29 +47,14 @@ public class ChaseState<T> : State<T>
 
         Vector3 dir;
 
-        if (_baseEnemy.targetDetection.MyClosestObstacle())
-        {
-
-            dir = _baseEnemy.targetDetection.MyClosestPointToTarget(target) - _baseEnemy.transform.position;
-
-
-        }
-        else
-        {
-            dir = target - _baseEnemy.transform.position;
-
-
-        }
-
-
-
+        dir = _baseEnemy.targetDetection.MyClosestPointToTarget(target) - _baseEnemy.transform.position;
         var direction = Vector3.RotateTowards(_baseEnemy.transform.forward, dir, _rotationTime * Time.deltaTime, 0);
         _baseEnemy.transform.rotation = Quaternion.LookRotation(direction);
 
 
 
         _baseEnemy.rb.velocity += _baseEnemy.transform.forward * _speed * Time.deltaTime;
-        if (!_baseEnemy.LookingPlayer()) _baseEnemy.Transition("Search");
+        // if (!_baseEnemy.LookingPlayer()) _baseEnemy.Transition("Search");
     }
 
     public void CheckDistanceWithTarget()
