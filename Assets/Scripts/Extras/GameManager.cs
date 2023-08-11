@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         menuAnimator.SetTrigger("CreditsTrigger");
     }
 
-    public void BackToMenu()
+    public void BackFromCredits()
     {
         //menuAnimator.SetBool("Credits", false);
 
@@ -56,7 +56,12 @@ public class GameManager : MonoBehaviour
 
     public void Settings()
     {
+        menuAnimator.SetTrigger("SettingsActive");
+    }
 
+    public void BackFromSettings()
+    {
+        menuAnimator.SetTrigger("SettingsBack");
     }
 
     public void GoToPlay()
