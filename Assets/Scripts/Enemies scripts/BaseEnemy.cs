@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 using JoostenProductions;
 
-public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheckpoint
+public class BaseEnemy : OverridableMonoBehaviour
 {
     public EnemyType enemyType;
     //Variables
@@ -550,40 +550,6 @@ public class BaseEnemy : OverridableMonoBehaviour, IPooleable<BaseEnemy>, ICheck
     {
 
         base.OnDisable();
-    }
-    public void TurnOn()
-    {
-        gameObject.SetActive(true);
-
-    }
-
-    public void TurnOff()
-    {
-
-        gameObject.SetActive(false);
-    }
-
-    public static void TurnOn(BaseEnemy obj)
-    {
-        obj.TurnOn();
-    }
-
-    public static void TurnOff(BaseEnemy obj)
-    {
-        obj.TurnOff();
-    }
-
-    public void Save()
-    {
-        _saveData = new EnemySaveData(this);
-    }
-
-    public void Restore()
-    {
-        StopAllCoroutines();
-        Reset();
-        _saveData.Restore(this);
-
     }
 
     public void OnShoot(params object[] variables)

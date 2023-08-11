@@ -1338,7 +1338,7 @@ MonoBehaviour:
   enemyType: 2
   life: 100
   dist: 0
-  speed: 160
+  speed: 500
   stoppingDistanceChase: 190
   viewDistance: 544.14
   angleVision: 143

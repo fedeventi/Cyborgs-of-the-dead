@@ -24,6 +24,10 @@ public class Waves : MonoBehaviour
     public int currentWave = 0;
     private bool isSpawning = false;
 
+    public bool isZombie1 = false;
+    public bool isZombie2 = false;
+    public bool isZombie3 = false;
+
     public Text enemyAccText;
     public Text waveText;
 
@@ -31,6 +35,10 @@ public class Waves : MonoBehaviour
     {
         isInWave = false;
         maxEnemyAmount = 10;
+
+        isZombie1 = false; 
+        isZombie2 = false;
+        isZombie3 = false;
     }
 
     private void Update()
@@ -50,19 +58,22 @@ public class Waves : MonoBehaviour
             }
         }
 
-        if (currentWave >= 5)
+        if (currentWave >= 5 && isZombie1 == false)
         {
             enemyPrefabs.Add(zombieBrazo);
+            isZombie1 = true;
         }
 
-        if (currentWave >= 8)
+        if (currentWave >= 8 && isZombie2 == false)
         {
             enemyPrefabs.Add(zombieDist);
+            isZombie2 = true;
         }
 
-        if (currentWave >= 11)
+        if (currentWave >= 11 && isZombie3 == false)
         {
             enemyPrefabs.Add(zombieTank);
+            isZombie3 = true;
         }
 
         enemyAccText.text = enemyAmount.ToString();

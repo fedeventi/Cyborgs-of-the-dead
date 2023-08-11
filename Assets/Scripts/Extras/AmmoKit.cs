@@ -8,7 +8,7 @@ public class AmmoKit : MonoBehaviour , ICheckpoint
 
     public ParticleSystem ps;
     AudioSource audioSource;
-    int[] ammoByWeapon = new int[3] {0,14,6 };
+    int[] ammoByWeapon = new int[4] {0,14,6,3 };
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();

@@ -1440,7 +1440,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.16931105, y: -2.2098827, z: 0.35865784}
-  m_LocalScale: {x: 58.394764, y: 58.394764, z: 58.394764}
+  m_LocalScale: {x: 71.81388, y: 71.81388, z: 71.81388}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 533848778490540076}
@@ -1659,8 +1659,8 @@ MonoBehaviour:
   enemyType: 1
   life: 100
   dist: 0
-  speed: 300
-  stoppingDistanceChase: 0.01
+  speed: 600
+  stoppingDistanceChase: 190
   viewDistance: 1195.69
   angleVision: 96
   attackDistance: 110.54

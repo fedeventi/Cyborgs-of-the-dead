@@ -2099,7 +2099,7 @@ MonoBehaviour:
   life: 100
   dist: 0
   speed: 700
-  stoppingDistanceChase: 145
+  stoppingDistanceChase: 190
   viewDistance: 500000
   angleVision: 78
   attackDistance: 101.23

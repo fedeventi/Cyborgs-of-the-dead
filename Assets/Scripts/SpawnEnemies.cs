@@ -6,9 +6,9 @@ using System.Linq;
 using TMPro;
 
 
-public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy> , ICheckpoint
+public class SpawnEnemies : MonoBehaviour
 {
-    ObjPool<BaseEnemy> enemyPool;
+   /* ObjPool<BaseEnemy> enemyPool;
     public BaseEnemy zombie;
     [Range(100,5000)]
     public float RangeToSpawn;
@@ -111,6 +111,6 @@ public class SpawnEnemies : MonoBehaviour, IPoolGenerator<BaseEnemy> , ICheckpoi
     //    UnityEditor.Handles.DrawWireDisc(transform.position, transform.up,RangeToSpawn );
 
 
-    //}
+    //}*/
 
 }
