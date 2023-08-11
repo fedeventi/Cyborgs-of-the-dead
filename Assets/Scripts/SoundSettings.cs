@@ -6,33 +6,34 @@ using UnityEngine.UI;
 public class SoundSettings : MonoBehaviour
 {
     public Slider slider;
-    public float sliderValue;
-    public Image imageMute;
 
     private void Start()
     {
-        slider.value = PlayerPrefs.GetFloat("volumenAudio", 0.5f);
-        AudioListener.volume = slider.value;
-        Check();
-    }
-
-    public void ChangeSlider(float v)
-    {
-        sliderValue = v;
-        AudioListener.volume = slider.value;
-        PlayerPrefs.SetFloat("volumenAudio", sliderValue);
-        Check();
-    }
-
-    public void Check()
-    {
-        if (sliderValue == 0)
+        if(!PlayerPrefs.HasKey("musicVolume"))
         {
-            imageMute.enabled = true;
+            PlayerPrefs.SetFloat("musicVolume", 1);
+            Load();
         }
         else
         {
-            imageMute.enabled = false;
+            Load();
         }
+    }
+
+    public void ChangeVolume()
+    {
+        AudioListener.volume = slider.value;
+        Save();
+    }
+    
+
+    void Load()
+    {
+        slider.value = PlayerPrefs.GetFloat("musicVolume");
+    }
+
+    void Save()
+    {
+        PlayerPrefs.SetFloat("musicVolume", slider.value);
     }
 }

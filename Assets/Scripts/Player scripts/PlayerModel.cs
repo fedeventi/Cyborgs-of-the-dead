@@ -74,6 +74,10 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
 
     public Collider[] collidersToInteract; // Asegúrate de asignar los colliders en el inspector de Unity
     private bool[] colliderUsedStates;
+
+
+    float sensitivityMouse;
+
     public override void Start()
     {
         base.Start();
@@ -105,6 +109,19 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
         colliderUsedStates = new bool[collidersToInteract.Length];
 
         wave = FindObjectOfType<Waves>();
+
+
+        ///////
+        ///
+        if (PlayerPrefs.HasKey("Sensitivity"))
+        {
+            sensitivityMouse = PlayerPrefs.GetFloat("Sensitivity");
+            Debug.Log(sensitivityMouse);
+        }
+        else
+        {
+            sensitivityMouse = 5;
+        }
     }
     void FixedUpdate()
     {
@@ -302,11 +319,14 @@ public class PlayerModel : OverridableMonoBehaviour, ICheckpoint
             interaction(pressed);
     }
     //Movimiento de la camara
+
+    
+
     public void RotationCamera()
     {
         if (isDead) return;
-        var hCamera = 120 * Input.GetAxis("Mouse X") * Time.deltaTime;
-        var vCamera = Mathf.Clamp(Input.GetAxis("Mouse Y") * Time.deltaTime * 120, -40, 40);
+        var hCamera = 120 * Input.GetAxis("Mouse X") * Time.deltaTime * sensitivityMouse ;
+        var vCamera = Mathf.Clamp(Input.GetAxis("Mouse Y") *sensitivityMouse * Time.deltaTime * 120, -40, 40);
 
         transform.Rotate(0, hCamera, 0);
         myCamera.transform.Rotate(-vCamera, 0, 0);
