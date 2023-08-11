@@ -5,15 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 1f794a09b31a6064e940e90698c9676a
   - enabled: 0
     path: Assets/Scenes/IntroCinematic.unity
     guid: 79ae22f69215c374d8f238a529173307
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/Level.unity
     guid: 1560652ca2837df478eaab29876aa949
@@ -23,4 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewLevel.unity
     guid: 6c75de14544fdf8458f1ec11ea7fe086
+  - enabled: 1
+    path: Assets/Scenes/SubteTuto.unity
+    guid: 299f88ba1af33264091b09175722c0b4
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
