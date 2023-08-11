@@ -452,8 +452,9 @@ public class BaseEnemy : OverridableMonoBehaviour
             seconds += Time.deltaTime;
             yield return null;
         }
-        if (Recycle != null)
-            StartCoroutine(RecycleCR());
+        // if (Recycle != null)
+        //     StartCoroutine(RecycleCR());
+        Destroy(gameObject);
         //else
         // gameObject.SetActive(false);
     }
