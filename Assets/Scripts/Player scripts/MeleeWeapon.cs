@@ -48,8 +48,8 @@ public class MeleeWeapon : Weapon
             {
                 Shoot();
                 combo=!combo;
-                if(audioSource != null)
-                    audioSource.PlayOneShot(clips[0]);
+                //if(audioSource != null)
+                //    audioSource.PlayOneShot(clips[0]);
             }
         }
     }
@@ -59,7 +59,7 @@ public class MeleeWeapon : Weapon
     
     public override void Shoot()
     {
-        
+        audioSource.PlayOneShot(clips[0], 0.5f);
         
         isAttacking = true;
         shootString = combo?"attack":"secondAttack";
@@ -80,8 +80,8 @@ public class MeleeWeapon : Weapon
     {
         if (other.gameObject.layer == 9)
         {
-            if(audioSource!=null)
-                audioSource.PlayOneShot(clips[1]);
+            //if(audioSource!=null)
+            //    audioSource.PlayOneShot(clips[1]);
             
             var target = other.transform.GetComponent<BaseEnemy>();
             bool headshot = other.transform.gameObject.tag == "headshot";
