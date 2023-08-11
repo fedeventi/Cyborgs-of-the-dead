@@ -105,7 +105,7 @@ public class TargetDetection : MonoBehaviour
 
         return possiblePoints[targetIndex];
     }
-    public void DidMyPositionChange(float seconds)
+    public bool DidMyPositionChange(float seconds)
     {
         if (_lastPositionCheck == Vector3.zero)
             _lastPositionCheck = transform.position;
@@ -120,14 +120,19 @@ public class TargetDetection : MonoBehaviour
                     _decreaseAvoidance = true;
                 else if (_obstacleAvoidance <= 0)
                     _decreaseAvoidance = false;
-
-
+                Debug.Log("No cambio");
+                return false;
             }
+            Debug.Log("Cambio");
+            return true;
+
         }
         else
         {
             _lastPositionCheck = transform.position;
             _timeFromLastChange = 0;
+            Debug.Log("Cambio");
+            return true;
         }
 
 
