@@ -127,6 +127,7 @@ public class BaseEnemy : OverridableMonoBehaviour
     public override void Start()
     {
         base.Start();
+        Reset();
 
     }
     public override void UpdateMe()
