@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Waves : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class Waves : MonoBehaviour
     public bool isInWave = false;
     public int currentWave = 0;
     private bool isSpawning = false;
+
+    public Text enemyAccText;
+    public Text waveText;
 
     private void Start()
     {
@@ -59,6 +64,9 @@ public class Waves : MonoBehaviour
         {
             enemyPrefabs.Add(zombieTank);
         }
+
+        enemyAccText.text = enemyAmount.toString();
+        waveText.text = currentWave.toString();
     }
 
     public IEnumerator SpawnColect()
