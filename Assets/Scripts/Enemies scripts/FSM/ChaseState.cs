@@ -7,7 +7,7 @@ public class ChaseState<T> : State<T>
     BaseEnemy _baseEnemy;
     EnemyView enemyView;
     float _speed;
-    float _rotationTime = 0;
+    float _rotationTime = 0.6f;
     NavMeshAgent _agent;
     public ChaseState(BaseEnemy enemy, EnemyView view)
     {
@@ -51,7 +51,7 @@ public class ChaseState<T> : State<T>
         {
 
             dir = _baseEnemy.targetDetection.MyClosestPointToTarget(target) - _baseEnemy.transform.position;
-            _rotationTime = 0;
+
 
         }
         else
@@ -60,8 +60,14 @@ public class ChaseState<T> : State<T>
 
 
         }
-        _rotationTime += Time.deltaTime;
-        _baseEnemy.transform.forward = Vector3.Lerp(_baseEnemy.transform.forward, dir, _rotationTime);
+
+
+
+        var direction = Vector3.RotateTowards(_baseEnemy.transform.forward, dir, _rotationTime * Time.deltaTime, 0);
+        _baseEnemy.transform.rotation = Quaternion.LookRotation(direction);
+
+
+
         _baseEnemy.rb.velocity += _baseEnemy.transform.forward * _speed * Time.deltaTime;
         if (!_baseEnemy.LookingPlayer()) _baseEnemy.Transition("Search");
     }
@@ -88,7 +94,7 @@ public class SearchState<T> : State<T>
     BaseEnemy _baseEnemy;
     EnemyView enemyView;
     float _speed;
-    float _rotationTime = 0;
+
     NavMeshAgent _agent;
     NavMeshPath _path = new NavMeshPath();
     int _currentWaypoint = 0;
@@ -110,38 +116,42 @@ public class SearchState<T> : State<T>
     {
 
         GoToPlayer();
-        _baseEnemy.targetDetection.DidMyPositionChange(0.7f);
+        // _baseEnemy.targetDetection.DidMyPositionChange(0.7f);
     }
     public void GoToPlayer()
     {
-        _speed = _baseEnemy.speed * 10;
+        _speed = _baseEnemy.speed * 5;
         // _speed = 500;
         enemyView.ChasingAnimation();
 
         waypoints = _path.corners;
+        _baseEnemy._waypoints = waypoints;
+        _baseEnemy._currentWaypoint = _currentWaypoint;
         if (_currentWaypoint < waypoints.Length)
-            if (Vector3.Distance(_baseEnemy.transform.position, waypoints[_currentWaypoint]) >= 50)
+            if (Vector3.Distance(_baseEnemy.transform.position, waypoints[_currentWaypoint]) >= 60)
             {
-                _rotationTime += Time.deltaTime;
-                Vector3 dir;
-                if (_baseEnemy.targetDetection.MyClosestObstacle())
-                    dir = _baseEnemy.targetDetection.MyClosestPointToTarget(waypoints[_currentWaypoint]) - _baseEnemy.transform.position;
-                else
-                    dir = waypoints[_currentWaypoint] - _baseEnemy.transform.position;
 
-                _baseEnemy.transform.forward = Vector3.Lerp(_baseEnemy.transform.forward, dir, Time.deltaTime);
+                Vector3 dir;
+                dir = waypoints[_currentWaypoint] - _baseEnemy.transform.position;
+
+
+                _baseEnemy.transform.rotation = Quaternion.LookRotation(dir);
                 _baseEnemy.rb.velocity += _baseEnemy.transform.forward * _speed * Time.deltaTime;
 
             }
             else
             {
-                _rotationTime = 0;
-                if (_currentWaypoint < waypoints.Length - 1)
+
+                if (_currentWaypoint < waypoints.Length)
                     _currentWaypoint++;
-                if (playerHasMove)
-                    RecalculatePath();
 
             }
+        else
+        {
+            RecalculatePath();
+        }
+        if (playerHasMove)
+            RecalculatePath();
         Debug.Log($"waypoint:{_currentWaypoint}:{waypoints.Length}");
         if (_baseEnemy.LookingPlayer()) _baseEnemy.Transition("Chase");
     }
