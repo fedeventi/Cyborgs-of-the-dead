@@ -43,13 +43,14 @@ public class PlayerController : OverridableMonoBehaviour
                 return;
             }
             model.isRunning = true;
+            view.RunningAnimation(model.isRunning);
             model.Run(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
         else
         {
             model.isRunning = false;
         }
-        view.RunningAnimation(model.isRunning);
+       
 
 
 
