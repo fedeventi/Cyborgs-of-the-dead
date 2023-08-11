@@ -65,6 +65,10 @@ public class PlayerView : MonoBehaviour
         
     }
 
+    float stepcooldownwalk = 0.5f;
+    float stepcooldownrun = 0.3f;
+    float laststep;
+
     //Movimiento
     public void MovementAnimation(float auxAxisV, float auxAxisH)
     {
@@ -75,6 +79,12 @@ public class PlayerView : MonoBehaviour
                 animator.SetBool("walking", true);
                 animator.SetBool("idle", false);
                 animator.SetBool("running", false);
+
+                if(Time.time-laststep>stepcooldownwalk)
+                {
+                    StepSound();
+                    laststep = Time.time;
+                }
             }
             else if (auxAxisH == 0 || auxAxisV == 0)
             {
@@ -115,6 +125,12 @@ public class PlayerView : MonoBehaviour
         if (!model.isReloading && !model.animationShooting)
         {
             animator.SetBool("running", running);
+
+            if (Time.time - laststep > stepcooldownrun)
+            {
+                StepSound();
+                laststep = Time.time;
+            }
         }
     }
     //Daño 
