@@ -36,7 +36,8 @@ public class IdleState<T> : State<T>
     {
         if (timer >= seconds)
         {
-            var transition = "Search";
+            var transition = "Chase";
+            // var transition = "Search";
             // if (baseEnemy.LookingPlayer())
             //     transition = "Chase";
 
