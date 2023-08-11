@@ -417,8 +417,8 @@ public class BaseEnemy : OverridableMonoBehaviour
             new Tuple<int,bool>(100, false),
             new Tuple<int,bool>(lostHead?200:10, true),
         };
-        if (rw.ProbabilityCalculator(probabilities))
-            deathAction();
+        //if (rw.ProbabilityCalculator(probabilities))
+        //    deathAction();
 
         wv.enemyAmount -= 1;
         if (!ragdoll)

@@ -58,19 +58,19 @@ public class Waves : MonoBehaviour
             }
         }
 
-        if (currentWave >= 5 && isZombie1 == false)
+        if (currentWave >= 3 && isZombie1 == false)
         {
             enemyPrefabs.Add(zombieBrazo);
             isZombie1 = true;
         }
 
-        if (currentWave >= 8 && isZombie2 == false)
+        if (currentWave >= 4 && isZombie2 == false)
         {
             enemyPrefabs.Add(zombieDist);
             isZombie2 = true;
         }
 
-        if (currentWave >= 11 && isZombie3 == false)
+        if (currentWave >= 5 && isZombie3 == false)
         {
             enemyPrefabs.Add(zombieTank);
             isZombie3 = true;
